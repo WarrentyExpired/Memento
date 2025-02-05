@@ -5775,6 +5775,23 @@ namespace Server.Mobiles
 			switch ( NewAI )
 			{
 				case AIType.AI_Melee:
+				case AIType.AI_Berserk:
+				case AIType.AI_Archer:
+				case AIType.AI_Mage:
+				case AIType.AI_Predator:
+					m_AI = new OmniAI(this);
+					return;
+
+				case AIType.AI_Animal:
+				case AIType.AI_Healer:
+				case AIType.AI_Vendor:
+				case AIType.AI_Thief:
+					break;
+			}
+
+			switch ( NewAI )
+			{
+				case AIType.AI_Melee:
 					m_AI = new MeleeAI(this);
 					break;
 				case AIType.AI_Animal:
@@ -6376,7 +6393,7 @@ namespace Server.Mobiles
 				attacker.PlaySound( attacker.RaceAttackSound );
 			
 			if ( CanDispel( this, attacker ) )
-				Dispel( attacker );
+				Dispel( attacker, true );
 
 			int stealing = Utility.RandomMinMax( 1, (int)(attacker.Skills[SkillName.Stealing].Value) ) + 10;
 			double snooping = attacker.Skills[SkillName.Snooping].Value;
@@ -6429,8 +6446,15 @@ namespace Server.Mobiles
 		}
 
 		public bool DispelChecks( Mobile m, bool fromSpell )
-		{
-			double DispelChance = 0.75; // 75% chance to dispel at gm magery
+        {
+            if ((this.Skills[SkillName.Magery].Value < 54 && this.Skills[SkillName.Necromancy].Value < 81))
+            {
+                if (MyServerSettings.EnableDispelLogging() && !fromSpell)
+                    m.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Dispel prevented (Low skill)");
+                return false;
+            }
+
+            double DispelChance = 0.75; // 75% chance to dispel at gm magery
 
 			double magery = this.Skills[ SkillName.Magery ].Value * DispelChance * 0.01;
 
@@ -6438,12 +6462,6 @@ namespace Server.Mobiles
 			{
 				if (magery > 0 && MyServerSettings.EnableDispelLogging() && !fromSpell)
 					m.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Dispel prevented (Magery)");
-				return false;
-			}
-			else if ( ( this.Skills[SkillName.Magery].Value < 54 && this.Skills[SkillName.Necromancy].Value < 81 ) )
-			{
-				if (MyServerSettings.EnableDispelLogging() && !fromSpell)
-					m.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Dispel prevented (Magery/Necro)");
 				return false;
 			}
 			else if ( this.Mana < 40 )
@@ -6497,8 +6515,25 @@ namespace Server.Mobiles
 
 		public virtual void Dispel( Mobile m )
 		{
+			Dispel( m, false );
+		}
+
+		private DateTime m_NextDefensiveDispel = DateTime.MinValue;
+
+		public virtual void Dispel( Mobile m, bool defensiveDispel )
+		{
 			if ( DispelChecks( m, false ) )
 			{
+				if ( defensiveDispel )
+				{
+					DateTime now = DateTime.Now;
+					if ( now < m_NextDefensiveDispel ) return;
+
+					m_NextDefensiveDispel = now.AddSeconds( Utility.RandomMinMax( 3, 5 ) );
+                    if (MyServerSettings.EnableDispelLogging())
+                        m.PublicOverheadMessage(MessageType.Regular, 0x3B2, false, "Defensively Dispelled");
+                }
+
 				Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 5042 );
 				Effects.PlaySound( m, m.Map, 0x201 );
 				m.Delete();

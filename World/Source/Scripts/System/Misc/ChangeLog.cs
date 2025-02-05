@@ -22,6 +22,8 @@ namespace Server.Misc
 			builder.Append("<br>");
 			builder.Append("Changes<br>");
 			builder.Append("- Combat - Mob Peacemaking duration is now a function of mob skill<br>");
+			builder.Append("- Combat - Add short cooldown to defensive dispelling<br>");
+			builder.Append("- Combat - Most mobs now use OmniAI<br>");
 			builder.Append("- Craft - Bulk crafting has been completely redone<br>");
 			builder.Append("- Craft - Using non-basic resources can now yield multiple skill gains<br>");
 			builder.Append("- Craft - Resist bonus for exceptional hats now uses Arms Lore skill level and has been reduced to 7, down from 15<br>");
@@ -79,6 +81,8 @@ namespace Server.Misc
 			builder.Append("- Item - Skill bonuses from items no longer overcap<br>");
 			builder.Append("- Item - Hiking Boots no longer give resistances<br>");
 			builder.Append("- Item - Soulstones are now account bound upon first use<br>");
+			builder.Append("- Item - Magic wands attributes are notably weaker<br>");
+			builder.Append("- Item - Magic spellbooks no longer get random spells<br>");
 			builder.Append("- Item - Sharpening stone rework<br>");
 			builder.Append("       - Centralized behvaiors for consistency<br>");
 			builder.Append("       - Elemental sharpening stones no longer add Damage Increase %<br>");
@@ -100,6 +104,8 @@ namespace Server.Misc
 			builder.Append("- Misc - Replaced Necromancer character template with Knight<br>");
 			builder.Append("- Misc - Replaced Thief character template with Ninja<br>");
 			builder.Append("- Misc - Vendors sell magical items based on player Fame and Karma breakpoints<br>");
+			builder.Append("- Misc - Identifying items will now stack automatically<br>");
+			builder.Append("- Misc - Ghosts now run at mounted speed<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
@@ -119,12 +125,14 @@ namespace Server.Misc
 			builder.Append("- Spell - Players must be friend or higher to use any spell in a house<br>");
 			builder.Append("- Spell - Paladin spells require 1 stamina per 1 mana cost<br>");
 			builder.Append("- Spell - Creatures now vocalize Mantras when they cast spells<br>");
+			builder.Append("- Spell - Rewrite Spell Bar configuration gump<br>");
 			builder.Append("- Stats - Mana Regen cap reduced to 18, down from 36<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
 			builder.Append("- Combat - Ranged attacks are now prevented while being pacified<br>");
 			builder.Append("- Combat - Peacemake debuff is only removed at the appropriate time<br>");
+			builder.Append("- Combat - Mobs now bypass reagent check<br>");
 			builder.Append("- Craft - Candelabras now cap at 95 skill rather than 195<br>");
 			builder.Append("- Craft - Tinker recipes use Boards instead of Logs<br>");
 			builder.Append("- Craft - Fixed an issue where enhancing was succeeding instead of failing<br>");
@@ -162,6 +170,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Fix null ref in BaseCreature.OnAfterSpawn()<br>");
 			builder.Append("- Misc - Mongbat tower at Devil Guard is now properly capped<br>");
 			builder.Append("- Misc - Dispose of orphaned Data.ref stream writer<br>");
+			builder.Append("- Misc - Potion breaking trap now deletes unidentified potion containers<br>");
 			builder.Append("- Spell - BloodOath could linger up to 1s too long on the Server<br>");
 			builder.Append("- Spell - Bard songs weren't blocked when no instrument was assigned<br>");
 			builder.Append("- Spell - Bard songs weren't blocked when below required skill level<br>");

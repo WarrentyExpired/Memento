@@ -903,6 +903,11 @@ namespace Server.Mobiles
 
 			if( from is PlayerMobile )
 				((PlayerMobile)from).ClaimAutoStabledPets();
+
+			if (!from.Alive)
+			{
+				from.Send(SpeedControl.MountSpeed);
+			}
 		}
 
 		private bool m_NoDeltaRecursion;
@@ -2315,6 +2320,7 @@ namespace Server.Mobiles
 			bool wasAlive = this.Alive;
 
 			base.Resurrect();
+			Send(SpeedControl.Disable);
 
 			this.Hunger = 20;
 			this.Thirst = 20;
@@ -2674,6 +2680,7 @@ namespace Server.Mobiles
 			}
 
 			BaseRace.SyncRace( this, false );
+			Send(SpeedControl.MountSpeed);
 		}
 
 		private List<Mobile> m_PermaFlags;
@@ -4091,6 +4098,11 @@ namespace Server.Mobiles
 
 			if ( pm != null )
 			{
+				if (!pm.Alive)
+				{
+					return true;
+				}
+
 				if ( pm.FindItemOnLayer( Layer.Shoes ) != null )
 				{
 					Item shoes = pm.FindItemOnLayer( Layer.Shoes );
