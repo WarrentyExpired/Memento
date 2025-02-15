@@ -60,7 +60,7 @@ namespace Server.Items
 				player.AccountGold += this.Amount;
 				this.Delete();
 				player.SendMessage( this.Amount + " Gold had been move to your Account Wallet balance.");
-
+        player.SendMessage( "Your Account Wallet balance is: " + player.AccountGold);
 			}
 			else
 			{
