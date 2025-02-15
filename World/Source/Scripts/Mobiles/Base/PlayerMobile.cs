@@ -2294,13 +2294,13 @@ namespace Server.Mobiles
 			else if ( from != null && from.Player )
 				disruptThreshold = 18;
 			else
-				disruptThreshold = 50;
+				disruptThreshold = 25;
 
 			if ( amount > disruptThreshold )
 			{
 				BandageContext c = BandageContext.GetContext( this );
 
-				if ( c != null && Utility.RandomBool() )
+				if ( c != null )
 					c.Slip();
 			}
 
@@ -4062,6 +4062,33 @@ namespace Server.Mobiles
 		{
 			MLQuestSystem.HandleSkillGain( this, skill );
 		}
+
+    //CombatBar
+    public override void OnKarmaChange( int oldValue )
+		{
+      CombatBar.Refresh(this);
+    }
+
+		public override void OnFameChange( int oldValue )
+		{
+			CombatBar.Refresh(this);
+		}
+
+    public override void OnHungerChange(int oldValue)
+    {
+		   CombatBar.Refresh(this);
+    }
+
+    public override void OnThirstChange(int oldValue)
+    {
+			 CombatBar.Refresh(this);
+    }
+
+    public override void OnTithingPointsChange(int oldValue)
+    {
+        CombatBar.Refresh(this);
+    }
+    // End CombatBar
 
 		#region Fastwalk Prevention
 		private static bool FastwalkPrevention = true; // Is fastwalk prevention enabled?
