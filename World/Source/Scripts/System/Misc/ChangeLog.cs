@@ -44,6 +44,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Alien resources are no longer craftable<br>");
 			builder.Append("- Craft - All exceptional armor crafts get 3 bonus resistance points, down from 15<br>");
 			builder.Append("- Craft - Exceptional shields now receive bonus resistances from when exceptional<br>");
+			builder.Append("- Craft - Add Skill List to assist with finding items to craft for gains<br>");
 			builder.Append("- Enchantment - Lower Mana Cost (LMC) is now capped at 8%<br>");
 			builder.Append("- Enchantment - Lower Reagent Cost (LRC) is now capped at 20%<br>");
 			builder.Append("- Gather - Add 'Rich Trees' to give Lumberjacking a more active playstyle<br>");
@@ -107,6 +108,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Vendors sell magical items based on player Fame and Karma breakpoints<br>");
 			builder.Append("- Misc - Identifying items will now stack automatically<br>");
 			builder.Append("- Misc - Ghosts now run at mounted speed<br>");
+			builder.Append("- Misc - Add [CombatBar to [QuickBar<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
