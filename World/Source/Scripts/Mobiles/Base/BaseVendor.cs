@@ -2158,7 +2158,7 @@ namespace Server.Mobiles
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int)2 ); // version
+			writer.Write( (int)3 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -2178,12 +2178,14 @@ namespace Server.Mobiles
 				}
 			}
 
+			if ( version == 2 )
+				AI = AIType.AI_Vendor;
+
 			if ( IsParagon )
 				IsParagon = false;
 
 			if ( NameHue == 0x35 )
 				NameHue = -1;
-
 
 			Timer.DelayCall(TimeSpan.FromSeconds(10.0), () =>
 			{

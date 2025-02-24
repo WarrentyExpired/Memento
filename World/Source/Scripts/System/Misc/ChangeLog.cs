@@ -45,6 +45,11 @@ namespace Server.Misc
 			builder.Append("- Craft - All exceptional armor crafts get 3 bonus resistance points, down from 15<br>");
 			builder.Append("- Craft - Exceptional shields now receive bonus resistances from when exceptional<br>");
 			builder.Append("- Craft - Add Skill List to assist with finding items to craft for gains<br>");
+			builder.Append("- Craft - Add Blank Map recipe to Cartography<br>");
+			builder.Append("- Craft - Cartography can now use Blank Map or Blank Scroll as a material<br>");
+			builder.Append("- Craft - Cartography skill requirements have been reworked<br>");
+			builder.Append("- Craft - Each Bark Fragment now creates 10x Blank scrolls<br>");
+			builder.Append("- Craft - Double-clicking a tool will try to equip it<br>");
 			builder.Append("- Enchantment - Lower Mana Cost (LMC) is now capped at 8%<br>");
 			builder.Append("- Enchantment - Lower Reagent Cost (LRC) is now capped at 20%<br>");
 			builder.Append("- Gather - Add 'Rich Trees' to give Lumberjacking a more active playstyle<br>");
@@ -64,6 +69,7 @@ namespace Server.Misc
 			builder.Append("- Gather - Tool uses are reduced by the quantity of resources harvested<br>");
 			builder.Append("- Gather - One log now yields four boards<br>");
 			builder.Append("- Gather - Gains from digging Iron ore stop at 85, down from 100<br>");
+			builder.Append("- Gather - Elven wood can now only be acquired via 'Rich Tree'<br>");
 			builder.Append("- Gump - Redesigned crafting tool gump<br>");
 			builder.Append("- Item - Increased the cost of all 115/120/125 Powerscrolls<br>");
 			builder.Append("- Item - Powerscrolls now have to be used in order<br>");
@@ -85,6 +91,8 @@ namespace Server.Misc
 			builder.Append("- Item - Magic wands attributes are notably weaker<br>");
 			builder.Append("- Item - Magic spellbooks no longer get random spells<br>");
 			builder.Append("- Item - Pearl jewelry now has a minimum requirements to drop<br>");
+			builder.Append("- Item - Dramatically reduce the sale price of Skins<br>");
+			builder.Append("- Item - Ten foot poles have been rebalanced<br>");
 			builder.Append("- Item - Sharpening stone rework<br>");
 			builder.Append("       - Centralized behvaiors for consistency<br>");
 			builder.Append("       - Elemental sharpening stones no longer add Damage Increase %<br>");
@@ -109,6 +117,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Identifying items will now stack automatically<br>");
 			builder.Append("- Misc - Ghosts now run at mounted speed<br>");
 			builder.Append("- Misc - Add [CombatBar to [QuickBar<br>");
+			builder.Append("- Misc - Characters now start items relevant to their skills<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
@@ -132,6 +141,8 @@ namespace Server.Misc
 			builder.Append("- Spell - Creatures now vocalize Mantras when they cast spells<br>");
 			builder.Append("- Spell - Rewrite Spell Bar configuration gump<br>");
 			builder.Append("- Stats - Mana Regen cap reduced to 18, down from 36<br>");
+			builder.Append("- Stats - Holy Man now executes skill checks when casting spells<br>");
+			builder.Append("- Stats - Magic Resistance skill now provides more resistance at lower skill<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
@@ -151,6 +162,8 @@ namespace Server.Misc
 			builder.Append("- Gump - Alien Players who use Tithe to pay for a res from another player are no longer double penalized<br>");
 			builder.Append("- Gump - Sending buttons that don't exist will now disconnect the Player<br>");
 			builder.Append("- Gump - Remove redundant quiver damage qualifier<br>");
+			builder.Append("- Gump - Summon Familiar gump is now fixed<br>");
+			builder.Append("- Gump - Jedi/Syth spells can be cast from main spellbook page again<br>");
 			builder.Append("- Item - Added missing Powerscrolls (Begging, Camping, Forensics, Mercantile, Tasting)<br>");
 			builder.Append("- Item - Lucky horse shoe now work on Instruments and Quivers<br>");
 			builder.Append("- Item - Unidentified items with deleted contents are now properly deleted<br>");
@@ -164,6 +177,7 @@ namespace Server.Misc
 			builder.Append("- Item - Item generation now has greater variation in resource selection<br>");
 			builder.Append("- Item - Young player maps are now decodable<br>");
 			builder.Append("- Item - You can now steal with any type of pugilist gloves<br>");
+			builder.Append("- Item - Ten foot pole now conveys initial % avoidance<br>");
 			builder.Append("- Misc - Set Map when [scan players<br>");
 			builder.Append("- Misc - Fix typo in RangeCheck()<br>");
 			builder.Append("- Misc - Buffs/Debuffs now end on the Server before the Client timer elapses<br>");
@@ -180,6 +194,10 @@ namespace Server.Misc
 			builder.Append("- Spell - Bard songs weren't blocked when no instrument was assigned<br>");
 			builder.Append("- Spell - Bard songs weren't blocked when below required skill level<br>");
 			builder.Append("- Spell - Mirror image now has the correct buff name<br>");
+			builder.Append("- Spell - Dispel/Banish now properly indicate when a target cannot be dispelled<br>");
+			builder.Append("- Spell - Death Knight spells no longer have a redundant failure check<br>");
+			builder.Append("- Spell - Syth spells no longer have a redundant failure check<br>");
+			builder.Append("- Spell - Jedi spells no longer have a redundant failure check<br>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -302,7 +302,7 @@ namespace Server.Engines.Craft
 				new Type[]{ typeof( BaseSkins ), typeof( BaseBlocks ) },
 				new Type[]{ typeof( BaseFabric ), typeof( BaseLeather ) },
 				new Type[]{ typeof( BaseHides ), typeof( BaseSkeletal ) },
-				new Type[]{ typeof( BlankScroll ) },
+				new Type[]{ typeof( BlankMap ), typeof( BlankScroll ) },
 				new Type[]{ typeof( CheeseWheel ), typeof( CheeseWedge ) },
 				new Type[]{ typeof( Pumpkin ), typeof( SmallPumpkin ) },
 				new Type[]{ typeof( WoodenBowlOfPeas ), typeof( PewterBowlOfPeas ) }
@@ -1166,12 +1166,10 @@ namespace Server.Engines.Craft
 
                     EventSink.InvokeCraftSuccess(new CraftSuccessArgs(from, item, tool is Item ? (Item)tool : null));
 
-					int made = item.Amount;
 					if ( item is Kindling || item is BarkFragment || item is Shaft )
-						made = made * 2;
-
-					if ( item is Kindling || item is BarkFragment || item is Shaft )
-						item.Amount = item.Amount * 2;
+						item.Amount *= 2;
+					else if ( item is BlankScroll )
+						item.Amount *= 10;
 
 					if ( ( item.Resource == CraftResource.None || item.Resource == CraftResource.None ) && ( item is WoodenPlateLegs || item is WoodenPlateGloves || item is WoodenPlateGorget || item is WoodenPlateArms || item is WoodenPlateChest || item is WoodenPlateHelm ) )
 					{
