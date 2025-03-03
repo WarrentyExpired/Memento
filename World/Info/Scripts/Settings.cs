@@ -51,7 +51,7 @@ namespace Server
 	// single player, and you turn the server on/off as required, then set this to true so these routines at least run
 	// when you start the game for you.
 
-		public static bool S_RunRoutinesAtStartup = true;
+		public static bool S_RunRoutinesAtStartup = false;
 
 	// This setting is the number of days a character must exist before a player can delete them.
 
@@ -153,7 +153,7 @@ namespace Server
 
 	// How many minutes between stat gains which helps with the above setting. This can be between 5.0 to 60.0 minutes.
 
-		public static double S_StatGainDelay = 7.5;
+		public static double S_StatGainDelay = 5.0;
 
 	// If true, new characters can choose to take the alien origin route.
 	// This is a play style where one can choose to enter a transporter and be a character that crashed
@@ -189,7 +189,7 @@ namespace Server
 	// This number can be set from 5 to 60, which determines the number of minutes that hunger and thirst are checked for
 	// reduction (default is 5).
 
-		public static int S_FoodCheck = 60;
+		public static int S_FoodCheck = 30;
 
 	// Below is the guild base fee to join a guild. This is the intial cost to join the first guild. If you quit, and join
 	// another guild, then the fee will increase by that amount. It is based on the number of guild you were a member of
@@ -247,8 +247,8 @@ namespace Server
 	// This is the minimum and maximum gold that a player character starts with. Default is 100 and 150. The most gold a
 	// character can begin with is 10,000 gold.
 
-		public static int S_MinGold = 1500;
-		public static int S_MaxGold = 1600;
+		public static int S_MinGold = 2000;
+		public static int S_MaxGold = 3000;
 
 	// If true, powerscrolls must be eaten in order 105 -> 110 -> 115 -> 120 -> 125
 
@@ -377,7 +377,7 @@ namespace Server
 	// successful resources are gathered (lumberjacking, mining, fishing, forensics, cooking, and inscription).
 	// Setting this greater than one will enable macroing.
 
-		public static int S_Resources = 2;
+		public static int S_Resources = 1;
 
 	// Increasing this number will increase the price of enhancing items with extraordinary tools that are used by
 	// guild members, when next to their guildmasters. This value is a percentage increase from the base price.
@@ -480,6 +480,7 @@ namespace Server
 	// value higher than 10 could mean that the paralyze cooldown is lower than its duration, 
 	// which can lead to frustrating fights as enemies can flee and chain-paralyze a character until they heal 
 	// enough to get back into the fight. 
+
 		public static double S_paralyzeDuration = 7.0;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -517,7 +518,7 @@ namespace Server
 	// to do commerce with, and only is applied if they are not rich merchants. Each restocking period, vendors will set their gold back to these
 	// default levels. As gameplay occurs, this value can increase for a vendor as you buy things from them, or pay for services they offer.
 
-		public static bool S_RichMerchants = true;
+		public static bool S_RichMerchants = false;
 		public static bool S_UseRemainingGold = false;
 		public static int S_MinMerchant = 2000;
 		public static int S_MaxMerchant = 4000;
