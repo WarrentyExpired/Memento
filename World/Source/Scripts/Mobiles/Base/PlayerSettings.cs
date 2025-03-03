@@ -339,9 +339,12 @@ namespace Server.Misc
 
 		public static Land GetRandomDiscoveredLand( PlayerMobile m, List<Land> options, Func<Land, bool> predicate )
 		{
-			if ( m != null ) return Land.None;
+			if ( m == null ) return Land.None;
 
-			options.Where(land => ( predicate != null && predicate(land) ) || GetDiscovered(m, land)).ToList();
+			options = options
+				.Where(land => ( predicate != null && predicate(land) ) || GetDiscovered(m, land))
+				.ToList();
+			if ( options.Count == 0 ) return Land.None;
 
             return Utility.Random(options);
         }

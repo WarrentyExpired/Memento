@@ -231,7 +231,7 @@ namespace Server.Mobiles
 			}
 		}
 
-		public BaseVendor( string title ) : base( AIType.AI_Melee, FightMode.Closest, 15, 1, 0.1, 0.2 )
+		public BaseVendor( string title ) : base( AIType.AI_Vendor, FightMode.Closest, 15, 1, 0.1, 0.2 )
 		{
 			this.Title = title;
 
@@ -263,8 +263,7 @@ namespace Server.Mobiles
 			if ( this is PlayerBarkeeper ) return;
 			if (!m_CoinsNeedReset) return;
 
-			int coins = Utility.RandomMinMax( MySettings.S_MinMerchant, MySettings.S_MaxMerchant );
-			CoinPurse = this is BaseGuildmaster ? coins * 3 : coins;
+			CoinPurse = Utility.RandomMinMax( MySettings.S_MinMerchant, MySettings.S_MaxMerchant );
 			
 			if ( from != null )
 				SayTo( from, true, "I have {0} gold to barter with.", CoinPurse );
@@ -1645,9 +1644,6 @@ namespace Server.Mobiles
 				default: return false;
 			}
 
-			if (doMutation && item is Spellbook)
-				((Spellbook)item).Content = 0; // Reset to no spells
-
 			// Always basic resources.
 			// This gives Players the opportunity to enhance and flip items.
 			// Non-basic resource drops are 
@@ -2008,14 +2004,16 @@ namespace Server.Mobiles
 				SayTo( seller, true, "You may only sell {0} items at a time!", MaxSell );
 				return false;
 			}
-			else if ( !MySettings.S_RichMerchants && SoldPrice > this.CoinPurse && !MySettings.S_UseRemainingGold )
+
+			if ( Sold == 0 )
+			{
+				return true;
+			}
+			
+			if ( !MySettings.S_RichMerchants && SoldPrice > this.CoinPurse && !MySettings.S_UseRemainingGold && !pm.IgnoreVendorGoldSafeguard)
 			{
 				SayTo( seller, true, "Sorry, but I only have {0} gold to barter with.", this.CoinPurse );
 				return false;
-			}
-			else if ( Sold == 0 )
-			{
-				return true;
 			}
 
 			seller.PlaySound( 0x32 );
