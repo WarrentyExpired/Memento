@@ -24,6 +24,7 @@ namespace Server.Misc
 			builder.Append("- Combat - Mob Peacemaking duration is now a function of mob skill<br>");
 			builder.Append("- Combat - Add short cooldown to defensive dispelling<br>");
 			builder.Append("- Combat - Most mobs now use OmniAI<br>");
+			builder.Append("- Combat - Defensive dispel (when mobs are hit) now costs whichever is greater, 40 mana or 10% of max mana<br>");
 			builder.Append("- Commands - Add [VendorGold setting to disallow the Vendor's Sell limit safeguard<br>");
 			builder.Append("- Craft - Bulk crafting has been completely redone<br>");
 			builder.Append("- Craft - Using non-basic resources can now yield multiple skill gains<br>");
@@ -75,6 +76,7 @@ namespace Server.Misc
 			builder.Append("- Gather - Harvest failures now consume Uses Remaining<br>");
 			builder.Append("- Gather - Harvest failures now consume node capacity<br>");
 			builder.Append("- Gump - Redesigned crafting tool gump<br>");
+			builder.Append("- Gump - Add required skill to Animal Form gump<br>");
 			builder.Append("- Item - Increased the cost of all 115/120/125 Powerscrolls<br>");
 			builder.Append("- Item - Powerscrolls now have to be used in order<br>");
 			builder.Append("- Item - Powerscrolls purchases can now use Checks in your Bank<br>");
@@ -125,6 +127,8 @@ namespace Server.Misc
 			builder.Append("- Misc - Add [CombatBar to [QuickBar<br>");
 			builder.Append("- Misc - Characters now start items relevant to their skills<br>");
 			builder.Append("- Misc - Increase 'Vendor Buy' listening distance to 2<br>");
+			builder.Append("- Misc - Ninja/Bushido moves may be used while in Animal Form<br>");
+			builder.Append("- Misc - Weapon Abilities may be used while in Animal Form<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
