@@ -7,10 +7,7 @@ namespace Server.Items
 		[Constructable]
 		public Artifact_QuiverOfInfinity() : base()
 		{
-			int attributeCount = Utility.RandomMinMax(3,7);
-			int min = Utility.RandomMinMax(5,15);
-			int max = min + 20;
-			BaseRunicTool.ApplyAttributesTo( (BaseQuiver)this, attributeCount, min, max );
+			BaseRunicTool.ApplyAttributes( this, 4, 4, 40, 100 );
 
 			Name = "Quiver of Infinity";
 			ItemID = 0x2B02;
@@ -38,10 +35,6 @@ namespace Server.Items
 
 			int version = reader.ReadEncodedInt();
 
-			if( version < 1 && DamageIncrease == 0 )
-			{
-				DamageIncrease = 10;
-			}
 			ArtifactLevel = 1;
 		}
 	}

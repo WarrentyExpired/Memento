@@ -328,7 +328,19 @@ namespace Server.SkillHandlers
 			AddButton(667, 12, 4017, 4017, 0, GumpButtonType.Reply, 0);
 
 			string colA = "INFORMATION<BR> <BR>";
-			colA = colA + "  Level<BR>";
+			colA = colA + "  Power Level<BR>";
+			if ( c.Tamable )
+			{
+				if ( c.ControlMaster == null )
+					colA = colA + "  Max Pet Level<BR>";
+				else
+				{
+					colA = colA + "  Pet Level<BR>";
+					colA = colA + "  Experience Earned<BR>";
+					colA = colA + "  Experience Needed<BR>";
+				}
+			}
+
 			colA = colA + "  Hits<BR>";
 			colA = colA + "  Stamina<BR>";
 			colA = colA + "  Mana<BR>";
@@ -341,25 +353,25 @@ namespace Server.SkillHandlers
 			if ( source == 0 && c.MinTameSkill > 0 )
 			{
 				colA = colA + "  Taming Needed<BR>";
-				colA = colA + "  Loyalty Rating<BR>";
-					string loyalty = "Wild";
-					int loyal = 1 + (c.Loyalty / 10);
-					switch ( loyal ) 
-					{
-						case 1: loyalty = "Confused"; break;
-						case 2: loyalty = "Extremely Unhappy"; break;
-						case 3: loyalty = "Rather Unhappy"; break;
-						case 4: loyalty = "Unhappy"; break;
-						case 5: loyalty = "Somewhat Content"; break;
-						case 6: loyalty = "Content"; break;
-						case 7: loyalty = "Happy"; break;
-						case 8: loyalty = "Rather Happy"; break;
-						case 9: loyalty = "Very Happy"; break;
-						case 10: loyalty = "Extremely Happy"; break;
-						case 11: loyalty = "Wonderfully Happy"; break;
-						case 12: loyalty = "Euphoric"; break;
-					}
-					colA = colA + "    " + loyalty + "<BR>";
+				// colA = colA + "  Loyalty Rating<BR>";
+				// 	string loyalty = "Wild";
+				// 	int loyal = 1 + (c.Loyalty / 10);
+				// 	switch ( loyal ) 
+				// 	{
+				// 		case 1: loyalty = "Confused"; break;
+				// 		case 2: loyalty = "Extremely Unhappy"; break;
+				// 		case 3: loyalty = "Rather Unhappy"; break;
+				// 		case 4: loyalty = "Unhappy"; break;
+				// 		case 5: loyalty = "Somewhat Content"; break;
+				// 		case 6: loyalty = "Content"; break;
+				// 		case 7: loyalty = "Happy"; break;
+				// 		case 8: loyalty = "Rather Happy"; break;
+				// 		case 9: loyalty = "Very Happy"; break;
+				// 		case 10: loyalty = "Extremely Happy"; break;
+				// 		case 11: loyalty = "Wonderfully Happy"; break;
+				// 		case 12: loyalty = "Euphoric"; break;
+				// 	}
+				// 	colA = colA + "    " + loyalty + "<BR>";
 				colA = colA + "  Pack Instinct<BR>";
 					string packInstinct = "None";
 					if ( (c.PackInstinct & PackInstinct.Canine) != 0 )
@@ -423,6 +435,18 @@ namespace Server.SkillHandlers
 			}
 
 			string colB = " <BR> <BR>" + IntelligentAction.GetCreatureLevel( c ) + "<BR>";
+			if ( c.Tamable )
+			{
+				if ( c.ControlMaster == null )
+					colB = colB + "" + c.MaxLevel + "<BR>";
+				else
+				{
+					colB = colB + "" + c.Level + " / " + c.MaxLevel + "<BR>";
+					colB = colB + "" + c.Experience + "<BR>";
+					colB = colB + "" + c.ExpToNextLevel + "<BR>";
+				}
+			}
+
 			colB = colB + "" + FormatNumber( c.Hits ) + " / " + FormatNumber( c.HitsMax ) + "<BR>";
 			colB = colB + "" + FormatNumber( c.Stam ) + " / " + FormatNumber( c.StamMax ) + "<BR>";
 			colB = colB + "" + FormatNumber( c.Mana ) + " / " + FormatNumber( c.ManaMax ) + "<BR>";

@@ -101,6 +101,9 @@ namespace Server.Misc
 			builder.Append("- Item - Ten foot poles have been rebalanced<br>");
 			builder.Append("- Item - Equation for damaging items has been changed<br>");
 			builder.Append("- Item - Double-clicking a one or two-handed item will equip it<br>");
+			builder.Append("- Item - Remove Damage Modifier from Quivers<br>");
+			builder.Append("- Item - Redo properties for Artifact Quivers<br>");
+			builder.Append("- Item - Boost physical resist of Aegis set<br>");
 			builder.Append("- Item - Sharpening stone rework<br>");
 			builder.Append("       - Centralized behvaiors for consistency<br>");
 			builder.Append("       - Elemental sharpening stones no longer add Damage Increase %<br>");
@@ -130,6 +133,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Increase 'Vendor Buy' listening distance to 2<br>");
 			builder.Append("- Misc - Ninja/Bushido moves may be used while in Animal Form<br>");
 			builder.Append("- Misc - Weapon Abilities may be used while in Animal Form<br>");
+			builder.Append("- Misc - Add Jako Pet Leveling<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
@@ -149,13 +153,17 @@ namespace Server.Misc
 			builder.Append("- Skill - Spiritualism now restores Mana when a corpse is consumed<br>");
 			builder.Append("- Skill - Masters in Remove Trap have a chance to avoid death from killer tiles<br>");
 			builder.Append("- Skill - Searching can detect killer tiles<br>");
+			builder.Append("- Skill - Magic Resistance skill now provides more resistance at lower skill<br>");
+			builder.Append("- Skill - Arms Lore no longer provides an OnHit damage bonus<br>");
+			builder.Append("- Skill - Arms Lore now helps prevent durability damage<br>");
+			builder.Append("- Skill - Taming can now gain every time a pet levels up<br>");
+			builder.Append("- Skill - Creatures with >= 10k Fame will anger on tame by default<br>");
 			builder.Append("- Spell - Players must be friend or higher to use any spell in a house<br>");
 			builder.Append("- Spell - Paladin spells require 1 stamina per 1 mana cost<br>");
 			builder.Append("- Spell - Creatures now vocalize Mantras when they cast spells<br>");
 			builder.Append("- Spell - Rewrite Spell Bar configuration gump<br>");
 			builder.Append("- Stats - Mana Regen cap reduced to 18, down from 36<br>");
 			builder.Append("- Stats - Holy Man now executes skill checks when casting spells<br>");
-			builder.Append("- Stats - Magic Resistance skill now provides more resistance at lower skill<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
