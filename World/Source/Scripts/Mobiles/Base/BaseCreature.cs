@@ -4960,6 +4960,7 @@ namespace Server.Mobiles
 
             #region Jako Taming Added
             Female = Utility.RandomBool();
+			RealLevel = m_level;
 			MaxLevel = (uint)Utility.RandomMinMax(9, 15);
 			NextMate = DateTime.Now;
             #endregion
@@ -9719,8 +9720,8 @@ namespace Server.Mobiles
         #region Jako Taming
         private uint m_level = 1;
         protected virtual TimeSpan NextMateDelay(uint atLevel) { return (atLevel == AbsMaxLevel ? TimeSpan.FromDays(14) : TimeSpan.FromDays(7)); }
-        public virtual uint ExpNeeded(uint atLevel) { return (uint)(5 * Math.Pow(atLevel, 3) + 10000); }
-        public virtual uint TraitsGiven(uint atLevel) { return (atLevel == 10) ? (uint)2 : (uint)1; }
+        public virtual uint ExpNeeded(uint atLevel) { return (uint)(155.34 * Math.Pow(atLevel, 1.634)); }
+        public virtual uint TraitsGiven(uint atLevel) { return (atLevel < 0 && atLevel % 10 == 0) ? (uint)5 : (uint)2; }
         public string SexString { get { return (Female ? "Female" : "Male"); } }
         public JakoAttributes m_jakoAttributes = new JakoAttributes();
 
@@ -9747,7 +9748,7 @@ namespace Server.Mobiles
         public uint MaxLevel { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public virtual uint AbsMaxLevel { get { return 50; } }
+        public virtual uint AbsMaxLevel { get { return 20; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public uint Experience { get; set; }
@@ -9768,7 +9769,7 @@ namespace Server.Mobiles
         public virtual double ExpDecayPerc { get { return .20; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public virtual uint ExpGiven { get { return (uint)(Fame / 50); } }
+        public virtual uint ExpGiven { get { return (uint)(20 + (Fame / 75)); } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public virtual uint ExpToNextLevel { get { return ExpNeeded(m_level); } }
@@ -9872,17 +9873,24 @@ namespace Server.Mobiles
         /// <param name="m">The creature to calcaulte the EXP From (typically dead).</param>
         private void CalculateExpDist(Mobile m)
         {
-            if (!(m is BaseCreature) || ((BaseCreature)m).ExpGiven == 0 || !((BaseCreature)m).JakoIsEnabled || ((BaseCreature)m).Summoned)
-                return;
+			BaseCreature creature = m as BaseCreature;
+			if (creature == null || creature.ExpGiven == 0 || !creature.JakoIsEnabled || creature.Summoned) return;
 
             List<DamageEntry> rights = m.DamageEntries;
+
+			uint experience = creature.ExpGiven;
+			if (Controlled && ControlMaster != null && ControlMaster is PlayerMobile) // Herding bonus experience
+				experience += (uint)(experience * ControlMaster.Skills[SkillName.Herding].Value / 500); // max of 25%
+			if (1 < rights.Count)
+				experience /= 2;
+
             foreach (DamageEntry entry in rights)
             {
                 if (entry.Damager is BaseCreature)
                 {
                     BaseCreature bc = (BaseCreature)entry.Damager;
                     if (bc.Controlled == true && bc.ControlMaster != null)
-                        bc.GainExp(m, (uint)(((BaseCreature)m).ExpGiven / rights.Count), true);
+                        bc.GainExp(m, experience, true);
                 }
             }
 
@@ -9956,6 +9964,26 @@ namespace Server.Mobiles
 						}
 					}
                 }
+
+				if ( newLevel == 3 ) // Auto-Bond
+				{
+					if (!IsBonded && ControlMaster != null)
+					{
+						IsBonded = true;
+						BondingBegin = DateTime.MinValue;
+						ControlMaster.SendLocalizedMessage( 1049666 ); // Your pet has bonded with you!
+					}
+				}
+				else if ( newLevel == AbsMaxLevel ) // Reduce control slots, down to 2
+				{
+					const int MIN_CONTROL_SLOTS = 2;
+					if ( MIN_CONTROL_SLOTS <= ControlSlots - 1)
+					{
+						ControlSlots -= 1;
+						if (ControlMaster != null)
+							ControlMaster.SendMessage( "Your pet trusts you implicitly. It will be easier to control now." );
+					}
+				}
 
                 m_level = RealLevel = newLevel;
             }
