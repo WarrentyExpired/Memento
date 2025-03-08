@@ -805,7 +805,7 @@ namespace Server.Mobiles
 		public virtual bool AllowMaleTamer{ get{ return true; } }
 		public virtual bool AllowFemaleTamer{ get{ return true; } }
 		public virtual bool SubdueBeforeTame{ get{ return false; } }
-		public virtual bool StatLossAfterTame{ get{ return SubdueBeforeTame; } }
+		public virtual bool StatLossAfterTame{ get{ return 1000 <= Fame; } }
 		public virtual bool ReduceSpeedWithDamage{ get{ return true; } }
 		public virtual bool IsSubdued{ get{ return SubdueBeforeTame && ( Hits < ( HitsMax / 10 ) ); } }
 
@@ -1947,9 +1947,14 @@ namespace Server.Mobiles
 
 		public virtual bool CheckControlChance( Mobile m )
 		{
+			PlayerMobile master = Controlled && ControlMaster != null && ControlMaster is PlayerMobile ? (PlayerMobile)ControlMaster : null;
 			if ( GetControlChance( m ) > Utility.RandomDouble() )
 			{
-				Loyalty += 1;
+				if (Utility.RandomDouble() > 0.85 && master != null)
+				{
+					master.CheckSkill( SkillName.Herding, MinTameSkill - 25, MinTameSkill + 25 );
+				}
+
 				return true;
 			}
 
@@ -1959,6 +1964,8 @@ namespace Server.Mobiles
 				Animate( 10, 5, 1, true, false, 0 );
 			else if ( Body.IsMonster )
 				Animate( 18, 5, 1, true, false, 0 );
+
+			if (master != null && master.CheckSkill( SkillName.Herding, MinTameSkill - 25, MinTameSkill + 25 )) return false;
 
 			Loyalty -= 3;
 			return false;

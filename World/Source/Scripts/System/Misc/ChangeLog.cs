@@ -76,6 +76,7 @@ namespace Server.Misc
 			builder.Append("- Gather - Harvest failures now consume node capacity<br>");
 			builder.Append("- Gather - Skinning knives have been refactored and are no longer weapons<br>");
 			builder.Append("- Gump - Redesigned crafting tool gump<br>");
+			builder.Append("- Gump - Redesigned Druidism gump<br>");
 			builder.Append("- Gump - Add required skill to Animal Form gump<br>");
 			builder.Append("- Item - Increased the cost of all 115/120/125 Powerscrolls<br>");
 			builder.Append("- Item - Powerscrolls now have to be used in order<br>");
@@ -104,6 +105,7 @@ namespace Server.Misc
 			builder.Append("- Item - Remove Damage Modifier from Quivers<br>");
 			builder.Append("- Item - Redo properties for Artifact Quivers<br>");
 			builder.Append("- Item - Boost physical resist of Aegis set<br>");
+			builder.Append("- Item - All clothing now have durability<br>");
 			builder.Append("- Item - Sharpening stone rework<br>");
 			builder.Append("       - Centralized behvaiors for consistency<br>");
 			builder.Append("       - Elemental sharpening stones no longer add Damage Increase %<br>");
@@ -139,6 +141,9 @@ namespace Server.Misc
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
 			builder.Append("- Pets - Damage to pets is now 140%, down from 200%<br>");
 			builder.Append("- Pets - Crit chance to pets is now 5%, down from 20%<br>");
+			builder.Append("- Pets - Most Tames get a 25% Stat reduction after Taming<br>");
+			builder.Append("- Pets - Tames are reduced to level 1 after being Tamed<br>");
+			builder.Append("- Pets - Removed legacy StatLossAfterTame behavior<br>");
 			builder.Append("- Quest - Sage Artifact quest has been ported to ML Quest System<br>");
 			builder.Append("- Quest - Sage Artifact quest now involves townsfolk<br>");
 			builder.Append("- Quest - Updated most quests to be limited to discovered facets<br>");
@@ -158,7 +163,9 @@ namespace Server.Misc
 			builder.Append("- Skill - Arms Lore now helps prevent durability damage<br>");
 			builder.Append("- Skill - Taming can now gain every time a pet levels up<br>");
 			builder.Append("- Skill - Creatures with >= 10k Fame will anger on tame by default<br>");
-			builder.Append("- Skill - Herding now increases pet experience gained<br>");
+			builder.Append("- Skill - Herding now increases pet experience gained<br>"); // TODO: Update documentation
+			builder.Append("- Skill - Herding can now be gained by issuing commands<br>");
+			builder.Append("- Skill - Herding can prevent Loyalty loss when pets are disobedient<br>");
 			builder.Append("- Spell - Players must be friend or higher to use any spell in a house<br>");
 			builder.Append("- Spell - Paladin spells require 1 stamina per 1 mana cost<br>");
 			builder.Append("- Spell - Creatures now vocalize Mantras when they cast spells<br>");
@@ -171,6 +178,7 @@ namespace Server.Misc
 			builder.Append("- Combat - Ranged attacks are now prevented while being pacified<br>");
 			builder.Append("- Combat - Peacemake debuff is only removed at the appropriate time<br>");
 			builder.Append("- Combat - Mobs now bypass reagent check<br>");
+			builder.Append("- Commands - Update [CorpseClear to actually remove all bodies<br>");
 			builder.Append("- Craft - Candelabras now cap at 95 skill rather than 195<br>");
 			builder.Append("- Craft - Tinker recipes use Boards instead of Logs<br>");
 			builder.Append("- Craft - Fixed an issue where enhancing was succeeding instead of failing<br>");
@@ -181,6 +189,7 @@ namespace Server.Misc
 			builder.Append("- Gather - Fix InvalidCastException when Fishing<br>");
 			builder.Append("- Gather - Fix issue where saplings were choppable<br>");
 			builder.Append("- Gather - Fix elementals spawning with gargoyle pickaxes<br>");
+			builder.Append("- Gather - Graverobbing no longer creates orphaned chests<br>");
 			builder.Append("- Gump - Alien Players who use Tithe to pay for a res from another player are no longer double penalized<br>");
 			builder.Append("- Gump - Sending buttons that don't exist will now disconnect the Player<br>");
 			builder.Append("- Gump - Remove redundant quiver damage qualifier<br>");
@@ -216,6 +225,8 @@ namespace Server.Misc
 			builder.Append("- Misc - Dispose of orphaned Data.ref stream writer<br>");
 			builder.Append("- Misc - Potion breaking trap now deletes unidentified potion containers<br>");
 			builder.Append("- Misc - Monster race paperdoll graphics are restored after restart<br>");
+			builder.Append("- Misc - Fix potential null ref during icon removal<br>");
+			builder.Append("- Mobs - Winter Wolf now has Skills set<br>");
 			builder.Append("- Quest - Fix bug where the quest default of 'the Dungeon of Doom' could never be satisfied<br>");
 			builder.Append("- Spell - BloodOath could linger up to 1s too long on the Server<br>");
 			builder.Append("- Spell - Bard songs weren't blocked when no instrument was assigned<br>");
