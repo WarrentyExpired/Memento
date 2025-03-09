@@ -1121,16 +1121,18 @@ namespace Server.Items
 				if ( !CheckLoot( from, null ) )
 					return;
 
+				base.OnDoubleClick( from );
+
 				// Automatically carve corpse
+				// Must be after OnDoubleClick otherwise Client option to Auto-Open corpses doesn't work
 				Mobile dead = m_Owner;
 				if ( dead != null && !GetFlag( CorpseFlag.Carved ) )
 				{
 					Item skinningKnife = from.Trinket as SkinningKnifeTool;
 					if ( skinningKnife != null )
-						Carve( from, skinningKnife );
+						Carve( from, skinningKnife, true );
 				}
 
-				base.OnDoubleClick( from );
 				from.SendSound( 0x48, from.Location );
 				Server.Misc.PlayerSettings.LootContainer( from, this );
 			}
@@ -1208,6 +1210,11 @@ namespace Server.Items
 
 		public void Carve( Mobile from, Item item )
 		{
+			Carve( from, item, false );
+		}
+
+		private void Carve( Mobile from, Item item, bool isAutomatic )
+		{
 			if ( IsCriminalAction( from ) && this.Map != null && (this.Map.Rules & MapRules.HarmfulRestrictions) != 0 )
 			{
 				if ( m_Owner == null || !m_Owner.Player )
@@ -1226,17 +1233,6 @@ namespace Server.Items
 			}
 			else if ( ((Body)Amount).IsHuman )
 			{
-				consumeUse = true;
-				new Blood( 0x122D ).MoveToWorld( Location, Map );
-
-				Corpse bodyBag = (Corpse)this;
-				Item App1 = new Torso();		App1.Hue = this.Hue;	bodyBag.AddCarvedItem( App1, from );
-				Item App2 = new LeftLeg();		App2.Hue = this.Hue;	bodyBag.AddCarvedItem( App2, from );
-				Item App3 = new LeftArm();		App3.Hue = this.Hue;	bodyBag.AddCarvedItem( App3, from );
-				Item App4 = new RightLeg();		App4.Hue = this.Hue;	bodyBag.AddCarvedItem( App4, from );
-				Item App5 = new RightArm();		App5.Hue = this.Hue;	bodyBag.AddCarvedItem( App5, from );
-				bodyBag.AddCarvedItem( new TastyHeart( dead.Name ), from );
-
 				string myWork = "";
 
 				bool CriminalCarve = true;
@@ -1250,6 +1246,9 @@ namespace Server.Items
 					else if ( m_CorpseName.Contains(" the brigand") ){ myWork = "Brigand"; 	dead.Name = (dead.Name).Replace(" the brigand", "");	CriminalCarve = false; }
 				}
 
+				// Abort - It is unlikely that automatic carving players with Positive Karma will want to lose Karma
+				if ( CriminalCarve && isAutomatic && 0 <= from.Karma ) return;
+
 				if ( CriminalCarve )
 				{
 					if ( IsCriminalAction( from ) )
@@ -1257,6 +1256,17 @@ namespace Server.Items
 
 					Misc.Titles.AwardKarma( from, -50, true );
 				}
+
+				consumeUse = true;
+				new Blood( 0x122D ).MoveToWorld( Location, Map );
+
+				Corpse bodyBag = (Corpse)this;
+				Item App1 = new Torso();		App1.Hue = this.Hue;	bodyBag.AddCarvedItem( App1, from );
+				Item App2 = new LeftLeg();		App2.Hue = this.Hue;	bodyBag.AddCarvedItem( App2, from );
+				Item App3 = new LeftArm();		App3.Hue = this.Hue;	bodyBag.AddCarvedItem( App3, from );
+				Item App4 = new RightLeg();		App4.Hue = this.Hue;	bodyBag.AddCarvedItem( App4, from );
+				Item App5 = new RightArm();		App5.Hue = this.Hue;	bodyBag.AddCarvedItem( App5, from );
+				bodyBag.AddCarvedItem( new TastyHeart( dead.Name ), from );
 
 				Head head = new Head( dead.Name );
 					if ( myWork != "" ){ head.m_Job = myWork; }
