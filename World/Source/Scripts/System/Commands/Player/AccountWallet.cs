@@ -14,8 +14,8 @@ namespace Server.Scripts.Commands
 		public static void Initialize()
 		{
 			Properties.Initialize();
-				Register( "WalletBalance", AccessLevel.Player, new CommandEventHandler( WalletBalance_OnCommand ) );
-				Register( "WalletWithdraw", AccessLevel.Player, new CommandEventHandler( WalletWithdraw_OnCommand ) );
+				Register( "WB", AccessLevel.Player, new CommandEventHandler( WB_OnCommand ) );
+				Register( "WW", AccessLevel.Player, new CommandEventHandler( WW_OnCommand ) );
 		}
 
 		public static void Register( string command, AccessLevel access, CommandEventHandler handler )
@@ -23,23 +23,23 @@ namespace Server.Scripts.Commands
 			CommandSystem.Register(command, access, handler);
 		}
 
-		[Usage( "WalletBalance" )]
+		[Usage( "WB" )]
 		[Description( "Account Wallet Gold balance." )]
-		public static void WalletBalance_OnCommand( CommandEventArgs e )
+		public static void WB_OnCommand( CommandEventArgs e )
 		{
 			Mobile from = e.Mobile;
 			var player = from as PlayerMobile;
 			player.SendMessage("Your Account Wallet balance is: " + player.AccountGold);
 		}
 
-		[Usage( "WalletWithdraw" )]
+		[Usage( "WW" )]
 		[Description( "Withdraw Gold from your Account Wallet.")]
-		public static void WalletWithdraw_OnCommand( CommandEventArgs e )
+		public static void WW_OnCommand( CommandEventArgs e )
 		{
 			Mobile from = e.Mobile;
 			if (e.Arguments.Length != 1)
 			{
-				e.Mobile.SendMessage("[WalletWithdraw amount ");
+				e.Mobile.SendMessage("[WW amount ");
 			}
 			
 			var player = from as PlayerMobile;
