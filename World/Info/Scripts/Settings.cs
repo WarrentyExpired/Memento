@@ -35,8 +35,8 @@ namespace Server
 	// button will simply say Website. When players select the button, it should open their browser to that site.
 	// EXAMPLE: https://google.com
 
-		public static string S_WebsiteLink = "";
-		public static string S_WebsiteName = "";
+		public static string S_WebsiteLink = "https://discord.gg/mu7aAbRyJf";
+		public static string S_WebsiteName = "Memento Community Discord";
 
 	// The game saves itself after this many minutes in decimal format between 10 and 240 minutes.
 
@@ -400,6 +400,9 @@ namespace Server
 	// If true, targeting a node to harvest will repeat.
 		public static bool S_AutoRepeatHarvesting = true;
 
+	// If true, enables Legacy Inscription crafting.
+		public static bool S_UseLegacyInscription = false;
+
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// 007 - MONSTERS & CREATURES /////////////////////////////////////////////////////////////////
@@ -533,7 +536,7 @@ namespace Server
 
 	// If true, then players can buy merchant crates to lock down in their house to sell the items they craft.
 
-		public static bool S_MerchantCrates = false;
+		public static bool S_MerchantCrates = true;
 
 	// Increasing this number will increase the prices of items sold from vendors, by this percentage.
 	// So a setting of 50 will increase prices by 50%.

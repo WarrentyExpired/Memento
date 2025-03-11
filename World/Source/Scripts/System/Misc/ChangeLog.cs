@@ -51,6 +51,8 @@ namespace Server.Misc
 			builder.Append("- Craft - Cartography can now use Blank Map or Blank Scroll as a material<br>");
 			builder.Append("- Craft - Cartography skill requirements have been reworked<br>");
 			builder.Append("- Craft - Each Bark Fragment now creates 10x Blank scrolls<br>");
+			builder.Append("- Craft - Dwarven/Elven/Alien now require 125 skill<br>");
+			builder.Append("- Craft - Non-basic resources no longer give crafting skill bonus<br>");
 			builder.Append("- Enchantment - Lower Mana Cost (LMC) is now capped at 8%<br>");
 			builder.Append("- Enchantment - Lower Reagent Cost (LRC) is now capped at 20%<br>");
 			builder.Append("- Gather - Add 'Rich Trees' to give Lumberjacking a more active playstyle<br>");
@@ -78,6 +80,7 @@ namespace Server.Misc
 			builder.Append("- Gump - Redesigned crafting tool gump<br>");
 			builder.Append("- Gump - Redesigned Druidism gump<br>");
 			builder.Append("- Gump - Add required skill to Animal Form gump<br>");
+			builder.Append("- Guilds - Local Guilds bulletin is now sorted by guild<br>");
 			builder.Append("- Item - Increased the cost of all 115/120/125 Powerscrolls<br>");
 			builder.Append("- Item - Powerscrolls now have to be used in order<br>");
 			builder.Append("- Item - Powerscrolls purchases can now use Checks in your Bank<br>");
@@ -138,6 +141,8 @@ namespace Server.Misc
 			builder.Append("- Misc - Weapon Abilities may be used while in Animal Form<br>");
 			builder.Append("- Misc - Add Jako Pet Leveling<br>");
 			builder.Append("- Misc - Disable Lighting burnout<br>");
+			builder.Append("- Misc - Graverobbing spawns are now a function of Forensics skill level<br>");
+			builder.Append("- Misc - Orb of trap finding now caps at 66%<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
@@ -192,6 +197,7 @@ namespace Server.Misc
 			builder.Append("- Gather - Fix issue where saplings were choppable<br>");
 			builder.Append("- Gather - Fix elementals spawning with gargoyle pickaxes<br>");
 			builder.Append("- Gather - Graverobbing no longer creates orphaned chests<br>");
+			builder.Append("- Gather - Graverobbing no longer creates orphaned zombies<br>");
 			builder.Append("- Gump - Alien Players who use Tithe to pay for a res from another player are no longer double penalized<br>");
 			builder.Append("- Gump - Sending buttons that don't exist will now disconnect the Player<br>");
 			builder.Append("- Gump - Remove redundant quiver damage qualifier<br>");
