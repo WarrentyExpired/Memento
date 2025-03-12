@@ -110,6 +110,7 @@ namespace Server.Misc
 			builder.Append("- Item - Boost physical resist of Aegis set<br>");
 			builder.Append("- Item - All clothing now have durability<br>");
 			builder.Append("- Item - Stop deleting trail maps for undiscovered worlds<br>");
+			builder.Append("- Item - Default bandage range has been increased to 3, up from 2<br>");
 			builder.Append("- Item - Sharpening stone rework<br>");
 			builder.Append("       - Centralized behvaiors for consistency<br>");
 			builder.Append("       - Elemental sharpening stones no longer add Damage Increase %<br>");
@@ -177,6 +178,7 @@ namespace Server.Misc
 			builder.Append("- Spell - Paladin spells require 1 stamina per 1 mana cost<br>");
 			builder.Append("- Spell - Creatures now vocalize Mantras when they cast spells<br>");
 			builder.Append("- Spell - Rewrite Spell Bar configuration gump<br>");
+			builder.Append("- Spell - Noble Sacrifice now works on pets<br>");
 			builder.Append("- Stats - Mana Regen cap reduced to 18, down from 36<br>");
 			builder.Append("- Stats - Holy Man now executes skill checks when casting spells<br>");
 
@@ -249,6 +251,7 @@ namespace Server.Misc
 			builder.Append("- Spell - Jedi spells no longer have a redundant failure check<br>");
 			builder.Append("- Spell - Fast-move spells now clean up removal timers<br>");
 			builder.Append("- Spell - Fast-move spells and items now work consistently<br>");
+			builder.Append("- Spell - Resurrect spells now work on pets<br>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
