@@ -53,6 +53,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Each Bark Fragment now creates 10x Blank scrolls<br>");
 			builder.Append("- Craft - Dwarven/Elven/Alien now require 125 skill<br>");
 			builder.Append("- Craft - Non-basic resources no longer give crafting skill bonus<br>");
+			builder.Append("- Craft - Shoppes have been redesigned, they are now bound to your Account<br>");
 			builder.Append("- Enchantment - Lower Mana Cost (LMC) is now capped at 8%<br>");
 			builder.Append("- Enchantment - Lower Reagent Cost (LRC) is now capped at 20%<br>");
 			builder.Append("- Gather - Add 'Rich Trees' to give Lumberjacking a more active playstyle<br>");
@@ -144,6 +145,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Disable Lighting burnout<br>");
 			builder.Append("- Misc - Graverobbing spawns are now a function of Forensics skill level<br>");
 			builder.Append("- Misc - Orb of trap finding now caps at 66%<br>");
+			builder.Append("- Misc - Changed drops for Treasure Chests<br>");
 			builder.Append("- Misc - Add Secondary Skills that do not impact total skill cap<br>");
 			builder.Append("       - Alchemy, Blacksmith, Bowcraft, Carpentry, Cooking, Inscription, Tailoring, Tinkering<br>");
 			builder.Append("       - Forensics, Lumberjacking, Mining<br>");
@@ -238,6 +240,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Fix potential null ref during icon removal<br>");
 			builder.Append("- Misc - Coffers now require you to be within 3 tiles to snoop it<br>");
 			builder.Append("- Misc - Lands are now immediately discovered when you load into them<br>");
+			builder.Append("- Misc - Elemental Steed are no longer turned into a horse after [buildworld<br>");
 			builder.Append("- Mobs - Winter Wolf now has Skills set<br>");
 			builder.Append("- Pets - Loyalty now refreshes when it changes<br>");
 			builder.Append("- Quest - Fix bug where the quest default of 'the Dungeon of Doom' could never be satisfied<br>");
