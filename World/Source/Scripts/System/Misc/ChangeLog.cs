@@ -190,6 +190,7 @@ namespace Server.Misc
 			builder.Append("- Combat - Peacemake debuff is only removed at the appropriate time<br>");
 			builder.Append("- Combat - Mobs now bypass reagent check<br>");
 			builder.Append("- Commands - Update [CorpseClear to actually remove all bodies<br>");
+			builder.Append("- Commands - Update [Password to no longer log plain text passwords<br>");
 			builder.Append("- Craft - Candelabras now cap at 95 skill rather than 195<br>");
 			builder.Append("- Craft - Tinker recipes use Boards instead of Logs<br>");
 			builder.Append("- Craft - Fixed an issue where enhancing was succeeding instead of failing<br>");
@@ -241,6 +242,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Coffers now require you to be within 3 tiles to snoop it<br>");
 			builder.Append("- Misc - Lands are now immediately discovered when you load into them<br>");
 			builder.Append("- Misc - Elemental Steed are no longer turned into a horse after [buildworld<br>");
+			builder.Append("- Misc - Trapped chests could be autolooted before successfully opening them<br>");
 			builder.Append("- Mobs - Winter Wolf now has Skills set<br>");
 			builder.Append("- Pets - Loyalty now refreshes when it changes<br>");
 			builder.Append("- Quest - Fix bug where the quest default of 'the Dungeon of Doom' could never be satisfied<br>");

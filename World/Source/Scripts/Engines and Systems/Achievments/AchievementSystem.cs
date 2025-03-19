@@ -343,6 +343,13 @@ namespace Scripts.Mythik.Systems.Achievements
             Categories.Add(new AchievementCategory(4000, 0, "Character Development"));
             #endregion Character Development - 4000 to 4999
 
+            #region Feats of Strength - 5000 to 5999
+            const int DEMON_SKULL = 0x2251;
+            Categories.Add(new AchievementCategory(5000, 0, "Feats of Strength"));
+            Achievements.Add(new HunterAchievement(5001, 5000, DEMON_SKULL, true, null, 1, "Domo Arigato", "Destroyed the mechanical being of Exodus, the demonic automaton", 5, typeof(Exodus)));
+            Achievements.Add(new HunterAchievement(5002, 5000, DEMON_SKULL, true, null, 1, "Like Thor, but better", "You've bested Jormungandr, the mighty Serpent of Midgard", 5, typeof(Jormungandr)));
+            #endregion Feats of Strength - 5000 to 5999
+
             CommandSystem.Register("feats", AccessLevel.Player, new CommandEventHandler(OpenGumpCommand));
             EventSink.WorldSave += EventSink_WorldSave;
             LoadData();
@@ -486,6 +493,8 @@ namespace Scripts.Mythik.Systems.Achievements
                 "Saves//Achievements//Achievements.bin",
                 reader =>
                 {
+                    int version = reader.ReadInt();
+
                     int count = reader.ReadInt();
 
                     for (int i = 0; i < count; ++i)
@@ -521,6 +530,8 @@ namespace Scripts.Mythik.Systems.Achievements
                 "Saves//Achievements//Achievements.bin",
                 writer =>
                 {
+                    writer.Write(0); // version
+
                     writer.Write(m_pointsTotal.Count);
                     foreach (var kv in m_pointsTotal)
                     {
