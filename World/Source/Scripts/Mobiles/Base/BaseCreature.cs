@@ -5680,18 +5680,18 @@ namespace Server.Mobiles
 
 						if ( Core.SE )
 						{
-							if ( m_Loyalty < MaxLoyalty )
+							if ( Loyalty < MaxLoyalty )
 							{
-								m_Loyalty = MaxLoyalty;
+								Loyalty = MaxLoyalty;
 							}
 						}
 						else
 						{
 							for ( int i = 0; i < amount; ++i )
 							{
-								if ( m_Loyalty < MaxLoyalty  && 0.5 >= Utility.RandomDouble() )
+								if ( Loyalty < MaxLoyalty  && 0.5 >= Utility.RandomDouble() )
 								{
-									m_Loyalty += 10;
+									Loyalty += 10;
 								}
 							}
 						}
@@ -8299,7 +8299,7 @@ namespace Server.Mobiles
 			SlayerEntry vampRepond = SlayerGroup.GetEntryByName( SlayerName.Repond );
 			SlayerEntry vampGiant = SlayerGroup.GetEntryByName( SlayerName.GiantKiller );
 
-			if ( vampAnimal.Slays(this) || vampAvian.Slays(this) || vampRepond.Slays(this) || vampGiant.Slays(this) )
+			if ( vampAnimal.Slays(this) || vampAvian.Slays(this) || vampRepond.Slays(this) || vampGiant.Slays(this) || this is BaseVendor )
 			{
 				Mobile vampire = this.LastKiller;
 

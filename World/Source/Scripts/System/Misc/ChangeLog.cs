@@ -6,7 +6,7 @@ namespace Server.Misc
     {
 		public static string Version()
 		{
-			return "Version: Hegran (DD MMM YYYY)";
+			return "Version: 1.0.1";
 		}
 
 		public static string Versions()
@@ -19,6 +19,22 @@ namespace Server.Misc
 			builder.Append(Version());
 			builder.Append("<br>");
 
+			builder.Append("Changes<br>");
+			builder.Append("- Gump - Update spiritualism details<br>");
+			builder.Append("- Item - Notify players that lumberjacking is required to use a sawmill<br>");
+			builder.Append("- Mobs - Thieves and Spiders no longer have a chance to delete when hiding<br>");
+			builder.Append("- Races - An additional source of food has been added<br>");
+
+			builder.Append("<br>");
+			builder.Append("Fixes<br>");
+			builder.Append("- Craft - Removing the tool from your hand will stop the session<br>");
+			builder.Append("- Item - WizardWand now respects the proper LMC limit<br>");
+			builder.Append("- Misc - FastPlayer now works on Login<br>");
+			builder.Append("- Pets - Feeding pets now refreshes Loyalty property<br>");
+			builder.Append(SEPARATOR_LINE);
+
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 			builder.Append("<br>");
 			builder.Append("Changes<br>");
 			builder.Append("- Combat - Mob Peacemaking duration is now a function of mob skill<br>");
@@ -26,6 +42,7 @@ namespace Server.Misc
 			builder.Append("- Combat - Most mobs now use OmniAI<br>");
 			builder.Append("- Combat - Defensive dispel (when mobs are hit) now costs whichever is greater, 40 mana or 10% of max mana<br>");
 			builder.Append("- Commands - Add [VendorGold setting to disallow the Vendor's Sell limit safeguard<br>");
+			builder.Append("- Commands - Add [Toolbars command to shortcut to Help->Magic Toolbars<br>");
 			builder.Append("- Craft - Bulk crafting has been completely redone<br>");
 			builder.Append("- Craft - Using non-basic resources can now yield multiple skill gains<br>");
 			builder.Append("- Craft - Items can only be enhanced if they are basic resources<br>");
@@ -54,6 +71,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Dwarven/Elven/Alien now require 125 skill<br>");
 			builder.Append("- Craft - Non-basic resources no longer give crafting skill bonus<br>");
 			builder.Append("- Craft - Shoppes have been redesigned, they are now bound to your Account<br>");
+			builder.Append("- Craft - Many Inscription scroll recipes have been temporarily locked<br>");
 			builder.Append("- Enchantment - Lower Mana Cost (LMC) is now capped at 8%<br>");
 			builder.Append("- Enchantment - Lower Reagent Cost (LRC) is now capped at 20%<br>");
 			builder.Append("- Gather - Add 'Rich Trees' to give Lumberjacking a more active playstyle<br>");
@@ -81,6 +99,7 @@ namespace Server.Misc
 			builder.Append("- Gump - Redesigned crafting tool gump<br>");
 			builder.Append("- Gump - Redesigned Druidism gump<br>");
 			builder.Append("- Gump - Add required skill to Animal Form gump<br>");
+			builder.Append("- Gump - Spell toolbar config pages now have close/open buttons<br>");
 			builder.Append("- Guilds - Local Guilds bulletin is now sorted by guild<br>");
 			builder.Append("- Item - Increased the cost of all 115/120/125 Powerscrolls<br>");
 			builder.Append("- Item - Powerscrolls now have to be used in order<br>");
@@ -112,6 +131,7 @@ namespace Server.Misc
 			builder.Append("- Item - All clothing now have durability<br>");
 			builder.Append("- Item - Stop deleting trail maps for undiscovered worlds<br>");
 			builder.Append("- Item - Default bandage range has been increased to 3, up from 2<br>");
+			builder.Append("- Item - Cotton/Flax/Wool/Thread no longer has to be in your backpack to use<br>");
 			builder.Append("- Item - Sharpening stone rework<br>");
 			builder.Append("       - Centralized behvaiors for consistency<br>");
 			builder.Append("       - Elemental sharpening stones no longer add Damage Increase %<br>");

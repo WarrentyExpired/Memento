@@ -923,7 +923,7 @@ namespace Server.Mobiles
 			{
 				// Adjust item graphics/visibility on paperdoll
 				from.ProcessClothing();
-				FastPlayer.Refresh(from as PlayerMobile);
+				FastPlayer.Refresh(from as PlayerMobile, true);
 			}
 		}
 
@@ -2152,12 +2152,14 @@ namespace Server.Mobiles
 			{
 				mountAble = false;
 			}
-			if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( this, Region.Find( this.Location, this.Map ) ) )
+
+			Region region = Region.Find(Location, Map);
+			if ( MySettings.S_NoMountsInCertainRegions && Server.Mobiles.AnimalTrainer.IsNoMountRegion( this, region ) )
 			{
 				mountAble = false;
-				speedAble = false;
+				speedAble = Server.Mobiles.AnimalTrainer.AllowMagicSpeed(this, region);
 			}
-			else if ( ( MySettings.S_NoMountBuilding && Server.Misc.Worlds.InBuilding( this ) ) || ( Region.Find( this.Location, this.Map ) is HouseRegion && MySettings.S_NoMountsInHouses ) )
+			else if ( ( MySettings.S_NoMountBuilding && Server.Misc.Worlds.InBuilding( this ) ) || ( region is HouseRegion && MySettings.S_NoMountsInHouses ) )
 			{
 				mountAble = false;
 			}
@@ -2171,8 +2173,7 @@ namespace Server.Mobiles
 
 				if ( !speedAble)
 				{
-					if (!Server.Mobiles.AnimalTrainer.AllowMagicSpeed( this, Region.Find( Location, Map ) ))
-						FastPlayer.Refresh(this);
+					FastPlayer.Refresh(this);
 					Server.Misc.HenchmanFunctions.DismountHenchman( this );
 				}
 			}
@@ -2942,7 +2943,7 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				if ( SkillStart == 40000 ){ return 0; }
+				if ( SkillStart == 40000 ){ return 0; } // Aliens never have Luck
 				return AosAttributes.GetValue( this, AosAttribute.Luck );
 			}
 		}
