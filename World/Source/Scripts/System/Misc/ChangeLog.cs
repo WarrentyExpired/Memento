@@ -6,7 +6,7 @@ namespace Server.Misc
     {
 		public static string Version()
 		{
-			return "Version: 1.0.1";
+			return "Version: 1.0.2";
 		}
 
 		public static string Versions()
@@ -19,18 +19,65 @@ namespace Server.Misc
 			builder.Append(Version());
 			builder.Append("<br>");
 
+			builder.Append("Breaking Changes<br>");
+			builder.Append("- Commands - [Cacheclear command has been added<br>");
+			builder.Append("- Race - Logging in as dead non-humans now leaves your body id alone<br>");
+
 			builder.Append("Changes<br>");
+			builder.Append("- Enchant - Resist attribute cost is now 5, up from 2<br>");
+			builder.Append("- Item - Legendary Artifact (not weps) now come with 2 resist all<br>");
+			builder.Append("- Item - Legendary Artifact max level is now 50, down from 100<br>");
+			builder.Append("- Item - Remove more Dwarven/Elven/Cadalyte item drops<br>");
+			builder.Append("- Item - Reduce points on most relic rewards<br>");
+			builder.Append("- Misc - Death robes no longer automatically stack up in your backpack<br>");
+			builder.Append("- Misc - Reduced gem block resources from carving<br>");
+			builder.Append("- Mobs - Mobs are now less likely to curse<br>");
+			builder.Append("- Quest - Add Recruiters to additional locations<br>");
+			builder.Append("- Spell - Curse now reduces max Resistance for Players by 10<br>");
+
+			builder.Append("<br>");
+			builder.Append("Fixes<br>");
+			builder.Append("- Gump - Fix null ref when TextEntry was null<br>");
+			builder.Append("- Item - Auto-skinning no longer performs criminal acts<br>");
+			builder.Append("- Item - Legendary Artifact trinkets didn't repair<br>");
+			builder.Append("- Misc - Fix empty unidentified items<br>");
+			builder.Append("- Mobs - Fix an issue where mobs cast curse too much<br>");
+			builder.Append("- Quest - Fix null ref crash after [buildworld and restart<br>");
+			builder.Append(SEPARATOR_LINE);
+
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			builder.Append("<br>");
+
+			builder.Append("Changes<br>");
+			builder.Append("- Craft - Merchant crates have been reduced to a 4 hour timer<br>");
+			builder.Append("- Craft - Merchant crates no longer have a gold limit<br>");
+			builder.Append("- Enhance - Self repair can now be added to clothing<br>");
 			builder.Append("- Gump - Update spiritualism details<br>");
+			builder.Append("- Gather - Cutting basic logs difficult reduced to 20, down from 40<br>");
+			builder.Append("- Item - Merchant crates no longer accept raw resources<br>");
 			builder.Append("- Item - Notify players that lumberjacking is required to use a sawmill<br>");
+			builder.Append("- Item - Resists on shirts + chest armor now stack<br>");
+			builder.Append("- Item - Use Best Weapon Skill (UBWS) now checks against Fistfighting<br>");
+			builder.Append("- Item - Instruments can now be used from your backpack<br>");
+			builder.Append("- Item - Play instruments now has a 1s cd, down from 7s<br>");
 			builder.Append("- Mobs - Thieves and Spiders no longer have a chance to delete when hiding<br>");
 			builder.Append("- Races - An additional source of food has been added<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
+			builder.Append("- Boat - Fix issue where hatch would player block movement<br>");
+			builder.Append("- Craft - Merchant crates no longer accept raw resources<br>");
 			builder.Append("- Craft - Removing the tool from your hand will stop the session<br>");
+			builder.Append("- Craft - Fix incorrect mobs dropping Xeno bones<br>");
+			builder.Append("- Craft - All barbecue cooking requires heat again<br>");
 			builder.Append("- Item - WizardWand now respects the proper LMC limit<br>");
-			builder.Append("- Misc - FastPlayer now works on Login<br>");
+			builder.Append("- Misc - Lockpicking starter chest is now movable<br>");
+			builder.Append("- Misc - Fast-move spells and items now work on Login<br>");
+			builder.Append("- Misc - Maybe fixed unreproducible fast ghost issue when changing facets<br>");
+			builder.Append("- Misc - Fix issue where the Powerscroll gump was giving the wrong scroll types<br>");
 			builder.Append("- Pets - Feeding pets now refreshes Loyalty property<br>");
+			builder.Append("- Pets - Adding Hitpoints trait now heals the petbr>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +96,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Add ability to break down all items in a container<br>");
 			builder.Append("- Craft - Cut/Break down no longer requires 50 skill<br>");
 			builder.Append("- Craft - Bulk crafting no longer resets Stat Gain cooldown<br>");
-			builder.Append("- Craft - Merchant crates (disabled) now have 24 hour timer and cap at 100k gold<br>");
+			builder.Append("- Craft - Merchant crates now have 24 hour timer<br>");
 			builder.Append("- Craft - Large BODs can no longer generate the required Small BODs<br>");
 			builder.Append("- Craft - Leather Cloaks/Robes are no longer craftable<br>");
 			builder.Append("- Craft - Disable Bulk Order Deeds (needs fixing/balancing)<br>");
@@ -182,7 +229,7 @@ namespace Server.Misc
 			builder.Append("- Settings - Lower Reagent Cost (LRC) is now capped at 100%<br>");
 			builder.Append("- Settings - Implement max Paralyze duration setting<br>");
 			builder.Append("- Skill - Skills gains are accelerated to 70 but reduced at 85/95/105/110/115<br>");
-			builder.Append("- Skill - Healing is now an activatable skill that can remove poison/bleed or heal you<br>"); // TODO: Update documentation for Healing
+			builder.Append("- Skill - Healing is now an activatable skill that can remove poison/bleed or heal you<br>");
 			builder.Append("- Skill - Healing now gathers a portion over time and has a big hit at the end<br>");
 			builder.Append("- Skill - Hiding cooldown is increased to 4 seconds, up from 1s and 2s<br>");
 			builder.Append("- Skill - Spiritualism now restores Mana when a corpse is consumed<br>");
@@ -193,7 +240,7 @@ namespace Server.Misc
 			builder.Append("- Skill - Arms Lore now helps prevent durability damage<br>");
 			builder.Append("- Skill - Taming can now gain every time a pet levels up<br>");
 			builder.Append("- Skill - Creatures with >= 10k Fame will anger on tame by default<br>");
-			builder.Append("- Skill - Herding now increases pet experience gained<br>"); // TODO: Update documentation
+			builder.Append("- Skill - Herding now increases pet experience gained<br>");
 			builder.Append("- Skill - Herding can now be gained by issuing commands<br>");
 			builder.Append("- Skill - Herding can prevent Loyalty loss when pets are disobedient<br>");
 			builder.Append("- Spell - Players must be friend or higher to use any spell in a house<br>");

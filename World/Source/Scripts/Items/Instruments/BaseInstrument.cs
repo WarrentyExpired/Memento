@@ -836,17 +836,12 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( Parent != from )
+			if( DateTime.Now >= from.NextActionTime )
 			{
-				from.SendLocalizedMessage( 502641 ); // You must equip this item to use it.
-			}
-			else if ( from.BeginAction( typeof( BaseInstrument ) ) )
-			{
+				from.NextActionTime = DateTime.Now + TimeSpan.FromSeconds( 0.5 );
+
 				SetInstrument( from, this );
 				this.ConsumeUse( from );
-
-				// Delay of 7 second before beign able to play another instrument again
-				new InternalTimer( from ).Start();
 
 				if ( CheckMusicianship( from ) )
 					PlayInstrumentWell( from );

@@ -2467,6 +2467,8 @@ namespace Server.Mobiles
 									c is Dyes 
 							)
 							{
+								if (c.Parent is NotIdentified)
+									((NotIdentified)c.Parent).Delete();
 								c.Delete();
 							}
 						}
@@ -2524,6 +2526,10 @@ namespace Server.Mobiles
 
 			Mobile mob = this.LastKiller;
 			if ( mob != null ){ LoggingFunctions.LogDeaths( this, mob ); }
+
+			DeathRobe robe = FindItemOnLayer( Layer.OuterTorso ) as DeathRobe;
+			if ( robe != null )
+				robe.Delete();
 
 			return base.OnBeforeDeath();
 		}

@@ -65,15 +65,18 @@ namespace Server.Mobiles
 				return spell;
 			}
 
-			// always check for curse, per OSI
-			spell = CheckCurse();
-
-			if ( spell != null )
+			// 25% chance to cast Curse
+			if ( Utility.RandomDouble() > 0.75 )
 			{
-				if ( m_Mobile.Debug )
-					m_Mobile.Say( 1156, "Cursing my opponent" );
+				spell = CheckCurse();
 
-				return spell;
+				if ( spell != null )
+				{
+					if ( m_Mobile.Debug )
+						m_Mobile.Say( 1156, "Cursing my opponent" );
+
+					return spell;
+				}
 			}
 
 			// 25% chance to cast poison if needed
@@ -149,13 +152,16 @@ namespace Server.Mobiles
 			if ( foe == null )
 				return null;
 
-			StatMod mod = foe.GetStatMod( "[Magic] Int Offset" );
-
-			if ( mod != null && mod.Offset < 0 )
+			if ( CurseSpell.UnderEffect( foe ) )
 				return null;
 
 			if ( m_Mobile.Skills[SkillName.Magery].Value >= 40.0 )
 				return new CurseSpell( m_Mobile, null );
+
+			StatMod mod = foe.GetStatMod( "[Magic] Int Offset" );
+
+			if ( mod != null && mod.Offset < 0 )
+				return null;
 
 			int whichone = 1;
 			Spell spell = null;
