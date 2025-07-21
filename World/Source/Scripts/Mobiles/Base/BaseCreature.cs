@@ -1678,6 +1678,8 @@ namespace Server.Mobiles
 
 		#endregion
 
+		public virtual bool CanFly { get { return false; } }
+
 		#region Spill Acid
 
 		public void SpillAcid( int Amount )
@@ -1764,6 +1766,11 @@ namespace Server.Mobiles
 
 		public const int MaxOwners = 5;
 
+		public virtual OppositionGroup OppositionGroup
+		{
+			get{ return null; }
+		}
+
 		#region Friends
 		public List<Mobile> Friends { get { return m_Friends; } }
 
@@ -1793,6 +1800,11 @@ namespace Server.Mobiles
 
 		public virtual bool IsFriend( Mobile m )
 		{
+			OppositionGroup g = this.OppositionGroup;
+
+			if ( g != null && g.IsEnemy( this, m ) )
+				return false;
+
 			if ( !(m is BaseCreature) )
 				return false;
 
@@ -1825,6 +1837,11 @@ namespace Server.Mobiles
 
 		public virtual bool IsEnemy( Mobile m )
 		{
+			OppositionGroup g = this.OppositionGroup;
+
+			if ( g != null && g.IsEnemy( this, m ) )
+				return true;
+
 			Region reg = Region.Find( this.Location, this.Map );
 
 			if ( m is PlayerMobile )

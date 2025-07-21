@@ -40,11 +40,11 @@ namespace Server
 
 	// The game saves itself after this many minutes in decimal format between 10 and 240 minutes.
 
-		public static double S_ServerSaveMinutes = 30.0;
+		public static double S_ServerSaveMinutes = 60.0;
 
 	// If true, saves the game when your character logs out. Helpful for single player games.
 
-		public static bool S_SaveOnCharacterLogout = true;
+		public static bool S_SaveOnCharacterLogout = false;
 
 	// The server has some self-cleaning and self-sustaining scripts it runs every hour, 3 hours, & 24 hours. If you run
 	// a 24x7 server, you can set the below to false since your server will run these at those times, but if you play
