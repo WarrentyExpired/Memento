@@ -96,9 +96,6 @@ namespace Server.Mobiles
 
 		public void GivePowerScrolls()
 		{
-			if ( Map != Map.Underworld )
-				return;
-
 			List<Mobile> toGive = new List<Mobile>();
 			List<DamageStore> rights = BaseCreature.GetLootingRights( this.DamageEntries, this.HitsMax );
 

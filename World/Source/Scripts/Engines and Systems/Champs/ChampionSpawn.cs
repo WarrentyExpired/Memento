@@ -93,8 +93,27 @@ namespace Server.Engines.CannedEvil
 
 		public void SetInitialSpawnArea()
 		{
-			//Previous default used to be 24;
-			SpawnArea = new Rectangle2D( new Point2D( X - 24, Y - 24 ), new Point2D( X + 24, Y + 24 ) );
+			if ( X == 5225 && Y == 3678 )
+			{
+				SpawnArea = new Rectangle2D( new Point2D( 5163, 3652 ), new Point2D( 5294, 3720 ) );
+			}
+				else if ( X == 5611 && Y == 3690 )
+			{
+				SpawnArea = new Rectangle2D( new Point2D( 5516, 3652 ), new Point2D( 5688, 3722 ) );
+			}
+				else if ( X == 5522 && Y == 3385 )
+			{
+				SpawnArea = new Rectangle2D( new Point2D( 5457, 3336 ), new Point2D( 5571, 3452 ) );
+			}
+				else if ( X == 5679 && Y == 3501 )
+			{
+				SpawnArea = new Rectangle2D( new Point2D( 5628, 3382 ), new Point2D( 5750, 3470 ) );
+			}
+			else
+			{
+				//Previous default used to be 24;
+				SpawnArea = new Rectangle2D( new Point2D( X - 24, Y - 24 ), new Point2D( X + 24, Y + 24 ) );
+			}
 		}
 
 		public void UpdateRegion()
