@@ -410,10 +410,6 @@ namespace Server.Engines.CannedEvil
 		private ScrollofTranscendence CreateRandomSoT( bool Underworld )
 		{
 			int level = Utility.RandomMinMax( 1, 5 );
-			
-			if ( Underworld )
-				level += 5;
-
 			return ScrollofTranscendence.CreateRandom(level, level);
 		}
 		#endregion
@@ -500,11 +496,6 @@ namespace Server.Engines.CannedEvil
 					if( m_Altar != null )
 					{
 						m_Altar.Hue = 0;
-
-						if( !Core.ML || Map == Map.Underworld )
-						{
-							new StarRoomGate( true, m_Altar.Location, m_Altar.Map );
-						}
 					}
 
 					m_Champion = null;
@@ -543,34 +534,11 @@ namespace Server.Engines.CannedEvil
 							#region Scroll of Transcendence
 							if ( Core.ML )
 							{
-								if ( Map == Map.Underworld )
+								if ( Utility.RandomDouble() < 0.0015 )
 								{
-									if ( Utility.RandomDouble() < 0.001 )
-									{
-										PlayerMobile pm = (PlayerMobile)killer;
-										double random = Utility.Random ( 49 );
-										
-										if ( random <= 24 )
-										{
-											ScrollofTranscendence SoTF = CreateRandomSoT( true );
-											GiveScrollTo( pm, (SpecialScroll)SoTF );
-										}
-										else
-										{
-											PowerScroll PS = PowerScroll.CreateRandomNoCraft(5, 5);
-											GiveScrollTo( pm, (SpecialScroll)PS );
-										}
-									}
-								}
-
-								if ( Map == Map.Underworld || Map == Map.Underworld || Map == Map.Underworld )
-								{
-									if ( Utility.RandomDouble() < 0.0015 )
-									{
-										killer.SendLocalizedMessage( 1094936 ); // You have received a Scroll of Transcendence!
-										ScrollofTranscendence SoTT = CreateRandomSoT( false );
-										killer.AddToBackpack( SoTT );
-									}
+									killer.SendLocalizedMessage( 1094936 ); // You have received a Scroll of Transcendence!
+									ScrollofTranscendence SoTT = CreateRandomSoT( false );
+									killer.AddToBackpack( SoTT );
 								}
 							}
 							#endregion
