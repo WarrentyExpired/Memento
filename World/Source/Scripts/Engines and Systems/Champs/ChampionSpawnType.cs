@@ -104,6 +104,7 @@ namespace Server.Engines.CannedEvil
 				{																											// Unholy Terror
 					new Type[]{ typeof( PlagueSpawn ), typeof( Bogling ) },
 					new Type[]{ typeof( PlagueBeast ), typeof( BogThing ) },
+					new Type[]{ typeof( InterredGrizzle ) },
 					new Type[]{ typeof( FetidEssence ), typeof( PestilentBandage ) }
 				} )
 			};
