@@ -8,8 +8,10 @@ namespace Server
 	{
 		public static void Initialize()
 		{
-			// Example:
-			// MySettings.S_SaveOnCharacterLogout = true;
+			MySettings.S_SaveOnCharacterLogout = true;
+                        MySettings.S_RunRoutinesAtStartup = false;
+                        MySettings.S_Port=8085;
+                        FastPlayer.ArbitraryDelay = System.TimeSpan.FromMilliseconds(2000);
 		}
 	}
 }
