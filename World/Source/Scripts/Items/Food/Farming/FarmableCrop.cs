@@ -23,7 +23,7 @@ namespace Server.Items
 
 		public override void OnMovement( Mobile m, Point3D oldLocation )
 		{
-			const int range = 1;
+			const int range = 3;
 			if ( !CanHarvest( m, range ) ) return;
 
 			Timer.DelayCall( TimeSpan.FromSeconds( 0.5 ), new TimerStateCallback ( Harvest ), new object[]{ m, range }  );
