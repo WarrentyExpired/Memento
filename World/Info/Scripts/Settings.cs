@@ -539,8 +539,8 @@ namespace Server
 
 		public static bool S_RichMerchants = false;
 		public static bool S_UseRemainingGold = false;
-		public static int S_MinMerchant = 2000;
-		public static int S_MaxMerchant = 4000;
+		public static int S_MinMerchant = 1500;
+		public static int S_MaxMerchant = 2500;
 
 	// If true, merchant gold will be scaled based on the facet they are on. This setting will entice players to sell to vendors beyond
 	// the default facet (Sosaria).
