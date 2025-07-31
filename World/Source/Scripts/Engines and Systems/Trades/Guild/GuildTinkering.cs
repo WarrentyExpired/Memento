@@ -65,13 +65,9 @@ namespace Server.Items
 				if ( !canDo && from.Map == Map.SavagedEmpire && from.X > 1054 && from.X < 1126 && from.Y > 1907 && from.Y < 1983 ){ canDo = true; }
 
 				PlayerMobile pc = (PlayerMobile)from;
-				if ( pc.NpcGuild != NpcGuild.TinkersGuild )
+				if ( from.Skills[SkillName.Tinkering].Value < 110 )
 				{
-					from.SendMessage( "Only those of the Tinkers Guild may use this!" );
-				}
-				else if ( from.Skills[SkillName.Tinkering].Value < 90 )
-				{
-					from.SendMessage( "Only a master tinker can use this!" );
+					from.SendMessage( "Only a exalted tinker can use this!" );
 				}
 				else if ( !canDo )
 				{

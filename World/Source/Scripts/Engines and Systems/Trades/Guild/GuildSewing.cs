@@ -65,13 +65,9 @@ namespace Server.Items
 				if ( !canDo && from.Map == Map.SavagedEmpire && from.X > 1054 && from.X < 1126 && from.Y > 1907 && from.Y < 1983 ){ canDo = true; }
 
 				PlayerMobile pc = (PlayerMobile)from;
-				if ( pc.NpcGuild != NpcGuild.TailorsGuild )
+				if ( from.Skills[SkillName.Tailoring].Value < 110 )
 				{
-					from.SendMessage( "Only those of the Tailors Guild may use this!" );
-				}
-				else if ( from.Skills[SkillName.Tailoring].Value < 90 )
-				{
-					from.SendMessage( "Only a master tailor can use this!" );
+					from.SendMessage( "Only a exalted tailor can use this!" );
 				}
 				else if ( !canDo )
 				{

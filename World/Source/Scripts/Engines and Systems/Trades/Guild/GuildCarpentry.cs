@@ -65,13 +65,9 @@ namespace Server.Items
 				if ( !canDo && from.Map == Map.SavagedEmpire && from.X > 1054 && from.X < 1126 && from.Y > 1907 && from.Y < 1983 ){ canDo = true; }
 
 				PlayerMobile pc = (PlayerMobile)from;
-				if ( pc.NpcGuild != NpcGuild.CarpentersGuild )
+				if ( from.Skills[SkillName.Carpentry].Value < 110 )
 				{
-					from.SendMessage( "Only those of the Carpenters Guild may use this!" );
-				}
-				else if ( from.Skills[SkillName.Carpentry].Value < 90 )
-				{
-					from.SendMessage( "Only a master carpenter can use this!" );
+					from.SendMessage( "Only a exalted carpenter can use this!" );
 				}
 				else if ( !canDo )
 				{
