@@ -16,10 +16,12 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
+			builder.Append("- Gump - Completely redesigned Runebook gump<br>");
 			builder.Append("- Item - Acidic robe cooldown reduced to 10 minutes (will be reworked in a future update)<br>");
 			builder.Append("- Item - High fame mobs can now drop Champion Skulls<br>");
 			builder.Append("- Item - Lawn tools can now be used indoors<br>");
 			builder.Append("- Misc - Champion spawns are now added to the world<br>");
+			builder.Append("- Misc - Jewelry trap has been reworked to be less aggressive<br>");
 			builder.Append("- Mobs - Players are now immune to peacemaking for 30s after it ends<br>");
 			builder.Append("- NPC - Mercantile/guild barter bonus is reduced to +100% of item value, down from +300%<br>");
 			builder.Append("- NPC - Mercantile/guild bonus now increases the amount of Gold that vendors have available for purchase<br>");
@@ -29,6 +31,8 @@ namespace Server.Misc
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
 			builder.Append("- Spell - Wrath no longer does doubles damage to one target<br>");
+			builder.Append("- Misc - More Fast-player changes<br>");
+			builder.Append("- Misc - Remove bad images from manage Player Vendor gump<br>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
