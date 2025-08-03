@@ -193,7 +193,7 @@ namespace Server
 
         // This number can be set from 10 to 60 seconds, which determins of often the foodbuff is applied.
 
-                public static int S_FoodBuffTimer = 30; //Seconds
+                public static int S_FoodBuffTimer = 15; //Seconds
 
 	// Below is the guild base fee to join a guild. This is the intial cost to join the first guild. If you quit, and join
 	// another guild, then the fee will increase by that amount. It is based on the number of guild you were a member of
@@ -230,13 +230,13 @@ namespace Server
 	// Maximum amount of lower reagent percentage, up to 100 for 100%. For equipment with lower reagent properties.
 	// Setting it to zero will disable the attribute from the game.
 
-		public static int S_LowerReg = 100;
+		public static int S_LowerReg = 75;
 		public static int S_LowerRegEnchantment = 20;
 
 	// Maximum amount of lower mana percentage, up to 100 for 100%. For equipment with lower mana properties.
 	// Setting it to zero will disable the attribute from the game.
 
-		public static int S_LowerMana = 40;
+		public static int S_LowerMana = 25;
 		public static int S_LowerManaEnchantment = 8;
 
 	// This setting between 0.5 and 3.0 (decimal format) will give a character that much hit points, mana, or stamina based
@@ -402,7 +402,7 @@ namespace Server
 	// Increasing this number will increase the price of enhancing items with extraordinary tools that are used by
 	// guild members, when next to their guildmasters. This value is a percentage increase from the base price.
 
-		public static int S_GuildEnhanceMod = 100;
+		public static int S_GuildEnhanceMod = 50;
 
 	// If false, characters will get a CAPTCHA windows occasionally to avoid unattended resource gathering with macros.
 
@@ -527,7 +527,7 @@ namespace Server
 	// If false, then vendors will NOT buy some tailor materials (cotton, flax, wool, regular cloth, and string).
 	// Does not affect a custom merchant that is set to buy such items.
 
-		public static bool S_BuyCloth = true;
+		public static bool S_BuyCloth = false;
 
 	// If false, then vendors will not buy things from player characters. Merchant crates will also be disabled and act as normal containers.
 

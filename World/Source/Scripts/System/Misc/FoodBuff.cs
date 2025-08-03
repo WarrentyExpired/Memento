@@ -37,7 +37,7 @@ namespace Server.Misc
         {
           if ( m.Hunger >=20 )
           {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.2 ) + 10;
+            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Hunger;
             if ( m.Hits < m.HitsMax)
                  m.Hits += buff;
             if ( m.Stam < m.StamMax)
@@ -45,7 +45,7 @@ namespace Server.Misc
           }
           else if ( m.Hunger > 15 && m.Hunger < 20 )
           {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + 10;
+            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Hunger;
             if ( m.Hits < m.HitsMax)
                  m.Hits += buff;
             if ( m.Stam < m.StamMax)
@@ -53,7 +53,7 @@ namespace Server.Misc
           }
           else if ( m.Hunger > 10 && m.Hunger < 15 )
           {
-            var buff = 10;
+            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Hunger;
             if ( m.Hits < m.HitsMax)
                  m.Hits += buff;
             if ( m.Stam < m.StamMax)
@@ -64,7 +64,7 @@ namespace Server.Misc
             var debuff = 5;
             if ( m.Hits > 10 )
                  m.Hits -= debuff;
-            if ( m.Stam > 10)
+            if ( m.Stam > 20)
                  m.Stam -= debuff;
           }
         } 
@@ -80,19 +80,19 @@ namespace Server.Misc
         {
           if ( m.Thirst >= 20 )
           {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.2 ) + 10;
+            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Thirst;
             if ( m.Mana < m.ManaMax)
                  m.Mana += buff;
           }
           else if (m.Thirst > 15 && m.Thirst < 20 )
           {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + 10;
+            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Thirst;
             if (m.Mana < m.ManaMax)
                 m.Mana += buff;
           }
           else if ( m.Thirst > 10 && m.Thirst < 15 )
           {
-            var buff = 10;
+            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Thirst;
             if ( m.Mana < m.ManaMax )
                  m.Mana += buff;
           }
