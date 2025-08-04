@@ -31,11 +31,11 @@ namespace Server.Misc
     {
       if ( m is PlayerMobile )
       {
-        if ( Server.Items.BaseRace.NoFood( m.RaceID ) ){ m.Hunger = 10; }
-        else if ( Server.Items.BaseRace.NoFoodOrDrink( m.RaceID ) ){ m.Thirst = 10; m.Hunger = 10; }
+        if ( Server.Items.BaseRace.NoFood( m.RaceID ) ){ m.Hunger = 20; } // No buff for monster races
+        else if ( Server.Items.BaseRace.NoFoodOrDrink( m.RaceID ) ){ m.Thirst = 20; m.Hunger = 20; } // No buff for monster races
         else
         {
-          if ( m.Hunger >=20 )
+          if ( m.Hunger >=11 )
           {
             var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Hunger;
             if ( m.Hits < m.HitsMax)
@@ -43,29 +43,14 @@ namespace Server.Misc
             if ( m.Stam < m.StamMax)
                  m.Stam += buff;
           }
-          else if ( m.Hunger > 15 && m.Hunger < 20 )
+          else if ( m.Hunger <= 9  )
           {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Hunger;
-            if ( m.Hits < m.HitsMax)
-                 m.Hits += buff;
-            if ( m.Stam < m.StamMax)
-                 m.Stam += buff;
-          }
-          else if ( m.Hunger > 10 && m.Hunger < 15 )
-          {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Hunger;
-            if ( m.Hits < m.HitsMax)
-                 m.Hits += buff;
-            if ( m.Stam < m.StamMax)
-                 m.Stam += buff;
-          }
-          else if ( m.Hunger < 10 )
-          {
-            var debuff = 5;
-            if ( m.Hits > 10 )
-                 m.Hits -= debuff;
-            if ( m.Stam > 20)
-                 m.Stam -= debuff;
+            var hitsdebuff = 10;
+            var stamdebuff = 15;
+            if ( m.Hits > 20 )
+                 m.Hits -= hitsdebuff;
+            if ( m.Stam > 30)
+                 m.Stam -= stamdebuff;
           }
         } 
       }     
@@ -74,32 +59,20 @@ namespace Server.Misc
     {
       if ( m is PlayerMobile )
       {
-        if ( Server.Items.BaseRace.NoFoodOrDrink( m.RaceID ) ){ m.Thirst = 10; m.Hunger = 10; }
-        else if ( Server.Items.BaseRace.BrainEater( m.RaceID ) ){ m.Thirst = 10; }
+        if ( Server.Items.BaseRace.NoFoodOrDrink( m.RaceID ) ){ m.Thirst = 20; m.Hunger = 20; } // No buff for monsters that don't need food/water
+        else if ( Server.Items.BaseRace.BrainEater( m.RaceID ) ){ m.Thirst = 20; } // No buff for monsters that eat brains
         else
         {
-          if ( m.Thirst >= 20 )
+          if ( m.Thirst >= 11 )
           {
             var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Thirst;
             if ( m.Mana < m.ManaMax)
                  m.Mana += buff;
           }
-          else if (m.Thirst > 15 && m.Thirst < 20 )
+          else if ( m.Thirst <= 9 )
           {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Thirst;
-            if (m.Mana < m.ManaMax)
-                m.Mana += buff;
-          }
-          else if ( m.Thirst > 10 && m.Thirst < 15 )
-          {
-            var buff = (int) ( m.Skills[SkillName.Cooking].Value * 0.1 ) + m.Thirst;
-            if ( m.Mana < m.ManaMax )
-                 m.Mana += buff;
-          }
-          else if ( m.Thirst < 10 )
-          {
-            var debuff = 5;
-            if ( m.Mana < m.ManaMax )
+            var debuff = 20;
+            if ( m.Mana > 32 )
                  m.Mana -= debuff;
           }
         }
