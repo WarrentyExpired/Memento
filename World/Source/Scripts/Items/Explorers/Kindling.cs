@@ -154,12 +154,12 @@ namespace Server.Items
 							from.PlaceInBackpack( this );
 
 						new Campfire().MoveToWorld( fireLocation, from.Map );
-						pm.Camp = DateTime.Now + TimeSpan.FromMinutes( 10.0 );
+						pm.Camp = DateTime.Now + TimeSpan.FromMinutes( 5.0 );
 					}
 				}
 				else
 				{
-					from.SendMessage( "You can only build a campfire every 10 minutes!" );
+					from.SendMessage( "You can only build a campfire every 5 minutes!" );
 				}
 			}
 		}
