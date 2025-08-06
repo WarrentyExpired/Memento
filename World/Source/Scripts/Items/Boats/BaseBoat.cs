@@ -544,12 +544,6 @@ namespace Server.Multis
 					if ( from.Karma < 0 ){ cargo.CargoKarma = (int)(cargo.CargoValue/5); }
 				ShipWreck.DropItem( cargo );
 			}
-			while ( relics > 0 )
-			{
-				relics--;
-				Item relic = Loot.RandomRelic( killer );
-				ShipWreck.DropItem( relic );
-			}
 
 			if ( Utility.RandomMinMax( 1, 4 ) == 1 ){ Item i1 = new RawFishSteak( Utility.RandomMinMax( 1, 8 ) ); 	ShipWreck.DropItem( i1 ); }
 			if ( Utility.RandomMinMax( 1, 4 ) == 1 ){ Item i2 = new Fish( Utility.RandomMinMax( 1, 8 ) ); 			ShipWreck.DropItem( i2 ); }
@@ -562,19 +556,30 @@ namespace Server.Multis
 				goods.CoinPrice = goods.CoinPrice + (int)(from.RawStatTotal/3);
 				ShipWreck.DropItem(goods);
 			}
-			int killerLuck = MobileUtilities.GetLuckFromKiller( from );
-			if ( GetPlayerInfo.LuckyKiller( killerLuck ) && Utility.RandomMinMax( 1, 4 ) == 1 )
+
+			if (killer != null )
 			{
-				LootChest MyChest = new LootChest( level );
-				MyChest.Name = "Chest Plundered from " + from.Name + " " + from.Title;
-					if ( from.Karma > 0 ){ MyChest.Name = "Chest Seized from " + from.Name + " " + from.Title; }
-				ShipWreck.DropItem( MyChest );
-			}
-			else if ( from is BasePirate && GetPlayerInfo.LuckyKiller( killerLuck ) && Utility.RandomBool() && killer.Karma > 0 && from.Karma < 0 )
-			{
-				PirateBounty bounty = new PirateBounty();
-				bounty.BountyWho = from.Name + " "  + from.Title;
-				ShipWreck.DropItem( bounty );
+				while ( relics > 0 )
+				{
+					relics--;
+					Item relic = Loot.RandomRelic( killer );
+					ShipWreck.DropItem( relic );
+				}
+
+				int killerLuck = MobileUtilities.GetLuckFromKiller( from );
+				if ( GetPlayerInfo.LuckyKiller( killerLuck ) && Utility.RandomMinMax( 1, 4 ) == 1 )
+				{
+					LootChest MyChest = new LootChest( level );
+					MyChest.Name = "Chest Plundered from " + from.Name + " " + from.Title;
+						if ( from.Karma > 0 ){ MyChest.Name = "Chest Seized from " + from.Name + " " + from.Title; }
+					ShipWreck.DropItem( MyChest );
+				}
+				else if ( from is BasePirate && GetPlayerInfo.LuckyKiller( killerLuck ) && Utility.RandomBool() && killer.Karma > 0 && from.Karma < 0 )
+				{
+					PirateBounty bounty = new PirateBounty();
+					bounty.BountyWho = from.Name + " "  + from.Title;
+					ShipWreck.DropItem( bounty );
+				}
 			}
 
 			ShipWreck.MoveToWorld( splash, from.Map );
@@ -1206,32 +1211,36 @@ namespace Server.Multis
 			if ( boat == null )
 				return;
 
-			foreach ( Mobile stow in World.Mobiles.Values )
-			if ( stow is PlayerMobile && stow.Region.Name == "the Ship's Lower Deck" )
+			// Magic carpets don't have a Lower Deck
+			if ( !BaseBoat.isCarpet( this ) )
 			{
-				string sCabinDoor = ((PlayerMobile)from).CharacterBoatDoor;
-
-				string sWorld = "";
-				string sSerial = "";
-				string sCode = "";
-
-				if ( sCabinDoor != null )
+				foreach ( Mobile stow in World.Mobiles.Values )
+				if ( stow is PlayerMobile && stow.Region.Name == "the Ship's Lower Deck" )
 				{
-					string[] doors = sCabinDoor.Split('#');
-					int nEntry = 1;
-					foreach (string doorz in doors)
+					string sCabinDoor = ((PlayerMobile)from).CharacterBoatDoor;
+
+					string sWorld = "";
+					string sSerial = "";
+					string sCode = "";
+
+					if ( sCabinDoor != null )
 					{
-						if ( nEntry == 1 ){ sSerial = doorz; }
-						else if ( nEntry == 2 ){ sCode = doorz; }
-						else if ( nEntry == 3 ){ sWorld = doorz; }
+						string[] doors = sCabinDoor.Split('#');
+						int nEntry = 1;
+						foreach (string doorz in doors)
+						{
+							if ( nEntry == 1 ){ sSerial = doorz; }
+							else if ( nEntry == 2 ){ sCode = doorz; }
+							else if ( nEntry == 3 ){ sWorld = doorz; }
 
-						nEntry++;
+							nEntry++;
+						}
 					}
-				}
 
-				if ( this.m_BoatDoor.Serial.ToString() == sSerial && this.m_BoatDoor.BoatCode == sCode )
-				{
-					DeckDoor.CabinDoor( stow, from.Location, from.Map );
+					if ( m_BoatDoor.Serial.ToString() == sSerial && m_BoatDoor.BoatCode == sCode )
+					{
+						DeckDoor.CabinDoor( stow, from.Location, from.Map );
+					}
 				}
 			}
 
