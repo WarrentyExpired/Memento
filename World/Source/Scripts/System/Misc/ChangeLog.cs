@@ -17,16 +17,21 @@ namespace Server.Misc
 
 			builder.Append("Changes<br>");
 			builder.Append("- Champs - Rikktor is now much harder<br>");
+			builder.Append("- Champs - Barracoon's mobs can no longer rummage<br>");
 			builder.Append("- Champs - All minions should now be aggressive<br>");
+			builder.Append("- Gather - Reduce logs per tree from 4-9 to 4-6<br>");
+			builder.Append("- Gather - Lumberjacking sparkles now have a light source<br>");
 			builder.Append("- Gump - Completely redesigned Runebook gump<br>");
 			builder.Append("- Item - Acidic robe cooldown reduced to 10 minutes (will be reworked in a future update)<br>");
 			builder.Append("- Item - High fame mobs can now drop Champion Skulls<br>");
 			builder.Append("- Item - Lawn tools can now be used indoors<br>");
 			builder.Append("- Item - Mushrooms are now stackable<br>");
+			builder.Append("- Item - Added new item to help with goldsplosions<br>");
 			builder.Append("- Item - Update champion skull decay strategy and labels<br>");
 			builder.Append("- Misc - Champion spawns are now added to the world<br>");
 			builder.Append("- Misc - Jewelry trap has been reworked to be less aggressive<br>");
 			builder.Append("- Misc - Quest pedestal generation is now more resilient<br>");
+			builder.Append("- Misc - Horde Minions now loot items much faster<br>");
 			builder.Append("- Mobs - Players are now immune to peacemaking for 30s after it ends<br>");
 			builder.Append("- NPC - Mercantile/guild barter bonus is reduced to +100% of item value, down from +300%<br>");
 			builder.Append("- NPC - Mercantile/guild bonus now increases the amount of Gold that vendors have available for purchase<br>");
@@ -41,6 +46,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Traps are now being checked for players with >= 5.0 Remove Trap<br>");
 			builder.Append("- Misc - Fix crash when a sailor died without a player killer<br>");
 			builder.Append("- Misc - Fix crash when a magic carpet is drydocked when someone else is in the Lower Deck zone<br>");
+			builder.Append("- Misc - Familiars now drop their backpack contents on server restart<br>");
 			builder.Append("- Item - Quick fix to prevent crash with locked containers<br>");
 			builder.Append("- Item - Orphaned projectiles are no longer created when using a ranged weapon<br>");
 			builder.Append("- Item - Orphaned clothing are no longer created during dress up<br>");
