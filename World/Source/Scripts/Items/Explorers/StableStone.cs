@@ -14,7 +14,7 @@ namespace Server.Items
 { 
 	public class StableStone : Item
 	{ 
-		public override string DefaultDescription{ get{ return "Hitching posts can only be used by grandmasters in camping. Once you place it in your home, you can use it to stable your pets instead of doing so at the stable master."; } }
+		public override string DefaultDescription{ get{ return "Hitching posts can only be used by grandmasters in camping or apprentice tamers. Once you place it in your home, you can use it to stable your pets instead of doing so at the stable master."; } }
 
 		[Constructable] 
 		public StableStone() : base( 0x14E7 ) 
@@ -89,7 +89,7 @@ namespace Server.Items
 		{
             base.AddNameProperties(list);
 			list.Add( 1070722, "Stable Your Pets At Your Home");
-			list.Add( 1049644, "For Grandmasters In Camping");
+			list.Add( 1049644, "For Grandmasters In Camping or Apprentice Tamers");
         } 
 
 		private class StableTarget : Target
@@ -119,9 +119,10 @@ namespace Server.Items
 			{
                 from.SendMessage("This must be locked down in a house to use!");
 			}
-			else if ( from.Skills[SkillName.Camping].Base < 100 )
+			else if ( from.Skills[SkillName.Camping].Base < 100 && from.Skills[SkillName.Taming].Base < 50 )
+
 			{
-				from.SendMessage ("Only grandmasters in camping may stable pets at home!");
+				from.SendMessage ("Only grandmasters in camping or apprentice tamers may stable pets at home!");
 			}
 			else if ( from.Stabled.Count >= Server.Mobiles.AnimalTrainer.GetMaxStabled( from ) )
 			{
@@ -272,8 +273,8 @@ namespace Server.Items
 
             if (this.Movable)
                 from.SendMessage("This must be locked down in a house to use!");
-			else if ( from.Skills[SkillName.Camping].Base < 100 )
-				from.SendMessage ("Only grandmasters in camping may stable pets at home!");
+			else if ( from.Skills[SkillName.Camping].Base < 100 && from.Skills[SkillName.Taming].Base < 50 )
+				from.SendMessage ("Only grandmasters in camping or apprentice tamers may stable pets at home!");
 			else if ( list.Count > 0 )
 				from.SendGump( new ClaimListGump( this, from, list ) );
 			else
