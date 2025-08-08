@@ -13,6 +13,7 @@ using Server.Engines.Apiculture;
 using Server.Engines.Mahjong;
 using System.IO;
 using System.Text;
+using Bittiez.GearBag;
 
 namespace Server
 {
