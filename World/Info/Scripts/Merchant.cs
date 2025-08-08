@@ -33,14 +33,15 @@ namespace Server.Mobiles
 			// Keep your individual quantities below 10,000.
 			public InternalBuyInfo()
 			{
-                    Add( new GenericBuyInfo( typeof(CagedRidableLlama ), 800, 5, 0x570b, 0 ) );
-                    Add( new GenericBuyInfo( typeof(CagedHorse ), 1000, 5, 0x570c, 0 ) );
-                    Add( new GenericBuyInfo( typeof( BagOfNecroReagents ), 300, 10, 0xE76, 2406 ) );
-                    Add( new GenericBuyInfo( typeof( BagOfReagents ), 500, 10, 0xE76, 2716 ) );
-                    Add( new GenericBuyInfo( typeof( BagOfAllReagents ), 700, 10, 0xE76, 2406 ) );
-                    Add( new GenericBuyInfo( typeof( Ribs ), 10, 50, 0x9f2, 0 ) );
-                    Add( new GenericBuyInfo( typeof( Bandage), 1, 1000, 0xe21, 0 ) );
-				            Add( new GenericBuyInfo( typeof( Kindling ), 2, 20, 0xDE1, 0 ) );
+                          Add( new GenericBuyInfo( typeof(CagedRidableLlama ), 800, 5, 0x570b, 0 ) );
+                          Add( new GenericBuyInfo( typeof(CagedHorse ), 1000, 5, 0x570c, 0 ) );
+                          Add( new GenericBuyInfo( typeof( BagOfNecroReagents ), 600, 3, 0xE76, 2406 ) );
+                          Add( new GenericBuyInfo( typeof( BagOfReagents ), 1400, 3, 0xE76, 2716 ) );
+                          Add( new GenericBuyInfo( typeof( BagOfAlchemicReagents ), 900, 3, 0xE76, 2406 ) );
+                          Add( new GenericBuyInfo( typeof( BagOfAllReagents ), 2900, 3, 0xE76, 2406 ) );
+                          Add( new GenericBuyInfo( typeof( Ribs ), 10, 50, 0x9f2, 0 ) );
+                          Add( new GenericBuyInfo( typeof( Bandage), 1, 1000, 0xe21, 0 ) );
+		          Add( new GenericBuyInfo( typeof( Kindling ), 2, 20, 0xDE1, 0 ) );
 			}
 		}
 

@@ -12,6 +12,7 @@ namespace Bittiez.GearBag
 		[Constructable]
 		public GearBag()
 		{
+			Name = "gear bag";
 			Hue = 293;
 		}
 		public GearBag(Serial serial) : base(serial) { }

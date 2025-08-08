@@ -9,6 +9,7 @@ namespace Server.Items
 		[Constructable]
 		public BagOfAlchemicReagents()
 		{
+                        Name = "a bag of alchemic reagents";
 			Weight = 10.0;
 		}
 
