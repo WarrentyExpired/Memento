@@ -3030,6 +3030,8 @@ namespace Server
 			new ItemSalesInfo( typeof(	MedusaStatue	),	500	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Stone	),
 			new ItemSalesInfo( typeof(	MegalodonTooth	),	4000	,	0	,	0	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Fisherman	),
 			new ItemSalesInfo( typeof(	DungeoneerCrate	),	500	,	1	,	75	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Provisions	),
+                        new ItemSalesInfo( typeof(      GearBag ),      1000     ,       5       ,       75      ,       false   ,       false   ,       World.None      ,       Category.None   ,       Material.None   ,       Market.Provisions       ),
+
 			new ItemSalesInfo( typeof(	MetalKiteShield	),	123	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
 			new ItemSalesInfo( typeof(	MetalSafe	),	5000	,	5	,	50	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Banker	),
 			new ItemSalesInfo( typeof(	MetalShield	),	121	,	15	,	0	,	false	,	false	,	World.None	,	Category.Shield	,	Material.Metal	,	Market.Smith	),
