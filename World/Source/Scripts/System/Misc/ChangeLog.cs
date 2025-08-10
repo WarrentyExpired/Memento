@@ -16,6 +16,7 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
+			builder.Append("- Craft - All 'Skin' resources now have the same damage bonus<br>");
 			builder.Append("- Champs - Rikktor is now much harder<br>");
 			builder.Append("- Champs - Barracoon's mobs can no longer rummage<br>");
 			builder.Append("- Champs - All minions should now be aggressive<br>");
@@ -32,14 +33,22 @@ namespace Server.Misc
 			builder.Append("- Misc - Jewelry trap has been reworked to be less aggressive<br>");
 			builder.Append("- Misc - Quest pedestal generation is now more resilient<br>");
 			builder.Append("- Misc - Horde Minions now loot items much faster<br>");
+			builder.Append("- Misc - Swing Speed Increase on non-weapons increased up to 1-5, up from 1-2<br>");
+			builder.Append("- Misc - Magic Pools can now create multiple stacks of coins when they are over 60k<br>");
+			builder.Append("- Misc - Pedestals now create multiple stacks of coins when they are over 60k<br>");
+			builder.Append("- Misc - Most items are now autostacked in treasure chests<br>");
 			builder.Append("- Mobs - Players are now immune to peacemaking for 30s after it ends<br>");
+			builder.Append("- Mobs - Reduced health and increased damage of Rotting Corpses<br>");
 			builder.Append("- NPC - Mercantile/guild barter bonus is reduced to +100% of item value, down from +300%<br>");
 			builder.Append("- NPC - Mercantile/guild bonus now increases the amount of Gold that vendors have available for purchase<br>");
 			builder.Append("- Settings - Gold cut rate increased to 35%, up from 25%<br>");
+			builder.Append("- Skill - Stealing cooldown is now 1s, down from 5s<br>");
 			builder.Append("- Spell - AOE damage spells are now reduced to a minimum of 50% damage when hitting more than one target<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
+			builder.Append("- Achievements - Added entrance info for several missing dungeons<br>");
+			builder.Append("- Achievements - Fix entrance info for Mad Archmage and Lich King Dungeons<br>");
 			builder.Append("- Spell - Wrath no longer does doubles damage to one target<br>");
 			builder.Append("- Misc - More Fast-player changes<br>");
 			builder.Append("- Misc - Remove bad images from manage Player Vendor gump<br>");
@@ -50,6 +59,8 @@ namespace Server.Misc
 			builder.Append("- Item - Quick fix to prevent crash with locked containers<br>");
 			builder.Append("- Item - Orphaned projectiles are no longer created when using a ranged weapon<br>");
 			builder.Append("- Item - Orphaned clothing are no longer created during dress up<br>");
+			builder.Append("- Skill - Searching cooldown is now set after targeting instead of immediately<br>");
+			builder.Append("- Spell - Add message when Enchant spell fizzles due to having an orb<br>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
