@@ -179,7 +179,7 @@ namespace Server
 	// options, but also allows for creatures such as giants and balrons. There is a more details explanation of this system
 	// using the gypsy's shelf in her starting tent.
 
-		public static int S_MonsterCharacters = 3;
+		public static int S_MonsterCharacters = 1;
 
 	// If true, then characters will not get hungry or thirsty when inside places like banks, inns, or houses...allowing you
 	// to step away from the game without your character starving eventually.
@@ -189,7 +189,7 @@ namespace Server
 	// This number can be set from 5 to 60, which determines the number of minutes that hunger and thirst are checked for
 	// reduction (default is 5).
 
-		public static int S_FoodCheck = 30; // Minutes
+		public static int S_FoodCheck = 5; // Minutes
 
         // This number can be set from 10 to 60 seconds, which determins of often the foodbuff is applied.
 
@@ -236,7 +236,7 @@ namespace Server
 	// Maximum amount of lower mana percentage, up to 100 for 100%. For equipment with lower mana properties.
 	// Setting it to zero will disable the attribute from the game.
 
-		public static int S_LowerMana = 25;
+		public static int S_LowerMana = 30;
 		public static int S_LowerManaEnchantment = 8;
 
 	// This setting between 0.5 and 3.0 (decimal format) will give a character that much hit points, mana, or stamina based
