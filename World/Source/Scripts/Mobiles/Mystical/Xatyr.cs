@@ -62,9 +62,9 @@ namespace Server.Mobiles
 				switch( Utility.RandomMinMax( 0, 3 ) )
 				{
 					case 0:	Peace( Combatant ); break;
-					case 1:	Undress( Combatant ); break;
-					case 2:	Suppress( Combatant ); break;
-					case 3:	Provoke( Combatant ); break;
+					//case 1:	Undress( Combatant ); break;
+					case 1:	Suppress( Combatant ); break;
+					case 2:	Provoke( Combatant ); break;
 				}
 			}
 			base.OnThink();

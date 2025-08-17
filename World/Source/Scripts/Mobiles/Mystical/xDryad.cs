@@ -69,7 +69,7 @@ namespace Server.Mobiles
 				switch( Utility.Random( 2 ) )
 				{
 					case 0:	Peace( Combatant ); break;
-					case 1:	Undress( Combatant ); break;
+					//case 1:	Undress( Combatant ); break;
 				}
 			}
 			base.OnThink();
