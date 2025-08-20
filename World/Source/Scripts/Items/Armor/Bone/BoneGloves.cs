@@ -24,6 +24,7 @@ namespace Server.Items
 
 		public override ArmorMaterialType MaterialType{ get{ return ArmorMaterialType.Bone; } }
 		public override CraftResource DefaultResource{ get{ return CraftResource.BrittleSkeletal; } }
+		public override ArmorMeditationAllowance DefMedAllowance{ get{ return ArmorMeditationAllowance.All; } }
 
 		[Constructable]
 		public BoneGloves() : base( 0x1450 )
