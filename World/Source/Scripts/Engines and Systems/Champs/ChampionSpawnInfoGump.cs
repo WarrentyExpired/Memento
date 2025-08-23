@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Server.Engines.CannedEvil;
 using Server.Gumps;
@@ -54,7 +53,7 @@ namespace Server.Items
 			if (!spawn.Active)
 			{
 				AddLabel(gTab[1], top, gFontHue, "Status");
-				AddLabel(gTab[2], top, gFontHue, "Inactive");
+				AddLabel(gTab[2], top, LabelColors.DARK_RED, "Inactive");
 				top += gRowHeight;
 			}
 			else
@@ -84,33 +83,36 @@ namespace Server.Items
 				TimeSpan remaining = spawn.GetExpirationTimeRemaining();
 				if (0 < remaining.TotalSeconds) AddLabel(gTab[2], top, gFontHue, remaining.ToString(@"hh\:mm\:ss"));
 				top += gRowHeight;
+			}
 
-				AddImageTiled(gBoarder + 4, top, gWidth - 47, 2, 9101); // Bottom border
-				top += gRowHeight / 3;
+			AddImageTiled(gBoarder + 4, top, gWidth - 47, 2, 9101); // Bottom border
+			top += gRowHeight / 3;
 
-				AddLabel(gTab[1], top, gFontHue, "Player");
-				AddLabel(gTab[2], top, gFontHue, "Damage");
+			AddLabel(gTab[1], top, gFontHue, "Player");
+			AddLabel(gTab[2], top, gFontHue, "Damage");
+			top += gRowHeight;
+
+			var damagers = spawn.DamageEntries.Keys
+				.Select(mob => new Damager(mob, spawn.DamageEntries[mob]))
+				.OrderByDescending(x => x.Damage);
+
+			foreach (Damager damager in damagers)
+			{
+				AddLabelCropped(gTab[1], top, 100, gRowHeight, gFontHue, damager.Mobile.RawName);
+				AddLabelCropped(gTab[2], top, 80, gRowHeight, gFontHue, damager.Damage.ToString());
 				top += gRowHeight;
+			}
 
-				var damagers = spawn.DamageEntries.Keys
-					.Select(mob => new Damager(mob, spawn.DamageEntries[mob]))
-					.OrderByDescending(x => x.Damage);
+			var lastRowY = top + 23;
 
-				foreach (Damager damager in damagers)
-				{
-					AddLabelCropped(gTab[1], top, 100, gRowHeight, gFontHue, damager.Mobile.RawName);
-					AddLabelCropped(gTab[2], top, 80, gRowHeight, gFontHue, damager.Damage.ToString());
-					top += gRowHeight;
-				}
+			if (spawn.CanStop(from))
+			{
+				AddButton(gTab[1], lastRowY, 0xFA5, 0xFA7, 100, GumpButtonType.Reply, 0);
+				AddLabel(gTab[1] + 30, lastRowY + 4, gFontHue, "Abort");
+			}
 
-				var lastRowY = top + 23;
-
-				if (spawn.CanStop(from))
-				{
-					AddButton(gTab[1], lastRowY, 0xFA5, 0xFA7, 100, GumpButtonType.Reply, 0);
-					AddLabel(gTab[1] + 30, lastRowY + 4, gFontHue, "Abort");
-				}
-
+			if (spawn.Active)
+			{
 				AddButton(gTab[2], lastRowY, 0xFA5, 0xFA7, 1, GumpButtonType.Reply, 0);
 				AddLabel(gTab[2] + 30, lastRowY + 4, gFontHue, "Refresh");
 			}
@@ -127,8 +129,20 @@ namespace Server.Items
 				case 100:
 					if (m_Spawn.CanStop(sender.Mobile))
 					{
-						m_Spawn.Stop();
-						m_Spawn.Cleanup();
+						var confirmation = new ConfirmationGump(
+							sender.Mobile,
+							"Abort Champion Spawn?",
+							"Are you sure you wish to abort this champion spawn? All progress will be lost.",
+							() =>
+							{
+								if (m_Spawn.CanStop(sender.Mobile))
+								{
+									m_Spawn.Stop();
+									m_Spawn.Cleanup();
+								}
+							}
+						);
+						sender.Mobile.SendGump(confirmation);
 					}
 					break;
 			}

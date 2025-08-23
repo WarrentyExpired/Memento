@@ -2,6 +2,7 @@ using System;
 using Server.Items;
 using Server.Spells.Seventh;
 using Server.Spells.Fifth;
+using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
@@ -132,6 +133,7 @@ namespace Server.Mobiles
 			if (map == null)
 				return;
 
+			const int MAX_RATS = 8;
 			int rats = 0;
 
 			foreach (Mobile m in GetMobilesInRange(10))
@@ -140,14 +142,16 @@ namespace Server.Mobiles
 					++rats;
 			}
 
-			if (rats < 16)
+			if (rats < MAX_RATS)
 			{
 				PlaySound(0x3D);
 
-				int newRats = Utility.RandomMinMax(3, 6);
+				int newRats = Utility.RandomMinMax(2, 4);
 
 				for (int i = 0; i < newRats; ++i)
 				{
+					if (MAX_RATS <= rats + 1 + i) break;
+
 					BaseCreature rat;
 
 					switch (Utility.Random(5))
@@ -162,6 +166,9 @@ namespace Server.Mobiles
 					rat.Team = Team;
 					rat.IsTempEnemy = true;
 					rat.Summoned = true;
+					var spawn = ChampionSpawn.FindOwner(rat);
+					if (spawn != null)
+						BaseCreature.BeefUp(rat, spawn.Difficulty, false);
 
 					bool validLocation = false;
 					Point3D loc = Location;

@@ -16,19 +16,27 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
-			builder.Append("- Craft - All 'Skin' resources now have the same damage bonus<br>");
 			builder.Append("- Champs - Rikktor is now much harder<br>");
 			builder.Append("- Champs - Barracoon's mobs can no longer rummage<br>");
+			builder.Append("- Champs - Barracoon's rats now cap at 8, down from 16<br>");
 			builder.Append("- Champs - All minions should now be aggressive<br>");
+			builder.Append("- Champs - Gold reward is now influenced by size and difficulty<br>");
+			builder.Append("- Champs - Players now receive progress messages<br>");
+			builder.Append("- Champs - Monsters are now cleaned up when the Champion dies<br>");
+			builder.Append("- Champs - Aborting a spawn now has a confirmation prompt<br>");
+			builder.Append("- Craft - All 'Skin' resources now have the same damage bonus<br>");
 			builder.Append("- Gather - Reduce logs per tree from 4-9 to 4-6<br>");
 			builder.Append("- Gather - Lumberjacking sparkles now have a light source<br>");
 			builder.Append("- Gump - Completely redesigned Runebook gump<br>");
+			builder.Append("- Gump - Update look of Confirmation gump<br>");
 			builder.Append("- Item - Acidic robe cooldown reduced to 10 minutes (will be reworked in a future update)<br>");
 			builder.Append("- Item - High fame mobs can now drop Champion Skulls<br>");
 			builder.Append("- Item - Lawn tools can now be used indoors<br>");
 			builder.Append("- Item - Mushrooms are now stackable<br>");
 			builder.Append("- Item - Added new item to help with goldsplosions<br>");
 			builder.Append("- Item - Update champion skull decay strategy and labels<br>");
+			builder.Append("- Item - 'Bag of holding' cooldown is now 1 minute, down from 5 minutes<br>");
+			builder.Append("- Item - Mystic spellbooks now bind when opened instead of when lifted<br>");
 			builder.Append("- Misc - Champion spawns are now added to the world<br>");
 			builder.Append("- Misc - Jewelry trap has been reworked to be less aggressive<br>");
 			builder.Append("- Misc - Quest pedestal generation is now more resilient<br>");
@@ -41,6 +49,9 @@ namespace Server.Misc
 			builder.Append("- Mobs - Reduced health and increased damage of Rotting Corpses<br>");
 			builder.Append("- NPC - Mercantile/guild barter bonus is reduced to +100% of item value, down from +300%<br>");
 			builder.Append("- NPC - Mercantile/guild bonus now increases the amount of Gold that vendors have available for purchase<br>");
+			builder.Append("- Pets - Ancient Drakes now take 3 control slots, up from 2<br>");
+			builder.Append("- Pets - Crag Cats and Sabretooth Tigers now take 2 control slots, up from 1<br>");
+			builder.Append("- Pets - Beetles now take 2 control slots, down from 3<br>");
 			builder.Append("- Settings - Gold cut rate increased to 35%, up from 25%<br>");
 			builder.Append("- Skill - Stealing cooldown is now 1s, down from 5s<br>");
 			builder.Append("- Spell - AOE damage spells are now reduced to a minimum of 50% damage when hitting more than one target<br>");
@@ -49,18 +60,25 @@ namespace Server.Misc
 			builder.Append("Fixes<br>");
 			builder.Append("- Achievements - Added entrance info for several missing dungeons<br>");
 			builder.Append("- Achievements - Fix entrance info for Mad Archmage and Lich King Dungeons<br>");
-			builder.Append("- Spell - Wrath no longer does doubles damage to one target<br>");
+			builder.Append("- Champs - Barracoon's rats now scale with spawn difficulty<br>");
+			builder.Append("- Champs - Final scoreboard is no longer blank<br>");
+			builder.Append("- Item - Quick fix to prevent crash with locked containers<br>");
+			builder.Append("- Item - Orphaned projectiles are no longer created when using a ranged weapon<br>");
+			builder.Append("- Item - Orphaned clothing are no longer created during dress up<br>");
+			builder.Append("- Item - All spell scrolls now properly indicate their type<br>");
 			builder.Append("- Misc - More Fast-player changes<br>");
 			builder.Append("- Misc - Remove bad images from manage Player Vendor gump<br>");
 			builder.Append("- Misc - Traps are now being checked for players with >= 5.0 Remove Trap<br>");
 			builder.Append("- Misc - Fix crash when a sailor died without a player killer<br>");
 			builder.Append("- Misc - Fix crash when a magic carpet is drydocked when someone else is in the Lower Deck zone<br>");
 			builder.Append("- Misc - Familiars now drop their backpack contents on server restart<br>");
-			builder.Append("- Item - Quick fix to prevent crash with locked containers<br>");
-			builder.Append("- Item - Orphaned projectiles are no longer created when using a ranged weapon<br>");
-			builder.Append("- Item - Orphaned clothing are no longer created during dress up<br>");
+			builder.Append("- Misc - Time Lord is now always invulnerable<br>");
+			builder.Append("- Pets - Experience bonus from Herding is now working<br>");
+			builder.Append("- Quest - Serpent of Balance quest should be completable again<br>");
 			builder.Append("- Skill - Searching cooldown is now set after targeting instead of immediately<br>");
 			builder.Append("- Spell - Add message when Enchant spell fizzles due to having an orb<br>");
+			builder.Append("- Spell - Wrath no longer does doubles damage to one target<br>");
+			builder.Append("- Spell - Restoration now properly restores mana and stamina<br>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,15 +1,18 @@
 using System;
 using Server.Engines.CannedEvil;
 using Server.Gumps;
+using Server.Utilities;
 
 namespace Server.Items
 {
 	public class ChampionSkull : Item
 	{
+		// TODO: Add Note about drop rate and decay
 		public const int MAX_DAYS_AGE = 7;
 
 		private DateTime m_Created;
 		private ChampionSpawnType m_Type;
+		private static Timer m_CleanupTimer; // Keep track to make sure it's not GC'd
 
 		[Constructable]
 		public ChampionSkull() : this(GetRandomType())
@@ -61,14 +64,20 @@ namespace Server.Items
 			}
 		}
 
-		public override bool OnDecay()
+		public static void Initialize()
 		{
-			var expirationTimestamp = DateTime.UtcNow.AddDays(0 - MAX_DAYS_AGE);
-			if (m_Created < expirationTimestamp) return true;
-
-			InvalidateProperties();
-
-			return false;
+			m_CleanupTimer = Timer.DelayCall(TimeSpan.Zero, TimeSpan.FromHours(1), () =>
+			{
+				Console.WriteLine("[Champion System]: Cleaning up expired skulls");
+				var expirationTimestamp = DateTime.UtcNow.AddDays(0 - MAX_DAYS_AGE);
+				foreach (var skull in WorldUtilities.ForEachItem<ChampionSkull>(item => !item.Deleted))
+				{
+					if (skull.m_Created < expirationTimestamp)
+						skull.Delete();
+					else
+						skull.InvalidateProperties();
+				}
+			});
 		}
 
 		public override void Deserialize(GenericReader reader)

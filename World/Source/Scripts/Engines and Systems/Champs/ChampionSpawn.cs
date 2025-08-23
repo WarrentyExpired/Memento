@@ -4,6 +4,9 @@ using Server.Items;
 using Server.Mobiles;
 using Server.Regions;
 using System.Collections.Generic;
+using Server.Utilities;
+using System.Linq;
+using Server.Network;
 
 namespace Server.Engines.CannedEvil
 {
@@ -90,6 +93,17 @@ namespace Server.Engines.CannedEvil
 			// Apparently this should only execute after Location changes
 			if (setInitialSpawnArea)
 				Timer.DelayCall(TimeSpan.Zero, new TimerCallback(SetInitialSpawnArea));
+		}
+
+		public static ChampionSpawn FindOwner(BaseCreature sourceMobile)
+		{
+			return WorldUtilities.ForEachItem<ChampionSpawn>(spawn => spawn.Active)
+				.FirstOrDefault(spawn =>
+				{
+					if (sourceMobile is BaseChampion) return spawn.Champion == sourceMobile;
+
+					return spawn.m_Creatures.Contains(sourceMobile);
+				});
 		}
 
 		public void SetInitialSpawnArea()
@@ -414,11 +428,7 @@ namespace Server.Engines.CannedEvil
 				if (m_Champion.Deleted)
 				{
 					RegisterDamageTo(m_Champion);
-
-					if (m_Champion is BaseChampion)
-					{
-						AwardArtifact(((BaseChampion)m_Champion).GetArtifact());
-					}
+					AwardArtifact(m_Champion.GetArtifact());
 
 					if (m_Platform != null)
 						m_Platform.Hue = 0x497;
@@ -430,6 +440,7 @@ namespace Server.Engines.CannedEvil
 
 					m_Champion = null;
 					Stop();
+					Cleanup();
 
 					// Broadcast the final gump to all players who have done damage.
 					foreach (Mobile m in DamageEntries.Keys)
@@ -507,6 +518,13 @@ namespace Server.Engines.CannedEvil
 				++Level;
 				InvalidateProperties();
 				SetWhiteSkullCount(0);
+				switch (Level)
+				{
+					case 4: AnnounceRegionMessage("The air grows heavy with an unnatural stillness..."); break; // 25%
+					case 8: AnnounceRegionMessage("Thick clouds gather in the sky..."); break; // 50%
+					case 12: AnnounceRegionMessage("The boundaries between worlds grow thin..."); break; // 75%
+					case 15: AnnounceRegionMessage("The very ground trembles beneath your feet..."); break; // n - 1
+				}
 
 				if (m_Altar != null)
 				{
@@ -517,6 +535,17 @@ namespace Server.Engines.CannedEvil
 			else
 			{
 				SpawnChampion();
+				if (m_Champion != null)
+					AnnounceRegionMessage("Reality fractures as " + m_Champion.Name + " awakens!");
+			}
+		}
+
+		private void AnnounceRegionMessage(string message)
+		{
+			foreach (Mobile m in m_Region.GetMobiles())
+			{
+				if (m is PlayerMobile && m.NetState != null)
+					m.LocalOverheadMessage(MessageType.Regular, LabelColors.PALE_RED, true, message);
 			}
 		}
 
@@ -536,6 +565,7 @@ namespace Server.Engines.CannedEvil
 			try
 			{
 				m_Champion = Activator.CreateInstance(ChampionSpawnInfo.GetInfo(m_Type).Champion) as BaseChampion;
+				m_Champion.GoldPercent = ChampionRewards.GetGoldPercent(SpawnSzMod, SpawnDifficulty);
 				m_Champion.BossItemRewardChance = ChampionRewards.GetBossItemDropChance(SpawnSzMod, SpawnDifficulty);
 				m_Champion.ArtifactRewardChance = ChampionRewards.GetArtifactDropChance(SpawnSzMod, SpawnDifficulty);
 				m_Champion.TreasureChestRewardChance = ChampionRewards.GetTreasureChestDropChance(SpawnSzMod, SpawnDifficulty);
