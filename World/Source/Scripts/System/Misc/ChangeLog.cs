@@ -27,8 +27,12 @@ namespace Server.Misc
 			builder.Append("- Craft - All 'Skin' resources now have the same damage bonus<br>");
 			builder.Append("- Gather - Reduce logs per tree from 4-9 to 4-6<br>");
 			builder.Append("- Gather - Lumberjacking sparkles now have a light source<br>");
+			builder.Append("- Gather - Reduced skill required to successfully Sand<br>");
 			builder.Append("- Gump - Completely redesigned Runebook gump<br>");
 			builder.Append("- Gump - Update look of Confirmation gump<br>");
+			builder.Append("- Gump - Update look of Breakdown gump<br>");
+			builder.Append("- Gump - Bulk craft gump can now be closed with right click<br>");
+			builder.Append("- Gump - Add tooltips to the item info button on the crafting gump<br>");
 			builder.Append("- Item - Acidic robe cooldown reduced to 10 minutes (will be reworked in a future update)<br>");
 			builder.Append("- Item - High fame mobs can now drop Champion Skulls<br>");
 			builder.Append("- Item - Lawn tools can now be used indoors<br>");
@@ -45,6 +49,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Magic Pools can now create multiple stacks of coins when they are over 60k<br>");
 			builder.Append("- Misc - Pedestals now create multiple stacks of coins when they are over 60k<br>");
 			builder.Append("- Misc - Most items are now autostacked in treasure chests<br>");
+			builder.Append("- Misc - Rare rumors have been slightly revised<br>");
 			builder.Append("- Mobs - Players are now immune to peacemaking for 30s after it ends<br>");
 			builder.Append("- Mobs - Reduced health and increased damage of Rotting Corpses<br>");
 			builder.Append("- NPC - Mercantile/guild barter bonus is reduced to +100% of item value, down from +300%<br>");
@@ -53,6 +58,17 @@ namespace Server.Misc
 			builder.Append("- Pets - Crag Cats and Sabretooth Tigers now take 2 control slots, up from 1<br>");
 			builder.Append("- Pets - Beetles now take 2 control slots, down from 3<br>");
 			builder.Append("- Settings - Gold cut rate increased to 35%, up from 25%<br>");
+			builder.Append("- Shoppe - Add tooltips to Order rewards to show the per-item value<br>");
+			builder.Append("- Shoppe - Reduce pearl jewelry tinker order to 1, down from 3<br>");
+			builder.Append("- Shoppe - Reduce likelihood of pearl jewelry tinker order by 50%<br>");
+			builder.Append("- Shoppe - Increase bowyer order sizes to 8-15, up from 3-10<br>");
+			builder.Append("- Shoppe - Increase carpenter order sizes to 7-15, up from 3-10<br>");
+			builder.Append("- Shoppe - Increase tailor order sizes to 8-15, up from 3-10<br>");
+			builder.Append("- Shoppe - Increase tinker order sizes to 13-20, up from 3-10<br>");
+			builder.Append("- Shoppe - Equipment based orders are never basic resource after reaching 100.0 skill<br>");
+			builder.Append("         - Blacksmith, Bowyer, Carpentry, Tailor, and Tinker<br>");
+			builder.Append("- Shoppe - All Order rewards (Reputation, Gold, and Points) have been rebalanced<br>");
+			builder.Append("- Shoppe - Rewards for completing Orders are now either Gold or Points<br>");
 			builder.Append("- Skill - Stealing cooldown is now 1s, down from 5s<br>");
 			builder.Append("- Spell - AOE damage spells are now reduced to a minimum of 50% damage when hitting more than one target<br>");
 
@@ -73,6 +89,8 @@ namespace Server.Misc
 			builder.Append("- Misc - Fix crash when a magic carpet is drydocked when someone else is in the Lower Deck zone<br>");
 			builder.Append("- Misc - Familiars now drop their backpack contents on server restart<br>");
 			builder.Append("- Misc - Time Lord is now always invulnerable<br>");
+			builder.Append("- Misc - Fix crash when house no longer has an account owning it<br>");
+			builder.Append("- Misc - The book of truth can now be rumored about<br>");
 			builder.Append("- Pets - Experience bonus from Herding is now working<br>");
 			builder.Append("- Quest - Serpent of Balance quest should be completable again<br>");
 			builder.Append("- Skill - Searching cooldown is now set after targeting instead of immediately<br>");

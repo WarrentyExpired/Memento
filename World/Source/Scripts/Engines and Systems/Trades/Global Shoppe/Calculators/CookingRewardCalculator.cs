@@ -4,47 +4,40 @@ using System;
 
 namespace Server.Engines.GlobalShoppe
 {
-    public class CookingRewardCalculator : ResourceSellPriceRewardCalculator
-    {
-        public static readonly CookingRewardCalculator Instance = new CookingRewardCalculator();
+	public class CookingRewardCalculator : ResourceSellPriceRewardCalculator
+	{
+		public static readonly CookingRewardCalculator Instance = new CookingRewardCalculator();
 
-        protected override int ComputeGold(TradeSkillContext context, OrderContext order)
-        {
-            // Reduce by arbitrary amount
-            return ComputeRewardFromResourceValue(order.Type, order.MaxAmount);
-        }
+		protected override int ComputeGold(TradeSkillContext context, OrderContext order)
+		{
+			return (int)(ComputeRewardFromResourceValue(order.Type, order.MaxAmount) * ShoppeOrderConstants.GoldRatios.Baker);
+		}
 
-        protected override int ComputePoints(TradeSkillContext context, OrderContext order)
-        {
-            // Reduce by arbitrary amount
-            return (int)(ComputeRewardFromResourceValue(order.Type, order.MaxAmount) / 1.5);
-        }
+		protected override int ComputePoints(TradeSkillContext context, OrderContext order)
+		{
+			return (int)(ComputeRewardFromResourceValue(order.Type, order.MaxAmount) * ShoppeOrderConstants.PointRatios.Baker);
+		}
 
-        protected override int ComputeReputation(TradeSkillContext context, OrderContext order)
-        {
-            // Reduce by arbitrary amount
-            var reward = ComputeRewardFromResourceValue(order.Type, order.MaxAmount) / 25;
+		protected override int ComputeReputation(TradeSkillContext context, OrderContext order)
+		{
+			return (int)(ComputeRewardFromResourceValue(order.Type, order.MaxAmount) * ShoppeOrderConstants.ReputationRatios.Baker);
+		}
 
-            reward = (int)Math.Max(10, reward - 0.5 * ((double)context.Reputation / ShoppeConstants.MAX_REPUTATION));
+		protected override CraftItem FindCraftItem(Type type)
+		{
+			var craftItem = DefCooking.CraftSystem.CraftItems.SearchFor(type);
+			if (craftItem != null) return craftItem;
 
-            return reward;
-        }
+			Console.WriteLine("Failed to find Cooking craft item for '{0}'", type);
 
-        protected override CraftItem FindCraftItem(Type type)
-        {
-            var craftItem = DefCooking.CraftSystem.CraftItems.SearchFor(type);
-            if (craftItem != null) return craftItem;
+			return null;
+		}
 
-            Console.WriteLine("Failed to find Cooking craft item for '{0}'", type);
+		protected override int GetSellPrice(Type resourceType)
+		{
+			if (resourceType == typeof(BaseBeverage)) return 0;
 
-            return null;
-        }
-
-        protected override int GetSellPrice(Type resourceType)
-        {
-            if (resourceType == typeof(BaseBeverage)) return 0;
-
-            return base.GetSellPrice(resourceType);
-        }
-    }
+			return base.GetSellPrice(resourceType);
+		}
+	}
 }
