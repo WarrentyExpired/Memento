@@ -6,7 +6,7 @@ namespace Server.Misc
     {
 		public static string Version()
 		{
-			return "Version: 1.3.0";
+			return "Version: 1.3.1";
 		}
 
 		public static string Versions()
@@ -14,6 +14,27 @@ namespace Server.Misc
 			const string SEPARATOR_LINE = "<br>---------------------------------------------------------------------------------<br><br>";
 			var builder = new StringBuilder();
 			builder.Append(Version() + "<br>");
+
+			builder.Append("Changes<br>");
+			builder.Append("- Craft - Jewelry can now be exceptionally crafted<br>");
+			builder.Append("- Craft - Bulk crafting now dictates Successes rather than Attempts<br>");
+			builder.Append("- Gather - Removed several unreachable 'Glistening Ore Vein'<br>");
+			builder.Append("- Gump - Changed icon and added tooltip indicating certain spells are not craftable<br>");
+			builder.Append("- Item - Pearl gemstone bonus no longer provides +1 FC, +1 FCR, and +2 all stats<br>");
+			builder.Append("- Item - Mallet Stake single and double click actions have been swapped<br>");
+			builder.Append("- Misc - Hit Point Increase attribute is now uncapped, up from 25<br>");
+			builder.Append("       - Note: Max Health from stats + equipment is still 325<br>");
+			builder.Append("- Pets - The subdue mechanic is now only required at the start of taming<br>");
+			builder.Append("- Skill - Alternative Seafaring tasks can now provide gains up to 125 skill, up from 50<br>");
+
+			builder.Append("<br>");
+			builder.Append("Fixes<br>");
+			builder.Append("- Misc - Prevent access to moat in Caverns of Poseidon<br>");
+			builder.Append("- Pets - Hoard Minion no longer freezes when the Player has a combatant<br>");
+
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			builder.Append("Version: 1.3.0<br>");
 
 			builder.Append("Changes<br>");
 			builder.Append("- Champs - Rikktor is now much harder<br>");
