@@ -77,17 +77,6 @@ namespace Server.Mobiles
 	{
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int AccountGold
-        {
-        	get
-            	{
-                	return Account != null ? Account.Gold : 0;
-            	}
-            	set
-            	{
-                	if (Account != null) Account.Gold = value;
-            	}
-        }
 
 		private Timer Craft_Msg_Timer;
 		private Timer Craft_Snd_Timer;
