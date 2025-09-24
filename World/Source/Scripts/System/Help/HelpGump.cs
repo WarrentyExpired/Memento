@@ -15,6 +15,7 @@ using Server.Misc;
 using Server.Items;
 using System.Globalization;
 using Server.Engines.MLQuests.Gumps;
+using Scripts.Mythik.Systems.Achievements;
 
 namespace Server.Engines.Help
 {
@@ -59,6 +60,178 @@ namespace Server.Engines.Help
 
 	public class HelpGump : Gump
 	{
+		private const string TEXT_COLOR = "#ddbc4b"; // Yellowy
+
+		private enum PageActionType
+		{
+			Close = 0,
+			Navigate_Main = 1,
+			Do_Toggle_AFK = 2,
+			Show_Chat = 3,
+			Do_CorpseClear = 4,
+			Do_CorpseSearch = 5,
+			Show_Emote = 6,
+			Navigate_MagicToolbars = 7,
+			Do_MoongateSearch = 8,
+			Show_MOTD = 9,
+			Show_Quests = 10,
+			Show_QuickBar = 11,
+
+			Show_Settings = 12,
+			Navigate_Library = 13,
+			Show_Statistics = 14,
+			Do_StuckInWorld = 15,
+			Show_WeaponAbilities = 16,
+			Show_WealthBar = 17,
+			Show_Conversations = 18,
+			Navigate_Changelog = 19,
+			Setting_OrdinaryResources = 49,
+			Setting_WeaponAbilityNames = 51,
+			Setting_AutoSheath = 52,
+			Setting_MusicTone = 53,
+			Setting_PrivatePlay = 54,
+			Setting_LootOptions = 55,
+			Setting_SkillTitle = 56,
+			Setting_Playstyle_Normal = 57,
+			Setting_Playstyle_Evil = 58,
+			Setting_Playstyle_Oriental = 59,
+			Setting_MessageColors = 60,
+			Setting_AutoAttack = 61,
+			Show_RegBar = 62,
+			Setting_UseAncientSpellbook = 63,
+			Setting_ClassicPoisoning = 64,
+			Setting_MusicPlaylist = 65,
+			MagicToolbar_BardSongsBarI_Config = 66,
+			MagicToolbar_BardSongsBarII_Config = 67,
+			MagicToolbar_KnightSpellBarI_Config = 68,
+			MagicToolbar_KnightSpellBarII_Config = 69,
+			MagicToolbar_DeathKnightSpellBarI_Config = 70,
+			MagicToolbar_DeathKnightSpellBarII_Config = 71,
+			MagicToolbar_MagerySpellBarI_Config = 72,
+			MagicToolbar_MagerySpellBarII_Config = 73,
+			MagicToolbar_MagerySpellBarIII_Config = 74,
+			MagicToolbar_MagerySpellBarIV_Config = 75,
+			MagicToolbar_NecromancerSpellBarI_Config = 76,
+			MagicToolbar_NecromancerSpellBarII_Config = 77,
+			MagicToolbar_PriestSpellBarI_Config = 78,
+			MagicToolbar_PriestSpellBarII_Config = 79,
+
+			Setting_CustomTitle = 80,
+
+			MARKER_SETTING_START = 81,
+			Setting_MusicTone_Info = 82,
+			Setting_MusicPlaylist_Info = 83,
+			Setting_PrivatePlay_Info = 84,
+			Setting_LootOptions_Info = 85,
+			Setting_ClassicPoisoning_Info = 86,
+			Setting_SkillTitle_Info = 87,
+			Setting_MessageColors_Info = 88,
+			Setting_AutoAttack_Info = 89,
+			Setting_Playstyle_Normal_Info = 92,
+			Setting_Playstyle_Evil_Info = 93,
+			Setting_Playstyle_Oriental_Info = 94,
+			ShowHelp_MagicToolbars = 95,
+			Setting_MagerySpellColor_Info = 96,
+			Setting_CustomTitle_Info = 97,
+			Setting_WeaponAbilityNames_Info = 99,
+			Setting_AutoSheath_Info = 100,
+			Setting_GumpImages_Info = 101,
+			Setting_WeaponAbilityBar_Info = 102,
+			Setting_CreatureMagicFocus_Info = 103,
+			Setting_CreatureType_Info = 104,
+			Setting_CreatureSounds_Info = 105,
+			Setting_UseAncientSpellbook_Info = 106,
+			Setting_SetCraftingContainer_Info = 107,
+			Setting_SetHarvestingContainer_Info = 108,
+			Setting_SetLootContainer_Info = 109,
+			Setting_OrdinaryResources_Info = 110,
+			Setting_DoubleClickToIDItems_Info = 111,
+			Setting_Playstyle_Barbaric_Info = 198,
+			Setting_SkillList_Info = 199,
+			MARKER_SETTING_END = 200,
+
+			MARKER_TOOLBAR_START = 200, // Yes, duplicate
+			MagicToolbar_Bard_I_Open = 266,
+			MagicToolbar_Bard_II_Open = 267,
+			MagicToolbar_Knight_I_Open = 268,
+			MagicToolbar_Knight_II_Open = 269,
+			MagicToolbar_DeathKnight_I_Open = 270,
+			MagicToolbar_DeathKnight_II_Open = 271,
+			MagicToolbar_Magery_I_Open = 272,
+			MagicToolbar_Magery_II_Open = 273,
+			MagicToolbar_Magery_III_Open = 274,
+			MagicToolbar_Magery_IV_Open = 275,
+			MagicToolbar_Necromancer_I_Open = 276,
+			MagicToolbar_Necromancer_II_Open = 277,
+			MagicToolbar_Priest_I_Open = 278,
+			MagicToolbar_Priest_II_Open = 279,
+			MagicToolbar_Monk_I_Open = 280,
+			MagicToolbar_Monk_II_Open = 281,
+			MagicToolbar_Elemental_I_Open = 282,
+			MagicToolbar_Elemental_II_Open = 283,
+			MagicToolbar_Bard_I_Close = 366,
+			MagicToolbar_Bard_II_Close = 367,
+			MagicToolbar_Knight_I_Close = 368,
+			MagicToolbar_Knight_II_Close = 369,
+			MagicToolbar_DeathKnight_I_Close = 370,
+			MagicToolbar_DeathKnight_II_Close = 371,
+			MagicToolbar_Magery_I_Close = 372,
+			MagicToolbar_Magery_II_Close = 373,
+			MagicToolbar_Magery_III_Close = 374,
+			MagicToolbar_Magery_IV_Close = 375,
+			MagicToolbar_Necromancer_I_Close = 376,
+			MagicToolbar_Necromancer_II_Close = 377,
+			MagicToolbar_Priest_I_Close = 378,
+			MagicToolbar_Priest_II_Close = 379,
+			MagicToolbar_Monk_I_Close = 380,
+			MagicToolbar_Monk_II_Close = 381,
+			MagicToolbar_Elemental_I_Close = 382,
+			MagicToolbar_Elemental_II_Close = 383,
+			MagicToolbar_Ancient_I_Open = 384,
+			MagicToolbar_Ancient_I_Close = 385,
+			MagicToolbar_Ancient_II_Open = 386,
+			MagicToolbar_Ancient_II_Close = 387,
+			MagicToolbar_Ancient_III_Open = 388,
+			MagicToolbar_Ancient_III_Close = 389,
+			MagicToolbar_Ancient_IV_Open = 390,
+			MagicToolbar_Ancient_IV_Close = 391,
+			MARKER_TOOLBAR_END = 400,
+
+			Setting_MagerySpellColor_White = 500,
+			Setting_MagerySpellColor_Black = 501,
+			Setting_MagerySpellColor_Blue = 502,
+			Setting_MagerySpellColor_Red = 503,
+			Setting_MagerySpellColor_Green = 504,
+			Setting_MagerySpellColor_Purple = 505,
+			Setting_MagerySpellColor_Yellow = 506,
+			Setting_MagerySpellColor_Default = 507,
+			MagicToolbar_ElementalSpellBarI_Config = 978,
+			MagicToolbar_ElementalSpellBarII_Config = 979,
+			MagicToolbar_MonkSpellBarI_Config = 980,
+			MagicToolbar_MonkSpellBarII_Config = 981,
+			Setting_SkillList = 982,
+			Show_SkillList = 983,
+			Setting_Playstyle_Barbaric = 984,
+			Setting_GumpImages = 985,
+			Setting_WeaponAbilityBar = 986,
+			Setting_CreatureMagicFocus = 989,
+			Setting_CreatureType = 990,
+			Setting_CreatureSounds = 991,
+			MagicToolbar_AncientSpellBarI_Config = 1081,
+			MagicToolbar_AncientSpellBarII_Config = 1082,
+			MagicToolbar_AncientSpellBarIII_Config = 1083,
+			MagicToolbar_AncientSpellBarIV_Config = 1084,
+			Setting_SetLootContainer = 5000,
+			Setting_SetCraftingContainer = 5001,
+			Setting_SetHarvestingContainer = 5002,
+			Setting_DoubleClickToIDItems = 5003,
+			Setting_RemoveVendorGoldSafeguard,
+			Setting_RemoveVendorGoldSafeguard_Info,
+			Setting_SuppressVendorTooltips,
+			Setting_SuppressVendorTooltips_Info,
+			Do_Achievements,
+		}
+
 		public static void Initialize()
 		{
 			EventSink.HelpRequest += new HelpRequestEventHandler( EventSink_HelpRequest );
@@ -112,11 +285,13 @@ namespace Server.Engines.Help
 			return false;
 		}
 
-		public HelpGump( Mobile from, int page ) : base( 50, 50 )
+		public HelpGump( Mobile mobile, int page ) : base( 50, 50 )
 		{
+			if ( false == ( mobile is PlayerMobile ) ) return;
+
+			var from = (PlayerMobile)mobile;
 			string HelpText = MyHelp();
-			string color = "#ddbc4b";
-			int button = 4005;
+			string color = TEXT_COLOR;
 
 			from.SendSound( 0x4A ); 
 
@@ -132,336 +307,249 @@ namespace Server.Engines.Help
 
 			AddImage(0, 0, 9548, Server.Misc.PlayerSettings.GetGumpHue( from ));
 			AddHtml( 12, 12, 300, 20, @"<BODY><BASEFONT Color=" + color + ">HELP OPTIONS</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddButton(967, 10, 4017, 4017, 0, GumpButtonType.Reply, 0);
+			AddButton(967, 10, 4017, 4017, (int)PageActionType.Close, GumpButtonType.Reply, 0);
+
+			const int NAVIGATION_START_X = 15;
+			const int NAVIGATION_ITEM_WIDTH = 150;
+
+			int nav_x = NAVIGATION_START_X;
+			
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			AddAction(nav_x, r, from, "Main", PageActionType.Navigate_Main, NAVIGATION_ITEM_WIDTH);
+			r += e;
+			if ( page == (int)PageActionType.Navigate_Main ){ AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">" + HelpText + "</BASEFONT></BODY>", (bool)false, (bool)true); }
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 1 ){ button = 4006; AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">" + HelpText + "</BASEFONT></BODY>", (bool)false, (bool)true); }
-			AddButton(15, r, button, button, 1, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Main</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Achievements", PageActionType.Do_Achievements, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 3609;
-			HelpText = "Your 'Away From Keyboard' Settings Are Disabled.";
-			if ( Server.Commands.AFK.m_AFK.Contains( from.Serial.Value ) )
+			AddAction(nav_x, r, from, "AFK", PageActionType.Do_Toggle_AFK, NAVIGATION_ITEM_WIDTH);
+			r += e;
+			if ( page == (int)PageActionType.Do_Toggle_AFK )
 			{
-				button = 4018;
-				HelpText = "Your 'Away From Keyboard' Settings Are Enabled.";
+				HelpText = IsActive(from, PageActionType.Do_Toggle_AFK) ? "Your 'Away From Keyboard' Settings Are Enabled." : "Your 'Away From Keyboard' Settings Are Disabled.";
+				AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">" + HelpText + "</BASEFONT></BODY>", (bool)false, (bool)true);
 			}
-			if ( page == 2 ){ AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">" + HelpText + "</BASEFONT></BODY>", (bool)false, (bool)true); }
-			AddButton(15, r, button, button, 2, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">AFK</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 3 ){ button = 4006; }
-			AddButton(15, r, button, button, 3, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Chat</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Chat", PageActionType.Show_Chat, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 18 ){ button = 4006; }
-			AddButton(15, r, button, button, 18, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Conversations</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Conversations", PageActionType.Show_Conversations, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 4 ){ button = 4006; AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">Your empty corpses have been removed.</BASEFONT></BODY>", (bool)false, (bool)true); }
-			AddButton(15, r, button, button, 4, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Corpse Clear</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Corpse Clear", PageActionType.Do_CorpseClear, NAVIGATION_ITEM_WIDTH);
+			r += e;
+			if ( page == (int)PageActionType.Do_CorpseClear ){ AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">Your empty corpses have been removed.</BASEFONT></BODY>", (bool)false, (bool)true); }
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 5 ){ button = 4006; }
-			AddButton(15, r, button, button, 5, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Corpse Search</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Corpse Search", PageActionType.Do_CorpseSearch, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 6 ){ button = 4006; }
-			AddButton(15, r, button, button, 6, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Emote</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Emote", PageActionType.Show_Emote, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 13 ){ button = 4006; }
-			AddButton(15, r, button, button, 13, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Library</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Library", PageActionType.Navigate_Library, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 7 ){ button = 4006; }
-			AddButton(15, r, button, button, 7, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Magic Toolbars</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
-			if ( page == 7 )
+			AddAction(nav_x, r, from, "Magic Toolbars", PageActionType.Navigate_MagicToolbars, NAVIGATION_ITEM_WIDTH);
+			r += e;
+			if ( page == (int)PageActionType.Navigate_MagicToolbars )
 			{
+				var hasBarding = 0 < from.Skills[SkillName.Musicianship].Value;
+				var hasElementalism = 0 < from.Skills[SkillName.Elementalism].Value;
+				var hasHolyMan = Spellbook.FindHolyMan(from) != null;
+				var hasKnightship = 0 < from.Skills[SkillName.Knightship].Value;
+				var hasNegativeKarma = from.Karma < 0;
+				var hasMagery = 0 < from.Skills[SkillName.Magery].Value;
+				var hasMonk = Server.Misc.GetPlayerInfo.isMonk(from);
+				var hasNecromancy = 0 < from.Skills[SkillName.Necromancy].Value;
+				var hasResearch = Server.Misc.ResearchSettings.ResearchMaterials(from) != null || ResearchSettings.BookCaster( from );
+
+				const int SECTION_START_X = 245;
+				const int BAR_BORDER_HEIGHT = 4;
+
 				int barS = 40;
 				int barM = 30;
 
-				AddButton(904, 10, 3610, 3610, 95, GumpButtonType.Reply, 0);
+				AddButton(904, 10, 3610, 3610, (int)PageActionType.ShowHelp_MagicToolbars, GumpButtonType.Reply, 0);
 
-				AddButton(245, barS, 4005, 4005, 1081, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Ancient Spell Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 384, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 385, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				AddMagicToolbarRowHeader(SECTION_START_X, barS);
+				barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 1082, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Ancient Spell Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 386, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 387, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasResearch)
+				{
+					AddMagicToolbarRow(SECTION_START_X, barS, "Ancient Spell Bar", PageActionType.MagicToolbar_AncientSpellBarI_Config, PageActionType.MagicToolbar_Ancient_I_Open, PageActionType.MagicToolbar_Ancient_I_Close);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 1083, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Ancient Spell Bar III</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 388, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 389, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_AncientSpellBarII_Config, PageActionType.MagicToolbar_Ancient_II_Open, PageActionType.MagicToolbar_Ancient_II_Close);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 1084, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Ancient Spell Bar IV</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 390, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 391, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_AncientSpellBarIII_Config, PageActionType.MagicToolbar_Ancient_III_Open, PageActionType.MagicToolbar_Ancient_III_Close);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 66, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Bard Songs Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 266, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 366, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_AncientSpellBarIV_Config, PageActionType.MagicToolbar_Ancient_IV_Open, PageActionType.MagicToolbar_Ancient_IV_Close);
+					barS += barM;
+				}
 
-				AddButton(245, barS, 4005, 4005, 67, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Bard Songs Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 267, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 367, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasBarding)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Bard Songs Bar", PageActionType.MagicToolbar_BardSongsBarI_Config, PageActionType.MagicToolbar_Bard_I_Open, PageActionType.MagicToolbar_Bard_I_Close, true);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 68, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Knight Spell Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 268, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 368, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_BardSongsBarII_Config, PageActionType.MagicToolbar_Bard_II_Open, PageActionType.MagicToolbar_Bard_II_Close);
+					barS += barM;
+				}
 
-				AddButton(245, barS, 4005, 4005, 69, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Knight Spell Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 269, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 369, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasKnightship)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Knight Spell Bar", PageActionType.MagicToolbar_KnightSpellBarI_Config, PageActionType.MagicToolbar_Knight_I_Open, PageActionType.MagicToolbar_Knight_I_Close, true);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 70, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Death Knight Spell Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 270, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 370, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_KnightSpellBarII_Config, PageActionType.MagicToolbar_Knight_II_Open, PageActionType.MagicToolbar_Knight_II_Close);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 71, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Death Knight Spell Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 271, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 371, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					if (hasNegativeKarma)
+					{
+						barS -= BAR_BORDER_HEIGHT;
+						AddMagicToolbarRow(SECTION_START_X, barS, "Death Knight Spell Bar", PageActionType.MagicToolbar_DeathKnightSpellBarI_Config, PageActionType.MagicToolbar_DeathKnight_I_Open, PageActionType.MagicToolbar_DeathKnight_I_Close, true);
+						barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 978, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Elemental Spell Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 282, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 382, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+						AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_DeathKnightSpellBarII_Config, PageActionType.MagicToolbar_DeathKnight_II_Open, PageActionType.MagicToolbar_DeathKnight_II_Close);
+						barS += barM;
+					}
+				}
 
-				AddButton(245, barS, 4005, 4005, 979, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Elemental Spell Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 283, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 383, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasElementalism)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Elemental Spell Bar", PageActionType.MagicToolbar_ElementalSpellBarI_Config, PageActionType.MagicToolbar_Elemental_I_Open, PageActionType.MagicToolbar_Elemental_I_Close, true);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 72, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Spell Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 272, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 372, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_ElementalSpellBarII_Config, PageActionType.MagicToolbar_Elemental_II_Open, PageActionType.MagicToolbar_Elemental_II_Close);
+					barS += barM;
+				}
 
-				AddButton(245, barS, 4005, 4005, 73, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Spell Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 273, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 373, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasMagery)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Magery Spell Bar", PageActionType.MagicToolbar_MagerySpellBarI_Config, PageActionType.MagicToolbar_Magery_I_Open, PageActionType.MagicToolbar_Magery_I_Close, true);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 74, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Spell Bar III</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 274, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 374, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_MagerySpellBarII_Config, PageActionType.MagicToolbar_Magery_II_Open, PageActionType.MagicToolbar_Magery_II_Close);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 75, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Spell Bar IV</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 275, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 375, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_MagerySpellBarIII_Config, PageActionType.MagicToolbar_Magery_III_Open, PageActionType.MagicToolbar_Magery_III_Close);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 980, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Monk Ability Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 280, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 380, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_MagerySpellBarIV_Config, PageActionType.MagicToolbar_Magery_IV_Open, PageActionType.MagicToolbar_Magery_IV_Close);
+					barS += barM;
+				}
 
-				AddButton(245, barS, 4005, 4005, 981, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Monk Ability Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 281, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 381, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasMonk)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Monk Ability Bar", PageActionType.MagicToolbar_MonkSpellBarI_Config, PageActionType.MagicToolbar_Monk_I_Open, PageActionType.MagicToolbar_Monk_I_Close, true);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 76, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Necromancer Spell Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 276, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 376, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_MonkSpellBarII_Config, PageActionType.MagicToolbar_Monk_II_Open, PageActionType.MagicToolbar_Monk_II_Close);
+					barS += barM;
+				}
 
-				AddButton(245, barS, 4005, 4005, 77, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Necromancer Spell Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 277, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 377, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasNecromancy)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Necromancer Spell Bar", PageActionType.MagicToolbar_NecromancerSpellBarI_Config, PageActionType.MagicToolbar_Necromancer_I_Open, PageActionType.MagicToolbar_Necromancer_I_Close, true);
+					barS += barM;
 
-				AddButton(245, barS, 4005, 4005, 78, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Priest Prayer Bar I</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 278, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 378, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_NecromancerSpellBarII_Config, PageActionType.MagicToolbar_Necromancer_II_Open, PageActionType.MagicToolbar_Necromancer_II_Close);
+					barS += barM;
+				}
 
-				AddButton(245, barS, 4005, 4005, 79, GumpButtonType.Reply, 0);
-				AddHtml( 280, barS, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Priest Prayer Bar II</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(605, barS, 4005, 4005, 279, GumpButtonType.Reply, 0);
-				AddHtml( 640, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Open Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(800, barS, 4020, 4020, 379, GumpButtonType.Reply, 0);
-				AddHtml( 835, barS, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Close Toolbar</BASEFONT></BODY>", (bool)false, (bool)false);
-				barS = barS + barM;
+				if (hasHolyMan)
+				{
+					barS -= BAR_BORDER_HEIGHT;
+					AddMagicToolbarRow(SECTION_START_X, barS, "Priest Prayer Bar", PageActionType.MagicToolbar_PriestSpellBarI_Config, PageActionType.MagicToolbar_Priest_I_Open, PageActionType.MagicToolbar_Priest_I_Close, true);
+					barS += barM;
+
+					AddMagicToolbarRow(SECTION_START_X, barS, null, PageActionType.MagicToolbar_PriestSpellBarII_Config, PageActionType.MagicToolbar_Priest_II_Open, PageActionType.MagicToolbar_Priest_II_Close);
+					barS += barM;
+				}
 			}
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 8 ){ button = 4006; }
-			AddButton(15, r, button, button, 8, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Moongate Search</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Moongate Search", PageActionType.Do_MoongateSearch, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-			button = 4005; if ( page == 9 ){ button = 4006; }
-			AddButton(15, r, button, button, 9, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">MOTD</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "MOTD", PageActionType.Show_MOTD, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 10 )
+			AddAction(nav_x, r, from, "Quests", PageActionType.Show_Quests, NAVIGATION_ITEM_WIDTH);
+			r += e;
+			if ( page == (int)PageActionType.Show_Quests ){ AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">Throughout your journey, you may come across particular events that appear in your quest log. They may be a simple achievement of finding a strange land, or they may reference an item you must find. Quests are handled in a 'virtual' manner. What this means is that any achievements are real, but any references to items found are not. If your quest log states that you found an ebony key, you will not have an ebony key in your backpack...but you will 'virtually' have the item. The quest will keep track of this fact for you. Because of this, you will never lose that ebony key and it remains unique to your character's questing. The quest knows you found it and have it. You may be tasked to find an item in a dungeon. When there is an indication you found it, it will be 'virtually' in your possession. You will often hear a sound of victory when a quest event is reached, along with a message about it. You still may miss it, however. So check your quest log from time to time. One way to get quests is to visit taverns or inns. If you see a bulletin board called 'Seeking Brave Adventurers', single click on it to begin your life questing for fame and fortune.<BR><BR>" + MyQuests( from ) + "<BR><BR></BASEFONT></BODY>", (bool)false, (bool)true); }
+
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			AddAction(nav_x, r, from, "Quick Bar", PageActionType.Show_QuickBar, NAVIGATION_ITEM_WIDTH);
+			r += e;
+
+			AddAction(nav_x, r, from, "Reagent Bar", PageActionType.Show_RegBar, NAVIGATION_ITEM_WIDTH);
+			r += e;
+
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			AddAction(nav_x, r, from, "Settings", PageActionType.Show_Settings, NAVIGATION_ITEM_WIDTH);
+			r += e;
+
+			if ( page == (int)PageActionType.Show_Settings )
 			{
-				button = 4006;
-				AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">Throughout your journey, you may come across particular events that appear in your quest log. They may be a simple achievement of finding a strange land, or they may reference an item you must find. Quests are handled in a 'virtual' manner. What this means is that any achievements are real, but any references to items found are not. If your quest log states that you found an ebony key, you will not have an ebony key in your backpack...but you will 'virtually' have the item. The quest will keep track of this fact for you. Because of this, you will never lose that ebony key and it remains unique to your character's questing. The quest knows you found it and have it. You may be tasked to find an item in a dungeon. When there is an indication you found it, it will be 'virtually' in your possession. You will often hear a sound of victory when a quest event is reached, along with a message about it. You still may miss it, however. So check your quest log from time to time. One way to get quests is to visit taverns or inns. If you see a bulletin board called 'Seeking Brave Adventurers', single click on it to begin your life questing for fame and fortune.<BR><BR>" + MyQuests( from ) + "<BR><BR></BASEFONT></BODY>", (bool)false, (bool)true);
-			}
-			AddButton(15, r, button, button, 10, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Quests</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+				const int SECTION_START_X = 225;
+				const int SETTING_START_X = SECTION_START_X + 20;
+				const int SETTING_SECTION_WIDTH = 725;
 
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-			button = 4005; if ( page == 11 ){ button = 4006; }
-			AddButton(15, r, button, button, 11, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Quick Bar</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
-
-			button = 4005; if ( page == 62 ){ button = 4006; }
-			AddButton(15, r, button, button, 62, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Reagent Bar</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
-
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-			button = 4005; if ( page == 12 ){ button = 4006; }
-			AddButton(15, r, button, button, 12, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Settings</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
-			if ( page == 12 )
-			{
-				int g = 70;
+				int g = 40;
 				int j = 30;
-				int setB = 3609;
 				int xm = 245;
 				int xo = 700;
 				int xr = 0;
-				int xs = 245;
+				int xs = SECTION_START_X;
 
-				if ( !from.NoAutoAttack ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 61, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 89, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Auto Attack</BASEFONT></BODY>", (bool)false, (bool)false);
+				// Section - Settings
+				AddHtml( SECTION_START_X, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Settings</BASEFONT></BODY>", (bool)false, (bool)false);
+				g += j;
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				xs = SETTING_START_X;
+				AddSetting(xs, g, from, "Auto Attack", PageActionType.Setting_AutoAttack, PageActionType.Setting_AutoAttack_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( ((PlayerMobile)from).CharacterSheath == 1 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 52, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 100, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Auto Sheath</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Auto Sheath", PageActionType.Setting_AutoSheath, PageActionType.Setting_AutoSheath_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
-
-				if ( ((PlayerMobile)from).ClassicPoisoning == 1 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 64, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 86, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Classic Poisoning</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Classic Poisoning", PageActionType.Setting_ClassicPoisoning, PageActionType.Setting_ClassicPoisoning_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
 				if ( from.RaceID > 0 && (from.Region).Name == "the Tavern" && Server.Items.BaseRace.GetMonsterMage( from.RaceID ) )
 				{
@@ -469,20 +557,14 @@ namespace Server.Engines.Help
 					if ( from.RaceMagicSchool == 1 ){ magic = "Magery"; }
 					else if ( from.RaceMagicSchool == 2 ){ magic = "Necromancy"; }
 					else if ( from.RaceMagicSchool == 3 ){ magic = "Elementalism"; }
-					AddButton(xs, g, 4005, 4005, 989, GumpButtonType.Reply, 0);
-					AddButton(xs+40, g, 4011, 4011, 103, GumpButtonType.Reply, 0);
-					AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Creature Magic (" + magic + ")</BASEFONT></BODY>", (bool)false, (bool)false);
-					if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+					AddSetting(xs, g, from, "Creature Magic (" + magic + ")", PageActionType.Setting_CreatureMagicFocus, PageActionType.Setting_CreatureMagicFocus_Info);
+					if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 				}
 
 				if ( from.RaceID > 0 )
 				{
-					if ( from.RaceMakeSounds ){ setB = 4018; } else { setB = 3609; }
-					AddButton(xs, g, setB, setB, 991, GumpButtonType.Reply, 0);
-					AddButton(xs+40, g, 4011, 4011, 105, GumpButtonType.Reply, 0);
-					AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Creature Sounds</BASEFONT></BODY>", (bool)false, (bool)false);
-
-					if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+					AddSetting(xs, g, from, "Creature Sounds", PageActionType.Setting_CreatureSounds, PageActionType.Setting_CreatureSounds_Info);
+					if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 				}
 
 				if ( from.RaceID > 0 
@@ -491,251 +573,164 @@ namespace Server.Engines.Help
 					( from.Map == Map.Sosaria && from.X >= 6982 && from.Y >= 694 && from.X <= 6999 && from.Y <= 713 )
 				))
 				{
-					AddButton(xs, g, 4005, 4005, 990, GumpButtonType.Reply, 0);
-					AddButton(xs+40, g, 4011, 4011, 104, GumpButtonType.Reply, 0);
-					AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Creature Type</BASEFONT></BODY>", (bool)false, (bool)false);
-
-					if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+					AddSetting(xs, g, from, "Creature Type", PageActionType.Setting_CreatureType, PageActionType.Setting_CreatureType_Info);
+					if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 				}
 
 				if ( MySettings.S_AllowCustomTitles )
 				{
-					AddButton(xs, g, 4005, 4005, 80, GumpButtonType.Reply, 0);
-					AddButton(xs+40, g, 4011, 4011, 97, GumpButtonType.Reply, 0);
-					AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Custom Title</BASEFONT></BODY>", (bool)false, (bool)false);
-
-					if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+					AddSetting(xs, g, from, "Custom Title", PageActionType.Setting_CustomTitle, PageActionType.Setting_CustomTitle_Info);
+					if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 				}
 
-				if ( ((PlayerMobile)from).GumpHue > 0 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 985, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 101, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Gump Images</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Gump Images", PageActionType.Setting_GumpImages, PageActionType.Setting_GumpImages_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Loot Options", PageActionType.Setting_LootOptions, PageActionType.Setting_LootOptions_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				AddButton(xs, g, 4005, 4005, 55, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 85, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Loot Options</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Message Colors", PageActionType.Setting_MessageColors, PageActionType.Setting_MessageColors_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Music Playlist", PageActionType.Setting_MusicPlaylist, PageActionType.Setting_MusicPlaylist_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( from.RainbowMsg ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 60, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 88, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Message Colors</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Music Tone", PageActionType.Setting_MusicTone, PageActionType.Setting_MusicTone_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Private Play", PageActionType.Setting_PrivatePlay, PageActionType.Setting_PrivatePlay_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				AddButton(xs, g, 4005, 4005, 65, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 83, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Music Playlist</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
-
-				if ( ((PlayerMobile)from).CharMusical == "Forest" ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 53, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 82, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Music Tone</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
-
-				if ( ((PlayerMobile)from).PublicInfo == false ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 54, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 84, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Private Play</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
-
-				AddButton(xs, g, 4005, 4005, 56, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 87, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Skill Title</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Skill Title", PageActionType.Setting_SkillTitle, PageActionType.Setting_SkillTitle_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
 				string skillLocks = "Skill List (Show Up)"; 
-				if ( ((PlayerMobile)from).SkillDisplay == 1 ){ setB = 4018; skillLocks = "Skill List (Show Up and Locked)"; } else { setB = 4017; }
-				AddButton(xs, g, setB, setB, 982, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 199, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">" + skillLocks + "</BASEFONT></BODY>", (bool)false, (bool)false);
+				if ( from.SkillDisplay == 1 ){ skillLocks = "Skill List (Show Up and Locked)"; }
+				AddSetting(xs, g, from, skillLocks, PageActionType.Setting_SkillList, PageActionType.Setting_SkillList_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Weapon Ability Bar", PageActionType.Setting_WeaponAbilityBar, PageActionType.Setting_WeaponAbilityBar_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( ((PlayerMobile)from).WeaponBarOpen > 0 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 986, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 102, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Weapon Ability Bar</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Set Crafting Container", PageActionType.Setting_SetCraftingContainer, PageActionType.Setting_SetCraftingContainer_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Weapon Ability Names", PageActionType.Setting_WeaponAbilityNames, PageActionType.Setting_WeaponAbilityNames_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				AddButton(xs, g, 4005, 4005, 5001, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 107, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Set Crafting Container</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Set Harvesting Container", PageActionType.Setting_SetHarvestingContainer, PageActionType.Setting_SetHarvestingContainer_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Use Ancient Spellbook", PageActionType.Setting_UseAncientSpellbook, PageActionType.Setting_UseAncientSpellbook_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( ((PlayerMobile)from).CharacterWepAbNames == 1 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 51, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 99, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Weapon Ability Names</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Set Loot Container", PageActionType.Setting_SetLootContainer, PageActionType.Setting_SetLootContainer_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Double Click to ID Items", PageActionType.Setting_DoubleClickToIDItems, PageActionType.Setting_DoubleClickToIDItems_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				AddButton(xs, g, 4005, 4005, 5002, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 108, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Set Harvesting Container</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Ordinary Resources", PageActionType.Setting_OrdinaryResources, PageActionType.Setting_OrdinaryResources_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Remove Vendor Gold Safeguard", PageActionType.Setting_RemoveVendorGoldSafeguard, PageActionType.Setting_RemoveVendorGoldSafeguard_Info);
+				if ( xr == 1 ){ g += j; xr=0; xs=xm; } else { xr=1; xs=xo; }
 
-				if ( ResearchSettings.BookCaster( from ) ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 63, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 106, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Use Ancient Spellbook</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Suppress Vendor Tooltips", PageActionType.Setting_SuppressVendorTooltips, PageActionType.Setting_SuppressVendorTooltips_Info);
+				// Last setting, don't add a row
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				// Section - Play Styles
+				const int PLAYSTYLE_OPTIONS_PER_ROW = 4;
+				const int PLAYSTYLE_OPTION_WIDTH = 125;
+				const int PLAYSTYLE_OPTION_WIDTH_TOTAL = PLAYSTYLE_OPTION_WIDTH * PLAYSTYLE_OPTIONS_PER_ROW;
+				const int PLAYSTYLE_PADDING_LEFT = (int)( (double)( SETTING_SECTION_WIDTH - PLAYSTYLE_OPTION_WIDTH_TOTAL ) / PLAYSTYLE_OPTIONS_PER_ROW );
 
-				AddButton(xs, g, 4005, 4005, 5000, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 109, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Set Loot Container</BASEFONT></BODY>", (bool)false, (bool)false);
+				g += (int)(1.5 * j);
+				xs = SECTION_START_X;
+				AddHtml( xs, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Play Styles</BASEFONT></BODY>", (bool)false, (bool)false);
+				g += j;
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				xs = SETTING_START_X;
+				AddSetting(xs, g, from, "Normal", PageActionType.Setting_Playstyle_Normal, PageActionType.Setting_Playstyle_Normal_Info);
+				xs += PLAYSTYLE_OPTION_WIDTH + PLAYSTYLE_PADDING_LEFT;
 
-				if ( ((PlayerMobile)from).DoubleClickID ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 5003, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 111, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Double Click to ID Items</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddSetting(xs, g, from, "Evil", PageActionType.Setting_Playstyle_Evil, PageActionType.Setting_Playstyle_Evil_Info);
+				xs += PLAYSTYLE_OPTION_WIDTH + PLAYSTYLE_PADDING_LEFT;
 
-				if ( xr == 1 ){ g=g+j; xr=0; xs=xm; } else { xr=1; xs=xo; }
+				AddSetting(xs, g, from, "Oriental", PageActionType.Setting_Playstyle_Oriental, PageActionType.Setting_Playstyle_Oriental_Info);
+				xs += PLAYSTYLE_OPTION_WIDTH + PLAYSTYLE_PADDING_LEFT;
 
-				if ( from.HarvestOrdinary ){ setB = 4018; } else { setB = 3609; }
-				AddButton(xs, g, setB, setB, 49, GumpButtonType.Reply, 0);
-				AddButton(xs+40, g, 4011, 4011, 110, GumpButtonType.Reply, 0);
-				AddHtml( xs+80, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Ordinary Resources</BASEFONT></BODY>", (bool)false, (bool)false);
+				string barbaricStyle = !from.Female ? "Barbaric" : "Barbaric (Amazon)";
+				AddSetting(xs, g, from, barbaricStyle, PageActionType.Setting_Playstyle_Barbaric, PageActionType.Setting_Playstyle_Barbaric_Info);
 
-				g=g+j;
-				g=g+j;
+				// Section - Magery Spell Color
+				const int MAGERY_SPELL_COLOR_OPTIONS_PER_ROW = 4;
+				const int MAGERY_SPELL_COLOR_OPTION_WIDTH = 90;
+				const int MAGERY_SPELL_COLOR_OPTION_WIDTH_TOTAL = MAGERY_SPELL_COLOR_OPTION_WIDTH * MAGERY_SPELL_COLOR_OPTIONS_PER_ROW;
+				const int MAGERY_SPELL_COLOR_PADDING_LEFT = (int)( (double)( SETTING_SECTION_WIDTH - MAGERY_SPELL_COLOR_OPTION_WIDTH_TOTAL ) / MAGERY_SPELL_COLOR_OPTIONS_PER_ROW );
 
-				AddHtml( 325, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Play Styles</BASEFONT></BODY>", (bool)false, (bool)false);
-				g=g+j;
+				g += (int)(1.5 * j);
+				xs = SECTION_START_X;
+				AddHtml( xs, g + 3, 110, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Spell Color</BASEFONT></BODY>", (bool)false, (bool)false);
+				AddButton(xs + 124, g, 4011, 4011, (int)PageActionType.Setting_MagerySpellColor_Info, GumpButtonType.Reply, 0);
 
-				if ( ((PlayerMobile)from).CharacterEvil == 0 && ((PlayerMobile)from).CharacterOriental == 0 && ((PlayerMobile)from).CharacterBarbaric == 0 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(325, g, setB, setB, 57, GumpButtonType.Reply, 0);
-				AddButton(370, g, 4011, 4011, 92, GumpButtonType.Reply, 0);
-				AddHtml( 410, g, 65, 20, @"<BODY><BASEFONT Color=" + color + ">Normal</BASEFONT></BODY>", (bool)false, (bool)false);
+				g += j;
+				xs = SETTING_START_X;
+				AddAction(xs, g, from, "Default", PageActionType.Setting_MagerySpellColor_Default, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
+				AddAction(xs, g, from, "Black", PageActionType.Setting_MagerySpellColor_Black, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
+				AddAction(xs, g, from, "Blue", PageActionType.Setting_MagerySpellColor_Blue, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
+				AddAction(xs, g, from, "Green", PageActionType.Setting_MagerySpellColor_Green, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
 
-				if ( ((PlayerMobile)from).CharacterEvil == 1 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(535, g, setB, setB, 58, GumpButtonType.Reply, 0);
-				AddButton(575, g, 4011, 4011, 93, GumpButtonType.Reply, 0);
-				AddHtml( 620, g, 65, 20, @"<BODY><BASEFONT Color=" + color + ">Evil</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( ((PlayerMobile)from).CharacterOriental == 1 ){ setB = 4018; } else { setB = 3609; }
-				AddButton(745, g, setB, setB, 59, GumpButtonType.Reply, 0);
-				AddButton(785, g, 4011, 4011, 94, GumpButtonType.Reply, 0);
-				AddHtml( 830, g, 65, 20, @"<BODY><BASEFONT Color=" + color + ">Oriental</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				g=g+j;
-
-				string amazon = "";
-				if ( ((PlayerMobile)from).CharacterBarbaric == 1 ){ setB = 4018; } 
-				else if ( ((PlayerMobile)from).CharacterBarbaric == 2 ){ setB = 4003; amazon = " with Amazon Fighting Titles"; } 
-				else { setB = 3609; }
-				AddButton(325, g, setB, setB, 984, GumpButtonType.Reply, 0);
-				AddButton(370, g, 4011, 4011, 198, GumpButtonType.Reply, 0);
-				AddHtml( 410, g, 300, 20, @"<BODY><BASEFONT Color=" + color + ">Barbaric" + amazon + "</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				g=g+j;
-				g=g+j;
-
-				AddButton(285, g, 4011, 4011, 96, GumpButtonType.Reply, 0);
-				AddHtml( 325, g, 316, 20, @"<BODY><BASEFONT Color=" + color + ">Magery Spell Color</BASEFONT></BODY>", (bool)false, (bool)false);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x47E ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 565, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">White</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(523, g, setB, setB, 500, GumpButtonType.Reply, 0);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x94E ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 685, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Black</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(643, g, setB, setB, 501, GumpButtonType.Reply, 0);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x48D ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 805, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Blue</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(764, g, setB, setB, 502, GumpButtonType.Reply, 0);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x48E ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 925, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Red</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(883, g, setB, setB, 503, GumpButtonType.Reply, 0);
-
-				g=g+j;
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x48F ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 565, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Green</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(523, g, setB, setB, 504, GumpButtonType.Reply, 0);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x490 ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 685, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Purple</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(643, g, setB, setB, 505, GumpButtonType.Reply, 0);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0x491 ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 805, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Yellow</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(764, g, setB, setB, 506, GumpButtonType.Reply, 0);
-
-				if ( ((PlayerMobile)from).MagerySpellHue == 0 ){ setB = 4018; } else { setB = 3609; }
-				AddHtml( 925, g, 61, 20, @"<BODY><BASEFONT Color=" + color + ">Default</BASEFONT></BODY>", (bool)false, (bool)false);
-				AddButton(883, g, setB, setB, 507, GumpButtonType.Reply, 0);
-
-				g=g+j;
-				g=g+j;
+				g += j;
+				xs = SETTING_START_X;
+				AddAction(xs, g, from, "Purple", PageActionType.Setting_MagerySpellColor_Purple, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
+				AddAction(xs, g, from, "Red", PageActionType.Setting_MagerySpellColor_Red, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
+				AddAction(xs, g, from, "White", PageActionType.Setting_MagerySpellColor_White, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
+				AddAction(xs, g, from, "Yellow", PageActionType.Setting_MagerySpellColor_Yellow, MAGERY_SPELL_COLOR_OPTION_WIDTH);
+				xs += MAGERY_SPELL_COLOR_OPTION_WIDTH + MAGERY_SPELL_COLOR_PADDING_LEFT;
 			}
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 983 ){ button = 4006; }
-			AddButton(15, r, button, button, 983, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Skill List</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Skill List", PageActionType.Show_SkillList, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 14 ){ button = 4006; }
-			AddButton(15, r, button, button, 14, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Statistics</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Statistics", PageActionType.Show_Statistics, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			bool house = false;
-			if ( from.Region is HouseRegion )
-			    if (((HouseRegion)from.Region).House.IsOwner(from))
-					house = true;
+			bool house = from.Region is HouseRegion && ((HouseRegion)from.Region).House.IsOwner(from);
 			if ( from.Region.GetLogoutDelay( from ) != TimeSpan.Zero && house == false && !( from.Region is SkyHomeDwelling ) && !( from.Region is PrisonArea ) && !( from.Region is DungeonHomeRegion ) && !( from.Region is GargoyleRegion ) && !( from.Region is SafeRegion ) )
 			{
-				button = 4005; if ( page == 15 ){ button = 4006; }
-				AddButton(15, r, button, button, 15, GumpButtonType.Reply, 0);
-				AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Stuck in World</BASEFONT></BODY>", (bool)false, (bool)false);
-				r=r+e;
+				AddAction(nav_x, r, from, "Stuck in World", PageActionType.Do_StuckInWorld, NAVIGATION_ITEM_WIDTH);
+				r += e;
 			}
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			HelpText = Server.Misc.ChangeLog.Versions();
-			button = 4005; if ( page == 19 ){ button = 4006; AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">" + HelpText + "</BASEFONT></BODY>", (bool)false, (bool)true); }
-			AddButton(15, r, button, button, 19, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Version</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Change log", PageActionType.Navigate_Changelog, NAVIGATION_ITEM_WIDTH);
+			r += e;
+			if ( page == (int)PageActionType.Navigate_Changelog ){ AddHtml( 252, 71, 739, 630, @"<BODY><BASEFONT Color=" + color + ">" + Server.Misc.ChangeLog.Versions() + "</BASEFONT></BODY>", (bool)false, (bool)true); }
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 17 ){ button = 4006; }
-			AddButton(15, r, button, button, 17, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Wealth Bar</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Wealth Bar", PageActionType.Show_WealthBar, NAVIGATION_ITEM_WIDTH);
+			r += e;
 
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			button = 4005; if ( page == 16 ){ button = 4006; }
-			AddButton(15, r, button, button, 16, GumpButtonType.Reply, 0);
-			AddHtml( 50, r, 148, 20, @"<BODY><BASEFONT Color=" + color + ">Weapon Abilities</BASEFONT></BODY>", (bool)false, (bool)false);
-			r=r+e;
+			AddAction(nav_x, r, from, "Weapon Abilities", PageActionType.Show_WeaponAbilities, NAVIGATION_ITEM_WIDTH);
+			r += e;
 		}
 
         public void InvokeCommand( string c, Mobile from )
@@ -752,186 +747,331 @@ namespace Server.Engines.Help
 			}
 		}
 
+		private void AddSetting(int x, int y, PlayerMobile from, string name, PageActionType actionType, PageActionType infoType)
+		{
+			const int RIGHT_ARROW = 4005;
+			const int CHECKED_BOX = 4018;
+			const int UNCHECKED_BOX = 3609;
+			int isSelected = UseArrowIcon(actionType) 
+				? RIGHT_ARROW
+				: IsActive(from, actionType)
+					? CHECKED_BOX
+					: UNCHECKED_BOX;
+			AddButton(x, y, isSelected, isSelected, (int)actionType, GumpButtonType.Reply, 0);
+			AddButton(x+40, y, 4011, 4011, (int)infoType, GumpButtonType.Reply, 0);
+			AddHtml( x+80, y + 3, 316, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">" + name + "</BASEFONT></BODY>", (bool)false, (bool)false);
+		}
+
+		private void AddAction(int x, int y, PlayerMobile from, string name, PageActionType actionType, int width = 100)
+		{
+			const int RIGHT_ARROW = 4005;
+			const int CHECKED_BOX = 4018;
+			const int UNCHECKED_BOX = 3609;
+			int isSelected = UseArrowIcon(actionType) 
+				? RIGHT_ARROW
+				: IsActive(from, actionType)
+					? CHECKED_BOX
+					: UNCHECKED_BOX;
+			AddButton(x, y, isSelected, isSelected, (int)actionType, GumpButtonType.Reply, 0);
+			AddHtml( x+40, y + 3, width, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">" + name + "</BASEFONT></BODY>", (bool)false, (bool)false);
+		}
+
+		private void AddMagicToolbarRowHeader(int x, int y)
+		{
+			const int HORIZONTAL_LINE = 2700;
+			const int BORDER_WIDTH = 2;
+			AddImageTiled(x + 2, y + 25, 740 / 2, BORDER_WIDTH, HORIZONTAL_LINE);
+
+			AddHtml(x, y + 3, 200, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">Type</BASEFONT></BODY>", false, false);
+			x += 225;
+
+			AddHtml(x, y + 3, 148, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">Open</BASEFONT></BODY>", false, false);
+
+			x += 50;
+			AddHtml(x, y + 3, 148, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">Close</BASEFONT></BODY>", false, false);
+
+			x += 50;
+			AddHtml(x, y + 3, 160, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">Manage</BASEFONT></BODY>", false, false);
+
+			x += 75;
+		}
+
+		private void AddMagicToolbarRow(int x, int y, string name, PageActionType config, PageActionType open, PageActionType close, bool addTopSeparator = false)
+		{
+			const int RIGHT_ARROW = 4005;
+			const int CANCEL_ICON = 4020;
+			const int PAGE_ICON = 4011;
+
+			if (addTopSeparator)
+			{
+				const int HORIZONTAL_LINE = 2700;
+				const int BORDER_WIDTH = 1;
+				AddImageTiled(x + 2, y, 740 / 2, BORDER_WIDTH, HORIZONTAL_LINE);
+				y += 4;
+			}
+
+			if (!string.IsNullOrWhiteSpace(name))
+				AddHtml(x, y + 3, 200, 20, @"<BODY><BASEFONT Color=" + TEXT_COLOR + ">" + name + "</BASEFONT></BODY>", false, false);
+
+			x += 225;
+			AddButton(x, y, RIGHT_ARROW, RIGHT_ARROW, (int)open, GumpButtonType.Reply, 0);
+
+			x += 50;
+			AddButton(x, y, CANCEL_ICON, CANCEL_ICON, (int)close, GumpButtonType.Reply, 0);
+
+			x += 50;
+			AddButton(x, y, PAGE_ICON, PAGE_ICON, (int)config, GumpButtonType.Reply, 0);
+		}
+
+		private bool UseArrowIcon( PageActionType actionType )
+		{
+			switch ( actionType )
+			{
+				case PageActionType.Navigate_Main:
+				case PageActionType.Do_Achievements:
+				case PageActionType.Show_Chat:
+				case PageActionType.Show_Conversations:
+				case PageActionType.Do_CorpseClear:
+				case PageActionType.Do_CorpseSearch:
+				case PageActionType.Show_Emote:
+				case PageActionType.Navigate_Library:
+				case PageActionType.Navigate_MagicToolbars:
+				case PageActionType.Do_MoongateSearch:
+				case PageActionType.Show_MOTD:
+				case PageActionType.Show_Quests:
+				case PageActionType.Show_QuickBar:
+				case PageActionType.Show_RegBar:
+				case PageActionType.Show_Settings:
+				case PageActionType.Show_SkillList:
+				case PageActionType.Show_Statistics:
+				case PageActionType.Do_StuckInWorld:
+				case PageActionType.Navigate_Changelog:
+				case PageActionType.Show_WealthBar:
+				case PageActionType.Show_WeaponAbilities:
+
+				case PageActionType.Setting_CreatureMagicFocus: 
+				case PageActionType.Setting_CreatureType: 
+				case PageActionType.Setting_CustomTitle: 
+				case PageActionType.Setting_LootOptions: 
+				case PageActionType.Setting_MusicPlaylist: 
+				case PageActionType.Setting_SkillTitle: 
+				case PageActionType.Setting_SetCraftingContainer: 
+				case PageActionType.Setting_SetHarvestingContainer: 
+				case PageActionType.Setting_SetLootContainer: return true;
+			}
+
+			return false;
+		}
+
+		private bool IsActive( PlayerMobile from, PageActionType actionType )
+		{
+			switch (actionType)
+			{
+				case PageActionType.Do_Toggle_AFK: return Server.Commands.AFK.m_AFK.Contains( from.Serial.Value );
+
+				case PageActionType.Setting_AutoAttack: return !from.NoAutoAttack;
+				case PageActionType.Setting_AutoSheath: return from.CharacterSheath == 1;
+				case PageActionType.Setting_ClassicPoisoning: return from.ClassicPoisoning == 1;
+				case PageActionType.Setting_CreatureSounds: return from.RaceMakeSounds;
+				case PageActionType.Setting_GumpImages: return from.GumpHue > 0;
+				case PageActionType.Setting_MessageColors: return from.RainbowMsg;
+				case PageActionType.Setting_MusicTone: return from.CharMusical == "Forest";
+				case PageActionType.Setting_PrivatePlay: return !from.PublicInfo;
+				case PageActionType.Setting_WeaponAbilityBar: return from.WeaponBarOpen > 0;
+				case PageActionType.Setting_WeaponAbilityNames: return from.CharacterWepAbNames == 1;
+				case PageActionType.Setting_UseAncientSpellbook: return ResearchSettings.BookCaster( from );
+				case PageActionType.Setting_DoubleClickToIDItems: return from.DoubleClickID;
+				case PageActionType.Setting_OrdinaryResources: return from.HarvestOrdinary;
+				case PageActionType.Setting_RemoveVendorGoldSafeguard: return from.IgnoreVendorGoldSafeguard;
+				case PageActionType.Setting_SuppressVendorTooltips: return from.SuppressVendorTooltip;
+
+				case PageActionType.Setting_Playstyle_Normal: return from.CharacterEvil == 0 && from.CharacterOriental == 0 && from.CharacterBarbaric == 0;
+				case PageActionType.Setting_Playstyle_Evil: return from.CharacterEvil == 1;
+				case PageActionType.Setting_Playstyle_Oriental: return from.CharacterOriental == 1;
+				case PageActionType.Setting_Playstyle_Barbaric: return from.CharacterBarbaric == 1 || from.CharacterBarbaric == 2;
+
+				case PageActionType.Setting_MagerySpellColor_White: return from.MagerySpellHue == 0x47E;
+				case PageActionType.Setting_MagerySpellColor_Black: return from.MagerySpellHue == 0x94E;
+				case PageActionType.Setting_MagerySpellColor_Blue: return from.MagerySpellHue == 0x48D;
+				case PageActionType.Setting_MagerySpellColor_Red: return from.MagerySpellHue == 0x48E;
+				case PageActionType.Setting_MagerySpellColor_Green: return from.MagerySpellHue == 0x48F;
+				case PageActionType.Setting_MagerySpellColor_Purple: return from.MagerySpellHue == 0x490;
+				case PageActionType.Setting_MagerySpellColor_Yellow: return from.MagerySpellHue == 0x491;
+				case PageActionType.Setting_MagerySpellColor_Default: return from.MagerySpellHue == 0;
+
+				case PageActionType.Setting_SkillList: return true;
+			}
+
+			return false;
+		}
+
 		public override void OnResponse( NetState state, RelayInfo info )
 		{
-			int pressed = info.ButtonID;
+			PlayerMobile from = state.Mobile as PlayerMobile;
+			if ( from == null ) return;
 
-			Mobile from = state.Mobile;
+			int pressed = info.ButtonID;
+			PageActionType actionType = (PageActionType)info.ButtonID;
 
 			from.SendSound( 0x4A ); 
 
 			from.CloseGump( typeof(Server.Engines.Help.HelpGump) );
 
-			int box = 0;
-			if ( pressed == 5000 || pressed == 5001 || pressed == 5002 )
-			{
-				if ( pressed == 5000 )
-					box = 1;
-				else if ( pressed == 5001 )
-					box = 2;
-				else if ( pressed == 5002 )
-					box = 3;
-
-				pressed = 50;
-			}
-			else if ( pressed == 5003 )
-			{
-				if ( ((PlayerMobile)from).DoubleClickID )
-					((PlayerMobile)from).DoubleClickID = false;
-				else
-					((PlayerMobile)from).DoubleClickID = true;
-
-				pressed = 12;
-			}
-
-			if ( pressed > 81 && pressed < 200 ) // SMALL INFO HELP WINDOWS
-			{
-				from.CloseGump( typeof( InfoHelpGump ) );
-				from.SendGump( new InfoHelpGump( from, pressed, 12 ) );
-			}
-			else if ( pressed >= 200 && pressed <= 400 ) // MAGIC BARS OPEN AND CLOSE
+			if ( ShowHelpInfoWindow( from, actionType ) ) return;
+			
+			if ( info.ButtonID >= (int)PageActionType.MARKER_TOOLBAR_START && info.ButtonID <= (int)PageActionType.MARKER_TOOLBAR_END ) // MAGIC BARS OPEN AND CLOSE
 			{
 				from.SendGump( new Server.Engines.Help.HelpGump( from, 7 ) );
 
-				if ( pressed == 266 ){ InvokeCommand( "bardtool1", from ); }
-				else if ( pressed == 366 ){ InvokeCommand( "bardclose1", from ); }
-				else if ( pressed == 267 ){ InvokeCommand( "bardtool2", from ); }
-				else if ( pressed == 367 ){ InvokeCommand( "bardclose2", from ); }
-				else if ( pressed == 268 ){ InvokeCommand( "knighttool1", from ); }
-				else if ( pressed == 368 ){ InvokeCommand( "knightclose1", from ); }
-				else if ( pressed == 269 ){ InvokeCommand( "knighttool2", from ); }
-				else if ( pressed == 369 ){ InvokeCommand( "knightclose2", from ); }
-				else if ( pressed == 270 ){ InvokeCommand( "deathtool1", from ); }
-				else if ( pressed == 370 ){ InvokeCommand( "deathclose1", from ); }
-				else if ( pressed == 271 ){ InvokeCommand( "deathtool2", from ); }
-				else if ( pressed == 371 ){ InvokeCommand( "deathclose2", from ); }
-				else if ( pressed == 272 ){ InvokeCommand( "magetool1", from ); }
-				else if ( pressed == 372 ){ InvokeCommand( "mageclose1", from ); }
-				else if ( pressed == 273 ){ InvokeCommand( "magetool2", from ); }
-				else if ( pressed == 373 ){ InvokeCommand( "mageclose2", from ); }
-				else if ( pressed == 274 ){ InvokeCommand( "magetool3", from ); }
-				else if ( pressed == 374 ){ InvokeCommand( "mageclose3", from ); }
-				else if ( pressed == 275 ){ InvokeCommand( "magetool4", from ); }
-				else if ( pressed == 375 ){ InvokeCommand( "mageclose4", from ); }
-				else if ( pressed == 276 ){ InvokeCommand( "necrotool1", from ); }
-				else if ( pressed == 376 ){ InvokeCommand( "necroclose1", from ); }
-				else if ( pressed == 277 ){ InvokeCommand( "necrotool2", from ); }
-				else if ( pressed == 377 ){ InvokeCommand( "necroclose2", from ); }
-				else if ( pressed == 278 ){ InvokeCommand( "holytool1", from ); }
-				else if ( pressed == 378 ){ InvokeCommand( "holyclose1", from ); }
-				else if ( pressed == 279 ){ InvokeCommand( "holytool2", from ); }
-				else if ( pressed == 379 ){ InvokeCommand( "holyclose2", from ); }
-				else if ( pressed == 280 ){ InvokeCommand( "monktool1", from ); }
-				else if ( pressed == 380 ){ InvokeCommand( "monkclose1", from ); }
-				else if ( pressed == 281 ){ InvokeCommand( "monktool2", from ); }
-				else if ( pressed == 381 ){ InvokeCommand( "monkclose2", from ); }
-				else if ( pressed == 282 ){ InvokeCommand( "elementtool1", from ); }
-				else if ( pressed == 382 ){ InvokeCommand( "elementclose1", from ); }
-				else if ( pressed == 283 ){ InvokeCommand( "elementtool2", from ); }
-				else if ( pressed == 383 ){ InvokeCommand( "elementclose2", from ); }
-				else if ( pressed == 384 ){ InvokeCommand( "archtool1", from ); }
-				else if ( pressed == 385 ){ InvokeCommand( "archclose1", from ); }
-				else if ( pressed == 386 ){ InvokeCommand( "archtool2", from ); }
-				else if ( pressed == 387 ){ InvokeCommand( "archclose2", from ); }
-				else if ( pressed == 388 ){ InvokeCommand( "archtool3", from ); }
-				else if ( pressed == 389 ){ InvokeCommand( "archclose3", from ); }
-				else if ( pressed == 390 ){ InvokeCommand( "archtool4", from ); }
-				else if ( pressed == 391 ){ InvokeCommand( "archclose4", from ); }
+				switch (actionType)
+				{
+					case PageActionType.MagicToolbar_Bard_I_Open: InvokeCommand( "bardtool1", from ); break;
+					case PageActionType.MagicToolbar_Bard_I_Close: InvokeCommand( "bardclose1", from ); break;
+					case PageActionType.MagicToolbar_Bard_II_Open: InvokeCommand( "bardtool2", from ); break;
+					case PageActionType.MagicToolbar_Bard_II_Close: InvokeCommand( "bardclose2", from ); break;
+					case PageActionType.MagicToolbar_Knight_I_Open: InvokeCommand( "knighttool1", from ); break;
+					case PageActionType.MagicToolbar_Knight_I_Close: InvokeCommand( "knightclose1", from ); break;
+					case PageActionType.MagicToolbar_Knight_II_Open: InvokeCommand( "knighttool2", from ); break;
+					case PageActionType.MagicToolbar_Knight_II_Close: InvokeCommand( "knightclose2", from ); break;
+					case PageActionType.MagicToolbar_DeathKnight_I_Open: InvokeCommand( "deathtool1", from ); break;
+					case PageActionType.MagicToolbar_DeathKnight_I_Close: InvokeCommand( "deathclose1", from ); break;
+					case PageActionType.MagicToolbar_DeathKnight_II_Open: InvokeCommand( "deathtool2", from ); break;
+					case PageActionType.MagicToolbar_DeathKnight_II_Close: InvokeCommand( "deathclose2", from ); break;
+					case PageActionType.MagicToolbar_Magery_I_Open: InvokeCommand( "magetool1", from ); break;
+					case PageActionType.MagicToolbar_Magery_I_Close: InvokeCommand( "mageclose1", from ); break;
+					case PageActionType.MagicToolbar_Magery_II_Open: InvokeCommand( "magetool2", from ); break;
+					case PageActionType.MagicToolbar_Magery_II_Close: InvokeCommand( "mageclose2", from ); break;
+					case PageActionType.MagicToolbar_Magery_III_Open: InvokeCommand( "magetool3", from ); break;
+					case PageActionType.MagicToolbar_Magery_III_Close: InvokeCommand( "mageclose3", from ); break;
+					case PageActionType.MagicToolbar_Magery_IV_Open: InvokeCommand( "magetool4", from ); break;
+					case PageActionType.MagicToolbar_Magery_IV_Close: InvokeCommand( "mageclose4", from ); break;
+					case PageActionType.MagicToolbar_Necromancer_I_Open: InvokeCommand( "necrotool1", from ); break;
+					case PageActionType.MagicToolbar_Necromancer_I_Close: InvokeCommand( "necroclose1", from ); break;
+					case PageActionType.MagicToolbar_Necromancer_II_Open: InvokeCommand( "necrotool2", from ); break;
+					case PageActionType.MagicToolbar_Necromancer_II_Close: InvokeCommand( "necroclose2", from ); break;
+					case PageActionType.MagicToolbar_Priest_I_Open: InvokeCommand( "holytool1", from ); break;
+					case PageActionType.MagicToolbar_Priest_I_Close: InvokeCommand( "holyclose1", from ); break;
+					case PageActionType.MagicToolbar_Priest_II_Open: InvokeCommand( "holytool2", from ); break;
+					case PageActionType.MagicToolbar_Priest_II_Close: InvokeCommand( "holyclose2", from ); break;
+					case PageActionType.MagicToolbar_Monk_I_Open: InvokeCommand( "monktool1", from ); break;
+					case PageActionType.MagicToolbar_Monk_I_Close: InvokeCommand( "monkclose1", from ); break;
+					case PageActionType.MagicToolbar_Monk_II_Open: InvokeCommand( "monktool2", from ); break;
+					case PageActionType.MagicToolbar_Monk_II_Close: InvokeCommand( "monkclose2", from ); break;
+					case PageActionType.MagicToolbar_Elemental_I_Open: InvokeCommand( "elementtool1", from ); break;
+					case PageActionType.MagicToolbar_Elemental_I_Close: InvokeCommand( "elementclose1", from ); break;
+					case PageActionType.MagicToolbar_Elemental_II_Open: InvokeCommand( "elementtool2", from ); break;
+					case PageActionType.MagicToolbar_Elemental_II_Close: InvokeCommand( "elementclose2", from ); break;
+					case PageActionType.MagicToolbar_Ancient_I_Open: InvokeCommand( "archtool1", from ); break;
+					case PageActionType.MagicToolbar_Ancient_I_Close: InvokeCommand( "archclose1", from ); break;
+					case PageActionType.MagicToolbar_Ancient_II_Open: InvokeCommand( "archtool2", from ); break;
+					case PageActionType.MagicToolbar_Ancient_II_Close: InvokeCommand( "archclose2", from ); break;
+					case PageActionType.MagicToolbar_Ancient_III_Open: InvokeCommand( "archtool3", from ); break;
+					case PageActionType.MagicToolbar_Ancient_III_Close: InvokeCommand( "archclose3", from ); break;
+					case PageActionType.MagicToolbar_Ancient_IV_Open: InvokeCommand( "archtool4", from ); break;
+					case PageActionType.MagicToolbar_Ancient_IV_Close: InvokeCommand( "archclose4", from ); break;
+					default: Console.WriteLine("[HelpGump] Invalid open/close for magic toolbar: {0}", actionType); break;
+				}
 			}
 			else
 			{
-				switch ( pressed )
+				switch ( actionType )
 				{
-					case 0: // Close/Cancel
+					case PageActionType.Close:
 					{
 						//from.SendLocalizedMessage( 501235, "", 0x35 ); // Help request aborted.
 						break;
 					}
-					case 1: // MAIN
+					case PageActionType.Navigate_Main:
 					{
 						from.SendGump( new Server.Engines.Help.HelpGump( from, pressed ) );
 						break;
 					}
-					case 2: // AFK
+					case PageActionType.Do_Achievements:
+					{
+						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
+						AchievementSystem.OpenGump( from, from );
+						break;
+					}
+					case PageActionType.Do_Toggle_AFK:
 					{
 						InvokeCommand( "afk", from );
 						from.SendGump( new Server.Engines.Help.HelpGump( from, pressed ) );
 						break;
 					}
-					case 3: // Chat
+					case PageActionType.Show_Chat:
 					{
 						InvokeCommand( "c", from );
 						break;
 					}
-					case 4: // Corpse Clear
+					case PageActionType.Do_CorpseClear:
 					{
 						InvokeCommand( "corpseclear", from );
 						from.SendGump( new Server.Engines.Help.HelpGump( from, pressed ) );
 						break;
 					}
-					case 5: // Corpse Search
+					case PageActionType.Do_CorpseSearch:
 					{
 						InvokeCommand( "corpse", from );
 						break;
 					}
-					case 6: // Emote
+					case PageActionType.Show_Emote:
 					{
 						InvokeCommand( "emote", from );
 						break;
 					}
-					case 7: // Magic
+					case PageActionType.Navigate_MagicToolbars:
 					{
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 7 ) );
 						break;
 					}
-					case 8: // Moongate
+					case PageActionType.Do_MoongateSearch:
 					{
 						InvokeCommand( "magicgate", from );
 						break;
 					}
-					case 9: // MOTD
+					case PageActionType.Show_MOTD:
 					{
 						from.CloseGump( typeof( Joeku.MOTD.MOTD_Gump ) );
 						Joeku.MOTD.MOTD_Utility.SendGump( from, false, 0, 1 );
 						break;
 					}
-					case 10: // Quests
+					case PageActionType.Show_Quests:
 					{
 						from.SendGump( new Server.Engines.Help.HelpGump( from, pressed ) );
 						from.SendGump(new QuestLogGump((PlayerMobile)from));
 						break;
 					}
-					case 11: // Quick Bar
+					case PageActionType.Show_QuickBar:
 					{
 						from.CloseGump( typeof( QuickBar ) );
 						from.SendGump( new QuickBar( from ) );
 						break;
 					}
-					case 62: // Reagent Bar
+					case PageActionType.Show_RegBar:
 					{
 						from.CloseGump( typeof( RegBar ) );
 						from.SendGump( new RegBar( from ) );
 						break;
 					}
-					case 12: // Settings
+					case PageActionType.Show_Settings:
 					{
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 13: // Library
+					case PageActionType.Navigate_Library:
 					{
 						from.CloseGump( typeof( MyLibrary ) );
 						from.SendSound( 0x4A ); 
 						from.SendGump( new MyLibrary( from, 1 ) );
 						break;
 					}
-					case 14: // Statistics
+					case PageActionType.Show_Statistics:
 					{
 						from.CloseGump( typeof( Server.Statistics.StatisticsGump ) );
 						from.SendGump( new Server.Statistics.StatisticsGump( from, 1 ) );
 						break;
 					}
-					case 15: // Stuck
+					case PageActionType.Do_StuckInWorld:
 					{
 						BaseHouse house = BaseHouse.FindHouseAt( from );
 
@@ -954,30 +1094,31 @@ namespace Server.Engines.Help
 
 						break;
 					}
-					case 16: // Weapon Abilities
+					case PageActionType.Show_WeaponAbilities:
 					{
 						InvokeCommand( "sad", from );
 						break;
 					}
-					case 17: // Wealth Bar
+					case PageActionType.Show_WealthBar:
 					{
 						from.CloseGump( typeof( WealthBar ) );
 						from.SendGump( new WealthBar( from ) );
 						break;
 					}
-					case 18: // Conversations
+					case PageActionType.Show_Conversations:
 					{
 						from.CloseGump( typeof( MyChat ) );
 						from.SendSound( 0x4A ); 
 						from.SendGump( new MyChat( from, 1 ) );
 						break;
 					}
-					case 19: // Versions
+					case PageActionType.Navigate_Changelog:
 					{
 						from.SendGump( new Server.Engines.Help.HelpGump( from, pressed ) );
 						break;
 					}
-					case 49: // Set Ordinary Resources
+
+					case PageActionType.Setting_OrdinaryResources:
 					{
 						if ( from.HarvestOrdinary )
 							from.HarvestOrdinary = false;
@@ -987,13 +1128,24 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 50: // Set Containers
+					case PageActionType.Setting_SetLootContainer:
+					case PageActionType.Setting_SetCraftingContainer:
+					case PageActionType.Setting_SetHarvestingContainer:
 					{
+						int box;
+						switch(actionType)
+						{
+							case PageActionType.Setting_SetLootContainer: box = 1; break;
+							case PageActionType.Setting_SetCraftingContainer: box = 2; break;
+							case PageActionType.Setting_SetHarvestingContainer: box = 3; break;
+							default: Console.WriteLine("[HelpGump] Invalid container type: {0}", pressed); return;
+						}
+
 						BaseContainer.ContainerSetTarget( from, box );
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 51: // Weapon Ability Names
+					case PageActionType.Setting_WeaponAbilityNames:
 					{
 						if ( ((PlayerMobile)from).CharacterWepAbNames != 1 )
 						{
@@ -1006,7 +1158,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 52: // Auto Sheathe
+					case PageActionType.Setting_AutoSheath:
 					{
 						if ( ((PlayerMobile)from).CharacterSheath == 1 )
 						{
@@ -1019,7 +1171,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 53: // Musical
+					case PageActionType.Setting_MusicTone:
 					{
 						string tunes = ((PlayerMobile)from).CharMusical;
 
@@ -1034,7 +1186,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 54: // Private
+					case PageActionType.Setting_PrivatePlay:
 					{
 						PlayerMobile pm = (PlayerMobile)from;
 
@@ -1049,19 +1201,19 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 55: // Loot
+					case PageActionType.Setting_LootOptions:
 					{
 						from.CloseGump( typeof( LootChoices ) );
 						from.SendGump( new LootChoices( from, 1 ) );
 						break;
 					}
-					case 56: // Skill Titles
+					case PageActionType.Setting_SkillTitle:
 					{
 						from.CloseGump( typeof( SkillTitleGump ) );
 						from.SendGump( new SkillTitleGump( from ) );
 						break;
 					}
-					case 63: // Ancient Spellbook
+					case PageActionType.Setting_UseAncientSpellbook:
 					{
 						if ( !ResearchSettings.BookCaster( from ) )
 						{
@@ -1074,19 +1226,19 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 982: // Skill List
+					case PageActionType.Setting_SkillList:
 					{
 						if ( ((PlayerMobile)from).SkillDisplay > 0 ){ ((PlayerMobile)from).SkillDisplay = 0; } else { ((PlayerMobile)from).SkillDisplay = 1; }
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						Server.Gumps.SkillListingGump.RefreshSkillList( from );
 						break;
 					}
-					case 983: // Open Skill List
+					case PageActionType.Show_SkillList:
 					{
 						Server.Gumps.SkillListingGump.OpenSkillList( from );
 						break;
 					}
-					case 985: // Gump Images
+					case PageActionType.Setting_GumpImages:
 					{
 						int gump = ((PlayerMobile)from).GumpHue;
 
@@ -1101,7 +1253,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 986: // Weapon Ability Auto-Open
+					case PageActionType.Setting_WeaponAbilityBar:
 					{
 						int wep = ((PlayerMobile)from).WeaponBarOpen;
 
@@ -1116,7 +1268,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 989: // Creature Magic Focus
+					case PageActionType.Setting_CreatureMagicFocus:
 					{
 						if ( from.RaceMagicSchool == 0 )
 								from.RaceMagicSchool = 1;
@@ -1136,13 +1288,13 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 990: // Creature Type Choice
+					case PageActionType.Setting_CreatureType:
 					{
 						from.RaceSection = 1;
 						from.SendGump( new Server.Items.RacePotions.RacePotionsGump( from, 1 ) );
 						break;
 					}
-					case 991: // Creature Sounds
+					case PageActionType.Setting_CreatureSounds:
 					{
 						if ( !from.RaceMakeSounds )
 								from.RaceMakeSounds = true;
@@ -1152,7 +1304,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 57: // Normal Play
+					case PageActionType.Setting_Playstyle_Normal:
 					{
 						((PlayerMobile)from).CharacterEvil = 0;
 						((PlayerMobile)from).CharacterOriental = 0;
@@ -1161,7 +1313,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 58: // Evil Play
+					case PageActionType.Setting_Playstyle_Evil:
 					{
 						((PlayerMobile)from).CharacterEvil = 1;
 						((PlayerMobile)from).CharacterOriental = 0;
@@ -1170,7 +1322,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 59: // Oriental Play
+					case PageActionType.Setting_Playstyle_Oriental:
 					{
 						((PlayerMobile)from).CharacterEvil = 0;
 						((PlayerMobile)from).CharacterOriental = 1;
@@ -1179,7 +1331,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 60: // Message Color
+					case PageActionType.Setting_MessageColors:
 					{
 						if ( from.RainbowMsg )
 						{
@@ -1192,7 +1344,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 61: // Auto Attack
+					case PageActionType.Setting_AutoAttack:
 					{
 						if ( from.NoAutoAttack )
 						{
@@ -1205,7 +1357,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 984: // Barbaric Play
+					case PageActionType.Setting_Playstyle_Barbaric:
 					{
 						if ( ((PlayerMobile)from).CharacterBarbaric == 1 && from.Female )
 						{
@@ -1226,7 +1378,7 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 64: // Poisoning
+					case PageActionType.Setting_ClassicPoisoning:
 					{
 						if ( ((PlayerMobile)from).ClassicPoisoning == 1 )
 						{
@@ -1239,170 +1391,190 @@ namespace Server.Engines.Help
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 65: // Music Playlist
+					case PageActionType.Setting_MusicPlaylist:
 					{
 						from.CloseGump( typeof( MusicPlaylist ) );
 						from.SendGump( new MusicPlaylist( from, 1 ) );
 						break;
 					}
-					case 66: // SPELL BARS BELOW ---------------------------------------
+					case PageActionType.Setting_DoubleClickToIDItems:
+					{
+						((PlayerMobile)from).DoubleClickID = !((PlayerMobile)from).DoubleClickID;
+						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
+						break;
+					}
+					case PageActionType.Setting_RemoveVendorGoldSafeguard:
+					{
+						((PlayerMobile)from).IgnoreVendorGoldSafeguard = !((PlayerMobile)from).IgnoreVendorGoldSafeguard;
+						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
+						break;
+					}
+					case PageActionType.Setting_SuppressVendorTooltips:
+					{
+						((PlayerMobile)from).SuppressVendorTooltip = !((PlayerMobile)from).SuppressVendorTooltip;
+						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
+						break;
+					}
+
+					case PageActionType.MagicToolbar_BardSongsBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsBard1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 67:
+					case PageActionType.MagicToolbar_BardSongsBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsBard2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 68:
+					case PageActionType.MagicToolbar_KnightSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsKnight1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 69:
+					case PageActionType.MagicToolbar_KnightSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsKnight2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 70:
+					case PageActionType.MagicToolbar_DeathKnightSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsDeath1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 71:
+					case PageActionType.MagicToolbar_DeathKnightSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsDeath2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 72:
+					case PageActionType.MagicToolbar_MagerySpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsMage1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 73:
+					case PageActionType.MagicToolbar_MagerySpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsMage2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 74:
+					case PageActionType.MagicToolbar_MagerySpellBarIII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsMage3( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 75:
+					case PageActionType.MagicToolbar_MagerySpellBarIV_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsMage4( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 76:
+					case PageActionType.MagicToolbar_NecromancerSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsNecro1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 77:
+					case PageActionType.MagicToolbar_NecromancerSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsNecro2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 78:
+					case PageActionType.MagicToolbar_PriestSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsPriest1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 79:
+					case PageActionType.MagicToolbar_PriestSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsPriest2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 80:
+					case PageActionType.Setting_CustomTitle:
 					{
 						from.SendGump( new CustomTitleGump( from ) );
 						break;
 					}
-					case 1081:
+					case PageActionType.MagicToolbar_AncientSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsArch1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 1082:
+					case PageActionType.MagicToolbar_AncientSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsArch2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 1083:
+					case PageActionType.MagicToolbar_AncientSpellBarIII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsArch3( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 1084:
+					case PageActionType.MagicToolbar_AncientSpellBarIV_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsArch4( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 980:
+					case PageActionType.MagicToolbar_MonkSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsMonk1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 981:
+					case PageActionType.MagicToolbar_MonkSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsMonk2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 978:
+					case PageActionType.MagicToolbar_ElementalSpellBarI_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsElement1( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 979:
+					case PageActionType.MagicToolbar_ElementalSpellBarII_Config:
 					{
 						TryConfigureSpellBar( new SetupBarsElement2( (PlayerMobile)from, 1 ) );
 						break;
 					}
-					case 500:
+
+					case PageActionType.Setting_MagerySpellColor_White:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x47E;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 501:
+					case PageActionType.Setting_MagerySpellColor_Black:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x94E;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 502:
+					case PageActionType.Setting_MagerySpellColor_Blue:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x48D;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 503:
+					case PageActionType.Setting_MagerySpellColor_Red:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x48E;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 504:
+					case PageActionType.Setting_MagerySpellColor_Green:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x48F;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 505:
+					case PageActionType.Setting_MagerySpellColor_Purple:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x490;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 506:
+					case PageActionType.Setting_MagerySpellColor_Yellow:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0x491;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
 						break;
 					}
-					case 507:
+					case PageActionType.Setting_MagerySpellColor_Default:
 					{
 						((PlayerMobile)from).MagerySpellHue = 0;
 						from.SendGump( new Server.Engines.Help.HelpGump( from, 12 ) );
@@ -1877,217 +2049,261 @@ namespace Server.Engines.Help
 
 			return HelpText;
 		}
-	}
-}
 
-namespace Server.Gumps
-{
-    public class InfoHelpGump : Gump
-    {
-		public int m_Origin;
-
-        public InfoHelpGump( Mobile from, int page, int origin ) : base( 50, 50 )
-        {
-			m_Origin = origin;
-
-            this.Closable=true;
-			this.Disposable=true;
-			this.Dragable=true;
-			this.Resizable=false;
-
-			string title = "";
-			string info = "";
+		private bool ShowHelpInfoWindow( Mobile from, PageActionType page )
+		{
 			bool scrollbar = true;
+			string title;
+			string info;
+			PageActionType returnPage = PageActionType.Show_Settings;
 
-			if ( page == 82 )
+			switch ( page )
 			{
-				scrollbar = false;
-				title = "Music Tone";
-				info = "This option will simply toggle your music preference to play a different set of music in the dungeons. When turned on, it will play music you normally hear when traveling the land, instead of the music commonly played in dungeons.";
-			}
-			else if ( page == 83 )
-			{
-				title = "Music Playlist";
-				info = "This gives you a complete list of the in-game music. You can select the music you like and those choices will randomly play as you go from region to region. To listen to a song for review, select the blue gem icon. Note that the client has a delay time when you can start another song so selecting the blue gem may not respond if you started a song too soon before that. Wait for a few seconds and try clicking the blue gem again to see if that song starts to play. Playlists are disabled by default, so if you want your playlist to function, make sure to enable it.";
-			}
-			else if ( page == 84 )
-			{
-				scrollbar = false;
-				title = "Private Play";
-				info = "This option turns on or off the detailed messages of your journey for the town crier and local citizen chatter. This keeps your activities private so others will not see where you are traveling the world.";
-			}
-			else if ( page == 85 )
-			{
-				title = "Loot Options";
-				info = "This lets you select from a list of categories, where they will automatically take those types of items from common dungeon chests or corpses and put them in your backpack. If you select coins, you will take wealth in the form of currency or gold nuggets. If you take gems and jewels, this will consist of gems, gemstones, jewelry, jewels, and crystals. The unknown items are those that will need identification, but you may decide to take them anyway. The reagent options have a few categories. Magery and necromancer reagents are those used specifically by those characters, where witches brew reagents fall into the necromancer category. Alchemic reagents are those that fall outside the category of magery and necromancer reagents, and only alchemists use them. Herbalist reagents are useful druidic herbalism.";
-			}
-			else if ( page == 86 )
-			{
-				title = "Classic Poisoning";
-				info = "There are two methods that assassins use to handle poisoned weapons. One is the simple method of soaking the blade and having it poison whenever it strikes their opponent. With this method, known as classic poisoning, there is little control on the dosage given but it is easier to maneuver. When this option is turned off, it has the newer and more tactical method, where only certain weapons can be poisoned and the assassin can control when the poison is administered with the hit. Although the tactical method requires more thought, it does have the potential to allow an assassin to poison certain arrows, for example. The choice of methods can be switched at any time, but only one method can be in use at a given time.";
-			}
-			else if ( page == 87 )
-			{
-				title = "Skill Title";
-				info = "When you don't set your skill title here, the game will take your highest skill and make that into your character's title. Choosing a skill here will force your title to that profession. So if you always want to be known as a wizard, then select the 'Magery' option (for example). You can let the game manage this at any time by setting it back to 'Auto Title'. Be warned when choosing a skill, if you have zero skill points in it, you will be titled 'the Village Idiot'. If you get at least 0.1, you will at least be 'Aspiring'.";
-			}
-			else if ( page == 88 )
-			{
-				scrollbar = false;
-				title = "Message Color";
-				info = "By default, most of the messages appearing on the lower left of the screen are gray in color. Enabling this option will change those messages to have a random color whenenver a new message appears. This feature can help some more easily see such messages and the varying colors can also help distinguish individual messages that may be scrolling by.";
-			}
-			else if ( page == 89 )
-			{
-				scrollbar = false;
-				title = "Auto Attack";
-				info = "By default, when you are attacked you will automatically attack back. If you want to instead decide when or if you want to attack back, you can turn this option off. This can be helpful if you do not want to kill innocents by accident, or you are trying to tame an angry creature.";
-			}
-			else if ( page == 92 )
-			{
-				title = "Play Style - Normal";
-				info = "This is the default play style for the " + MySettings.S_ServerName + ". It is designed for a classic fantasy world experience for the players. There are two other play styles available, evil and oriental. Play styles do not change the mechanics of the game playing experience, but it does change the flavor of the treasure you find and the henchman you hire. For example, you can set your play style to an 'evil' style of play. What happens is you will find treasure geared toward that play style. Where you would normally find a blue 'mace of might', the evil style would have you find a black 'mace of ghostly death'. They are simply a way to tweak your character's experience in the game.";
-			}
-			else if ( page == 93 )
-			{
-				title = "Play Style - Evil";
-				info = "There is an evil element to the game that some want to participate in. With classes such as Necromancers, some players may want to travel a world with this flavor added. This particular setting allows you to toggle between regular and evil flavors. When in the evil mode, some of the treasure you will find will often have a name that fits in the evil style. When you stay within negative karma, skill titles will change for you as well, but not all. Look over the book of skill titles (found within the game world) to see which titles will change based on karma. Some of the relics you will find may also have this style, to perhaps decorate a home in this fashion. This option can be turned off and on at any time. You can only have one type of play style active at any one time.<br><br>"
-				+ "[evil - Turns on/off the evil flavor the game provides.";
-			}
-			else if ( page == 94 )
-			{
-				title = "Play Style - Oriental";
-				info = "There is an oriental element to the game that most do not want to participate in. With classes such as Ninja and Samurai, some players may want to travel a world with this flavor added. This particular setting allows you to toggle between fantasy and oriental. When in the oriental mode, much of the treasure you will find will be of Chinese or Japanese historical origins. These types of items will most times be named to match the style. Items that once belonged to someone, will often have a name that fits in the oriental style. Some of the skill titles will change for you as well, but not all. Look over the book of skill titles (found within the game world) to see which titles will change based on this play style. Some of the relics and artwork you will find will also have this style, to perhaps decorate a home in this fashion. This option can be turned off and on at any time. You can only have one type of play style active at any one time.";
-			}
-			else if ( page == 95 )
-			{
-				m_Origin = 7;
-				title = "Magic Toolbars";
-				info = "These toolbars can be configured for all areas of magical-style spells in the game. Each school of magic has two separate toolbars you can customize, except for magery which has four available. The large number of spells for magery benefit from the extra two toolbars. These toolbars allow you to select spells that you like to cast often, and set whether the bar will appear vertical or horizontal. If you choose to have the toolbar appear vertical, you have the additional option of showing the spell names next to the icons. These toolbars can be moved around and you need only single click the appropriate icon to cast the spell. If you have spells selected for a toolbar, but lack the spell in your spellbook, the icon will not appear when you open the toolbar. These toolbars cannot be closed by normal means, to avoid the chance you close them by accident when in combat. You can either use the command button available in the 'Help' section, or the appropriate typed keyboard command.";
-			}
-			else if ( page == 96 )
-			{
-				scrollbar = false;
-				title = "Magery Spell Color";
-				info = "You can change the color for all of your magery spell effects here. There are a limited amount of choices given here. Once set, your spells will be that color for every effect. If you want to set it back to normal, then select the 'Default' option. You can also use the '[spellhue' command followed by a number of any color you want to set it to.";
-			}
-			else if ( page == 97 )
-			{
-				scrollbar = false;
-				title = "Custom Title";
-				info = "This allows you to enter a custom title for your character, instead of relying on the game to assign you one based on your best skill or the skill you choose to have represent you. To clear out a custom title you may have set with this option, enter the word of 'clear' to remove it.";
-			}
-			else if ( page == 99 )
-			{
-				scrollbar = false;
-				title = "Weapon Ability Names";
-				info = "When you get good enough with tactics and a weapon type, you will get special abilities that they can perform. These usually appear as simple icons you can select to do the action, but this option will turn on or off the special weapon ability names next to the appropriate icons.";
-			}
-			else if ( page == 100 )
-			{
-				scrollbar = false;
-				title = "Auto Sheath";
-				info = "This option turns on or off the feature to sheathe your weapon when not in battle. When you put your character back into war mode, they will draw the weapon.";
-			}
-			else if ( page == 101 )
-			{
-				scrollbar = false;
-				title = "Gump Images";
-				info = "Many window gumps have a faded image in the background. Turning this off will have those windows only be black in color, with no background image.";
-			}
-			else if ( page == 102 )
-			{
-				scrollbar = false;
-				title = "Weapon Ability Bar";
-				info = "This option turns on or off the auto-opening of the weapon ability icon bar, meaning you will have to do it manually if you turn it off.";
-			}
-			else if ( page == 103 )
-			{
-				scrollbar = false;
-				title = "Creature Magic";
-				info = "Some creatures have a natural ability for magic. This setting lets you change which school of magic you want to focus on: magery, necromancy, or elementalism. This allows magery or necromancy creatures to move their focus into elementalism, or to switch between magery and necromancy.";
-			}
-			else if ( page == 104 )
-			{
-				scrollbar = false;
-				title = "Creature Type";
-				info = "Some creature species has more than one option for appearance. This setting lets you change to another of that species if another appearance is available. You can also turn yourself into a human if you choose. If you become human, you will remain that way forever.";
-			}
-			else if ( page == 105 )
-			{
-				scrollbar = false;
-				title = "Creature Sounds";
-				info = "Since you are a creature, you sometimes make sounds when attacking or getting hurt from attacks. You can turn these sounds on or off here.";
-			}
-			else if ( page == 106 )
-			{
-				scrollbar = false;
-				title = "Ancient Spellbook";
-				info = "If you begin researching the 64 ancient spells that were long forgotten, enabling this setting means you will be casting such magic from a book instead of using your research bag. If you have this enabled, you will need reagents to cast spells and the spells being cast must be in your book. Disabling this checks your research bag to see if you have the spell prepared ahead of time.";
-			}
-			else if ( page == 107 )
-			{
-				scrollbar = false;
-				title = "Set Crafting Container";
-				info = "This allows you to set a container, where items will go when you are creating them through crafting. The container must be in your main pack in order to collect the items, and not within another container.";
-			}
-			else if ( page == 108 )
-			{
-				scrollbar = false;
-				title = "Set Harvesting Container";
-				info = "This allows you to set a container, where items will go when you are harvesting for items. These are items you get from activities like mining, lumberjacking, and fishing. The container must be in your main pack in order to collect the items, and not within another container.";
-			}
-			else if ( page == 109 )
-			{
-				scrollbar = false;
-				title = "Set Loot Container";
-				info = "This allows you to set a container, where items will go that you configured in the Loot Options setting. The container must be in your main pack in order to collect the items, and not within another container.";
-			}
-			else if ( page == 110 )
-			{
-				scrollbar = false;
-				title = "Ordinary Resources";
-				info = "Turning this setting on will have your character only harvest or gather ordinary resources like wood, leather, granite, iron and bones. This means you will not be collecting higher resourced items when skinning, mining, or lumberjacking.";
-			}
-			else if ( page == 111 )
-			{
-				scrollbar = false;
-				title = "Double Click to ID Items";
-				info = "Enabling this will allow your character to try and identify items by double clicking them.<BR><BR>NOTE: if you are using any third party software, that tries to open all of your containers, then that third party software will try to identify these items without your consent.";
-			}
-			else if ( page == 198 )
-			{
-				title = "Play Style - Barbaric";
-				info = "The default game does not lend itself to a sword and sorcery experience. This means that it is not the most optimal play experience to be a loin cloth wearing barbarian that roams the land with a huge axe. Characters generally get as much equipment as they can in order to maximize their rate of survivability. This particular play style can help in this regard. Choosing to play in this style will have a satchel appear in your main pack. You cannot store anything in this satchel, as its purpose is to change certain pieces of equipment you place into it. It will change shields, hats, helms, tunics, sleeves, leggings, boots, gorgets, gloves, necklaces, cloaks, and robes. When these items get changed, they will become something that appears differently but behave in the same way the previous item did. These different items can be equipped but may not appear on your character. Also note that when you wear robes, they cover your character's tunics and sleeves. Wearing a sword and sorcery robe will do the same thing so you will have to remove the robe in order to get to the sleeves and/or tunic. This play style has their own set of skill titles for many skills as well. If you are playing a female character, pressing the button further will convert any 'Barbarian' titles to 'Amazon'. You can open your satchel to learn more about this play style. This option can be turned off and on at any time. You can only have one type of play style active at any one time.";
-			}
-			else if ( page == 199 )
-			{
-				title = "Skill Lists";
-				info = "Skill lists are an alternative to the normal skill lists you can get from clicking the appropriate button on the paper doll. Although you still need to use that for skill management (up, down, lock), skill lists have a more condensed appearance for when you play the game. In order for skills to appear in this alternate list, they have to either be set to 'up', or they can be set to 'locked'. The 'locked' skills will only display in this list if you change your settings here to reflect that. The list does not refresh in real time, but it will often refresh itself to show your skill status in both real and enhanced values. Any skill that appears in orange indicates a skill that you have locked. You can open this list with the '[skilllist' command, or the appropriate button on the main screen.";
-			}
-			else if ( page == 1000 )
-			{
-				title = "Flip Deed";
-				info = "This option allows you to flip some deeds that can come in one of two direction facings. So if a deed states that furniture faces east, then you can set the deed on the floor of your house and flip it to face south instead. This can flip almost any deed-like items in this manner, but not all items are called 'deeds' or look like deeds. Some items behave as deeds and those can be flipped in the same manner. Tents or bear rugs, for example, have a facing and you can flip those with this command..";
-			}
-			//
+				case PageActionType.Setting_MusicTone_Info:
+				{
+					scrollbar = false;
+					title = "Music Tone";
+					info = "This option will simply toggle your music preference to play a different set of music in the dungeons. When turned on, it will play music you normally hear when traveling the land, instead of the music commonly played in dungeons.";
+					break;
+				}
 
-			AddPage(0);
+				case PageActionType.Setting_MusicPlaylist_Info:
+				{
+					title = "Music Playlist";
+					info = "This gives you a complete list of the in-game music. You can select the music you like and those choices will randomly play as you go from region to region. To listen to a song for review, select the blue gem icon. Note that the client has a delay time when you can start another song so selecting the blue gem may not respond if you started a song too soon before that. Wait for a few seconds and try clicking the blue gem again to see if that song starts to play. Playlists are disabled by default, so if you want your playlist to function, make sure to enable it.";
+					break;
+				}
 
-			string color = "#ddbc4b";
+				case PageActionType.Setting_PrivatePlay_Info:
+				{
+					scrollbar = false;
+					title = "Private Play";
+					info = "This option turns on or off the detailed messages of your journey for the town crier and local citizen chatter. This keeps your activities private so others will not see where you are traveling the world.";
+					break;
+				}
 
-			AddImage(0, 0, 9577, Server.Misc.PlayerSettings.GetGumpHue( from ));
-			AddHtml( 12, 12, 239, 20, @"<BODY><BASEFONT Color=" + color + ">" + title + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddHtml( 12, 43, 278, 212, @"<BODY><BASEFONT Color=" + color + ">" + info + "</BASEFONT></BODY>", (bool)false, (bool)scrollbar);
-			AddButton(268, 9, 4017, 4017, 0, GumpButtonType.Reply, 0);
-        }
+				case PageActionType.Setting_LootOptions_Info:
+				{
+					title = "Loot Options";
+					info = "This lets you select from a list of categories, where they will automatically take those types of items from common dungeon chests or corpses and put them in your backpack. If you select coins, you will take wealth in the form of currency or gold nuggets. If you take gems and jewels, this will consist of gems, gemstones, jewelry, jewels, and crystals. The unknown items are those that will need identification, but you may decide to take them anyway. The reagent options have a few categories. Magery and necromancer reagents are those used specifically by those characters, where witches brew reagents fall into the necromancer category. Alchemic reagents are those that fall outside the category of magery and necromancer reagents, and only alchemists use them. Herbalist reagents are useful druidic herbalism.";
+					break;
+				}
 
-        public override void OnResponse(NetState sender, RelayInfo info)
-        {
-            Mobile from = sender.Mobile;
-			from.SendSound( 0x4A );
-			from.CloseGump( typeof( Server.Engines.Help.HelpGump ) );
-			if ( m_Origin != 999 ){ from.SendGump( new Server.Engines.Help.HelpGump( from, m_Origin ) ); }
-        }
-    }
+				case PageActionType.Setting_ClassicPoisoning_Info:
+				{
+					title = "Classic Poisoning";
+					info = "There are two methods that assassins use to handle poisoned weapons. One is the simple method of soaking the blade and having it poison whenever it strikes their opponent. With this method, known as classic poisoning, there is little control on the dosage given but it is easier to maneuver. When this option is turned off, it has the newer and more tactical method, where only certain weapons can be poisoned and the assassin can control when the poison is administered with the hit. Although the tactical method requires more thought, it does have the potential to allow an assassin to poison certain arrows, for example. The choice of methods can be switched at any time, but only one method can be in use at a given time.";
+					break;
+				}
+
+				case PageActionType.Setting_SkillTitle_Info:
+				{
+					title = "Skill Title";
+					info = "When you don't set your skill title here, the game will take your highest skill and make that into your character's title. Choosing a skill here will force your title to that profession. So if you always want to be known as a wizard, then select the 'Magery' option (for example). You can let the game manage this at any time by setting it back to 'Auto Title'. Be warned when choosing a skill, if you have zero skill points in it, you will be titled 'the Village Idiot'. If you get at least 0.1, you will at least be 'Aspiring'.";
+					break;
+				}
+
+				case PageActionType.Setting_MessageColors_Info:
+				{
+					scrollbar = false;
+					title = "Message Color";
+					info = "By default, most of the messages appearing on the lower left of the screen are gray in color. Enabling this option will change those messages to have a random color whenenver a new message appears. This feature can help some more easily see such messages and the varying colors can also help distinguish individual messages that may be scrolling by.";
+					break;
+				}
+
+				case PageActionType.Setting_AutoAttack_Info:
+				{
+					scrollbar = false;
+					title = "Auto Attack";
+					info = "By default, when you are attacked you will automatically attack back. If you want to instead decide when or if you want to attack back, you can turn this option off. This can be helpful if you do not want to kill innocents by accident, or you are trying to tame an angry creature.";
+					break;
+				}
+
+				case PageActionType.Setting_Playstyle_Normal_Info:
+				{
+					title = "Play Style - Normal";
+					info = "This is the default play style for the " + MySettings.S_ServerName + ". It is designed for a classic fantasy world experience for the players. There are two other play styles available, evil and oriental. Play styles do not change the mechanics of the game playing experience, but it does change the flavor of the treasure you find and the henchman you hire. For example, you can set your play style to an 'evil' style of play. What happens is you will find treasure geared toward that play style. Where you would normally find a blue 'mace of might', the evil style would have you find a black 'mace of ghostly death'. They are simply a way to tweak your character's experience in the game.";
+					break;
+				}
+
+				case PageActionType.Setting_Playstyle_Evil_Info:
+				{
+					title = "Play Style - Evil";
+					info = "There is an evil element to the game that some want to participate in. With classes such as Necromancers, some players may want to travel a world with this flavor added. This particular setting allows you to toggle between regular and evil flavors. When in the evil mode, some of the treasure you will find will often have a name that fits in the evil style. When you stay within negative karma, skill titles will change for you as well, but not all. Look over the book of skill titles (found within the game world) to see which titles will change based on karma. Some of the relics you will find may also have this style, to perhaps decorate a home in this fashion. This option can be turned off and on at any time. You can only have one type of play style active at any one time.<br><br>"
+						+ "[evil - Turns on/off the evil flavor the game provides.";
+					break;
+				}
+
+				case PageActionType.Setting_Playstyle_Oriental_Info:
+				{
+					title = "Play Style - Oriental";
+					info = "There is an oriental element to the game that most do not want to participate in. With classes such as Ninja and Samurai, some players may want to travel a world with this flavor added. This particular setting allows you to toggle between fantasy and oriental. When in the oriental mode, much of the treasure you will find will be of Chinese or Japanese historical origins. These types of items will most times be named to match the style. Items that once belonged to someone, will often have a name that fits in the oriental style. Some of the skill titles will change for you as well, but not all. Look over the book of skill titles (found within the game world) to see which titles will change based on this play style. Some of the relics and artwork you will find will also have this style, to perhaps decorate a home in this fashion. This option can be turned off and on at any time. You can only have one type of play style active at any one time.";
+					break;
+				}
+
+				case PageActionType.ShowHelp_MagicToolbars:
+				{
+					returnPage = PageActionType.Navigate_MagicToolbars;
+					title = "Magic Toolbars";
+					info = "These toolbars can be configured for all areas of magical-style spells in the game. Each school of magic has two separate toolbars you can customize, except for magery which has four available. The large number of spells for magery benefit from the extra two toolbars. These toolbars allow you to select spells that you like to cast often, and set whether the bar will appear vertical or horizontal. If you choose to have the toolbar appear vertical, you have the additional option of showing the spell names next to the icons. These toolbars can be moved around and you need only single click the appropriate icon to cast the spell. If you have spells selected for a toolbar, but lack the spell in your spellbook, the icon will not appear when you open the toolbar. These toolbars cannot be closed by normal means, to avoid the chance you close them by accident when in combat. You can either use the command button available in the 'Help' section, or the appropriate typed keyboard command.";
+					break;
+				}
+
+				case PageActionType.Setting_MagerySpellColor_Info:
+				{
+					scrollbar = false;
+					title = "Magery Spell Color";
+					info = "You can change the color for all of your magery spell effects here. There are a limited amount of choices given here. Once set, your spells will be that color for every effect. If you want to set it back to normal, then select the 'Default' option. You can also use the '[spellhue' command followed by a number of any color you want to set it to.";
+					break;
+				}
+
+				case PageActionType.Setting_CustomTitle_Info:
+				{
+					scrollbar = false;
+					title = "Custom Title";
+					info = "This allows you to enter a custom title for your character, instead of relying on the game to assign you one based on your best skill or the skill you choose to have represent you. To clear out a custom title you may have set with this option, enter the word of 'clear' to remove it.";
+					break;
+				}
+
+				case PageActionType.Setting_WeaponAbilityNames_Info:
+				{
+					scrollbar = false;
+					title = "Weapon Ability Names";
+					info = "When you get good enough with tactics and a weapon type, you will get special abilities that they can perform. These usually appear as simple icons you can select to do the action, but this option will turn on or off the special weapon ability names next to the appropriate icons.";
+					break;
+				}
+
+				case PageActionType.Setting_AutoSheath_Info:
+				{
+					scrollbar = false;
+					title = "Auto Sheath";
+					info = "This option turns on or off the feature to sheathe your weapon when not in battle. When you put your character back into war mode, they will draw the weapon.";
+					break;
+				}
+
+				case PageActionType.Setting_GumpImages_Info:
+				{
+					scrollbar = false;
+					title = "Gump Images";
+					info = "Many window gumps have a faded image in the background. Turning this off will have those windows only be black in color, with no background image.";
+					break;
+				}
+
+				case PageActionType.Setting_WeaponAbilityBar_Info:
+				{
+					scrollbar = false;
+					title = "Weapon Ability Bar";
+					info = "This option turns on or off the auto-opening of the weapon ability icon bar, meaning you will have to do it manually if you turn it off.";
+					break;
+				}
+
+				case PageActionType.Setting_CreatureMagicFocus_Info:
+				{
+					scrollbar = false;
+					title = "Creature Magic";
+					info = "Some creatures have a natural ability for magic. This setting lets you change which school of magic you want to focus on: magery, necromancy, or elementalism. This allows magery or necromancy creatures to move their focus into elementalism, or to switch between magery and necromancy.";
+					break;
+				}
+
+				case PageActionType.Setting_CreatureType_Info:
+				{
+					scrollbar = false;
+					title = "Creature Type";
+					info = "Some creature species has more than one option for appearance. This setting lets you change to another of that species if another appearance is available. You can also turn yourself into a human if you choose. If you become human, you will remain that way forever.";
+					break;
+				}
+
+				case PageActionType.Setting_CreatureSounds_Info:
+				{
+					scrollbar = false;
+					title = "Creature Sounds";
+					info = "Since you are a creature, you sometimes make sounds when attacking or getting hurt from attacks. You can turn these sounds on or off here.";
+					break;
+				}
+
+				case PageActionType.Setting_UseAncientSpellbook_Info:
+				{
+					scrollbar = false;
+					title = "Ancient Spellbook";
+					info = "If you begin researching the 64 ancient spells that were long forgotten, enabling this setting means you will be casting such magic from a book instead of using your research bag. If you have this enabled, you will need reagents to cast spells and the spells being cast must be in your book. Disabling this checks your research bag to see if you have the spell prepared ahead of time.";
+					break;
+				}
+
+				case PageActionType.Setting_SetCraftingContainer_Info:
+				{
+					scrollbar = false;
+					title = "Set Crafting Container";
+					info = "This allows you to set a container, where items will go when you are creating them through crafting. The container must be in your main pack in order to collect the items, and not within another container.";
+					break;
+				}
+
+				case PageActionType.Setting_SetHarvestingContainer_Info:
+				{
+					scrollbar = false;
+					title = "Set Harvesting Container";
+					info = "This allows you to set a container, where items will go when you are harvesting for items. These are items you get from activities like mining, lumberjacking, and fishing. The container must be in your main pack in order to collect the items, and not within another container.";
+					break;
+				}
+
+				case PageActionType.Setting_SetLootContainer_Info:
+				{
+					scrollbar = false;
+					title = "Set Loot Container";
+					info = "This allows you to set a container, where items will go that you configured in the Loot Options setting. The container must be in your main pack in order to collect the items, and not within another container.";
+					break;
+				}
+
+				case PageActionType.Setting_OrdinaryResources_Info:
+				{
+					scrollbar = false;
+					title = "Ordinary Resources";
+					info = "Turning this setting on will have your character only harvest or gather ordinary resources like wood, leather, granite, iron and bones. This means you will not be collecting higher resourced items when skinning, mining, or lumberjacking.";
+					break;
+				}
+
+				case PageActionType.Setting_DoubleClickToIDItems_Info:
+				{
+					scrollbar = false;
+					title = "Double Click to ID Items";
+					info = "Enabling this will allow your character to try and identify items by double clicking them.<BR><BR>NOTE: if you are using any third party software, that tries to open all of your containers, then that third party software will try to identify these items without your consent.";
+					break;
+				}
+
+				case PageActionType.Setting_Playstyle_Barbaric_Info:
+				{
+					title = "Play Style - Barbaric";
+					info = "The default game does not lend itself to a sword and sorcery experience. This means that it is not the most optimal play experience to be a loin cloth wearing barbarian that roams the land with a huge axe. Characters generally get as much equipment as they can in order to maximize their rate of survivability. This particular play style can help in this regard. Choosing to play in this style will have a satchel appear in your main pack. You cannot store anything in this satchel, as its purpose is to change certain pieces of equipment you place into it. It will change shields, hats, helms, tunics, sleeves, leggings, boots, gorgets, gloves, necklaces, cloaks, and robes. When these items get changed, they will become something that appears differently but behave in the same way the previous item did. These different items can be equipped but may not appear on your character. Also note that when you wear robes, they cover your character's tunics and sleeves. Wearing a sword and sorcery robe will do the same thing so you will have to remove the robe in order to get to the sleeves and/or tunic. This play style has their own set of skill titles for many skills as well. If you are playing a female character, pressing the button further will convert any 'Barbarian' titles to 'Amazon'. You can open your satchel to learn more about this play style. This option can be turned off and on at any time. You can only have one type of play style active at any one time.";
+					break;
+				}
+
+				case PageActionType.Setting_SkillList_Info:
+				{
+					title = "Skill Lists";
+					info = "Skill lists are an alternative to the normal skill lists you can get from clicking the appropriate button on the paper doll. Although you still need to use that for skill management (up, down, lock), skill lists have a more condensed appearance for when you play the game. In order for skills to appear in this alternate list, they have to either be set to 'up', or they can be set to 'locked'. The 'locked' skills will only display in this list if you change your settings here to reflect that. The list does not refresh in real time, but it will often refresh itself to show your skill status in both real and enhanced values. Any skill that appears in orange indicates a skill that you have locked. You can open this list with the '[skilllist' command, or the appropriate button on the main screen.";
+					break;
+				}
+
+				case PageActionType.Setting_RemoveVendorGoldSafeguard_Info:
+				{
+					title = "Remove Vendor Gold Safeguard";
+					info = "Command: [VendorGold<br><br>When enabled, vendors will no longer stop sales if they cannot afford it. Instead, vendors will take all the items and give you their remaining gold.";
+					break;
+				}
+				
+				case PageActionType.Setting_SuppressVendorTooltips_Info:
+				{
+					title = "Suppress Vendor Tooltips";
+					info = "Command: [SuppressTooltips<br><br>When enabled, vendor tooltips will not be sent to the client. This can be helpful for players who use a touch screen. Warning: Players usually have to re-log to re-query synchronize with this after changing it.";
+					break;
+				}
+
+				default:
+					return false;
+			}
+			
+			from.SendGump( new InfoHelpGump( from, title, info, scrollbar, () => from.SendGump( new HelpGump( from, (int)returnPage ) ) ) );
+
+			return true;
+		}
+	}
 }

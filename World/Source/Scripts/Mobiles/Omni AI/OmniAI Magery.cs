@@ -43,7 +43,9 @@ namespace Server.Mobiles
 			if ( spell != null )
 			{
 				TimeSpan delay = spell.GetCastDelay() + spell.GetCastRecovery();
-                m_NextCastTime = DateTime.Now + delay + delay; // Double the delay
+				if (!IsEmpowered) delay += delay; // Double the delay
+
+                m_NextCastTime = DateTime.Now + delay;
 				spell.Cast();
 			}
 
@@ -60,7 +62,7 @@ namespace Server.Mobiles
 			if ( spell != null )
 			{
 				if ( m_Mobile.Debug )
-					m_Mobile.Say( 1156, "Blessing my self" );
+					m_Mobile.SayHued( 1156, "Blessing my self" );
 
 				return spell;
 			}
@@ -73,7 +75,7 @@ namespace Server.Mobiles
 				if ( spell != null )
 				{
 					if ( m_Mobile.Debug )
-						m_Mobile.Say( 1156, "Cursing my opponent" );
+						m_Mobile.SayHued( 1156, "Cursing my opponent" );
 
 					return spell;
 				}
@@ -83,7 +85,7 @@ namespace Server.Mobiles
 			if ( m_Mobile.Combatant != null && !m_Mobile.Combatant.Poisoned && Utility.RandomDouble() > 0.75 )
 			{
 				if ( m_Mobile.Debug )
-					m_Mobile.Say( 1156, "Casting Poison" );
+					m_Mobile.SayHued( 1156, "Casting Poison" );
 
 				spell = new PoisonSpell( m_Mobile, null );
 
@@ -101,7 +103,7 @@ namespace Server.Mobiles
 				if ( spell != null )
 				{
 					if ( m_Mobile.Debug )
-						m_Mobile.Say( 1156, "Draining mana" );
+						m_Mobile.SayHued( 1156, "Draining mana" );
 
 					return spell;
 				}
@@ -115,7 +117,7 @@ namespace Server.Mobiles
 				if ( spell != null )
 				{
 					if ( m_Mobile.Debug )
-						m_Mobile.Say( 1156, "Summoning help" );
+						m_Mobile.SayHued( 1156, "Summoning help" );
 					return spell;
 				}
 			}
@@ -255,7 +257,7 @@ namespace Server.Mobiles
 		public Spell GetRandomMageryDamageSpell()
 		{
 			if ( m_Mobile.Debug )
-				m_Mobile.Say( 1156, "Random damage spell" );
+				m_Mobile.SayHued( 1156, "Random damage spell" );
 
 			int whichone = (int)(m_Mobile.Skills[SkillName.Magery].Value / 14.2) - 1;
 
@@ -286,8 +288,14 @@ namespace Server.Mobiles
 				}
 				case 4: return new MindBlastSpell( m_Mobile, null );
 				case 3: return new LightningSpell( m_Mobile, null );
-				case 2: return new FireballSpell( m_Mobile, null );
-				case 1: return new HarmSpell( m_Mobile, null );
+				case 2:
+				case 1:
+					if ( whichone == 1 && m_Mobile.Combatant != null && m_Mobile.Combatant.InRange(m_Mobile, 2) )
+					{
+						return new HarmSpell( m_Mobile, null );
+					}
+
+					return new FireballSpell( m_Mobile, null );
 				default: return new MagicArrowSpell( m_Mobile, null );
 			}
 

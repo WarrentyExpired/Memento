@@ -138,6 +138,18 @@ namespace Server
 				// 	totalDamage += totalDamage * quiver.DamageIncrease / 100;
 			}
 
+			if (m is PlayerMobile) // Defender
+			{
+				var context = Temptation.TemptationEngine.Instance.GetContextOrDefault(m);
+				if (context.IsBerserk) totalDamage += (int)(0.2 * totalDamage);
+			}
+
+			if (from is PlayerMobile) // Attacker
+			{
+				var context = Temptation.TemptationEngine.Instance.GetContextOrDefault(from);
+				if (context.IsBerserk) totalDamage += (int)(0.1 * totalDamage);
+			}
+
 			#region Dragon Barding
 			if( (from == null || !from.Player) && m.Player && m.Mount is SwampDragon )
 			{
@@ -246,6 +258,7 @@ namespace Server
 
 			List<Item> items = m.Items;
 			int value = 0;
+			int raceValue = int.MinValue;
 
 			for( int i = 0; i < items.Count; ++i )
 			{
@@ -286,7 +299,7 @@ namespace Server
 					AosAttributes attrs = ((BaseRace)obj).Attributes;
 
 					if( attrs != null )
-						value += attrs[attribute];
+						raceValue = raceValue == int.MinValue ? attrs[attribute] : raceValue + attrs[attribute];
 				}
 				else if( obj is BaseInstrument )
 				{
@@ -330,6 +343,13 @@ namespace Server
 				}
 			}
 
+			if (int.MinValue < raceValue)
+			{
+				var context = Temptation.TemptationEngine.Instance.GetContextOrDefault( m );
+				if ( context.ReduceRacialMagicalAttributes ) value = Math.Max( value, raceValue ); // Does not effect Stats, Skills, or Resists
+				else value += raceValue;
+			}
+				
 			if ( attribute == AosAttribute.LowerRegCost && value > MyServerSettings.LowerReg() )
 				value = MyServerSettings.LowerReg();
 			else if ( attribute == AosAttribute.LowerManaCost && value > MyServerSettings.LowerMana() )

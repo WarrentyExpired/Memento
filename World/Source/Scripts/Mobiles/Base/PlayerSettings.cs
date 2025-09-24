@@ -48,7 +48,7 @@ namespace Server.Misc
 		public static void SetSavage( Mobile m ) // -------------------------------------------------------------------------------------------------
 		{
 			PlayerSettings.SetDiscovered( m, "the Savaged Empire", true );
-			MyServerSettings.SkillBegin( "savage", (PlayerMobile)m );
+			((PlayerMobile)m).SetCharacterType( CharacterType.Savage );
 			Server.Misc.MorphingTime.RemoveMyClothes( m );
 
 			if ( m.Female )
@@ -136,7 +136,7 @@ namespace Server.Misc
 			Point3D loc = new Point3D( 7000, 4000, 0 );
 			m.MoveToWorld( loc, Map.Lodor );
 
-			MyServerSettings.SkillBegin( "alien", (PlayerMobile)m );
+			((PlayerMobile)m).SetCharacterType( CharacterType.Alien );
 			Server.Misc.MorphingTime.RemoveMyClothes( m );
 
 			List<Item> contents = new List<Item>();
@@ -225,14 +225,19 @@ namespace Server.Misc
 			}
 
 			m.Profile = ((PlayerMobile)m).CharacterWanted;
-			SetBardsTaleQuest( m, "BardsTaleWin", true );
-			MyServerSettings.SkillBegin( "fugitive", (PlayerMobile)m );
-			m.Kills = 1;
-			((PlayerMobile)m).Fugitive = 1;
+			SetWantedState( (PlayerMobile)m );
 
 			GuardNote note = new GuardNote();
 			note.ScrollText = ((PlayerMobile)m).CharacterWanted;
 			m.AddToBackpack( note );
+		}
+
+		public static void SetWantedState( PlayerMobile m ) // -------------------------------------------------------------------------------------------------
+		{
+			SetBardsTaleQuest( m, "BardsTaleWin", true );
+			m.SetCharacterType( CharacterType.Fugitive );
+			m.Kills = 1;
+			m.Fugitive = 1;
 		}
 
 		public static string GetWantedStory( Mobile m ) // -------------------------------------------------------------------------------------------------
@@ -1512,21 +1517,6 @@ namespace Server.Misc
 			Server.Gumps.RegBar.RefreshRegBar( m );
 			Server.Gumps.QuickBar.RefreshQuickBar( m );
 			Server.Gumps.WealthBar.RefreshWealthBar( m );
-		}
-
-		public static bool GetSuppressVendorTooltip( Mobile m ) // ---------------------------------------------------------------------------------------------
-		{
-			if ( m is PlayerMobile ) return ((PlayerMobile)m).SuppressVendorTooltip;
-
-			return false;
-		}
-
-		public static void SetSuppressVendorTooltip( Mobile m, bool suppress ) // ---------------------------------------------------------------------------------------------
-		{
-			if ( m is PlayerMobile )
-			{
-				((PlayerMobile)m).SuppressVendorTooltip = suppress;
-			}
 		}
 	}
 }

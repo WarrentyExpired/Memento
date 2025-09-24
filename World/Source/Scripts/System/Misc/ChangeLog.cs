@@ -16,21 +16,46 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
+			builder.Append("- Commands - Add [Organize command to recursively sort items into separate bags<br>");
+			builder.Append("- Commands - Add [OrderBy-XX commands to move items into a gridlike pattern<br>");
+			builder.Append("           - XX is one of the following: Graphic, Hue, Name, Size, Slayer, Weight<br>");
+			builder.Append("           - Optional arguments can be provided to control the spacing between items<br>");
+			builder.Append("             Example: [OrderBy-Name 20 20<br>");
+			builder.Append("- Combat - OmniAI now uses Harm more intelligently<br>");
 			builder.Append("- Craft - Jewelry can now be exceptionally crafted<br>");
 			builder.Append("- Craft - Bulk crafting now dictates Successes rather than Attempts<br>");
+			builder.Append("- Craft - Crafted Runebooks now have much more charge capacity<br>");
 			builder.Append("- Gather - Removed several unreachable 'Glistening Ore Vein'<br>");
 			builder.Append("- Gump - Changed icon and added tooltip indicating certain spells are not craftable<br>");
+			builder.Append("- Gump - Risky refactor to Help gump plumbing<br>");
+			builder.Append("- Gump - Adjusted Toolbars page on Help gump to narrow to relevant toolbars<br>");
+			builder.Append("- Gump - Add [Achievements button to Help gump<br>");
+			builder.Append("- Gump - Risky refactor to Starter Gypsy gump plumbing<br>");
+			builder.Append("- Gump - Make Points visible on Shoppes<br>");
+			builder.Append("- Gump - Add Settings for [VendorGold and [SuppressTooltips to Help gump<br>");
 			builder.Append("- Item - Pearl gemstone bonus no longer provides +1 FC, +1 FCR, and +2 all stats<br>");
 			builder.Append("- Item - Mallet Stake single and double click actions have been swapped<br>");
+			builder.Append("- Misc - Risky refactor to Player skill caps<br>");
+			builder.Append("- Misc - Self-res delay reduced to 10 seconds, down from 30 seconds<br>");
+			builder.Append("- Misc - The tillerman now babbles some dull stories<br>");
 			builder.Append("- Misc - Hit Point Increase attribute is now uncapped, up from 25<br>");
 			builder.Append("       - Note: Max Health from stats + equipment is still 325<br>");
 			builder.Append("- Pets - The subdue mechanic is now only required at the start of taming<br>");
+			builder.Append("- Races - Flat Luck bonus has been reduced from +600 to +100. Max is now 600, down from 1100<br>");
 			builder.Append("- Skill - Alternative Seafaring tasks can now provide gains up to 125 skill, up from 50<br>");
+			builder.Append("- Skill - Provocation is now 1.5x more likely to gain<br>");
+			builder.Append("- Skill - Provocation failure cooldown is now 3s, down from 5s<br>");
+			builder.Append("- Skill - Minimum Provocation skill required for attempts is slightly lower<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
+			builder.Append("- Commands - Fix Achievement command and aliases -- [feats / [achievement / [achievements<br>");
+			builder.Append("- Item - Pants and Leg Armor can now both give resistances<br>");
 			builder.Append("- Misc - Prevent access to moat in Caverns of Poseidon<br>");
+			builder.Append("- Misc - Add exit teleporter to Tower of Brass level<br>");
+			builder.Append("- Misc - Luck now properly increases rare item drop rates<br>");
 			builder.Append("- Pets - Hoard Minion no longer freezes when the Player has a combatant<br>");
+			builder.Append("- Skill - Provocation no longer sets cooldown when failing to select a 2nd target<br>");
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

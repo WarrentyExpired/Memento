@@ -80,10 +80,7 @@ namespace Server.Misc
 
 		public static bool isFromSpace( Mobile m )
 		{
-			if ( ((PlayerMobile)m).SkillStart == 40000 )
-				return true;
-
-			return false;
+			return m is PlayerMobile && ((PlayerMobile)m).CharacterType == CharacterType.Alien;
 		}
 
 		public static bool isSyth ( Mobile m, bool checkSword )
@@ -550,7 +547,7 @@ namespace Server.Misc
 				return false;
 
 			const int MAX_LUCK = 2000;
-			const double LUCK_TO_PERCENT_CONVERSION = 100 / MAX_LUCK;
+			const double LUCK_TO_PERCENT_CONVERSION = 100f / MAX_LUCK;
 
 			luck = Math.Min( MAX_LUCK, luck ); // Cap luck
 			if ( percentOfLuckToUse < 100 ) luck = luck * percentOfLuckToUse / 100; // Reduce luck
@@ -898,174 +895,139 @@ namespace Server.Gumps
 			from.SendGump( new StatsGump( from, from, 0 ) );
         }
 
-        public StatsGump ( Mobile m, Mobile from, int origin ) : base ( 50,50 )
+        public StatsGump(Mobile m, Mobile from, int origin) : base(50, 50)
         {
-			m_Origin = origin;
+            m_Origin = origin;
 
-			if ( origin == 0 ){ from.SendSound( 0x4A ); }
+            if (origin == 0) { from.SendSound(0x4A); }
 
-            int LRCCap = 100;
-            int LMCCap = 100;
             int SwingSpeedCap = 100;
-            int HCICap = 45;
-            int DCICap = 45;
-            int FCCap = 4; // FC 4 For Paladin, otherwise FC 2 for Mage
-            int DamageIncreaseCap = 100;
             int SDICap = 1000000;
-				if ( SDICap > MyServerSettings.SpellDamageIncreaseVsMonsters() && MyServerSettings.SpellDamageIncreaseVsMonsters() > 0 ){ SDICap = MyServerSettings.SpellDamageIncreaseVsMonsters(); }
-            int ReflectDamageCap = 100;
-            int SSICap = 100;
-            
-            int LRC = AosAttributes.GetValue( from, AosAttribute.LowerRegCost ) > LRCCap ? LRCCap : AosAttributes.GetValue( from, AosAttribute.LowerRegCost );
-            int LMC = AosAttributes.GetValue( from, AosAttribute.LowerManaCost ) > LMCCap ? LMCCap : AosAttributes.GetValue( from, AosAttribute.LowerManaCost );
-			int BandageSpeedMilliseconds = BandageContext.HealTimer( m, m );
+            if (SDICap > MyServerSettings.SpellDamageIncreaseVsMonsters() && MyServerSettings.SpellDamageIncreaseVsMonsters() > 0) { SDICap = MyServerSettings.SpellDamageIncreaseVsMonsters(); }
+
+            int BandageSpeedMilliseconds = BandageContext.HealTimer(m, m);
             TimeSpan SwingSpeed = (from.Weapon as BaseWeapon).GetDelay(from) > TimeSpan.FromSeconds(SwingSpeedCap) ? TimeSpan.FromSeconds(SwingSpeedCap) : (from.Weapon as BaseWeapon).GetDelay(from);
-            int HCI = AosAttributes.GetValue( from, AosAttribute.AttackChance ) > HCICap ? HCICap : AosAttributes.GetValue( from, AosAttribute.AttackChance );
-            int DCI = AosAttributes.GetValue( from, AosAttribute.DefendChance ) > DCICap ? DCICap : AosAttributes.GetValue( from, AosAttribute.DefendChance );
-            int FC = AosAttributes.GetValue( from, AosAttribute.CastSpeed ) > FCCap ? FCCap : AosAttributes.GetValue( from, AosAttribute.CastSpeed );
-            int FCR = AosAttributes.GetValue( from, AosAttribute.CastRecovery );
-            int DamageIncrease = AosAttributes.GetValue( from, AosAttribute.WeaponDamage ) > DamageIncreaseCap ? DamageIncreaseCap : AosAttributes.GetValue( from, AosAttribute.WeaponDamage );
-            int SDI = AosAttributes.GetValue( from, AosAttribute.SpellDamage ) > SDICap ? SDICap : AosAttributes.GetValue( from, AosAttribute.SpellDamage );
-            int ReflectDamage = AosAttributes.GetValue( from, AosAttribute.ReflectPhysical ) > ReflectDamageCap ? ReflectDamageCap : AosAttributes.GetValue( from, AosAttribute.ReflectPhysical );
-            int SSI = AosAttributes.GetValue( from, AosAttribute.WeaponSpeed ) > SSICap ? SSICap : AosAttributes.GetValue( from, AosAttribute.WeaponSpeed );
-            int HealCost = GetPlayerInfo.GetResurrectCost( from );
-			int CharacterLevel = GetPlayerInfo.GetPlayerLevel( from );
-            int EP = BasePotion.EnhancePotions( from );
-            int MgAb = from.MagicDamageAbsorb;
-            int MeAb = from.MeleeDamageAbsorb;
 
-            this.Closable=true;
-			this.Disposable=true;
-			this.Dragable=true;
-			this.Resizable=false;
+            this.Closable = true;
+            this.Disposable = true;
+            this.Dragable = true;
+            this.Resizable = false;
 
-			AddPage(0);
+            AddPage(0);
 
-			// 0 - BUTTON // 1 - PLAYERS HANDBOOK // 2 - DIVINATION
+            // 0 - BUTTON // 1 - PLAYERS HANDBOOK // 2 - DIVINATION
 
-			int img = 11420;
-			string color = "#E4E377";
+            int img = 11420;
+            string color = "#E4E377";
 
-			if ( m_Origin == 1 )
+            if (m_Origin == 1)
+            {
+                img = 11417;
+                color = "#DCB179";
+            }
+            else if (m_Origin == 2)
+            {
+                img = 11419;
+                color = "#E59DE2";
+            }
+
+            AddImage(1, 1, img, Server.Misc.PlayerSettings.GetGumpHue(m));
+
+            string name = from.Name;
+            if (from.Title != "" && from.Title != null) { name = name + " " + from.Title; }
+            else { name = name + " the " + GetPlayerInfo.GetSkillTitle(from) + ""; }
+
+            AddHtml(15, 15, 400, 20, @"<BODY><BASEFONT Color=" + color + ">" + name.ToUpper() + "</BASEFONT></BODY>", (bool)false, (bool)false);
+
+            AddButton(667, 12, 4017, 4017, 0, GumpButtonType.Reply, 0);
+
+            AddButton(260, 12, 4011, 4011, 666, GumpButtonType.Reply, 0);
+            string warnColor = "#7ab582";
+            string warnMsg = "Innocent";
+            if (Server.Misc.GetPlayerInfo.IsWanted(from))
+            {
+                warnColor = "#d38a8a";
+                warnMsg = "Guilty";
+            }
+
+            AddHtml(293, 16, 60, 20, @"<BODY><BASEFONT Color=" + warnColor + ">" + warnMsg + "</BASEFONT></BODY>", (bool)false, (bool)false);
+
+            var colAB = new YPosition(45, 35);
+
+            AddStatLine(20, 135, 80, "Level", string.Format("{0}", GetPlayerInfo.GetPlayerLevel(from)), "A measure of your skills, stats, and reputation. Max: 100", color, colAB);
+            AddStatLine(20, 135, 80, "Strength", string.Format("{0} + {1}", from.RawStr, from.Str - from.RawStr), null, color, colAB);
+            AddStatLine(20, 135, 80, "Dexterity", string.Format("{0} + {1}", from.RawDex, from.Dex - from.RawDex), null, color, colAB);
+            AddStatLine(20, 135, 80, "Intelligence", string.Format("{0} + {1}", from.RawInt, from.Int - from.RawInt), null, color, colAB);
+            AddStatLine(20, 135, 80, "Fame", string.Format("{0}", from.Fame), string.Format("Maximum Fame: {0}", Titles.MaxFame), color, colAB);
+            AddStatLine(20, 135, 80, "Karma", string.Format("{0}", from.Karma), string.Format("Maximum Karma: {0}", Titles.MaxKarma), color, colAB);
+            AddStatLine(20, 135, 80, "Tithe", string.Format("{0}", from.TithingPoints), string.Format("Maximum Tithe: {0}", TithingGump.MaxTithingPoints), color, colAB);
+            AddStatLine(20, 135, 80, "Hunger", string.Format("{0}", from.Hunger), "Maximum Hunger: 20.", color, colAB);
+            AddStatLine(20, 135, 80, "Thirst", string.Format("{0}", from.Thirst), "Maximum Thirst: 20.", color, colAB);
+            AddStatLine(20, 135, 80, "Potion Enhance", string.Format("{0}/50%", BasePotion.EnhancePotions(from)), "Increases effect when consuming potions.", color, colAB);
+            AddStatLine(20, 135, 80, "Bank Gold", Banker.GetBalance(from).ToString(), null, color, colAB);
+
+            ///////////////////////////////////////////////////////////////////////////////////
+
+            var colCD = new YPosition(45, 35);
+
+            AddStatLine(260, 375, 80, "Hits", string.Format("{0} + {1}", from.Hits - AosAttributes.GetValue(from, AosAttribute.BonusHits), AosAttributes.GetValue(from, AosAttribute.BonusHits)), null, color, colCD);
+            AddStatLine(260, 375, 80, "Stamina", string.Format("{0} + {1}", from.Stam - AosAttributes.GetValue(from, AosAttribute.BonusStam), AosAttributes.GetValue(from, AosAttribute.BonusStam)), null, color, colCD);
+            AddStatLine(260, 375, 80, "Mana", string.Format("{0} + {1}", from.Mana - AosAttributes.GetValue(from, AosAttribute.BonusMana), AosAttributes.GetValue(from, AosAttribute.BonusMana)), null, color, colCD);
+            AddStatLine(260, 375, 80, "Hits Regen", string.Format("{0}", AosAttributes.GetValue(from, AosAttribute.RegenHits)), "Regenerates hit points over time", color, colCD);
+            AddStatLine(260, 375, 80, "Stamina Regen", string.Format("{0}", AosAttributes.GetValue(from, AosAttribute.RegenStam)), null, color, colCD);
+            AddStatLine(260, 375, 80, "Mana Regen", string.Format("{0}", AosAttributes.GetValue(from, AosAttribute.RegenMana)), null, color, colCD);
+
+            if (MyServerSettings.LowerReg() > 0)
+                AddStatLine(260, 375, 80, "Low Reagent", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.LowerRegCost), MyServerSettings.LowerReg()), "Increases chance to not use reagents when casting", color, colCD);
+            if (MyServerSettings.LowerMana() > 0)
+                AddStatLine(260, 375, 80, "Low Mana", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.LowerManaCost), MyServerSettings.LowerMana()), "Reduces mana cost of casting spells and using abilities", color, colCD);
+
+            AddStatLine(260, 375, 80, "Spell Damage +", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.SpellDamage), SDICap), "Increases damage done by spells", color, colCD);
+            AddStatLine(260, 375, 80, "Resurrect Cost", string.Format("{0}", GetPlayerInfo.GetResurrectCost(from)), null, color, colCD);
+            AddStatLine(260, 375, 80, "Murders", string.Format("{0}", from.Kills), null, color, colCD);
+
+            ///////////////////////////////////////////////////////////////////////////////////
+            var colEF = new YPosition(45, 35);
+
+            AddStatLine(500, 615, 80, "Hit Chance", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.AttackChance), 45), "Increases chance to land weapon attacks", color, colEF);
+            AddStatLine(500, 615, 80, "Defend Chance", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.DefendChance), 45), "Increases chance to dodge weapon attacks", color, colEF);
+            AddStatLine(500, 615, 80, "Swing Speed", string.Format("{0}s", new DateTime(SwingSpeed.Ticks).ToString("s.ff")), "Duration between weapon attacks", color, colEF);
+            AddStatLine(500, 615, 80, "Swing Speed +", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.WeaponSpeed), 60), "Increases attack speed of weapon attacks", color, colEF); // Soft cap at 60, Hard cap at 100
+            AddStatLine(500, 615, 80, "Bandage Speed", string.Format("{0:0.0}s", new DateTime(TimeSpan.FromMilliseconds(BandageSpeedMilliseconds).Ticks).ToString("s.ff")), null, color, colEF);
+            AddStatLine(500, 615, 80, "Damage Increase", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.WeaponDamage), 100), "Increases damage of weapon attacks", color, colEF);
+            AddStatLine(500, 615, 80, "Reflect Damage", string.Format("{0}/{1}%", AosAttributes.GetValue(from, AosAttribute.ReflectPhysical), 100), "Percent of received physical damage that the attacker also receives", color, colEF);
+            AddStatLine(500, 615, 80, "Fast Cast", string.Format("{0}", AosAttributes.GetValue(from, AosAttribute.CastSpeed)), string.Format("Cast Speed Increase: Pure Knights ({0}) / Otherwise ({1})", 4, 2), color, colEF);
+            AddStatLine(500, 615, 80, "Cast Recovery", string.Format("{0}", AosAttributes.GetValue(from, AosAttribute.CastRecovery)), null, color, colEF);
+            AddStatLine(500, 615, 80, "Magic Absorb", string.Format("{0}", from.MagicDamageAbsorb), null, color, colEF);
+            AddStatLine(500, 615, 80, "Melee Absorb", string.Format("{0}", from.MeleeDamageAbsorb), null, color, colEF);
+        }
+
+        private class YPosition
+		{
+			public int Current { get; set; }
+			public int LineHeight { get; private set; }
+
+			public YPosition(int startY, int lineHeight)
 			{
-				img = 11417;
-				color = "#DCB179";
+				Current = startY;
+				LineHeight = lineHeight;
 			}
-			else if ( m_Origin == 2 )
+
+			public int Next()
 			{
-				img = 11419;
-				color = "#E59DE2";
+				int currentY = Current;
+				Current += LineHeight;
+				return currentY;
 			}
+		}
 
-			AddImage(1, 1, img, Server.Misc.PlayerSettings.GetGumpHue( m ));
-
-			string name = from.Name;
-				if ( from.Title != "" && from.Title != null ){ name = name + " " + from.Title; }
-				else { name = name + " the " + GetPlayerInfo.GetSkillTitle( from ) + ""; }
-
-			AddHtml( 15, 15, 400, 20, @"<BODY><BASEFONT Color=" + color + ">" + name.ToUpper() + "</BASEFONT></BODY>", (bool)false, (bool)false);
-
-			AddButton(667, 12, 4017, 4017, 0, GumpButtonType.Reply, 0);
-
-			AddButton(20, 402, 4011, 4011, 666, GumpButtonType.Reply, 0);
-			string warnColor = "#7ab582";
-			string warnMsg = "Innocent";
-			if ( Server.Misc.GetPlayerInfo.IsWanted( from ) )
-			{
-				warnColor = "#d38a8a";
-				warnMsg = "Guilty";
-			}	
-
-			AddHtml( 61, 406, 100, 20, @"<BODY><BASEFONT Color=" + warnColor + ">" + warnMsg + "</BASEFONT></BODY>", (bool)false, (bool)false);
-
-			string colA = "";
-			colA = colA + "Strength<BR><BR>";
-			colA = colA + "Dexterity<BR><BR>";
-			colA = colA + "Intelligence<BR><BR>";
-			colA = colA + "Fame<BR><BR>";
-			colA = colA + "Karma<BR><BR>";
-			colA = colA + "Tithe<BR><BR>";
-			colA = colA + "Hunger<BR><BR>";
-			colA = colA + "Thirst<BR><BR>";
-			colA = colA + "Potion Enhance<BR><BR>";
-			colA = colA + "Bank Gold<BR><BR>";
-
-			string colB = "";
-			colB = colB + "" + String.Format(" {0} + {1}", from.RawStr, from.Str - from.RawStr ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0} + {1}", from.RawDex, from.Dex - from.RawDex ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0} + {1}", from.RawInt, from.Int - from.RawInt ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0}", from.Fame ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0}", from.Karma ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0}", from.TithingPoints ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0}", from.Hunger ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0}", from.Thirst ) + "<BR><BR>";
-			colB = colB + "" + String.Format(" {0}%", EP ) + "<BR><BR>";
-			colB = colB + "" + Banker.GetBalance( from ) + "<BR> <BR><BR>";
-
-			AddHtml( 20, 45, 200, 370, @"<BODY><BASEFONT Color=" + color + ">" + colA + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddHtml( 135, 45, 80, 370, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + colB + "</div></BASEFONT></BODY>", (bool)false, (bool)false);
-
-			///////////////////////////////////////////////////////////////////////////////////
-
-			string colC = "";
-			colC = colC + "Level<BR><BR>";
-			colC = colC + "Hits<BR><BR>";
-			colC = colC + "Stamina<BR><BR>";
-			colC = colC + "Mana<BR><BR>";
-			colC = colC + "Hits Regen<BR><BR>";
-			colC = colC + "Stamina Regen<BR><BR>";
-			colC = colC + "Mana Regen<BR><BR>";
-			if ( MyServerSettings.LowerReg() > 0 ){ colC = colC + "Low Reagent<BR><BR>"; }
-			if ( MyServerSettings.LowerMana() > 0 ){ colC = colC + "Low Mana<BR><BR>"; }
-			colC = colC + "Resurrect Cost<BR><BR>";
-			colC = colC + "Murders<BR><BR>";
-
-			string colD = "";
-			colD = colD + "" + String.Format(" {0}", CharacterLevel ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0} + {1}", from.Hits - AosAttributes.GetValue( from, AosAttribute.BonusHits ), AosAttributes.GetValue( from, AosAttribute.BonusHits ) ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0} + {1}", from.Stam - AosAttributes.GetValue( from, AosAttribute.BonusStam ), AosAttributes.GetValue( from, AosAttribute.BonusStam ) ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0} + {1}", from.Mana - AosAttributes.GetValue( from, AosAttribute.BonusMana ), AosAttributes.GetValue( from, AosAttribute.BonusMana ) ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0}", AosAttributes.GetValue( from, AosAttribute.RegenHits ) ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0}", AosAttributes.GetValue( from, AosAttribute.RegenStam ) ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0}", AosAttributes.GetValue( from, AosAttribute.RegenMana ) ) + "<BR><BR>";
-			if ( MyServerSettings.LowerReg() > 0 ){ colD = colD + "" + String.Format(" {0}%", LRC ) + "<BR><BR>"; }
-			if ( MyServerSettings.LowerMana() > 0 ){ colD = colD + "" + String.Format(" {0}%", LMC ) + "<BR><BR>"; }
-			colD = colD + "" + String.Format(" {0}", HealCost ) + "<BR><BR>";
-			colD = colD + "" + String.Format(" {0}", from.Kills) + "<BR><BR>";
-
-			AddHtml( 260, 45, 150, 380, @"<BODY><BASEFONT Color=" + color + ">" + colC + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddHtml( 375, 45, 80, 380, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + colD + "</div></BASEFONT></BODY>", (bool)false, (bool)false);
-
-			///////////////////////////////////////////////////////////////////////////////////
-
-			string colE = "";
-			colE = colE + "Hit Chance<BR><BR>";
-			colE = colE + "Defend Chance<BR><BR>";
-			colE = colE + "Swing Speed<BR><BR>";
-			colE = colE + "Swing Speed +<BR><BR>";
-			colE = colE + "Bandage Speed<BR><BR>";
-			colE = colE + "Damage Increase<BR><BR>";
-			colE = colE + "Reflect Damage<BR><BR>";
-			colE = colE + "Fast Cast<BR><BR>";
-			colE = colE + "Cast Recovery<BR><BR>";
-			colE = colE + "Spell Damage +<BR><BR>";
-			colE = colE + "Magic/Melee Absorb<BR><BR>";
-
-			string colF = "";
-			colF = colF + "" + String.Format(" {0}%", HCI ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}%", DCI ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}s", new DateTime(SwingSpeed.Ticks).ToString("s.ff") ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}%", SSI ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0:0.0}s", new DateTime(TimeSpan.FromMilliseconds( BandageSpeedMilliseconds ).Ticks).ToString("s.ff") ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}%", DamageIncrease ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}%", ReflectDamage ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}", FC ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}", FCR ) + "<BR><BR>";
-			colF = colF + "" + String.Format(" {0}%", SDI ) + "<BR><BR>";
-			colF = colF + "" + MgAb + "/" + MeAb + "<BR><BR>";
-
-			AddHtml( 500, 45, 150, 380, @"<BODY><BASEFONT Color=" + color + ">" + colE + "</BASEFONT></BODY>", (bool)false, (bool)false);
-			AddHtml( 615, 45, 80, 380, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + colF + "</div></BASEFONT></BODY>", (bool)false, (bool)false);
+		private void AddStatLine(int labelX, int valueX, int width, string label, string value, string tooltip, string color, YPosition yPos)
+		{
+			int currentY = yPos.Next();
+			AddHtml(labelX, currentY, 200, 20, @"<BODY><BASEFONT Color=" + color + ">" + label + "</BASEFONT></BODY>", false, false);
+			if (!string.IsNullOrEmpty(tooltip))
+				AddTooltip(tooltip);
+			AddHtml(valueX, currentY, width, 20, @"<BODY><BASEFONT Color=" + color + "><div align=right>" + value + "</div></BASEFONT></BODY>", false, false);
 		}
     
 		public override void OnResponse( NetState sender, RelayInfo info )
@@ -1082,6 +1044,7 @@ namespace Server.Gumps
 			else { from.SendSound( 0x4A ); }
 		}
     }
+
 }
 
 namespace Server.Engines.Quests
