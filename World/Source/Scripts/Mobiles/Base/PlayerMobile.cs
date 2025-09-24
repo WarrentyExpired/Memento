@@ -83,6 +83,18 @@ namespace Server.Mobiles
 
 	public class PlayerMobile : Mobile
 	{
+           public int AccountGold
+           {
+                get
+                {
+                        return Account != null ? Account.Gold : 0;
+                }
+                set
+                {
+                        if (Account != null) Account.Gold = value;
+                }
+           }
+
 		public bool WarnedSkaraBrae;
 		public bool WarnedBottleCity;
 
