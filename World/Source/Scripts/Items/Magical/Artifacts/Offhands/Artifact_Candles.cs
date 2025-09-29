@@ -15,7 +15,7 @@ namespace Server.Items
 			Attributes.BonusStam = 20;
 			Attributes.BonusMana = 20;
 			Attributes.Luck = 400;
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 			Server.Misc.Arty.ArtySetup( this, 13, "" );
 		}
 
@@ -26,14 +26,16 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
-			ArtifactLevel = 2;
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +51,7 @@ namespace Server.Items
 			Attributes.BonusStam = 20;
 			Attributes.BonusMana = 20;
 			Attributes.Luck = 400;
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 			Server.Misc.Arty.ArtySetup( this, 13, "" );
 		}
 
@@ -60,14 +62,16 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
-			ArtifactLevel = 2;
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +87,7 @@ namespace Server.Items
 			Attributes.BonusStam = 20;
 			Attributes.BonusMana = 20;
 			Attributes.Luck = 400;
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 			Server.Misc.Arty.ArtySetup( this, 13, "" );
 		}
 
@@ -94,14 +98,16 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
-			ArtifactLevel = 2;
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,7 +123,7 @@ namespace Server.Items
 			Attributes.BonusStam = 20;
 			Attributes.BonusMana = 20;
 			Attributes.Luck = 400;
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 			Server.Misc.Arty.ArtySetup( this, 13, "" );
 		}
 
@@ -128,14 +134,16 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
-			ArtifactLevel = 2;
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,7 +161,7 @@ namespace Server.Items
 			Attributes.CastSpeed = 1;
 			Attributes.LowerManaCost = 25;
 			Attributes.LowerRegCost = 25;
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 			Server.Misc.Arty.ArtySetup( this, 12, "" );
 		}
 
@@ -164,14 +172,16 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
-			ArtifactLevel = 2;
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,7 +199,7 @@ namespace Server.Items
 			Attributes.CastSpeed = 1;
 			Attributes.LowerManaCost = 25;
 			Attributes.LowerRegCost = 25;
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 			Server.Misc.Arty.ArtySetup( this, 12, "" );
 		}
 
@@ -200,14 +210,16 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
-			ArtifactLevel = 2;
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
 		}
 	}
 }

@@ -211,13 +211,32 @@ namespace Server.Commands
 			if (target is OrganizerContainer) return;
 			if (!ItemUtilities.HasItemOwnershipRights(from, target, true)) return;
 
+			if (!from.InRange(target.GetWorldLocation(), 3))
+			{
+				from.SendMessage("You will have to get closer to the container!");
+				return;
+			}
+
+			if (target is ILockable && ((ILockable)target).Locked
+				|| target is LockableContainer && ((LockableContainer)target).CheckLocked(from))
+			{
+				from.SendMessage("That container is locked.");
+				return;
+			}
+
 			var existingOrganizerContainers = new List<OrganizerContainer>();
 			var destinations = new Dictionary<string, OrganizerContainer>();
 
 			foreach (var item in target.FindItemsByType(typeof(Item)))
 			{
 				if (item is OrganizerContainer)
-					existingOrganizerContainers.Add((OrganizerContainer)item);
+				{
+					var organizer = (OrganizerContainer)item;
+					organizer.AcceptItems = true;
+
+					existingOrganizerContainers.Add(organizer);
+					if (!destinations.ContainsKey(item.Name)) destinations.Add(item.Name, organizer);
+				}
 
 				if (item is Container && false == (item is NotIdentified || item is BaseQuiver)) continue;
 				if (!item.Movable) continue;
@@ -239,20 +258,25 @@ namespace Server.Commands
 						};
 					}
 
-					container.AddItem(item);
+					if (!container.TryDropItem(from, item, true))
+						container.AddItem(item);
 					break;
 				}
 			}
 
-			if (destinations.Values.Count < 1) return;
-
-			// Sort alphabetically by container name
-			var sortedItems = destinations.Values.OrderBy(container => container.Name);
-			ItemUtilities.SortItems(target, sortedItems, horizontalSpace, verticalSpace);
-
-			// Remove previous organizers
-			foreach (var container in existingOrganizerContainers)
+			if (destinations.Values.Any(x => 0 < x.Items.Count))
 			{
+				// Sort alphabetically by container name
+				var sortedItems = destinations.Values.OrderBy(container => container.Name);
+				ItemUtilities.SortItems(target, sortedItems, horizontalSpace, verticalSpace);
+			}
+
+			foreach (var container in existingOrganizerContainers.Concat(destinations.Values))
+			{
+				container.AcceptItems = false;
+				if (0 < container.Items.Count) continue;
+
+				// Remove empty containers
 				container.Delete();
 			}
 		}
@@ -278,18 +302,21 @@ namespace Server.Commands
 				Weight = 0;
 				MaxItems = 0;
 				InfoText1 = "[Organizer]";
+				AcceptItems = true;
 			}
 
 			public OrganizerContainer(Serial serial) : base(serial)
 			{
 			}
 
+			public bool AcceptItems { get; set; }
+
 			public override int MaxWeight
 			{ get { return 0; } }
 
 			public override bool CheckHold(Mobile m, Item item, bool message, bool checkItems, int plusItems, int plusWeight)
 			{
-				return false;
+				return AcceptItems || item.Parent == this || AccessLevel.Player < m.AccessLevel;
 			}
 
 			public override bool CheckLift(Mobile from, Item item, ref LRReason reject)

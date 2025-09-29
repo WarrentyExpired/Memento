@@ -467,6 +467,15 @@ namespace Server
 		Cursed  = 3
 	}
 
+	public enum ArtifactLevel
+	{
+		None = 0,
+		Artifact = 1,
+		StandardArtefact = 2,
+		LegendaryArtefact = 3,
+		DecorativeArtefact = 4,
+	}
+
 	public class BounceInfo
 	{
 		public Map m_Map;
@@ -727,6 +736,8 @@ namespace Server
 			}
 		}
 
+		public const int MAX_ID_ATTEMPTS = 6;
+
 		public int m_NotIDAttempts;
 		[CommandProperty(AccessLevel.Owner)]
 		public int NotIDAttempts { get { return m_NotIDAttempts; } set { m_NotIDAttempts = value; InvalidateProperties(); } }
@@ -837,9 +848,9 @@ namespace Server
 		public virtual string DefaultDescription{ get{ return null; } }
 		public virtual bool DoNotCountContents{ get{ return false; } }
 
-		public int m_ArtifactLevel;
+		public ArtifactLevel m_ArtifactLevel;
 		[CommandProperty(AccessLevel.Owner)]
-		public int ArtifactLevel { get { return m_ArtifactLevel; } set { m_ArtifactLevel = value; InvalidateProperties(); } }
+		public ArtifactLevel ArtifactLevel { get { return m_ArtifactLevel; } set { m_ArtifactLevel = value; InvalidateProperties(); } }
 
 		public bool m_NotModAble;
 		[CommandProperty(AccessLevel.Owner)]
@@ -1507,7 +1518,7 @@ namespace Server
 				if ( NotIDSource != Identity.None )
 					list.Add( 1029759 + (int)NotIDSource );
 
-				if ( NotIDSkill != IDSkill.None && NotIDAttempts < 6 )
+				if ( NotIDSkill != IDSkill.None && NotIDAttempts < MAX_ID_ATTEMPTS )
 					list.Add( 1029724 + (int)NotIDSkill );
 			}
 
@@ -1520,12 +1531,23 @@ namespace Server
 			if ( ColorText5 != null )
 				list.Add( 1072175, "{0}\t{1}", CHue5, ColorText5 );
 
-			if ( ArtifactLevel == 3 )
-				list.Add( 1071128 );
-			else if ( ArtifactLevel == 2 )
-				list.Add( 1070754 );
-			else if ( ArtifactLevel == 1 )
-				list.Add( 1070753 );
+			switch ( ArtifactLevel )
+			{
+				case ArtifactLevel.LegendaryArtefact:
+					list.Add( 1071128 );
+					break;
+				case ArtifactLevel.StandardArtefact:
+					list.Add( 1070754 );
+					if (ResourceCanChange())
+						list.Add( "<BASEFONT COLOR=#C6D11C>May be transmuted</BASEFONT>" );
+					break;
+				case ArtifactLevel.Artifact:
+					list.Add( 1070753 );
+					break;
+				case ArtifactLevel.DecorativeArtefact:
+					list.Add( "<BASEFONT COLOR=#C6D11C>Decorative Artefact</BASEFONT>" );
+					break;
+			}
 
 			if ( m_Enchanted != MagicSpell.None )
 			{
@@ -1749,7 +1771,7 @@ namespace Server
 			if ( m_InfoData != null )
 				list.Add( new InfoDataEntry( from, this ) );
 
-			if ( m_CoinPrice > 0 && NotIdentified && NotIDAttempts < 6 )
+			if ( m_CoinPrice > 0 && NotIdentified && NotIDAttempts < MAX_ID_ATTEMPTS )
 				list.Add( new IDEntry( from, this, NotIDSkill ) );
 		}
 
@@ -1832,8 +1854,28 @@ namespace Server
 
 		public bool ResourceCanChange()
 		{
-			if ( ArtifactLevel > 0 || NotModAble )
-				return false;
+			if ( NotModAble ) return false;
+
+			if ( ArtifactLevel != ArtifactLevel.None )
+			{
+				// Only Standard artefacts can be changed
+				if ( ArtifactLevel != ArtifactLevel.StandardArtefact ) return false;
+
+				switch ( Resource )
+				{
+					// Can only be changed if it's currently a basic resource
+					case CraftResource.None:
+					case CraftResource.Iron:
+					case CraftResource.Fabric:
+					case CraftResource.RegularLeather:
+					case CraftResource.RegularWood:
+					case CraftResource.BrittleSkeletal:
+						return true;
+
+					default:
+						return false;
+				}
+			}
 
 			return true;
 		}
@@ -2649,7 +2691,7 @@ namespace Server
 			writer.WriteEncodedInt( (int) m_Resource );
 			writer.WriteEncodedInt( (int) m_SubResource );
 			writer.Write( m_SubName );
-			writer.Write( ArtifactLevel );
+			writer.Write( (int)ArtifactLevel );
 			writer.Write( NotModAble );
 			writer.Write( NeedsBothHands );
 			writer.Write( InfoData );
@@ -3029,7 +3071,7 @@ namespace Server
 						m_Resource = (CraftResource)reader.ReadEncodedInt();
 						m_SubResource = (CraftResource)reader.ReadEncodedInt();
 						m_SubName = reader.ReadString();
-						ArtifactLevel = reader.ReadInt();
+						ArtifactLevel = (ArtifactLevel)reader.ReadInt();
 						NotModAble = reader.ReadBool();
 						NeedsBothHands = reader.ReadBool();
 						InfoData = reader.ReadString();

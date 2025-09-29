@@ -33,7 +33,7 @@ namespace Server
 			else if ( examine.NotIDSkill == IDSkill.Tasting )
 				skill = SkillName.Tasting;
 
-			if ( !examine.NotIdentified )
+			if ( !examine.NotIdentified ) // Decorative item
 			{
 				if ( !(examine is IRelic) && vendor == null && skills != SkillName.Mercantile && from.Skills[SkillName.Mercantile].Value > Utility.Random( 100 ) )
 				{
@@ -69,83 +69,90 @@ namespace Server
 				from.SendMessage( "That is not the correct skill to identify that." );
 				return;
 			}
-			else if ( vendor == null && examine.NotIDAttempts > 5 )
-			{
-				from.SendMessage( "Only a vendor can identify this item now as too many attempts were made." );
-				return;
-			}
 
-			if ( !examine.Movable && vendor == null )
-				from.SendMessage( "That cannot move so you cannot identify it." );
-			else if ( !from.InRange( examine.GetWorldLocation(), 3 ) && vendor == null )
-				from.SendMessage( "You will need to get closer to identify that." );
-			else if ( !(examine.IsChildOf( from.Backpack )) && MySettings.S_IdentifyItemsOnlyInPack && vendor == null ) 
-				from.SendMessage( "This must be in your backpack to identify." );
-			else if ( examine is Food && examine.NotIDSkill == IDSkill.Tasting && vendor == null )
+			int attempts = 0;
+			if ( vendor != null )
+				attempts = 1;
+			else if ( m is PlayerMobile )
 			{
-				Food food = (Food)examine;
-
-				if ( from.CheckTargetSkill( skill, food, 0, 125 ) )
-				{
-					if ( food.Poison != null )
-						food.SendLocalizedMessageTo( from, 1038284 ); // It appears to have poison smeared on it.
-					else
-						food.SendLocalizedMessageTo( from, 1010600 ); // You detect nothing unusual about this substance.
-				}
+				if ( examine is NotIdentified && Item.MAX_ID_ATTEMPTS <= examine.NotIDAttempts )
+					from.SendMessage( "Only a vendor can identify this item now as too many attempts were made." );
+				else if ( !examine.Movable )
+					from.SendMessage( "That cannot move so you cannot identify it." );
+				else if ( !from.InRange( examine.GetWorldLocation(), 3 ) )
+					from.SendMessage( "You will need to get closer to identify that." );
+				else if ( !(examine.IsChildOf( from.Backpack )) && MySettings.S_IdentifyItemsOnlyInPack && vendor == null ) 
+					from.SendMessage( "This must be in your backpack to identify." );
 				else
-					food.SendLocalizedMessageTo( from, 502823 ); // You cannot discern anything about this substance.
-			}
-			else if ( examine.CoinPrice > 0 && examine.NotIdentified )
-			{
-				if ( vendor != null && examine is NotIdentified )
 				{
-					string var = NotIdentified.IDVirConItem( (NotIdentified)examine, from );
-					vendor.SayTo( from, "That appears to be the " + var + "." );
+					attempts = 1;
+					if ( examine is NotIdentified && ((PlayerMobile)from).SingleAttemptID )
+						attempts = Math.Max( 1, Item.MAX_ID_ATTEMPTS - examine.NotIDAttempts );
 				}
-				else if ( from.CheckTargetSkill( skill, examine, -5, 125 ) )
+			}
+
+			for (int i = 1; i <= attempts; i++)
+			{
+				if ( examine.CoinPrice > 0 && examine.NotIdentified ) // Viable candidate
 				{
-					if ( examine is NotIdentified )
+					if ( vendor != null && examine is NotIdentified ) // Vendor IDing equipment
 					{
 						string var = NotIdentified.IDVirConItem( (NotIdentified)examine, from );
-						from.SendMessage( "You identify the " + var + "." );
+						vendor.SayTo( from, "That appears to be the " + var + "." );
+						return;
 					}
-					else
+
+					if ( from.CheckTargetSkill( skill, examine, -5, 125 ) ) // Successful player attempt
 					{
-						examine.NotIdentified = false;
+						if ( examine is NotIdentified )
+						{
+							string var = NotIdentified.IDVirConItem( (NotIdentified)examine, from );
+							from.SendMessage( "You identify the " + var + "." );
+							return;
+						}
+						else // Relic
+						{
+							examine.NotIdentified = false;
 
-						if ( examine.NotIDSource == Identity.Armor || examine.NotIDSource == Identity.Weapon )
-							from.SendMessage( "That is too old to be used in battle." );
-						else if ( examine.NotIDSource == Identity.Music )
-							from.SendMessage( "That is too old to be played." );
+							if ( examine.NotIDSource == Identity.Armor || examine.NotIDSource == Identity.Weapon )
+								from.SendMessage( "That is too old to be used in battle." );
+							else if ( examine.NotIDSource == Identity.Music )
+								from.SendMessage( "That is too old to be played." );
 
-						from.SendMessage( "That is probably worth about " + examine.CoinPrice + " gold." );
+							from.SendMessage( "That is probably worth about " + examine.CoinPrice + " gold." );
+							return;
+						}
+					}
+					else if ( vendor == null ) // Failed player attempt
+					{
+						if ( examine is NotIdentified )
+						{
+							string var = NotIdentified.CannotIDVirConItem( (NotIdentified)examine, from );
+							if ( i != attempts ) continue; // Only display failure if it's the final message
+
+							from.SendMessage( var );
+							continue;
+						}
+						else // Relic
+						{
+							examine.CoinPrice = Utility.RandomMinMax( 5, 25 );
+							examine.NotIdentified = false;
+							from.SendMessage( "You cannot really seem to fully identify it." );
+
+							if ( examine.NotIDSource == Identity.Armor || examine.NotIDSource == Identity.Weapon )
+								from.SendMessage( "That is too old to be used in battle." );
+							else if ( examine.NotIDSource == Identity.Music )
+								from.SendMessage( "That is too old to be played." );
+
+							from.SendMessage( "Maybe you can get " + examine.CoinPrice + " gold for it." );
+							continue;
+						}
 					}
 				}
-				else if ( vendor == null )
+				else
 				{
-					if ( examine is NotIdentified )
-					{
-						string var = NotIdentified.CannotIDVirConItem( (NotIdentified)examine, from );
-						from.SendMessage( var );
-					}
-					else
-					{
-						examine.CoinPrice = Utility.RandomMinMax( 5, 25 );
-						examine.NotIdentified = false;
-						from.SendMessage( "You cannot really seem to fully identify it." );
-
-						if ( examine.NotIDSource == Identity.Armor || examine.NotIDSource == Identity.Weapon )
-							from.SendMessage( "That is too old to be used in battle." );
-						else if ( examine.NotIDSource == Identity.Music )
-							from.SendMessage( "That is too old to be played." );
-
-						from.SendMessage( "Maybe you can get " + examine.CoinPrice + " gold for it." );
-					}
+					from.SendMessage( "That item does not need to be identified." );
 				}
-			}
-			else
-			{
-				from.SendMessage( "That item does not need to be identified." );
 			}
 		}
 

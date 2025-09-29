@@ -18,7 +18,7 @@ namespace Server.Items
 		{
 			Hue = 0;
 			Name = "Everlasting Loaf";
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -40,16 +40,19 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
+			writer.Write( (int) 1 ); // version
 		}
 
 		public override void Deserialize( GenericReader reader )
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
+
+			if ( version < 1 )
+				ArtifactLevel = ArtifactLevel.Artifact;
+
 			ItemID = 0x136F;
 			Hue = 0;
-			ArtifactLevel = 2;
 		}
 	}
 }

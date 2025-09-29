@@ -95,7 +95,7 @@ namespace Server.Misc
 
 		public static void setArtifact( Item item )
 		{
-			if ( item.ArtifactLevel > 0 )
+			if ( item.ArtifactLevel > (int)ArtifactLevel.None )
 			{
 				Type itemType = item.GetType();
 				Item arty = null;
@@ -104,8 +104,12 @@ namespace Server.Misc
 				{
 					arty = (Item)Activator.CreateInstance(itemType);
 					item.Name = arty.Name;
-					if ( !(item is BaseQuiver) && !MySettings.S_ChangeArtyLook ){ item.ItemID = arty.ItemID; }
-					if ( !MySettings.S_ChangeArtyLook ){ item.Hue = arty.Hue; }
+
+					if ( !MySettings.S_ChangeArtyLook )
+					{
+						if ( !(item is BaseQuiver) ){ item.ItemID = arty.ItemID; }
+						item.Hue = arty.Hue;
+					}
 
 					arty.Delete();
 				}

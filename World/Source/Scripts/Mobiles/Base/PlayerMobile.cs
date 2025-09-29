@@ -373,6 +373,9 @@ namespace Server.Mobiles
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool SuppressVendorTooltip { get; set; }
 
+		[CommandProperty( AccessLevel.GameMaster )]
+		public bool SingleAttemptID { get; set; }
+
 		#endregion
 
 		#region PlayerFlags
@@ -3233,6 +3236,14 @@ namespace Server.Mobiles
 			set { }
 		}
 
+		[CommandProperty( AccessLevel.GameMaster )]
+		public bool IsJester
+		{
+			get { return GetPlayerInfo.isJester(this); }
+			set { }
+		}
+
+
 		private bool m_NeedRemoveIDSkills = false;
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3244,6 +3255,9 @@ namespace Server.Mobiles
 
 			switch ( version )
 			{
+				case 47:
+					SingleAttemptID = reader.ReadBool();
+					goto case 46;
 				case 46:
 					IsTitanOfEther = reader.ReadBool();
 					CharacterType = (CharacterType)reader.ReadInt();
@@ -3665,7 +3679,9 @@ namespace Server.Mobiles
 
 			base.Serialize( writer );
 
-			writer.Write( (int) 46 ); // version
+			writer.Write( (int) 47 ); // version
+
+			writer.Write( SingleAttemptID );
 
 			writer.Write( IsTitanOfEther );
 			writer.Write( (int)CharacterType );

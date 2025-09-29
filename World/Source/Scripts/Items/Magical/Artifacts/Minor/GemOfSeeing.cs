@@ -30,7 +30,7 @@ namespace Server.Items
 			Weight = 1.0; 
 			Charges = 50;
 			Name = "Gem of Seeing";
-			ArtifactLevel = 2;
+			ArtifactLevel = ArtifactLevel.Artifact;
 		}
 
         public override void AddNameProperties(ObjectPropertyList list)
@@ -157,7 +157,7 @@ namespace Server.Items
 		public override void Serialize( GenericWriter writer ) 
 		{ 
 			base.Serialize( writer ); 
-			writer.Write( (int) 0 );
+			writer.Write( (int) 1 );
 			writer.Write( (int) m_GemOfSeeingEffect );
 			writer.Write( (int) m_Charges );
 		} 
@@ -168,14 +168,16 @@ namespace Server.Items
 			int version = reader.ReadInt();
 			switch ( version )
 			{
+				case 1:
 				case 0:
 				{
+					ArtifactLevel = ArtifactLevel.Artifact;
+
 					m_GemOfSeeingEffect = (GemOfSeeingEffect)reader.ReadInt();
 					m_Charges = (int)reader.ReadInt();
 					break;
 				}
 			}
-			ArtifactLevel = 2;
 		}
 	}
 }

@@ -129,7 +129,7 @@ namespace Server.Gumps
 
 			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Coins & Nuggets</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b1, b1, 99, GumpButtonType.Reply, 0); g=g+26;
-			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Gems & Jewels</BASEFONT></BODY>", (bool)false, (bool)false);
+			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Gems</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b2, b2, 1, GumpButtonType.Reply, 0); g=g+26;
 			AddHtml( 52, g, 139, 20, @"<BODY><BASEFONT Color=" + color + ">Arrows & Bolts</BASEFONT></BODY>", (bool)false, (bool)false);
 			AddButton(14, g, b3, b3, 2, GumpButtonType.Reply, 0); g=g+26;
@@ -192,4 +192,69 @@ namespace Server.Gumps
 			else { from.SendGump( new LootChoices( from, m_Origin ) ); from.SendSound( 0x4A ); }
 		}
     }
+}
+
+namespace Server.Commands
+{
+	public class Loot
+	{
+		public class AutoLootCommand : BaseCommand
+		{
+			public AutoLootCommand()
+			{
+				AccessLevel = AccessLevel.Player;
+				Supports = CommandSupport.AllItems;
+				Commands = new string[] { "AutoLoot" };
+				ObjectTypes = ObjectTypes.Items;
+				Usage = "AutoLoot";
+				Description = "Execute automatic looting on-demand";
+			}
+
+			public static void Initialize()
+			{
+				TargetCommands.Register(new AutoLootCommand());
+			}
+
+			public override void Execute(CommandEventArgs e, object obj)
+			{
+				if (obj is Container)
+				{
+					var container = (Container)obj;
+					var from = e.Mobile;
+
+					if ( !from.InRange( container.GetWorldLocation(), 3 ) )
+					{
+						from.SendMessage( "You will have to get closer to the container!" );
+						return;
+					}
+
+					if ( container is ILockable && ((ILockable)container).Locked
+						|| container is LockableContainer && ((LockableContainer)container).CheckLocked( from ) ) 
+					{
+						from.SendMessage( "That container is locked." );
+						return;
+					}
+
+					if (container.RootParentEntity != null && container.RootParentEntity is Item && ((Item)container.RootParentEntity).Movable)
+					{
+						from.SendMessage( "That item is not lootable." );
+						return;
+					}
+
+					// Technically OK since you have access, but let's just be safe.
+					if (container.IsLockedDown || container.IsSecure)
+					{
+						from.SendMessage( "That container is secure." );
+						return;
+					}
+
+					Server.Misc.PlayerSettings.LootContainer( from, container );
+				}
+				else
+				{
+					e.Mobile.SendMessage("That is not a container.");
+				}
+			}
+		}
+	}
 }

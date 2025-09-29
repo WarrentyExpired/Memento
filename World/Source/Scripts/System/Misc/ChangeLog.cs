@@ -16,7 +16,10 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
+			builder.Append("- Commands - Add [ReleaseSummons command to release all summons that are controlled by the player<br>");
 			builder.Append("- Commands - Add [Organize command to recursively sort items into separate bags<br>");
+			builder.Append("- Commands - Add [AutoLoot command to execute automatic looting on-demand<br>");
+			builder.Append("- Commands - [Loot no longer picks up Jewelry or decorative gems<br>");
 			builder.Append("- Commands - Add [OrderBy-XX commands to move items into a gridlike pattern<br>");
 			builder.Append("           - XX is one of the following: Graphic, Hue, Name, Size, Slayer, Weight<br>");
 			builder.Append("           - Optional arguments can be provided to control the spacing between items<br>");
@@ -25,6 +28,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Jewelry can now be exceptionally crafted<br>");
 			builder.Append("- Craft - Bulk crafting now dictates Successes rather than Attempts<br>");
 			builder.Append("- Craft - Crafted Runebooks now have much more charge capacity<br>");
+			builder.Append("- Craft - Harpoon rope can now be crafted in a batch<br>");
 			builder.Append("- Gather - Removed several unreachable 'Glistening Ore Vein'<br>");
 			builder.Append("- Gump - Changed icon and added tooltip indicating certain spells are not craftable<br>");
 			builder.Append("- Gump - Risky refactor to Help gump plumbing<br>");
@@ -33,11 +37,14 @@ namespace Server.Misc
 			builder.Append("- Gump - Risky refactor to Starter Gypsy gump plumbing<br>");
 			builder.Append("- Gump - Make Points visible on Shoppes<br>");
 			builder.Append("- Gump - Add Settings for [VendorGold and [SuppressTooltips to Help gump<br>");
+			builder.Append("- Gump - Elemental spell images are now clickable (removed red ribbon)<br>");
 			builder.Append("- Item - Pearl gemstone bonus no longer provides +1 FC, +1 FCR, and +2 all stats<br>");
 			builder.Append("- Item - Mallet Stake single and double click actions have been swapped<br>");
+			builder.Append("- Item - The resource of an Artefact may now transmuted up to one time<br>");
 			builder.Append("- Misc - Risky refactor to Player skill caps<br>");
 			builder.Append("- Misc - Self-res delay reduced to 10 seconds, down from 30 seconds<br>");
 			builder.Append("- Misc - The tillerman now babbles some dull stories<br>");
+			builder.Append("- Misc - Monster races can now be a Jester<br>");
 			builder.Append("- Misc - Hit Point Increase attribute is now uncapped, up from 25<br>");
 			builder.Append("       - Note: Max Health from stats + equipment is still 325<br>");
 			builder.Append("- Pets - The subdue mechanic is now only required at the start of taming<br>");
@@ -46,6 +53,8 @@ namespace Server.Misc
 			builder.Append("- Skill - Provocation is now 1.5x more likely to gain<br>");
 			builder.Append("- Skill - Provocation failure cooldown is now 3s, down from 5s<br>");
 			builder.Append("- Skill - Minimum Provocation skill required for attempts is slightly lower<br>");
+			builder.Append("- Setting - Change Arty Look (hue/graphic) is now enabled by default<br>");
+			builder.Append("- Setting - Added 'Single Attempt ID' player setting<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
@@ -54,6 +63,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Prevent access to moat in Caverns of Poseidon<br>");
 			builder.Append("- Misc - Add exit teleporter to Tower of Brass level<br>");
 			builder.Append("- Misc - Luck now properly increases rare item drop rates<br>");
+			builder.Append("- Misc - Remove redundant message when tasting poisoned food<br>");
 			builder.Append("- Pets - Hoard Minion no longer freezes when the Player has a combatant<br>");
 			builder.Append("- Skill - Provocation no longer sets cooldown when failing to select a 2nd target<br>");
 
