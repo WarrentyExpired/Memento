@@ -1,16 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Items;
 using Server.Network;
-using Server.Spells.Seventh;
-using Server.Spells.Fifth;
-using Server.Spells.Necromancy;
-using Server.Spells;
-using Server.Spells.Ninjitsu;
 using Server.Misc;
 
 namespace Server.SkillHandlers
@@ -233,11 +227,11 @@ namespace Server.SkillHandlers
 							Titles.AwardFame( m_Thief, coffer.CofferGold, true );
 							Titles.AwardKarma( m_Thief, -coffer.CofferGold, true );
 
+							LoggingFunctions.LogStandard( m_Thief, "has stolen " + coffer.CofferGold + " gold from a " + coffer.CofferType + " in " + Server.Misc.Worlds.GetRegionName( m_Thief.Map, m_Thief.Location ) + "" );
+
 							coffer.CofferRobbed = 1;
 							coffer.CofferRobber = m_Thief.Name + " the " + Server.Misc.GetPlayerInfo.GetSkillTitle( m_Thief );
 							coffer.CofferGold = 0;
-
-							LoggingFunctions.LogStandard( m_Thief, "has stolen " + coffer.CofferGold + " gold from a " + coffer.CofferType + " in " + Server.Misc.Worlds.GetRegionName( m_Thief.Map, m_Thief.Location ) + "" );
 						}
 						else
 						{
@@ -274,6 +268,12 @@ namespace Server.SkillHandlers
 				else if ( m_Thief.Backpack == null || !m_Thief.Backpack.CheckHold( m_Thief, toSteal, false, true ) )
 				{
 					m_Thief.SendLocalizedMessage( 1048147 ); // Your backpack can't hold anything else.
+				}
+				else if ( toSteal is AddonComponent && ( (AddonComponent) toSteal ).Addon is StealBase)
+				{
+					var comp = (AddonComponent) toSteal;
+					var stealbase = (StealBase)comp.Addon;
+					stealbase.OnComponentUsed( comp, m_Thief );
 				}
 				else if ( si == null && ( toSteal.Parent == null || !toSteal.Movable ) )
 				{

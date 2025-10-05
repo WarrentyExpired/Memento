@@ -376,6 +376,9 @@ namespace Server.Mobiles
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool SingleAttemptID { get; set; }
 
+		[CommandProperty( AccessLevel.GameMaster )]
+		public bool ColorlessFabricBreakdown { get; set; }
+
 		#endregion
 
 		#region PlayerFlags
@@ -2272,8 +2275,7 @@ namespace Server.Mobiles
 
 		public override void Resurrect()
 		{
-			var context = Temptation.TemptationEngine.Instance.GetContextOrDefault(this);
-			if (context.HasPermanentDeath)
+			if (Temptations.HasPermanentDeath)
 			{
 				SendMessage("We warned you it was dangerous. You cannot be resurrected.");
 				return;
@@ -2294,13 +2296,13 @@ namespace Server.Mobiles
 
 			switch( Utility.Random( 7 ) )
 			{
-				case 0: LoggingFunctions.LogStandard( this, "has returned from the realm of the dead" );		break;
-				case 1: LoggingFunctions.LogStandard( this, "was brought back to the world of the living" );	break;
-				case 2: LoggingFunctions.LogStandard( this, "has been restored to life" );					break;
-				case 3: LoggingFunctions.LogStandard( this, "has been brought back from the grave" );		break;
-				case 4: LoggingFunctions.LogStandard( this, "has been resurrected to this world" );			break;
-				case 5: LoggingFunctions.LogStandard( this, "has returned to life after death" );			break;
-				case 6: LoggingFunctions.LogStandard( this, "was resurrected for another chance at life" );	break;
+				case 0: LoggingFunctions.LogStandard( this, "has returned from the realm of the dead", false );		break;
+				case 1: LoggingFunctions.LogStandard( this, "was brought back to the world of the living", false );	break;
+				case 2: LoggingFunctions.LogStandard( this, "has been restored to life", false );					break;
+				case 3: LoggingFunctions.LogStandard( this, "has been brought back from the grave", false );		break;
+				case 4: LoggingFunctions.LogStandard( this, "has been resurrected to this world", false );			break;
+				case 5: LoggingFunctions.LogStandard( this, "has returned to life after death", false );			break;
+				case 6: LoggingFunctions.LogStandard( this, "was resurrected for another chance at life", false );	break;
 			}
 
 			if ( this.QuestArrow != null ){ this.QuestArrow.Stop(); }
@@ -2726,6 +2728,7 @@ namespace Server.Mobiles
 			m_LongTermElapse = TimeSpan.FromHours( 40.0 );
 
 			m_GuildRank = Guilds.RankDefinition.Lowest;
+			ColorlessFabricBreakdown = true;
 		}
 
 		public override bool MutateSpeech( List<Mobile> hears, ref string text, ref object context )
@@ -2902,7 +2905,7 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				if ( CharacterType == CharacterType.Alien ) { return 0; } // Aliens never have Luck
+				if ( CharacterType == CharacterType.Alien && MySettings.S_AllowAlienChoice ) { return 0; } // Aliens never have Luck
 
 				return AosAttributes.GetValue( this, AosAttribute.Luck );
 			}
@@ -3214,9 +3217,8 @@ namespace Server.Mobiles
 			var boostAmount = 1000 * MyServerSettings.SkillBoostCount();
 			var typeAmount = 1000 * MyServerSettings.StartTypeBonusSkillCount( CharacterType );
 
-			var context = Temptation.TemptationEngine.Instance.GetContextOrDefault(this);
 			var titanAmount = IsTitanOfEther
-				? context.LimitTitanBonus
+				? Temptations.LimitTitanBonus
 					? 2000
 					: 5000
 				: 0;
@@ -3255,7 +3257,12 @@ namespace Server.Mobiles
 
 			switch ( version )
 			{
+				case 48:
+					ColorlessFabricBreakdown = reader.ReadBool();
+					goto case 47;
 				case 47:
+					if (version == 47) ColorlessFabricBreakdown = true;
+
 					SingleAttemptID = reader.ReadBool();
 					goto case 46;
 				case 46:
@@ -3679,8 +3686,9 @@ namespace Server.Mobiles
 
 			base.Serialize( writer );
 
-			writer.Write( (int) 47 ); // version
+			writer.Write( (int) 48 ); // version
 
+			writer.Write( ColorlessFabricBreakdown );
 			writer.Write( SingleAttemptID );
 
 			writer.Write( IsTitanOfEther );

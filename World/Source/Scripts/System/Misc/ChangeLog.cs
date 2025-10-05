@@ -16,6 +16,7 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
+			builder.Append("- Achievements - Permadeath characters now have their own [feats history<br>");
 			builder.Append("- Commands - Add [ReleaseSummons command to release all summons that are controlled by the player<br>");
 			builder.Append("- Commands - Add [Organize command to recursively sort items into separate bags<br>");
 			builder.Append("- Commands - Add [AutoLoot command to execute automatic looting on-demand<br>");
@@ -29,6 +30,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Bulk crafting now dictates Successes rather than Attempts<br>");
 			builder.Append("- Craft - Crafted Runebooks now have much more charge capacity<br>");
 			builder.Append("- Craft - Harpoon rope can now be crafted in a batch<br>");
+			builder.Append("- Craft - Librarian Set now requires 3 leather and 2 blank scrolls<br>");
 			builder.Append("- Gather - Removed several unreachable 'Glistening Ore Vein'<br>");
 			builder.Append("- Gump - Changed icon and added tooltip indicating certain spells are not craftable<br>");
 			builder.Append("- Gump - Risky refactor to Help gump plumbing<br>");
@@ -41,6 +43,9 @@ namespace Server.Misc
 			builder.Append("- Item - Pearl gemstone bonus no longer provides +1 FC, +1 FCR, and +2 all stats<br>");
 			builder.Append("- Item - Mallet Stake single and double click actions have been swapped<br>");
 			builder.Append("- Item - The resource of an Artefact may now transmuted up to one time<br>");
+			builder.Append("- Item - Dough now weighs 0.25, down from 1.0<br>");
+			builder.Append("- Misc - Double damage from Puzzle chest failures<br>");
+			builder.Append("- Misc - Add Remove Trap checks against Puzzle chest failures<br>");
 			builder.Append("- Misc - Risky refactor to Player skill caps<br>");
 			builder.Append("- Misc - Self-res delay reduced to 10 seconds, down from 30 seconds<br>");
 			builder.Append("- Misc - The tillerman now babbles some dull stories<br>");
@@ -53,19 +58,35 @@ namespace Server.Misc
 			builder.Append("- Skill - Provocation is now 1.5x more likely to gain<br>");
 			builder.Append("- Skill - Provocation failure cooldown is now 3s, down from 5s<br>");
 			builder.Append("- Skill - Minimum Provocation skill required for attempts is slightly lower<br>");
+			builder.Append("- Skill - Stealing can now be used directly on pedestals (alternate to double clicking)<br>");
+			builder.Append("- Skill - Poison damage ticks vs untamed mobs can now grant poisoning skill<br>");
+			builder.Append("- Skill - Drinking poison potions can now grant poisoning skill<br>");
+			builder.Append("- Skill - Poisoning skill level required to throw poison potions has been reduced<br>");
+			builder.Append("- Skill - Poisoning skill now reduces the chance of consuming poison charges for weapon abilities<br>");
 			builder.Append("- Setting - Change Arty Look (hue/graphic) is now enabled by default<br>");
 			builder.Append("- Setting - Added 'Single Attempt ID' player setting<br>");
+			builder.Append("- Setting - Added 'Colorless Fabric Breakdown' player setting<br>");
+			builder.Append("- Temptations - Add 'Help' button to Temptations gump<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
+			builder.Append("- Achievements - Fix issue where points were being saved per character instead of per account<br>");
 			builder.Append("- Commands - Fix Achievement command and aliases -- [feats / [achievement / [achievements<br>");
 			builder.Append("- Item - Pants and Leg Armor can now both give resistances<br>");
+			builder.Append("- Item - Bag of holding message now shows seconds when < 1 minute remains<br>");
 			builder.Append("- Misc - Prevent access to moat in Caverns of Poseidon<br>");
 			builder.Append("- Misc - Add exit teleporter to Tower of Brass level<br>");
 			builder.Append("- Misc - Luck now properly increases rare item drop rates<br>");
 			builder.Append("- Misc - Remove redundant message when tasting poisoned food<br>");
+			builder.Append("- Misc - Swap price of Lesser and Greater mana potions<br>");
+			builder.Append("- Misc - Puzzle chests no longer do damage when no gem is submitted<br>");
+			builder.Append("- Misc - Stolen coffer gold is now properly logged<br>");
+			builder.Append("- Trap - Players are no longer throw into the abyss after a Pit trap in Skara<br>");
 			builder.Append("- Pets - Hoard Minion no longer freezes when the Player has a combatant<br>");
+			builder.Append("- Pets - Dead pets no longer abandon their owners who log out for 24hours<br>");
+			builder.Append("- Race - Alien character type behaviors now honor the S_AllowAlienChoice setting<br>");
 			builder.Append("- Skill - Provocation no longer sets cooldown when failing to select a 2nd target<br>");
+			builder.Append("- Spell - Elemental soul now produces a soul orb<br>");
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

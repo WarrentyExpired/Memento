@@ -5880,8 +5880,7 @@ namespace Server.Mobiles
 			var master = MobileUtilities.TryGetMasterPlayer(combatant);
 			if (master == null) return;
 
-			var context = Temptation.TemptationEngine.Instance.GetContextOrDefault(master);
-			if (!context.IncreaseMobDifficulty) return;
+			if (!master.Temptations.IncreaseMobDifficulty) return;
 
 			IsEmpowered = true;
 		}
@@ -9846,6 +9845,17 @@ namespace Server.Mobiles
 
 			base.OnSectorActivate();
 		}
+		
+		public override void OnPoisoned( Mobile from, Poison poison, Poison oldPoison )
+		{
+			base.OnPoisoned( from, poison, oldPoison );
+
+			if ( Controlled ) return;
+			if ( false == from is PlayerMobile ) return;
+
+			var maxSkill = (1 + poison.Level) * 25; // 0 to 125
+			from.CheckSkillExplicit( SkillName.Poisoning, 0, maxSkill );
+		}
 
 		private bool m_RemoveIfUntamed;
 
@@ -10195,6 +10205,7 @@ namespace Server.Mobiles
 				if ( m is BaseCreature )
 				{
 					BaseCreature c = (BaseCreature)m;
+					if ( c.Map == Map.Internal ) continue;
 
 					Mobile owner = c.ControlMaster;
 					if ( owner != null && owner.Map == Map.Internal ) continue;
