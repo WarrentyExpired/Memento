@@ -6,7 +6,7 @@ namespace Server.Misc
     {
 		public static string Version()
 		{
-			return "Version: 1.3.1";
+			return "Version: 2.1.0";
 		}
 
 		public static string Versions()
@@ -14,6 +14,27 @@ namespace Server.Misc
 			const string SEPARATOR_LINE = "<br>---------------------------------------------------------------------------------<br><br>";
 			var builder = new StringBuilder();
 			builder.Append(Version() + "<br>");
+
+			builder.Append("Changes<br>");
+			builder.Append("- Admin - New setting to turn pets Blue instead of match the notoriety of their master<br>");
+			builder.Append("- Combat - Mobs that can swim no longer flee from combat<br>");
+			builder.Append("- Craft - Tier 3 runic tools now provide 3x magical attributes at 70% intensity, up from 50%<br>");
+			builder.Append("- Gather - Mining for Sand is notably faster<br>");
+			builder.Append("- Gump - Elemental spell commands are now shown on their respective pages<br>");
+			builder.Append("- Misc - Boat movement is no longer blocked by corpses<br>");
+			builder.Append("- Misc - Corpses can no longer be looted while it would cause a criminal action<br>");
+			builder.Append("- Misc - Combat is now prevented in starting zones and Jail<br>");
+			builder.Append("- Shoppe - A 1,000 use leatherworking tool is now available<br>");
+
+			builder.Append("<br>");
+			builder.Append("Fixes<br>");
+			builder.Append("- Misc - Fixed an issue where unsecured items near a house were inaccessible<br>");
+			builder.Append("- Pets - Hitting level 10 on pets now provides 5 traits instead of 2<br>");
+			builder.Append(SEPARATOR_LINE);
+
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			builder.Append("Version: 2.0.0<br>");
 
 			builder.Append("Changes<br>");
 			builder.Append("- Achievements - Permadeath characters now have their own [feats history<br>");
@@ -32,6 +53,7 @@ namespace Server.Misc
 			builder.Append("- Craft - Harpoon rope can now be crafted in a batch<br>");
 			builder.Append("- Craft - Librarian Set now requires 3 leather and 2 blank scrolls<br>");
 			builder.Append("- Gather - Removed several unreachable 'Glistening Ore Vein'<br>");
+			builder.Append("- Gather - Lumberjacking animation reduced to 0.5s, down from 1.6s<br>");
 			builder.Append("- Gump - Changed icon and added tooltip indicating certain spells are not craftable<br>");
 			builder.Append("- Gump - Risky refactor to Help gump plumbing<br>");
 			builder.Append("- Gump - Adjusted Toolbars page on Help gump to narrow to relevant toolbars<br>");
@@ -44,6 +66,7 @@ namespace Server.Misc
 			builder.Append("- Item - Mallet Stake single and double click actions have been swapped<br>");
 			builder.Append("- Item - The resource of an Artefact may now transmuted up to one time<br>");
 			builder.Append("- Item - Dough now weighs 0.25, down from 1.0<br>");
+			builder.Append("- Item - Beeswax now costs 200, down from 1000<br>");
 			builder.Append("- Misc - Double damage from Puzzle chest failures<br>");
 			builder.Append("- Misc - Add Remove Trap checks against Puzzle chest failures<br>");
 			builder.Append("- Misc - Risky refactor to Player skill caps<br>");
@@ -66,7 +89,8 @@ namespace Server.Misc
 			builder.Append("- Setting - Change Arty Look (hue/graphic) is now enabled by default<br>");
 			builder.Append("- Setting - Added 'Single Attempt ID' player setting<br>");
 			builder.Append("- Setting - Added 'Colorless Fabric Breakdown' player setting<br>");
-			builder.Append("- Temptations - Add 'Help' button to Temptations gump<br>");
+			builder.Append("- Temptation - Add 'Help' button to Temptations gump<br>");
+			builder.Append("- Temptation - Now automatically displayed after selecting your gypsy card<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
@@ -84,9 +108,12 @@ namespace Server.Misc
 			builder.Append("- Trap - Players are no longer throw into the abyss after a Pit trap in Skara<br>");
 			builder.Append("- Pets - Hoard Minion no longer freezes when the Player has a combatant<br>");
 			builder.Append("- Pets - Dead pets no longer abandon their owners who log out for 24hours<br>");
+			builder.Append("- Quest - Tribute quest items no longer change ownership when lifted<br>");
+			builder.Append("- Quest - Assassin quest completion is now properly logs<br>");
 			builder.Append("- Race - Alien character type behaviors now honor the S_AllowAlienChoice setting<br>");
 			builder.Append("- Skill - Provocation no longer sets cooldown when failing to select a 2nd target<br>");
 			builder.Append("- Spell - Elemental soul now produces a soul orb<br>");
+			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +132,7 @@ namespace Server.Misc
 			builder.Append("- Gather - Reduce logs per tree from 4-9 to 4-6<br>");
 			builder.Append("- Gather - Lumberjacking sparkles now have a light source<br>");
 			builder.Append("- Gather - Reduced skill required to successfully Sand<br>");
+			builder.Append("- Gather - Increased success chance of Logs/Ore that require 100+ skill to completely refine<br>");
 			builder.Append("- Gump - Completely redesigned Runebook gump<br>");
 			builder.Append("- Gump - Update look of Confirmation gump<br>");
 			builder.Append("- Gump - Update look of Breakdown gump<br>");
@@ -127,6 +155,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Pedestals now create multiple stacks of coins when they are over 60k<br>");
 			builder.Append("- Misc - Most items are now autostacked in treasure chests<br>");
 			builder.Append("- Misc - Rare rumors have been slightly revised<br>");
+			builder.Append("- Misc - Stat gain cooldown is no longer reset during Training and Harvesting activities<br>");
 			builder.Append("- Mobs - Players are now immune to peacemaking for 30s after it ends<br>");
 			builder.Append("- Mobs - Reduced health and increased damage of Rotting Corpses<br>");
 			builder.Append("- NPC - Mercantile/guild barter bonus is reduced to +100% of item value, down from +300%<br>");
@@ -146,6 +175,7 @@ namespace Server.Misc
 			builder.Append("         - Blacksmith, Bowyer, Carpentry, Tailor, and Tinker<br>");
 			builder.Append("- Shoppe - All Order rewards (Reputation, Gold, and Points) have been rebalanced<br>");
 			builder.Append("- Shoppe - Rewards for completing Orders are now either Gold or Points<br>");
+			builder.Append("- Shoppe - Add Rewards<br>");
 			builder.Append("- Skill - Stealing cooldown is now 1s, down from 5s<br>");
 			builder.Append("- Spell - AOE damage spells are now reduced to a minimum of 50% damage when hitting more than one target<br>");
 
@@ -155,10 +185,13 @@ namespace Server.Misc
 			builder.Append("- Achievements - Fix entrance info for Mad Archmage and Lich King Dungeons<br>");
 			builder.Append("- Champs - Barracoon's rats now scale with spawn difficulty<br>");
 			builder.Append("- Champs - Final scoreboard is no longer blank<br>");
+			builder.Append("- Craft - Clothing now gets the hue of the fabric used<br>");
 			builder.Append("- Item - Quick fix to prevent crash with locked containers<br>");
 			builder.Append("- Item - Orphaned projectiles are no longer created when using a ranged weapon<br>");
 			builder.Append("- Item - Orphaned clothing are no longer created during dress up<br>");
 			builder.Append("- Item - All spell scrolls now properly indicate their type<br>");
+			builder.Append("- Item - Warfork and Royal Sword can now be sold to vendors<br>");
+			builder.Append("- Item - Soulstone now displays the last user, regardless if it has skills<br>");
 			builder.Append("- Misc - More Fast-player changes<br>");
 			builder.Append("- Misc - Remove bad images from manage Player Vendor gump<br>");
 			builder.Append("- Misc - Traps are now being checked for players with >= 5.0 Remove Trap<br>");
@@ -168,12 +201,22 @@ namespace Server.Misc
 			builder.Append("- Misc - Time Lord is now always invulnerable<br>");
 			builder.Append("- Misc - Fix crash when house no longer has an account owning it<br>");
 			builder.Append("- Misc - The book of truth can now be rumored about<br>");
+			builder.Append("- Misc - Add delay to in-house basement doors to prevent falling through the floor<br>");
+			builder.Append("- Misc - Fix crash when trying to secure an item<br>");
 			builder.Append("- Pets - Experience bonus from Herding is now working<br>");
 			builder.Append("- Quest - Serpent of Balance quest should be completable again<br>");
 			builder.Append("- Skill - Searching cooldown is now set after targeting instead of immediately<br>");
 			builder.Append("- Spell - Add message when Enchant spell fizzles due to having an orb<br>");
 			builder.Append("- Spell - Wrath no longer does doubles damage to one target<br>");
 			builder.Append("- Spell - Restoration now properly restores mana and stamina<br>");
+			builder.Append("- Spell - Cheetah Paws now requires mana to cast<br>");
+			builder.Append("- Spell - Death Knight spells no longer get double benefit from LMC<br>");
+			builder.Append("- Spell - Holy Man spells no longer get double benefit from LMC<br>");
+			builder.Append("- Spell - Jedi spells no longer get double benefit from LMC<br>");
+			builder.Append("- Spell - Research spells no longer get double benefit from LMC<br>");
+			builder.Append("- Spell - Syth spells no longer get double benefit from LMC<br>");
+			builder.Append("- Spell - Holy Man spell costs are now properly deducted<br>");
+			builder.Append("- Spell - Holy Man Banish spell now costs mana and now fizzle<br>");
 			builder.Append(SEPARATOR_LINE);
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

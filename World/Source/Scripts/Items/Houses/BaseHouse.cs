@@ -990,7 +990,7 @@ namespace Server.Multis
 			BaseHouse house = BaseHouse.FindHouseAt(from);
 
 			if (house == null)
-				return false;
+				return true;
 
 			SecureAccessResult res = CheckSecureAccess( from, item );
 
@@ -3859,8 +3859,10 @@ namespace Server.Multis
 			ISecurable sec = GetSecurable( Owner.From, m_Item );
 
 			if ( sec != null )
+			{
 				Owner.From.CloseGump( typeof ( SetSecureLevelGump ) );
 				Owner.From.SendGump( new SetSecureLevelGump( Owner.From, sec, BaseHouse.FindHouseAt( m_Item ) ) );
+			}
 		}
 	}
 
