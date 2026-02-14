@@ -51,11 +51,11 @@ namespace Server
 	// single player, and you turn the server on/off as required, then set this to true so these routines at least run
 	// when you start the game for you.
 
-		public static bool S_RunRoutinesAtStartup = true;
+		public static bool S_RunRoutinesAtStartup = false;
 
 	// This setting is the number of days a character must exist before a player can delete them.
 
-		public static double S_DeleteDays = 3.0;
+		public static double S_DeleteDays = 1.0;
 
 	// If true, players can just type in a name and password and it will create an account for them.
 
@@ -63,7 +63,7 @@ namespace Server
 
 	// The port you want your server to listen on.
 
-		public static int S_Port = 2593;
+		public static int S_Port = 8085;
 
 	// If you want to enter your IP for external connections, you can enter it here. Otherwise, the autodetect function
 	// below can likely do it for you automatically.
@@ -75,7 +75,7 @@ namespace Server
 
 	// Here you can enter the name of your server/world
 
-		public static string S_ServerName = "Memento";
+		public static string S_ServerName = "Warren's Memento";
 
 	// If true, your public IP address will be auto detected to help with external connections.
 
@@ -94,7 +94,7 @@ namespace Server
 
 	// The percent chance a floor trap will trigger in whole number format and no less than 5 percent.
 
-		public static int S_FloorTrapTrigger = 75;
+		public static int S_FloorTrapTrigger = 50;
 
 	// If true, anytime a character makes a saving throw to avoid a trap will be notified. Otherwise, they will never know they avoided it.
 
@@ -145,7 +145,7 @@ namespace Server
 
 	// If true, a player character cannot use macros to improve their skills quickly.
 
-		public static bool S_NoMacroing = true;
+		public static bool S_NoMacroing = false;
 
 	// You can increase the rate that stats gain from 50.0 (slow) to 10.0 (fast).
 
@@ -153,7 +153,7 @@ namespace Server
 
 	// How many minutes between stat gains which helps with the above setting. This can be between 5.0 to 60.0 minutes.
 
-		public static double S_StatGainDelay = 7.5;
+		public static double S_StatGainDelay = 5.0;
 
 	// If true, new characters can choose to take the alien origin route.
 	// This is a play style where one can choose to enter a transporter and be a character that crashed
@@ -212,7 +212,7 @@ namespace Server
 	// setting, and it cannot be lower than 1. If it was set to 20, and a charcter was level 10, then their resurrection cost
 	// would be a base of 200 gold/tithe ( 20 x 10 ).
 
-		public static int S_DeathPayLevel = 5;
+		public static int S_DeathPayLevel = 20;
 		public static int S_DeathPayAmount = 20;
 
 	// Spell damage toward monsters can be between 25 and 200 percent.
@@ -226,7 +226,7 @@ namespace Server
 	// Maximum amount of lower reagent percentage, up to 100 for 100%. For equipment with lower reagent properties.
 	// Setting it to zero will disable the attribute from the game.
 
-		public static int S_LowerReg = 100;
+		public static int S_LowerReg = 75;
 		public static int S_LowerRegEnchantment = 20;
 
 	// Maximum amount of lower mana percentage, up to 100 for 100%. For equipment with lower mana properties.
@@ -248,7 +248,7 @@ namespace Server
 	// character can begin with is 10,000 gold.
 
 		public static int S_MinGold = 500;
-		public static int S_MaxGold = 600;
+		public static int S_MaxGold = 900;
 
 	// If true, powerscrolls must be eaten in order 105 -> 110 -> 115 -> 120 -> 125
 
@@ -292,11 +292,11 @@ namespace Server
 
 	// The amount of minutes before you can take a bulletin board quest after finishing one.
 
-		public static int S_GetTimeBetweenQuests = 60;
+		public static int S_GetTimeBetweenQuests = 30;
 
 	// The amount of minutes before you can take a sage artifact quest after finishing one.
 
-		public static int S_GetTimeBetweenArtifactQuests = 20160;
+		public static int S_GetTimeBetweenArtifactQuests = 1440;
 
 	// The percent of gold you get from creatures, treasure, cargo, museum searches, shoppes, and some quests
 	// between 5 (low) to 100 (high).
@@ -398,7 +398,7 @@ namespace Server
 	// Increasing this number will increase the price of enhancing items with extraordinary tools that are used by
 	// guild members, when next to their guildmasters. This value is a percentage increase from the base price.
 
-		public static int S_GuildEnhanceMod = 100;
+		public static int S_GuildEnhanceMod = 50;
 
 	// If false, characters will get a CAPTCHA windows occasionally to avoid unattended resource gathering with macros.
 
@@ -490,8 +490,8 @@ namespace Server
 	// rate than most of the creatures, and those particular creatures will use this spawn rate. They will then
 	// add additional minutes to reflect the longer spawn.
 
-		public static int S_SpawnMin = 45;
-		public static int S_SpawnMax = 60;
+		public static int S_SpawnMin = 15;
+		public static int S_SpawnMax = 30;
 
 
 	// This settings controls the limit in seconds by which you can be paralyzed by a monster. 
@@ -499,7 +499,7 @@ namespace Server
 	// value higher than 10 could mean that the paralyze cooldown is lower than its duration, 
 	// which can lead to frustrating fights as enemies can flee and chain-paralyze a character until they heal 
 	// enough to get back into the fight. 
-		public static double S_paralyzeDuration = 10.0;
+		public static double S_paralyzeDuration = 5.0;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// 008 - MERCHANTS ////////////////////////////////////////////////////////////////////////////
@@ -577,7 +577,7 @@ namespace Server
 	// available for sale in that land. Those that set this to true, want a game where they would like to craft
 	// items and spend gold gathering the resources more often than harvesting.
 
-		public static bool S_SoldResource = false;
+		public static bool S_SoldResource = true;
 
 	// If true, then vendors will not buy resources you try to sell.
 	// Consider leaving this true if you allow players to harvest many resources at once.
@@ -598,7 +598,7 @@ namespace Server
 	// This is in the Merchant.cs file. WARNING: Vendors can only sell 250 different items. NOTE: Many settings
 	// here, that affect vendors, will not affect the custom merchant.
 
-		public static bool S_CustomMerchant = false;
+		public static bool S_CustomMerchant = true;
 
 
 
@@ -611,7 +611,7 @@ namespace Server
 	// then specify this dual ownership when choosing an item security level. The default setting is false, where
 	// co-owners have much more limited permissions as the standard game allows.
 
-		public static bool S_HouseOwners = false;
+		public static bool S_HouseOwners = true;
 
 	// When true (default setting), characters can use lawn tools (from architects) to add items to the outside
 	// of their home like trees, shrubs, fences, lave, water, and other items. Lawn tools require an amount of
@@ -644,7 +644,7 @@ namespace Server
 
 	// The amount of houses an account's characters may own. A -1 setting will be unlimited.
 
-		public static int S_HousesPerAccount = 2;
+		public static int S_HousesPerAccount = -1;
 
 	// If true, this means that the players can dye construction contracts so their pre-designed home is
 	// entirely in that same color.
@@ -711,7 +711,7 @@ namespace Server
 	// If true, then characters on mounts will dismount when they enter a building. They should mount their
 	// steed again when they leave.
 
-		public static bool S_NoMountBuilding = true;
+		public static bool S_NoMountBuilding = false;
 
 	// If true, then characters on mounts will dismount when they enter a player character's home. They
 	// should mount their steed again when they leave.
@@ -740,7 +740,7 @@ namespace Server
 	// This number can be set from 0 to 30, which determines the number of days before you can bond
 	// a pet one tamed (default is 7).
 
-		public static int S_BondDays = 7;
+		public static int S_BondDays = 1;
 
 
 

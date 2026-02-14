@@ -9,7 +9,8 @@ namespace Server.Items
 		[Constructable]
 		public BagOfNecroReagents()
 		{
-			Weight = 10.0;
+      Name = "Necromancy Reagents";
+      Weight = 10.0;
 		}
 
 		public override void Open( Mobile from )

@@ -9,7 +9,8 @@ namespace Server.Items
 		[Constructable]
 		public BagOfAllReagents()
 		{
-			Weight = 10.0;
+      Name = "All Reagents";
+      Weight = 10.0;
 		}
 
 		public override void Open( Mobile from )
