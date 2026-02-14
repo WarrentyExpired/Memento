@@ -65,15 +65,12 @@ namespace Server.Items
 				if ( !canDo && from.Map == Map.SavagedEmpire && from.X > 1054 && from.X < 1126 && from.Y > 1907 && from.Y < 1983 ){ canDo = true; }
 
 				PlayerMobile pc = (PlayerMobile)from;
-				if ( pc.NpcGuild != NpcGuild.BlacksmithsGuild )
-				{
-					from.SendMessage( "Only those of the Blacksmiths Guild may use this!" );
-				}
-				else if ( from.Skills[SkillName.Blacksmith].Value < 90 )
-				{
-					from.SendMessage( "Only a master blacksmith can use this!" );
-				}
-				else if ( !canDo )
+        int skillRequired = (pc.NpcGuild == NpcGuild.BlacksmithsGuild) ? 90 : 110;
+        if ( from.Skills[SkillName.Blacksmith].Value < skillRequired)
+        {
+          from.SendMessage($"You need {skillRequired} Blacksmithing skill to use this!");
+        }
+        else if ( !canDo )
 				{
 					from.SendMessage( "You need to be near a smithing guildmaster, or a smithing shoppe you own, to use this!" );
 				}

@@ -65,15 +65,12 @@ namespace Server.Items
 				if ( !canDo && from.Map == Map.SavagedEmpire && from.X > 1054 && from.X < 1126 && from.Y > 1907 && from.Y < 1983 ){ canDo = true; }
 
 				PlayerMobile pc = (PlayerMobile)from;
-				if ( pc.NpcGuild != NpcGuild.ArchersGuild )
-				{
-					from.SendMessage( "Only those of the Archers Guild may use this!" );
-				}
-				else if ( from.Skills[SkillName.Bowcraft].Value < 90 )
-				{
-					from.SendMessage( "Only a master fletcher can use this!" );
-				}
-				else if ( !canDo )
+        int skillRequired = (pc.NpcGuild == NpcGuild.ArchersGuild) ? 90 : 110;
+        if ( from.Skills[SkillName.Bowcraft].Value < skillRequired)
+        {
+          from.SendMessage($"You need {skillRequired} Bowcrafting skill to use this!");
+        }
+        else if ( !canDo )
 				{
 					from.SendMessage( "You need to be near a bowyer guildmaster, or a bowyer shoppe you own, to use this!" );
 				}

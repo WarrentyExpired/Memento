@@ -65,15 +65,12 @@ namespace Server.Items
 				if ( !canDo && from.Map == Map.SavagedEmpire && from.X > 1054 && from.X < 1126 && from.Y > 1907 && from.Y < 1983 ){ canDo = true; }
 
 				PlayerMobile pc = (PlayerMobile)from;
-				if ( pc.NpcGuild != NpcGuild.TailorsGuild )
-				{
-					from.SendMessage( "Only those of the Tailors Guild may use this!" );
-				}
-				else if ( from.Skills[SkillName.Tailoring].Value < 90 )
-				{
-					from.SendMessage( "Only a master tailor can use this!" );
-				}
-				else if ( !canDo )
+        int skillRequired = (pc.NpcGuild == NpcGuild.TailorsGuild) ? 90 : 110;
+        if ( from.Skills[SkillName.Tailoring].Value < skillRequired)
+        {
+          from.SendMessage($"You need {skillRequired} Tailoring skill to use this!");
+        }
+        else if ( !canDo )
 				{
 					from.SendMessage( "You need to be near a tailor guildmaster, or a tailor shoppe you own, to use this!" );
 				}
