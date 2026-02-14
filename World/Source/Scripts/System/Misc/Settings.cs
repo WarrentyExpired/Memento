@@ -486,16 +486,23 @@ namespace Server
 
 		public static int FoodCheck()
 		{
-			int time = 5;
-
+			int time = MySettings.S_FoodCheck;
 			if ( MySettings.S_FoodCheck > 60 )
 				time = 60;
-
 			if ( MySettings.S_FoodCheck < 5 )
 				time = 5;
-
 			return time;
 		}
+
+    public static int FoodBuffTimer()
+    {
+      int time = MySettings.S_FoodBuffTimer;
+      if (MySettings.S_FoodBuffTimer > 60 )
+        time = 60;
+      if (MySettings.S_FoodBuffTimer < 10 )
+        time = 10;
+      return time;
+    }
 
 		public static double BondDays()
 		{

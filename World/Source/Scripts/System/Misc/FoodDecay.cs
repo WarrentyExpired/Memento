@@ -39,7 +39,6 @@ namespace Server.Misc
 				if ( m is PlayerMobile )
 				{
 					Server.Items.BaseRace.SyncRace( m, true );
-
 					BuffInfo.CleanupIcons( m, false );
 
 					bool InsideInn = false;
@@ -69,17 +68,12 @@ namespace Server.Misc
 						if ( m.Hunger >= 1 )
 						{
 							m.Hunger -= 1;
-							// added to give hunger value a real meaning.
 							if ( m.Hunger < 5 ){ m.SendMessage( "You are extremely hungry." ); m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "I am extremely hungry."); }
 							else if ( m.Hunger < 10 ){ m.SendMessage( "You are getting very hungry." ); m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "I am getting very hungry."); }
 						}	
 						else
 						{
-							if ( m.Hits > 5 )
-								m.Hits -= 5;
-							if ( m.Mana > 2 )
-								m.Mana -= 2;
-
+							// Stat loss removed
 							m.SendMessage( "You are starving to death!" );
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "I am starving to death!");
 						}
@@ -88,7 +82,6 @@ namespace Server.Misc
 				else if ( m is BaseCreature )
 				{
 					BaseCreature bc = (BaseCreature)m;
-
 					if ( bc.Controlled && m.Hunger >= 1 )
 					{
 						m.Hunger -= 1;
@@ -137,11 +130,7 @@ namespace Server.Misc
 						}
 						else
 						{
-							if ( m.Stam > 5 )
-								m.Stam -= 5;
-							if ( m.Mana > 2 )
-								m.Mana -= 2;
-
+							// Stat loss removed
 							m.SendMessage( "You are exhausted from thirst" );
 							m.LocalOverheadMessage(MessageType.Emote, 0x916, true, "I am exhausted from thirst!");
 						}
@@ -150,7 +139,6 @@ namespace Server.Misc
 				else if ( m is BaseCreature )
 				{
 					BaseCreature bc = (BaseCreature)m;
-
 					if ( bc.Controlled && m.Thirst >= 1 )
 					{
 						m.Thirst -= 1;

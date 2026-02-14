@@ -189,7 +189,10 @@ namespace Server
 	// This number can be set from 5 to 60, which determines the number of minutes that hunger and thirst are checked for
 	// reduction (default is 5).
 
-		public static int S_FoodCheck = 5;
+		public static int S_FoodCheck = 5; // Minutes
+    
+    // This number can be set from 10 to 60 seconds, which determines how often the foodbuff is applied
+    public static int S_FoodBuffTimer = 15; // Seconds
 
 	// Below is the guild base fee to join a guild. This is the intial cost to join the first guild. If you quit, and join
 	// another guild, then the fee will increase by that amount. It is based on the number of guild you were a member of
