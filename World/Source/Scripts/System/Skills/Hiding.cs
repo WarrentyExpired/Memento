@@ -63,7 +63,13 @@ namespace Server.SkillHandlers
 
 			//int range = 18 - (int)(m.Skills[SkillName.Hiding].Value / 10);
 			int range = Math.Min( (int)((100 - m.Skills[SkillName.Hiding].Value)/2) + 8, 18 );	//Cap of 18 not OSI-exact, intentional difference
-
+      if ( m.Skills[SkillName.Hiding].Value > 100)
+      {
+        int bonusTiles = (int)((m.Skills[SkillName.Hiding].Value - 100) / 5);
+        range -= bonusTiles;
+        if (range < 1)
+          range = 1;
+      }
 			bool badCombat = ( !m_CombatOverride && m.Combatant != null && m.InRange( m.Combatant.Location, range ) && m.Combatant.InLOS( m ) );
 			if ( m.CheckSkill( SkillName.Hiding, 0, 250 ) ){ badCombat = false; } // ADDED A LITTLE EXTRA HIDING ABILITY FOR HIGH SKILL
 			bool ok = ( !badCombat /*&& m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus )*/ );
@@ -83,9 +89,16 @@ namespace Server.SkillHandlers
 					}
 				}
 
-				ok = ( !badCombat && m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus ) );
+				//ok = ( !badCombat && m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus ) );
+        if ( !badCombat )
+        {
+          if ( m.Skills[SkillName.Hiding].Value >= 100 )
+            ok = true;
+          else
+            ok = m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100 - bonus );
+        }
 			}
-
+      
 			if ( badCombat )
 			{
 				m.RevealingAction();
