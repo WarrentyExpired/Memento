@@ -19,7 +19,7 @@ namespace Server.SkillHandlers
 
 			BaseInstrument.PickInstrument( m, new InstrumentPickedCallback( OnPickedInstrument ) );
 
-			return TimeSpan.FromSeconds( 1.0 ); // Cannot use another skill for 1 second
+			return TimeSpan.FromSeconds( 1.0 );
 		}
 
 		public static void OnPickedInstrument( Mobile from, BaseInstrument instrument )
@@ -48,35 +48,29 @@ namespace Server.SkillHandlers
 
 					if ( m_Instrument.Parent != from && !m_Instrument.IsChildOf( from.Backpack ) )
 					{
-						from.SendLocalizedMessage( 1062488 ); // The instrument you are trying to play is no longer in your backpack!
+						from.SendLocalizedMessage( 1062334 ); // This instrument must be in your backpack or equipped.
 					}
-					else if ( creature.Controlled )
+					else if ( creature.Unprovokable )
 					{
-						from.SendLocalizedMessage( 501590 ); // They are too loyal to their master to be provoked.
-					}
-					else if ( creature.IsParagon && BaseInstrument.GetBaseDifficulty( creature ) >= 160.0 )
-					{
-						from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking those creatures.
+						from.SendLocalizedMessage( 1049446 ); // You cannot provoke that!
 					}
 					else
 					{
-						from.RevealingAction();
-						m_Instrument.PlayInstrumentWell( from );
-						from.SendLocalizedMessage( 1008085 ); // You play your music and your target becomes angered.  Whom do you wish them to attack?
+						from.SendLocalizedMessage( 501589 ); // To whom do you wish to incite them?
 						from.Target = new InternalSecondTarget( from, m_Instrument, creature );
 					}
 				}
 				else
 				{
-					from.SendLocalizedMessage( 501589 ); // You can't incite that!
+					from.SendLocalizedMessage( 501588 ); // You cannot provoke that!
 				}
 			}
 		}
 
 		private class InternalSecondTarget : Target
 		{
-			private BaseCreature m_Creature;
 			private BaseInstrument m_Instrument;
+			private BaseCreature m_Creature;
 
 			public InternalSecondTarget( Mobile from, BaseInstrument instrument, BaseCreature creature ) : base( BaseInstrument.GetBardRange( from, SkillName.Provocation ), false, TargetFlags.None )
 			{
@@ -91,7 +85,7 @@ namespace Server.SkillHandlers
 				if ( targeted is BaseCreature )
 				{
 					BaseCreature creature = (BaseCreature)targeted;
-                                        // --- START SELF-PROVOKE LOGIC ---
+
 					if ( creature == m_Creature )
 					{
 						if ( from.CanBeHarmful( creature, true ) )
@@ -99,128 +93,112 @@ namespace Server.SkillHandlers
 							if ( !BaseInstrument.CheckMusicianship( from ) )
 							{
 								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-								from.SendLocalizedMessage( 500612 ); // You play poorly...
+								from.SendLocalizedMessage( 500612 );
 								m_Instrument.PlayInstrumentBadly( from );
 								m_Instrument.ConsumeUse( from );
 							}
 							else
 							{
 								double diff = m_Instrument.GetDifficultyFor( creature ) + 25.0;
-								double minSkill = diff - 25.0;
-								double maxSkill = diff + 25.0;
+								double skill = from.Skills[SkillName.Provocation].Value;
+								
+								// Manual calculation of success chance based on -25/+25 spread
+								double chance = (skill - (diff - 25.0)) / 50.0;
+								if (chance < 0.0) chance = 0.0;
+								if (chance > 1.0) chance = 1.0;
 
-								if ( !from.CheckTargetSkill( SkillName.Provocation, creature, minSkill, maxSkill ) )
+								if ( !from.CheckTargetSkill( SkillName.Provocation, creature, diff - 25.0, diff + 25.0 ) )
 								{
 									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-									from.SendLocalizedMessage( 501599 ); // Your music fails...
+									from.SendLocalizedMessage( 501599 );
 									m_Instrument.PlayInstrumentBadly( from );
 									m_Instrument.ConsumeUse( from );
 								}
 								else
 								{
-									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-									from.SendMessage( "Your music confuses the creature, causing it to harm itself!" );
+									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3.0 ); 
 									m_Instrument.PlayInstrumentWell( from );
 									m_Instrument.ConsumeUse( from );
 
-									// Scaling: (Prov + Mus) / 4 with a small random spread
 									double prov = from.Skills[SkillName.Provocation].Value;
 									double mus = from.Skills[SkillName.Musicianship].Value;
+
 									int baseDamage = (int)((prov + mus) / 4);
-									int damage = Utility.RandomMinMax( (int)(baseDamage * 0.9), (int)(baseDamage * 1.1) );
+									int scaledDamage = (int)(baseDamage * (0.5 + (chance * 0.5)));
+									int damage = Utility.RandomMinMax( (int)(scaledDamage * 0.9), (int)(scaledDamage * 1.1) );
 
 									creature.Damage( Math.Max( 1, damage ), from );
-									creature.FixedEffect( 0x376A, 10, 15 ); // Sparkle effect
-									creature.PlaySound( 0x1F9 ); // "Hit" sound
-                  
-                  // Shatter effect
-                  int reduction = (int)((prov + mus) / 20);
-                  ResistanceMod mod = new ResistanceMod( ResistanceType.Physical, -reduction );
-                  creature.AddResistanceMod( mod );
-                  Timer.DelayCall( TimeSpan.FromSeconds( 10.0 ), () =>
-                  {
-                    if ( creature != null && !creature.Deleted )
-                         creature.RemoveResistanceMod( mod );
-                  });
-                  from.SendMessage( "The sonic vibrations shatter their armor (-{0} Physical Resist)!", reduction );
-                }
+									creature.PlaySound( 0x1F9 );
+
+									if ( Utility.RandomDouble() < chance )
+									{
+										int duration = 5 + (int)(10 * chance);
+										int reduction = (int)((prov + mus) / 20);
+
+										ResistanceMod mod = new ResistanceMod( ResistanceType.Physical, -reduction );
+										creature.AddResistanceMod( mod );
+
+										Timer.DelayCall( TimeSpan.FromSeconds( duration ), () => 
+										{
+											if ( creature != null && !creature.Deleted )
+												creature.RemoveResistanceMod( mod );
+										});
+
+										from.SendMessage( "The music shatters their armor for {0} seconds!", duration );
+										creature.FixedParticles( 0x37B9, 10, 20, 5013, 0x480, 2, EffectLayer.Waist );
+									}
+									else
+									{
+										from.SendMessage( "Your music confuses them, but their armor remains intact." );
+									}
+								}
 							}
 						}
-						return; // Prevent standard logic from running
+						return; 
 					}
-					// --- END SELF-PROVOKE LOGIC ---
 
-					if ( m_Instrument.Parent != from && !m_Instrument.IsChildOf( from.Backpack ) )
+					if ( m_Creature.Unprovokable || creature.Unprovokable )
 					{
-						from.SendLocalizedMessage( 1062488 ); // The instrument you are trying to play is no longer in your backpack!
-					}
-					else if ( m_Creature.Unprovokable )
-					{
-						from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking those creatures.
-					}
-					else if ( creature.Unprovokable )
-					{
-						from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking those creatures.
-					}
-					else if ( creature.BardImmune )
-					{
-						from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking those creatures.
+						from.SendLocalizedMessage( 1049446 );
 					}
 					else if ( m_Creature.Map != creature.Map || !m_Creature.InRange( creature, BaseInstrument.GetBardRange( from, SkillName.Provocation ) ) )
 					{
-						from.SendLocalizedMessage( 1049450 ); // The creatures you are trying to provoke are too far away from each other for your music to have an effect.
+						from.SendLocalizedMessage( 501591 );
 					}
-					else if ( m_Creature != creature )
+					else
 					{
-						double diff = Math.Max( m_Instrument.GetDifficultyFor( m_Creature ), m_Instrument.GetDifficultyFor( creature ) ) - 10.0;
-						double music = from.Skills[SkillName.Musicianship].Value;
-
-						if ( music > 100.0 )
-							diff -= (music - 100.0) * 0.5;
-
-						double minSkill = diff - 25;
-						double maxSkill = diff + 25;
+						int diff = (int)((m_Instrument.GetDifficultyFor( m_Creature ) + m_Instrument.GetDifficultyFor( creature )) * 0.5) + 25;
 
 						if ( from.CanBeHarmful( m_Creature, true ) && from.CanBeHarmful( creature, true ) )
 						{
 							if ( !BaseInstrument.CheckMusicianship( from ) )
 							{
 								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-								from.SendLocalizedMessage( 500612 ); // You play poorly, and there is no effect.
+								from.SendLocalizedMessage( 500612 );
+								m_Instrument.PlayInstrumentBadly( from );
+								m_Instrument.ConsumeUse( from );
+							}
+							else if ( !from.CheckTargetSkill( SkillName.Provocation, creature, diff - 25, diff + 25 ) )
+							{
+								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
+								from.SendLocalizedMessage( 501599 );
 								m_Instrument.PlayInstrumentBadly( from );
 								m_Instrument.ConsumeUse( from );
 							}
 							else
 							{
-								//from.DoHarmful( m_Creature );
-								//from.DoHarmful( creature );
-
-								if ( !from.CheckTargetSkill( SkillName.Provocation, creature, minSkill, maxSkill ) )
-								{
-									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-									from.SendLocalizedMessage( 501599 ); // Your music fails to incite enough anger.
-									m_Instrument.PlayInstrumentBadly( from );
-									m_Instrument.ConsumeUse( from );
-								}
-								else
-								{
-									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 6 );
-									from.SendLocalizedMessage( 501602 ); // Your music succeeds, as you start a fight.
-									m_Instrument.PlayInstrumentWell( from );
-									m_Instrument.ConsumeUse( from );
-									m_Creature.Provoke( from, creature, true );
-								}
+								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 6 );
+								from.SendLocalizedMessage( 501602 );
+								m_Instrument.PlayInstrumentWell( from );
+								m_Instrument.ConsumeUse( from );
+								m_Creature.Provoke( from, creature, true );
 							}
 						}
-					}
-					else
-					{
-						from.SendLocalizedMessage( 501593 ); // You can't tell someone to attack themselves!
 					}
 				}
 				else
 				{
-					from.SendLocalizedMessage( 501589 ); // You can't incite that!
+					from.SendLocalizedMessage( 501588 );
 				}
 			}
 		}
