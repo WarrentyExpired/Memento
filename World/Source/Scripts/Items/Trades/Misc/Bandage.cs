@@ -531,11 +531,11 @@ namespace Server.Items
 			}
 
 			if ( healerNumber != -1 ){
-				m_Healer.SendLocalizedMessage( healerNumber );
+				m_Healer.SendLocalizedMessage( healerNumber );}
 				//m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, healerNumber );}
 
 			if ( patientNumber != -1 ){
-				m_Patient.SendLocalizedMessage( patientNumber );
+				m_Patient.SendLocalizedMessage( patientNumber );}
 				//m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, patientNumber );}
 
 			if ( playSound )
