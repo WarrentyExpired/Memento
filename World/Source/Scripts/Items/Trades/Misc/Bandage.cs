@@ -674,11 +674,7 @@ namespace Server.Items
 		{
 			bool isDeadPet = ( patient is BaseCreature && ((BaseCreature)patient).IsDeadPet );
 
-			if ( patient.Hunger < 6 && patient is PlayerMobile && patient.Alive )
-			{
-				healer.SendMessage( "You cannot heal those that are extremely hungry." );
-			}
-			else if ( patient is Golem || patient is Robot )
+			if ( patient is Golem || patient is Robot )
 			{
 				healer.SendLocalizedMessage( 500970 ); // Bandages cannot be used on that.
 			}
