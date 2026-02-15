@@ -118,7 +118,7 @@ namespace Server.SkillHandlers
 								}
 								else
 								{
-									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 6 );
+									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
 									from.SendMessage( "Your music confuses the creature, causing it to harm itself!" );
 									m_Instrument.PlayInstrumentWell( from );
 									m_Instrument.ConsumeUse( from );
