@@ -48,31 +48,31 @@ namespace Server.SkillHandlers
 
 					if ( m_Instrument.Parent != from && !m_Instrument.IsChildOf( from.Backpack ) )
 					{
-						from.SendLocalizedMessage( 1062334 ); // This instrument must be in your backpack or equipped.
+						from.SendLocalizedMessage( 1062488 ); // The instrument you are trying to play is no longer in your backpack!
 					}
-                                        else if ( creature.Controlled )
-                                        {
-                                          from.SendLocalizedMessage( 501590 ); // They are to loyal
-                                        }
-			                else if ( creature.IsParagon && BaseInstrument.GetBaseDifficulty( creature ) >= 160.0 )
-                                        {
-                                            from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking 
-                                        {       
+					else if ( creature.Controlled )
+					{
+						from.SendLocalizedMessage( 501590 ); // They are too loyal to their master to be provoked.
+					}
+					else if ( creature.IsParagon && BaseInstrument.GetBaseDifficulty( creature ) >= 160.0 )
+					{
+						from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking those creatures.
+					}
 					else
 					{
-                                                from.RevealingAction();
-                                                m_Instrument.PlayInstrumentWell( from );
-						from.SendLocalizedMessage( 501589 ); // To whom do you wish to incite them?
+						from.RevealingAction();
+						m_Instrument.PlayInstrumentWell( from );
+						from.SendLocalizedMessage( 1008085 ); // You play your music and your target becomes angered.  Whom do you wish them to attack?
 						from.Target = new InternalSecondTarget( from, m_Instrument, creature );
 					}
 				}
 				else
 				{
-					from.SendLocalizedMessage( 501588 ); // You cannot provoke that!
+					from.SendLocalizedMessage( 501589 ); // You can't incite that!
 				}
 			}
 		}
-
+                //
 		private class InternalSecondTarget : Target
 		{
 			private BaseInstrument m_Instrument;
