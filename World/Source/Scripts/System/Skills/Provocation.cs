@@ -50,12 +50,18 @@ namespace Server.SkillHandlers
 					{
 						from.SendLocalizedMessage( 1062334 ); // This instrument must be in your backpack or equipped.
 					}
-					else if ( creature.Unprovokable )
-					{
-						from.SendLocalizedMessage( 1049446 ); // You cannot provoke that!
-					}
+                                        else if ( creature.Controlled )
+                                        {
+                                          from.SendLocalizedMessage( 501590 ); // They are to loyal
+                                        }
+			                else if ( creature.IsParagon && BaseInstrument.GetBaseDifficulty( creature ) >= 160.0 )
+                                        {
+                                            from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking 
+                                        {       
 					else
 					{
+                                                from.RevealingAction();
+                                                m_Instrument.PlayInstrumentWell( from );
 						from.SendLocalizedMessage( 501589 ); // To whom do you wish to incite them?
 						from.Target = new InternalSecondTarget( from, m_Instrument, creature );
 					}
