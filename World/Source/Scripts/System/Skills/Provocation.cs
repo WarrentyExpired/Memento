@@ -132,7 +132,18 @@ namespace Server.SkillHandlers
 									creature.Damage( Math.Max( 1, damage ), from );
 									creature.FixedEffect( 0x376A, 10, 15 ); // Sparkle effect
 									creature.PlaySound( 0x1F9 ); // "Hit" sound
-								}
+                  
+                  // Shatter effect
+                  int reduction = (int)((prov + mus) / 20);
+                  ResistanceMod mod = new ResistanceMod( ResistanceType.Physical, -reduction );
+                  creature.AddResistanceMod( mod );
+                  Timer.DelayCall( TimeSpan.FromSeconds( 10.0 ), () =>
+                  {
+                    if ( creature != null && !creature.Deleted )
+                         creature.RemoveResistanceMod( mod );
+                  });
+                  from.SendMessage( "The sonic vibrations shatter their armor (-{0} Physical Resist)!", reduction );
+                }
 							}
 						}
 						return; // Prevent standard logic from running
