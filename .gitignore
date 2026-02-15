@@ -49,4 +49,10 @@ World/Data/Obsolete
 World/Scripts/Obsolete
 World.exe
 World.exe.config
-src/World.exe - Shortcut
+src/World.exe
+World/Data/Data.ref
+World/Data/Files/
+World/Saves/Achievements/
+World/Saves/Craft/
+World/Saves/Player/
+World/WorldLinux.exe

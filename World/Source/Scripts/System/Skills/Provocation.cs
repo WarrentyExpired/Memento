@@ -91,6 +91,53 @@ namespace Server.SkillHandlers
 				if ( targeted is BaseCreature )
 				{
 					BaseCreature creature = (BaseCreature)targeted;
+                                        // --- START SELF-PROVOKE LOGIC ---
+					if ( creature == m_Creature )
+					{
+						if ( from.CanBeHarmful( creature, true ) )
+						{
+							if ( !BaseInstrument.CheckMusicianship( from ) )
+							{
+								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
+								from.SendLocalizedMessage( 500612 ); // You play poorly...
+								m_Instrument.PlayInstrumentBadly( from );
+								m_Instrument.ConsumeUse( from );
+							}
+							else
+							{
+								double diff = m_Instrument.GetDifficultyFor( creature ) + 25.0;
+								double minSkill = diff - 25.0;
+								double maxSkill = diff + 25.0;
+
+								if ( !from.CheckTargetSkill( SkillName.Provocation, creature, minSkill, maxSkill ) )
+								{
+									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
+									from.SendLocalizedMessage( 501599 ); // Your music fails...
+									m_Instrument.PlayInstrumentBadly( from );
+									m_Instrument.ConsumeUse( from );
+								}
+								else
+								{
+									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 6 );
+									from.SendMessage( "Your music confuses the creature, causing it to harm itself!" );
+									m_Instrument.PlayInstrumentWell( from );
+									m_Instrument.ConsumeUse( from );
+
+									// Scaling: (Prov + Mus) / 4 with a small random spread
+									double prov = from.Skills[SkillName.Provocation].Value;
+									double mus = from.Skills[SkillName.Musicianship].Value;
+									int baseDamage = (int)((prov + mus) / 4);
+									int damage = Utility.RandomMinMax( (int)(baseDamage * 0.9), (int)(baseDamage * 1.1) );
+
+									creature.Damage( Math.Max( 1, damage ), from );
+									creature.FixedEffect( 0x376A, 10, 15 ); // Sparkle effect
+									creature.PlaySound( 0x1F9 ); // "Hit" sound
+								}
+							}
+						}
+						return; // Prevent standard logic from running
+					}
+					// --- END SELF-PROVOKE LOGIC ---
 
 					if ( m_Instrument.Parent != from && !m_Instrument.IsChildOf( from.Backpack ) )
 					{
