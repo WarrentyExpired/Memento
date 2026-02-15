@@ -240,7 +240,7 @@ namespace Server.Items
 		public void Slip()
 		{
 			m_Healer.SendLocalizedMessage( 500961 ); // Your fingers slip!
-			m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, 500961 );
+			//m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, 500961 );
 
 			++m_Slips;
 		}
@@ -428,7 +428,7 @@ namespace Server.Items
 					{
 						tryHealing = false;
 						m_Healer.SendLocalizedMessage( 500969 ); // You finish applying the bandages.
-						m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, 500969 );
+						//m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, 500969 );
 
 						double healing = m_Healer.Skills[primarySkill].Value;
 						double anatomy = m_Healer.Skills[secondarySkill].Value;
@@ -532,11 +532,11 @@ namespace Server.Items
 
 			if ( healerNumber != -1 ){
 				m_Healer.SendLocalizedMessage( healerNumber );
-				m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, healerNumber );}
+				//m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, healerNumber );}
 
 			if ( patientNumber != -1 ){
 				m_Patient.SendLocalizedMessage( patientNumber );
-				m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, patientNumber );}
+				//m_Healer.LocalOverheadMessage( MessageType.Regular, 1150, patientNumber );}
 
 			if ( playSound )
 				m_Patient.PlaySound( 0x57 );
@@ -713,7 +713,7 @@ namespace Server.Items
 					patient.SendLocalizedMessage( 1008078, false, healer.Name ); //  : Attempting to heal you.
 
 				healer.SendLocalizedMessage( 500956 ); // You begin applying the bandages.
-				healer.LocalOverheadMessage( MessageType.Regular, 1150, 500956 );
+				//healer.LocalOverheadMessage( MessageType.Regular, 1150, 500956 );
 
 				BuffInfo.AddBuff( healer, new BuffInfo( BuffIcon.Bandage, 1063670, TimeSpan.FromMilliseconds( milliseconds ), healer ) );
 
