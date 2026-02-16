@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Server.Targeting;
 using Server.Network;
 using Server.Mobiles;
@@ -6,207 +7,203 @@ using Server.Items;
 
 namespace Server.SkillHandlers
 {
-	public class Provocation
-	{
-		public static void Initialize()
-		{
-			SkillInfo.Table[(int)SkillName.Provocation].Callback = new SkillUseCallback( OnUse );
-		}
+  public class Provocation
+  {
+    // Table to track active shard timers to prevent stacking and manage cleanup
+    private static Hashtable m_ShardTable = new Hashtable();
 
-		public static TimeSpan OnUse( Mobile m )
-		{
-			m.RevealingAction();
+    public static void Initialize()
+    {
+      SkillInfo.Table[(int)SkillName.Provocation].Callback = new SkillUseCallback( OnUse );
+    }
 
-			BaseInstrument.PickInstrument( m, new InstrumentPickedCallback( OnPickedInstrument ) );
+    public static TimeSpan OnUse( Mobile m )
+    {
+      m.RevealingAction();
+      BaseInstrument.PickInstrument( m, new InstrumentPickedCallback( OnPickedInstrument ) );
+      return TimeSpan.FromSeconds( 1.0 );
+    }
 
-			return TimeSpan.FromSeconds( 1.0 );
-		}
+    public static void OnPickedInstrument( Mobile from, BaseInstrument instrument )
+    {
+      from.RevealingAction();
+      from.SendLocalizedMessage( 501587 ); // Whom do you wish to incite?
+      from.Target = new InternalFirstTarget( from, instrument );
+    }
 
-		public static void OnPickedInstrument( Mobile from, BaseInstrument instrument )
-		{
-			from.RevealingAction();
-			from.SendLocalizedMessage( 501587 ); // Whom do you wish to incite?
-			from.Target = new InternalFirstTarget( from, instrument );
-		}
+    private class InternalFirstTarget : Target
+    {
+      private BaseInstrument m_Instrument;
 
-		private class InternalFirstTarget : Target
-		{
-			private BaseInstrument m_Instrument;
+      public InternalFirstTarget( Mobile from, BaseInstrument instrument ) : base( BaseInstrument.GetBardRange( from, SkillName.Provocation ), false, TargetFlags.None )
+      {
+        m_Instrument = instrument;
+      }
 
-			public InternalFirstTarget( Mobile from, BaseInstrument instrument ) : base( BaseInstrument.GetBardRange( from, SkillName.Provocation ), false, TargetFlags.None )
-			{
-				m_Instrument = instrument;
-			}
+      protected override void OnTarget( Mobile from, object targeted )
+      {
+        from.RevealingAction();
 
-			protected override void OnTarget( Mobile from, object targeted )
-			{
-				from.RevealingAction();
+        if ( targeted is BaseCreature && from.CanBeHarmful( (Mobile)targeted, true ) )
+        {
+          BaseCreature creature = (BaseCreature)targeted;
 
-				if ( targeted is BaseCreature && from.CanBeHarmful( (Mobile)targeted, true ) )
-				{
-					BaseCreature creature = (BaseCreature)targeted;
+          if ( m_Instrument.Parent != from && !m_Instrument.IsChildOf( from.Backpack ) )
+          {
+            from.SendLocalizedMessage( 1062488 ); // The instrument you are trying to play is no longer in your backpack!
+          }
+          else
+          {
+            from.RevealingAction();
+            from.SendLocalizedMessage( 1008085 ); // Whom do they beat on?
+            from.Target = new InternalSecondTarget( from, m_Instrument, creature );
+          }
+        }
+        else
+        {
+          from.SendLocalizedMessage( 501589 ); // You can't incite that!
+        }
+      }
+    }
 
-					if ( m_Instrument.Parent != from && !m_Instrument.IsChildOf( from.Backpack ) )
-					{
-						from.SendLocalizedMessage( 1062488 ); // The instrument you are trying to play is no longer in your backpack!
-					}
-					else if ( creature.Controlled )
-					{
-						from.SendLocalizedMessage( 501590 ); // They are too loyal to their master to be provoked.
-					}
-					else if ( creature.IsParagon && BaseInstrument.GetBaseDifficulty( creature ) >= 160.0 )
-					{
-						from.SendLocalizedMessage( 1049446 ); // You have no chance of provoking those creatures.
-					}
-					else
-					{
-						from.RevealingAction();
-						m_Instrument.PlayInstrumentWell( from );
-						from.SendLocalizedMessage( 1008085 ); // You play your music and your target becomes angered.  Whom do you wish them to attack?
-						from.Target = new InternalSecondTarget( from, m_Instrument, creature );
-					}
-				}
-				else
-				{
-					from.SendLocalizedMessage( 501589 ); // You can't incite that!
-				}
-			}
-		}
-                //
-		private class InternalSecondTarget : Target
-		{
-			private BaseInstrument m_Instrument;
-			private BaseCreature m_Creature;
+    private class InternalSecondTarget : Target
+    {
+      private BaseInstrument m_Instrument;
+      private BaseCreature m_Creature;
 
-			public InternalSecondTarget( Mobile from, BaseInstrument instrument, BaseCreature creature ) : base( BaseInstrument.GetBardRange( from, SkillName.Provocation ), false, TargetFlags.None )
-			{
-				m_Instrument = instrument;
-				m_Creature = creature;
-			}
+      public InternalSecondTarget( Mobile from, BaseInstrument instrument, BaseCreature creature ) : base( BaseInstrument.GetBardRange( from, SkillName.Provocation ), false, TargetFlags.None )
+      {
+        m_Instrument = instrument;
+        m_Creature = creature;
+      }
 
-			protected override void OnTarget( Mobile from, object targeted )
-			{
-				from.RevealingAction();
+      protected override void OnTarget( Mobile from, object targeted )
+      {
+        from.RevealingAction();
 
-				if ( targeted is BaseCreature )
-				{
-					BaseCreature creature = (BaseCreature)targeted;
+        if ( targeted is Mobile )
+        {
+          Mobile creature = (Mobile)targeted;
 
-					if ( creature == m_Creature )
-					{
-						if ( from.CanBeHarmful( creature, true ) )
-						{
-							if ( !BaseInstrument.CheckMusicianship( from ) )
-							{
-								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-								from.SendLocalizedMessage( 500612 );
-								m_Instrument.PlayInstrumentBadly( from );
-								m_Instrument.ConsumeUse( from );
-							}
-							else
-							{
-								double diff = m_Instrument.GetDifficultyFor( creature ) + 25.0;
-								double skill = from.Skills[SkillName.Provocation].Value;
-								
-								// Manual calculation of success chance based on -25/+25 spread
-								double chance = (skill - (diff - 25.0)) / 50.0;
-								if (chance < 0.0) chance = 0.0;
-								if (chance > 1.0) chance = 1.0;
+          if ( m_Creature.Unprovokable || (creature is BaseCreature && ((BaseCreature)creature).Unprovokable) )
+          {
+            from.SendLocalizedMessage( 1049446 ); // You cannot provoke them!
+          }
+          else if ( m_Creature.Map != creature.Map || !m_Creature.InRange( creature, BaseInstrument.GetBardRange( from, SkillName.Provocation ) ) )
+          {
+            from.SendLocalizedMessage( 501591 ); // You are too far away to provoke them!
+          }
+          else
+          {
+            int diff = (int)((m_Instrument.GetDifficultyFor( m_Creature ) + m_Instrument.GetDifficultyFor( creature )) * 0.5) + 25;
 
-								if ( !from.CheckTargetSkill( SkillName.Provocation, creature, diff - 25.0, diff + 25.0 ) )
-								{
-									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-									from.SendLocalizedMessage( 501599 );
-									m_Instrument.PlayInstrumentBadly( from );
-									m_Instrument.ConsumeUse( from );
-								}
-								else
-								{
-									from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3.0 ); 
-									m_Instrument.PlayInstrumentWell( from );
-									m_Instrument.ConsumeUse( from );
+            if ( from.CanBeHarmful( m_Creature, true ) && from.CanBeHarmful( creature, true ) )
+            {
+              if ( !BaseInstrument.CheckMusicianship( from ) )
+              {
+                from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3.0 );
+                from.SendLocalizedMessage( 500612 );
+                m_Instrument.PlayInstrumentBadly( from );
+                m_Instrument.ConsumeUse( from );
+              }
+              else if ( !from.CheckTargetSkill( SkillName.Provocation, creature, diff - 25, diff + 25 ) )
+              {
+                from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3.0 );
+                from.SendLocalizedMessage( 501599 );
+                m_Instrument.PlayInstrumentBadly( from );
+                m_Instrument.ConsumeUse( from );
+              }
+              else
+              {
+                from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 6.0 );
+                m_Instrument.PlayInstrumentWell( from );
+                m_Instrument.ConsumeUse( from );
 
-									double prov = from.Skills[SkillName.Provocation].Value;
-									double mus = from.Skills[SkillName.Musicianship].Value;
+                // SHATTER & SHARDED SKIN LOGIC (Self-Provoke)
+                if ( creature == m_Creature || creature == from )
+                {
+                  double prov = from.Skills[SkillName.Provocation].Value;
+                  int shatterAmount = (int)(prov / -5); 
+                  TimeSpan duration = TimeSpan.FromSeconds( prov / 2 );
 
-									int baseDamage = (int)((prov + mus) / 4);
-									int scaledDamage = (int)(baseDamage * (0.5 + (chance * 0.5)));
-									int damage = Utility.RandomMinMax( (int)(scaledDamage * 0.9), (int)(scaledDamage * 1.1) );
+                  // Refresh logic: Stop old timer if it exists
+                  Timer existingTimer = (Timer)m_ShardTable[m_Creature];
+                  if ( existingTimer != null )
+                    existingTimer.Stop();
 
-									creature.Damage( Math.Max( 1, damage ), from );
-									creature.PlaySound( 0x1F9 );
+                  ResistanceMod shatterMod = new ResistanceMod( ResistanceType.Physical, shatterAmount );
+                  m_Creature.AddResistanceMod( shatterMod );
 
-									if ( Utility.RandomDouble() < chance )
-									{
-										int duration = 5 + (int)(10 * chance);
-										int reduction = (int)((prov + mus) / 20);
+                  // Start the Sharded Skin DoT and Aggro Timer
+                  ShardedSkinTimer newTimer = new ShardedSkinTimer( m_Creature, from, duration );
+                  m_ShardTable[m_Creature] = newTimer;
+                  newTimer.Start();
 
-										ResistanceMod mod = new ResistanceMod( ResistanceType.Physical, -reduction );
-										creature.AddResistanceMod( mod );
+                  // Immediate Aggro: Make them turn on you immediately
+                  m_Creature.Combatant = from;
+                  m_Creature.Warmode = true;
 
-										Timer.DelayCall( TimeSpan.FromSeconds( duration ), () => 
-										{
-											if ( creature != null && !creature.Deleted )
-												creature.RemoveResistanceMod( mod );
-										});
+                  from.SendMessage( "The creature's armor shatters! It roars in pain and fixes its eyes on you!" );
+                  m_Creature.FixedParticles( 0x37B9, 10, 5, 5052, EffectLayer.LeftFoot );
 
-										from.SendMessage( "The music shatters their armor for {0} seconds!", duration );
-										creature.FixedParticles( 0x37B9, 10, 20, 5013, 0x480, 2, EffectLayer.Waist );
-									}
-									else
-									{
-										from.SendMessage( "Your music confuses them, but their armor remains intact." );
-									}
-								}
-							}
-						}
-						return; 
-					}
+                  Timer.DelayCall( duration, delegate { m_Creature.RemoveResistanceMod( shatterMod ); } );
+                }
+                else
+                {
+                  from.SendLocalizedMessage( 501602 ); // Your music succeeds, as you start a fight.
+                  m_Creature.Provoke( from, creature, true );
+                }
+              }
+            }
+          }
+        }
+        else
+        {
+          from.SendLocalizedMessage( 501589 );
+        }
+      }
+    }
 
-					if ( m_Creature.Unprovokable || creature.Unprovokable )
-					{
-						from.SendLocalizedMessage( 1049446 );
-					}
-					else if ( m_Creature.Map != creature.Map || !m_Creature.InRange( creature, BaseInstrument.GetBardRange( from, SkillName.Provocation ) ) )
-					{
-						from.SendLocalizedMessage( 501591 );
-					}
-					else
-					{
-						int diff = (int)((m_Instrument.GetDifficultyFor( m_Creature ) + m_Instrument.GetDifficultyFor( creature )) * 0.5) + 25;
+    private class ShardedSkinTimer : Timer
+    {
+      private Mobile m_Victim;
+      private Mobile m_Attacker;
+      private DateTime m_End;
 
-						if ( from.CanBeHarmful( m_Creature, true ) && from.CanBeHarmful( creature, true ) )
-						{
-							if ( !BaseInstrument.CheckMusicianship( from ) )
-							{
-								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-								from.SendLocalizedMessage( 500612 );
-								m_Instrument.PlayInstrumentBadly( from );
-								m_Instrument.ConsumeUse( from );
-							}
-							else if ( !from.CheckTargetSkill( SkillName.Provocation, creature, diff - 25, diff + 25 ) )
-							{
-								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 3 );
-								from.SendLocalizedMessage( 501599 );
-								m_Instrument.PlayInstrumentBadly( from );
-								m_Instrument.ConsumeUse( from );
-							}
-							else
-							{
-								from.NextSkillTime = DateTime.Now + TimeSpan.FromSeconds( 6 );
-								from.SendLocalizedMessage( 501602 );
-								m_Instrument.PlayInstrumentWell( from );
-								m_Instrument.ConsumeUse( from );
-								m_Creature.Provoke( from, creature, true );
-							}
-						}
-					}
-				}
-				else
-				{
-					from.SendLocalizedMessage( 501588 );
-				}
-			}
-		}
-	}
+      public ShardedSkinTimer( Mobile victim, Mobile attacker, TimeSpan duration ) : base( TimeSpan.FromSeconds( 2.0 ), TimeSpan.FromSeconds( 2.0 ) )
+      {
+        m_Victim = victim;
+        m_Attacker = attacker;
+        m_End = DateTime.Now + duration;
+        Priority = TimerPriority.TwoFiftyMS;
+      }
+
+      protected override void OnTick()
+      {
+        if ( m_Victim == null || !m_Victim.Alive || m_Victim.Deleted || DateTime.Now > m_End )
+        {
+          if ( m_Victim != null && m_ShardTable.Contains( m_Victim ) )
+            m_ShardTable.Remove( m_Victim );
+          Stop();
+          return;
+        }
+
+        int damage = (int)(m_Attacker.Skills[SkillName.Provocation].Value / 20);
+        if ( damage < 1 ) damage = 1;
+
+        // Apply DoT damage
+        m_Victim.Damage( damage, m_Attacker );
+
+        // FORCE AGGRO: Every tick, re-affirm the player as the primary target
+        if ( m_Victim.Combatant == null || m_Victim.Combatant == m_Victim )
+        {
+          m_Victim.Combatant = m_Attacker;
+          m_Victim.Warmode = true;
+        }
+
+        m_Victim.PlaySound( 0x133 ); // Metal clink
+        m_Victim.FixedEffect( 0x377A, 1, 32 ); // Small spark
+      }
+    }
+  }
 }
