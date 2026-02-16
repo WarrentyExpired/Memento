@@ -199,7 +199,7 @@ namespace Server.SkillHandlers
 
                   if (bullseyeChance < 0.0) bullseyeChance = 0.0;
                   if (bullseyeChance > 1.0) bullseyeChance = 1.0;
-
+ 
                   if ( Utility.RandomDouble() < bullseyeChance )
                   {
                     double penalty = (skill / 6.0); 
@@ -208,6 +208,10 @@ namespace Server.SkillHandlers
                     TimeSpan bullseyeDuration = TimeSpan.FromSeconds( seconds );
 
                     bc.Skills[SkillName.FistFighting].Base -= penalty;
+                    bc.Skills[SkillName.Swords].Base -= penalty;
+                    bc.Skills[SkillName.Bludgeoning].Base -= penalty;
+                    bc.Skills[SkillName.Marksmanship].Base -= penalty;
+                    bc.Skills[SkillName.Fencing].Base -= penalty;
                     bc.Skills[SkillName.Parry].Base -= penalty;
 
                     Timer.DelayCall( bullseyeDuration, new TimerCallback( delegate
@@ -215,6 +219,9 @@ namespace Server.SkillHandlers
                       if ( bc != null && !bc.Deleted )
                       {
                         bc.Skills[SkillName.FistFighting].Base += penalty;
+                        bc.Skills[SkillName.Swords].Base += penalty;
+                        bc.Skills[SkillName.Bludgeoning].Base += penalty;
+                        bc.Skills[SkillName.Fencing].Base += penalty;
                         bc.Skills[SkillName.Parry].Base += penalty;
                         from.SendMessage( "The creature has regained its focus; your bullseye bonus has expired." );
                       }
