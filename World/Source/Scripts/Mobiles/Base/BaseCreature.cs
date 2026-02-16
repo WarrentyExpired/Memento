@@ -20,6 +20,7 @@ using System.IO;
 using Server.Engines.MLQuests;
 using Custom.Jerbal.Jako;
 using System.Linq;
+using Server.SkillHandlers;
 
 namespace Server.Mobiles
 {
@@ -4032,6 +4033,9 @@ namespace Server.Mobiles
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
+      Discordance.ApplyEcho( this, from );
+      base.OnDamage( amount, from, willKill );
+
 			SlayerEntry undead_creatures = SlayerGroup.GetEntryByName( SlayerName.Silver );
 			if ( undead_creatures.Slays(this) && from is PlayerMobile )
 			{
@@ -4098,7 +4102,7 @@ namespace Server.Mobiles
 
 				if ( leveler is PlayerMobile )
 				{
-					LevelItemManager.CheckItems( leveler, this );
+					LevelItemManager.CheckItems ( leveler, this );
 				}
 			}
 

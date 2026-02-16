@@ -9,28 +9,38 @@ namespace Server.SkillHandlers
 	public class Discordance
 	{
  //
-    public static void ApplyEcho(BaseCreature victim, Mobile attacker)
+    public static void ApplyEcho(BaseCreature victim, Mobile source)
     {
       // Check if the creature is actually Discorded in our table
-      if (victim == null || attacker == null || m_Table == null || !m_Table.Contains(victim))
+      if (victim == null || source == null || m_Table == null || !m_Table.Contains(victim))
         return;
       DiscordanceInfo info = (DiscordanceInfo)m_Table[victim];
       // Only the Bard who applied the Discordance can trigger the Echo
-      if (info == null || info.m_From != attacker)
+      if (info == null )
         return;
+      // Identify the true 'Attacker' (Pets/Summons)
+      Mobile master = source;
+      if ( source is BaseCreature)
+      {
+        BaseCreature bcSource = (BaseCreature)source;
+        if (bcSource.SummonMaster != null)
+          master = bcSource.SummonMaster;
+        else if (bcSource.ControlMaster != null)
+          master = bcSource.ControlMaster;
+      }
       // 30% chance to trigger Echoing Pain per hit
       if (Utility.RandomDouble() < 0.30)
       {
-        double music = attacker.Skills[SkillName.Musicianship].Value;
-        double disco = attacker.Skills[SkillName.Discordance].Value;
+        double music = master.Skills[SkillName.Musicianship].Value;
+        double disco = master.Skills[SkillName.Discordance].Value;
         // Damage scales: (Music + Disco) / 10. At 120/120, this is 24 bonus Energy damage.
         int damage = (int)((music + disco) / 10);
         // Apply the bonus damage
-        victim.Damage(damage, attacker);
+        victim.Damage(damage, master);
         // Visuals and Sound
         victim.FixedParticles(0x374A, 10, 15, 5038, 0x481, 2, EffectLayer.Head);
         victim.PlaySound(0x1FC); 
-        attacker.SendMessage("The discordance echoes your strike, dealing bonus damage!");
+        master.SendMessage("The discordance echoes your strike, dealing bonus damage!");
       }
     }
  //
