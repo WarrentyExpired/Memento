@@ -6,7 +6,7 @@ namespace Server.Misc
     {
 		public static string Version()
 		{
-			return "Version: 2.1.0";
+			return "Version: 2.2.0";
 		}
 
 		public static string Versions()
@@ -14,6 +14,28 @@ namespace Server.Misc
 			const string SEPARATOR_LINE = "<br>---------------------------------------------------------------------------------<br><br>";
 			var builder = new StringBuilder();
 			builder.Append(Version() + "<br>");
+
+			builder.Append("Changes<br>");
+			builder.Append("- Ability - Focus Attack is now usable with ranged weapons<br>");
+			builder.Append("- Ability - Focus Attack is now usable while holding a shield<br>");
+			builder.Append("- Ability - Mortal Strike now prevents mobs from cheating death<br>");
+			builder.Append("- Craft - Runic tools now have 15/10/5 uses, up from 5/5/5<br>");
+			builder.Append("- Gump - Sending buttons/switches that don't exist now warn the Player instead of disconnecting<br>");
+			builder.Append("- Gump - Avatars can now view their Skill Archive<br>");
+			builder.Append("- Item - Harpoon attack speed is now 4s, down from 5s<br>");
+			builder.Append("- Item - Harpoon weapon abilities are now less off-meta<br>");
+			builder.Append("- Item - Quivers now accept harpoon rope and throwing weapons<br>");
+			builder.Append("- Skill - Tracking bonus for Ninjitsu now builds twice as fast<br>");
+			builder.Append("- Skill - Tracking is now 50% more likely to gain<br>");
+
+			builder.Append("<br>");
+			builder.Append("Fixes<br>");
+			builder.Append("- Item - Fixed tooltip for Consecrated sharpening stones to indicate 4 hour durations<br>");
+			builder.Append("- Mobs - Casters are now aware when Players can Reflect their spells<br>");
+
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			builder.Append("Version: 2.1.0<br>");
 
 			builder.Append("Changes<br>");
 			builder.Append("- Achievement - Category buttons are now easier to click<br>");
@@ -68,6 +90,7 @@ namespace Server.Misc
 			builder.Append("- Misc - Knight template now starts with Bludgeoning instead of Swordsmanship<br>");
 			builder.Append("- Misc - Player vendor tooltips now show the type of player they belong to<br>");
 			builder.Append("- Misc - Player house limits are now enforced based on character type<br>");
+			builder.Append("- Misc - Sherry has developed a mild case of lactose intolerance<br>");
 			builder.Append("- Mobs - Rocs and Roclings are now treated as Birds instead of Dragons<br>");
 			builder.Append("- Pets - Required taming skill is no longer reduced when leveling<br>");
 			builder.Append("- Pets - Pets will now auto-bond every time they level up to 3 or higher<br>");
@@ -113,9 +136,12 @@ namespace Server.Misc
 			builder.Append("- Gump - Fix typo in Magic Rune Bag gump<br>");
 			builder.Append("- Gump - Fix issue where using DK1 gump would close DK2 spell bars<br>");
 			builder.Append("- Gump - Bard spellbook now shows the exact book's spells<br>");
+			builder.Append("- Gump - Spiked Club is no improperly longer listed as Spiked Mace<br>");
 			builder.Append("- Item - Knightship and Death Knight books now properly require appropriate skills/karma to equip<br>");
 			builder.Append("- Item - Fix crash from summon items if owner was deleted<br>");
 			builder.Append("- Item - Fix typo when dumping Liquids<br>");
+			builder.Append("- Item - Fix typo in Vampiric Embrace scroll name<br>");
+			builder.Append("- Item - Player Traps properly respect 'can harm' checks<br>");
 			builder.Append("- Misc - Fixed an issue where unsecured items near a house were inaccessible<br>");
 			builder.Append("- Misc - Fix typo in logged death message<br>");
 			builder.Append("- Misc - Fix issue where monsters only dropped gold coins and not other currencies<br>");
