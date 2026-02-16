@@ -204,30 +204,37 @@ namespace Server.SkillHandlers
                   {
                     double penalty = (skill / 6.0); 
                     
-                    // OPTION 2: Match debuff duration exactly to peace duration
                     TimeSpan bullseyeDuration = TimeSpan.FromSeconds( seconds );
+                    double oldFencing = bc.Skills[SkillName.Fencing].Base;
+                    double oldParry = bc.Skills[SkillName.Parry].Base;
+                    double oldSwords = bc.Skills[SkillName.Swords].Base;
+                    double oldMarksmanship = bc.Skills[SkillName.Marksmanship].Base;
+                    double oldFistFighting = bc.Skills[SkillName.FistFighting].Base;
+                    double oldBludgeoning = bc.Skills[SkillName.Bludgeoning].Base;
 
-                    bc.Skills[SkillName.FistFighting].Base -= penalty;
-                    bc.Skills[SkillName.Swords].Base -= penalty;
-                    bc.Skills[SkillName.Bludgeoning].Base -= penalty;
-                    bc.Skills[SkillName.Marksmanship].Base -= penalty;
                     bc.Skills[SkillName.Fencing].Base -= penalty;
                     bc.Skills[SkillName.Parry].Base -= penalty;
+                    bc.Skills[SkillName.Swords].Base -= penalty;
+                    bc.Skills[SkillName.Marksmanship].Base -= penalty;
+                    bc.Skills[SkillName.FistFighting].Base -= penalty;
+                    bc.Skills[SkillName.Bludgeoning].Base -= penalty;
 
                     Timer.DelayCall( bullseyeDuration, new TimerCallback( delegate
                     {
                       if ( bc != null && !bc.Deleted )
                       {
-                        bc.Skills[SkillName.FistFighting].Base += penalty;
-                        bc.Skills[SkillName.Swords].Base += penalty;
-                        bc.Skills[SkillName.Bludgeoning].Base += penalty;
-                        bc.Skills[SkillName.Fencing].Base += penalty;
-                        bc.Skills[SkillName.Parry].Base += penalty;
+                        bc.Skills[SkillName.Fencing].Base = oldFencing;
+                        bc.Skills[SkillName.Parry].Base = oldParry;
+                        bc.Skills[SkillName.Swords].Base = oldSwords;
+                        bc.Skills[SkillName.Marksmanship].Base = oldMarksmanship;
+                        bc.Skills[SkillName.FistFighting].Base = oldFistFighting;
+                        bc.Skills[SkillName.Bludgeoning].Base = oldBludgeoning;
+                        
                         from.SendMessage( "The creature has regained its focus; your bullseye bonus has expired." );
                       }
                     } ) );
 
-                    from.SendMessage( "The creature is entranced! Your shots will find their mark easier." );
+                    from.SendMessage( "The creature is entranced! Your attacks will find their mark easier." );
                     bc.FixedParticles( 0x377A, 1, 32, 0x1536, 0x480, 2, EffectLayer.Waist );
                   }
                   else
