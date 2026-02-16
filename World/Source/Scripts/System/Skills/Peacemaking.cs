@@ -218,7 +218,7 @@ namespace Server.SkillHandlers
                     bc.Skills[SkillName.Marksmanship].Base -= penalty;
                     bc.Skills[SkillName.FistFighting].Base -= penalty;
                     bc.Skills[SkillName.Bludgeoning].Base -= penalty;
-
+                    bc.BardLevelScalar = 0.90;
                     Timer.DelayCall( bullseyeDuration, new TimerCallback( delegate
                     {
                       if ( bc != null && !bc.Deleted )
@@ -229,8 +229,8 @@ namespace Server.SkillHandlers
                         bc.Skills[SkillName.Marksmanship].Base = oldMarksmanship;
                         bc.Skills[SkillName.FistFighting].Base = oldFistFighting;
                         bc.Skills[SkillName.Bludgeoning].Base = oldBludgeoning;
-                        
-                        from.SendMessage( "The creature has regained its focus; your bullseye bonus has expired." );
+                        bc.BardLevelScalar = 1.0;
+                        //from.SendMessage( "The creature has regained its focus; your bullseye bonus has expired." );
                       }
                     } ) );
 

@@ -367,38 +367,27 @@ namespace Server.Items
 				- Radiation or Aura Damage (Heat, Cold etc.)
 				- Summoning Undead
 			*/
-
 			double val = (targ.HitsMax * 1.6) + targ.StamMax + targ.ManaMax;
-
 			val += targ.SkillsTotal / 10;
-
 			if ( val > 700 )
 				val = 700 + (int)((val - 700) * (3.0 / 11));
-
 			BaseCreature bc = targ as BaseCreature;
-
 			if ( IsMageryCreature( bc ) )
 				val += 100;
-
 			if ( IsFireBreathingCreature( bc ) )
 				val += 100;
-
 			if ( IsPoisonImmune( bc ) )
 				val += 100;
-
 			if ( targ is VampireBat || targ is VampireBatFamiliar )
 				val += 100;
-
 			val += GetPoisonLevel( bc ) * 20;
-
 			val /= 10;
-
 			if ( bc != null && bc.IsParagon )
 				val += 40.0;
-
 			if ( Core.SE && val > 160.0 )
 				val = 160.0;
-
+      if (targ is BaseCreature )
+        val *= ((BaseCreature)targ).BardLevelScalar;
 			return val;
 		}
 

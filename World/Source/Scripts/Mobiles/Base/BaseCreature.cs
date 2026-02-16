@@ -352,6 +352,8 @@ namespace Server.Mobiles
 		public const int MaxLoyalty = 100;
 
 		#region Var declarations
+    // Bard Bullseye
+    private double m_BardLevelScalar = 1.0;
 		private BaseAI	m_AI;					// THE AI
 
 		private AIType	m_CurrentAI;			// The current AI
@@ -439,7 +441,13 @@ namespace Server.Mobiles
 		private SlayerName m_Slayer2;
 
 		#endregion
-
+    // Bard Bullseye
+    [CommandProperty( AccessLevel.GameMaster )]
+    public double BardLevelScalar
+    {
+      get{ return m_BardLevelScalar; }
+      set{ m_BardLevelScalar = value; }
+    }
 		private CraftResource m_Resource;
 
 		[CommandProperty(AccessLevel.Owner)]
