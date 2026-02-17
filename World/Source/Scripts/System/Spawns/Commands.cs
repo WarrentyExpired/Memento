@@ -484,10 +484,10 @@ namespace Server.Commands
 			Map map = e.Mobile.Map;
 			List<Item> list = new List<Item>();
 
-			if ( !Directory.Exists( @".\Data\Spawns\" ) )
-				Directory.CreateDirectory( @".\Data\Spawns\" );
+			if ( !Directory.Exists( @" ./Data/Spawns/" ) )
+				Directory.CreateDirectory( @"./Data/Spawns/" );
 
-			using ( StreamWriter op = new StreamWriter( String.Format( @".\Data\Spawns\{0}-exported.map", map ) ) )
+			using ( StreamWriter op = new StreamWriter( String.Format( @"Spawner{0}-exported.map", map ) ) )
 			{
 
 				if ( map == null || map == Map.Internal )
