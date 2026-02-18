@@ -15,7 +15,7 @@ namespace Server.Items
         [Constructable]
         public TamersSatchel() : base()
         {
-            Name = "Tamer's Satchel";
+            Name = "Shepherd's Resolve";
             Hue = 2129; 
             MaxItems = 20; 
         }
@@ -27,7 +27,6 @@ namespace Server.Items
             int bandages = 0;
             int foodCount = 0;
 
-            // Fixed the pluralization error here (Items instead of Item)
             foreach (Item item in this.Items)
             {
                 if (item is Bandage) 
@@ -48,14 +47,13 @@ namespace Server.Items
 
         public override bool CheckHold(Mobile m, Item item, bool message, bool checkItems, int plusItems, int plusWeight)
         {
-            // Restrict contents to only Bandages and Food
             if (item is Bandage || item is Food)
             {
                 return base.CheckHold(m, item, message, checkItems, plusItems, plusWeight);
             }
 
             if (message)
-                m.SendMessage("The satchel is only for bandages and pet food.");
+                m.SendMessage("The satchel only accepts medical supplies and pet food.");
 
             return false;
         }
@@ -74,11 +72,16 @@ namespace Server.Items
                 return;
             }
 
-            FeedPets(from);
-            PerformMedical(from);
+            bool fed = FeedPets(from);
+            bool healed = PerformMedical(from);
+
+            if (!fed && !healed)
+            {
+                from.SendMessage("There are no pets nearby in need of food or medical attention.");
+            }
         }
 
-        private void FeedPets(Mobile from)
+        private bool FeedPets(Mobile from)
         {
             List<BaseCreature> pets = new List<BaseCreature>();
             
@@ -86,7 +89,6 @@ namespace Server.Items
             {
                 if (m is BaseCreature pet && pet.Controlled && pet.ControlMaster == from)
                 {
-                    // If pet happiness is below max
                     if (pet.Loyalty < 100)
                         pets.Add(pet);
                 }
@@ -102,33 +104,29 @@ namespace Server.Items
                     {
                         if (food.Amount > 0)
                         {
-                            pet.Loyalty = 100; // Restore happiness
-                            pet.PlaySound(0x3B); // Eating sound
+                            pet.Loyalty = 100; 
+                            pet.PlaySound(0x3B);
                             food.Consume(1);
                             from.SendMessage("You feed {0}. They are now Wonderfully Happy!", pet.Name);
                         }
                     }
-                    // Refresh the tooltip to show updated food count
                     this.InvalidateProperties(); 
+                    return true;
                 }
                 else
                 {
                     from.SendMessage("Some of your pets are hungry, but there is no food in the satchel.");
+                    return true; 
                 }
             }
+            return false;
         }
 
-        private void PerformMedical(Mobile from)
+        private bool PerformMedical(Mobile from)
         {
-            Item bandages = this.FindItemByType(typeof(Bandage));
-            if (bandages == null || bandages.Amount < 1)
-            {
-                from.SendMessage("The satchel lacks bandages for medical treatment.");
-                return;
-            }
-
             List<BaseCreature> toCure = new List<BaseCreature>();
             List<BaseCreature> toHeal = new List<BaseCreature>();
+            bool foundWounded = false;
 
             int range = Bandage.Range; 
 
@@ -138,65 +136,121 @@ namespace Server.Items
                 {
                     if (pet.Poisoned || pet.Hits < pet.HitsMax)
                     {
+                        foundWounded = true;
+
+                        if (IsBeingBandaged(pet))
+                        {
+                            from.SendMessage("{0} is already being tended to by a manual bandage.", pet.Name);
+                            continue; 
+                        }
+
                         if (from.InRange(pet, range))
                         {
                             if (pet.Poisoned) toCure.Add(pet);
                             else toHeal.Add(pet);
                         }
-                        else
+                    }
+                }
+            }
+
+            if (toCure.Count > 0 || toHeal.Count > 0)
+            {
+                Item bandages = this.FindItemByType(typeof(Bandage));
+                if (bandages != null && bandages.Amount > 0)
+                {
+                    ApplyMedicalEffects(from, bandages, toCure, toHeal);
+                }
+                else
+                {
+                    from.SendMessage("The satchel lacks bandages for medical treatment.");
+                }
+                return true;
+            }
+
+            return foundWounded;
+        }
+
+        private void ApplyMedicalEffects(Mobile from, Item bandages, List<BaseCreature> toCure, List<BaseCreature> toHeal)
+        {
+            int processed = 0;
+            double vety = from.Skills[SkillName.Veterinary].Value;
+            double druid = from.Skills[SkillName.Druidism].Value;
+
+            // Notification for curing
+            foreach (BaseCreature pet in toCure)
+            {
+                if (processed >= bandages.Amount) break;
+                if ( vety < 60.0 )
+                {
+                  from.SendMessage("You lack the Veterinary skill required to cure {0}'s poison.", pet.Name);
+                }
+                else
+                {
+                  double chance = (vety /  2.0) + (druid / 2.0);
+                  if (chance >= ((pet.Poison.Level * 20) + 10))
+                  {
+                    pet.CurePoison(from);
+                    pet.FixEffect(0x373A, 10, 15);
+                    from.SendMessage("Cured: {0}", pet.Name);
+                  }
+                  else
+                  {
+                    from.SendMessage("You failed to cure {0}'s poison.", pet.Name);
+                  }
+                }
+                processed++;
+            }
+
+            // Notification for healing
+            int healTargets = Math.Min(toHeal.Count, bandages.Amount - processed);
+            if (healTargets > 0)
+            {
+                int pool = (int)((druid / 2.0) + (vety / 2.0) + Utility.RandomMinMax(50, 100));
+                int each = pool / healTargets;
+
+                for (int i = 0; i < healTargets; i++)
+                {
+                    BaseCreature pet = toHeal[i];
+                    pet.Heal(each + (pet.HitsMax / 100), from, true);
+                    pet.FixedEffect(0x3728, 10, 15);
+                    from.SendMessage("The satchel's medical supplies have healed {0}.", pet.Name);
+                    processed++;
+                }
+            }
+
+            bandages.Consume(processed);
+            from.PlaySound(0x57);
+            
+            TimeSpan delay = TimeSpan.FromSeconds(4.0);
+            m_NextUse = DateTime.UtcNow + delay;
+            if (m_CooldownTimer != null) m_CooldownTimer.Stop();
+            m_CooldownTimer = new InternalTimer(from, delay);
+            m_CooldownTimer.Start();
+
+            this.InvalidateProperties();
+        }
+
+        private bool IsBeingBandaged(Mobile patient)
+        {
+            try
+            {
+                var field = typeof(BandageContext).GetField("m_Table", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+                if (field != null)
+                {
+                    var table = field.GetValue(null) as Dictionary<Mobile, BandageContext>;
+                    if (table != null)
+                    {
+                        foreach (BandageContext context in table.Values)
                         {
-                            from.SendMessage("{0} is too far away to be treated!", pet.Name);
+                            var patientField = typeof(BandageContext).GetField("m_Patient", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                            if (patientField != null && patientField.GetValue(context) == patient)
+                                return true;
                         }
                     }
                 }
             }
-
-            int totalTargets = toCure.Count + toHeal.Count;
-            if (totalTargets > 0)
-            {
-                int processed = 0;
-                double vety = from.Skills[SkillName.Veterinary].Value;
-                double druid = from.Skills[SkillName.Druidism].Value;
-
-                foreach (BaseCreature pet in toCure)
-                {
-                    if (processed >= bandages.Amount) break;
-                    double chance = (vety / 2.0) + (druid / 2.0);
-                    if (chance >= ((pet.Poison.Level * 20.0) + 10.0) && vety >= 60.0)
-                    {
-                        pet.CurePoison(from);
-                        pet.FixedEffect(0x373A, 10, 15);
-                        from.SendMessage("Cured: {0}", pet.Name);
-                    }
-                    processed++;
-                }
-
-                int healTargets = Math.Min(toHeal.Count, bandages.Amount - processed);
-                if (healTargets > 0)
-                {
-                    int pool = (int)((druid / 2.0) + (vety / 2.0) + Utility.RandomMinMax(50, 100));
-                    int each = pool / healTargets;
-
-                    for (int i = 0; i < healTargets; i++)
-                    {
-                        BaseCreature pet = toHeal[i];
-                        pet.Heal(each + (pet.HitsMax / 100), from, true);
-                        pet.FixedEffect(0x3728, 10, 15);
-                        processed++;
-                    }
-                }
-
-                bandages.Consume(processed);
-                from.PlaySound(0x57);
-                
-                TimeSpan delay = TimeSpan.FromSeconds(4.0);
-                m_NextUse = DateTime.UtcNow + delay;
-                if (m_CooldownTimer != null) m_CooldownTimer.Stop();
-                m_CooldownTimer = new InternalTimer(from, delay);
-                m_CooldownTimer.Start();
-
-                this.InvalidateProperties(); 
-            }
+            catch { }
+            return false;
         }
 
         private class InternalTimer : Timer
@@ -212,7 +266,6 @@ namespace Server.Items
             {
                 if (m_From != null && !m_From.Deleted)
                 {
-                    // Visual/Audio feedback for cooldown finish
                     m_From.PlaySound(0x1F2);
                     m_From.SendMessage(0x3F, "Your satchel is repacked and ready.");
                 }
