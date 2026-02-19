@@ -190,7 +190,7 @@ namespace Server.Items
                   if (chance >= ((pet.Poison.Level * 20) + 10))
                   {
                     pet.CurePoison(from);
-                    pet.FixEffect(0x373A, 10, 15);
+                    pet.FixedEffect(0x373A, 10, 15);
                     from.SendMessage("Cured: {0}", pet.Name);
                   }
                   else
