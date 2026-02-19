@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+using Server;
+using Server.Mobiles;
+
+namespace Server.Items
+{
+    public class ShepherdsVigil : ShepherdsCrook
+    {
+        private DateTime m_NextUse;
+
+        [Constructable]
+        public ShepherdsVigil()
+        {
+            Name = "Shepherd's Vigil";
+            Hue = 2213; 
+            Layer = Layer.TwoHanded;
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if (Parent != from)
+            {
+                from.SendMessage("You must be wielding the staff to command your flock.");
+                return;
+            }
+
+            if (DateTime.UtcNow < m_NextUse)
+            {
+                from.SendMessage("The staff's resonance is still fading.");
+                return;
+            }
+
+            List<BaseCreature> pack = new List<BaseCreature>();
+            foreach (Mobile m in from.GetMobilesInRange(8))
+            {
+                if (m is BaseCreature pet && pet.Controlled && pet.ControlMaster == from)
+                    pack.Add(pet);
+            }
+
+            if (pack.Count > 0)
+            {
+                double skillTotal = from.Skills[SkillName.Herding].Value + 
+                                   from.Skills[SkillName.Druidism].Value + 
+                                   from.Skills[SkillName.Taming].Value;
+
+                TimeSpan duration = TimeSpan.FromSeconds(30.0 + (skillTotal / 10));
+
+                int bonusAmount = (int)(skillTotal / 15) + (pack.Count * 2); 
+
+                foreach (BaseCreature pet in pack)
+                {
+                    pet.FixedEffect(0x373A, 10, 15);
+                    pet.PlaySound(0x1FB); 
+
+                    SkillMod tacticsMod = new DefaultSkillMod(SkillName.Tactics, true, bonusAmount);
+                    pet.AddSkillMod(tacticsMod);
+                    
+                    // We pass 'from' (the player) as the 3rd object in the state array
+                    Timer.DelayCall(duration, new TimerStateCallback(RemoveBuff_Callback), new object[]{ pet, tacticsMod, from });
+
+                    if (pet.Skills[SkillName.Psychology].Value > 0)
+                    {
+                        SkillMod psychMod = new DefaultSkillMod(SkillName.Psychology, true, bonusAmount);
+                        pet.AddSkillMod(psychMod);
+                        Timer.DelayCall(duration, new TimerStateCallback(RemoveBuff_Callback), new object[]{ pet, psychMod, from });
+                        
+                        // Messages redirected to the player ('from')
+                        from.SendMessage("{0}: The Shepherd's Vigil bolsters their Physical and Magical resolve (+{1}%).", pet.Name, bonusAmount);
+                    }
+                    else
+                    {
+                        // Messages redirected to the player ('from')
+                        from.SendMessage("{0}: The Shepherd's Vigil bolsters their Physical resolve (+{1}%).", pet.Name, bonusAmount);
+                    }
+                }
+
+                from.PlaySound(0x512); 
+                from.PublicOverheadMessage(Server.Network.MessageType.Regular, 0x3B2, false, "*Strikes the ground, rallying the pack*");
+
+                m_NextUse = DateTime.UtcNow + TimeSpan.FromMinutes(2.0); 
+            }
+            else
+            {
+                from.SendMessage("There are no pets nearby to rally.");
+            }
+        }
+
+        private void RemoveBuff_Callback(object state)
+        {
+            object[] states = (object[])state;
+            BaseCreature pet = (BaseCreature)states[0];
+            SkillMod mod = (SkillMod)states[1];
+            Mobile tamer = (Mobile)states[2]; // This is the player object we passed
+
+            if (pet != null && mod != null && !pet.Deleted)
+            {
+                pet.RemoveSkillMod(mod);
+                
+                // Use 'tamer' instead of 'from' to fix the CS0103 error
+                if (mod.Skill == SkillName.Tactics && tamer != null)
+                {
+                    tamer.SendMessage("The effects of the vigil have faded from {0}.", pet.Name);
+                }
+            }
+        }
+
+        public ShepherdsVigil(Serial serial) : base(serial) { }
+        public override void Serialize(GenericWriter writer) { base.Serialize(writer); writer.Write((int)0); }
+        public override void Deserialize(GenericReader reader) { base.Deserialize(reader); reader.ReadInt(); }
+    }
+}

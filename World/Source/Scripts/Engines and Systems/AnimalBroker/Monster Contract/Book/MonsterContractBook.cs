@@ -26,7 +26,7 @@ namespace Server.Items
 			Weight = 1.0;
 			//LootType = LootType.Blessed;
 			Hue = 1204;
-			Name= "Taming Bod Book";
+			Name= "Monster Contract Book";
 			m_Entries = new ArrayList();
 		}
 

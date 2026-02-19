@@ -1,0 +1,102 @@
+using System;
+using Server;
+using Server.Mobiles;
+using Server.Spells;
+
+namespace Server.Items
+{
+    public class ShepherdsVigil : ShepherdsCrook
+    {
+        [Constructable]
+        public ShepherdsVigil()
+        {
+            Name = "Shepherd's Vigil";
+            Hue = 2213; // A natural, polished wood hue
+            Layer = Layer.TwoHanded; // Ensures it's used as a staff
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            // Must be equipped to channel the energy
+            if (Parent != from)
+            {
+                from.SendMessage("You must be wielding the staff to channel your will through it.");
+                return;
+            }
+
+            // Mana Check (Greater Heal cost is 11)
+            int manaCost = 11;
+            if (from.Mana < manaCost)
+            {
+                from.SendMessage("You lack the mental energy to focus the staff's power.");
+                return;
+            }
+
+            // Cooldown Check
+            if (DateTime.UtcNow < m_NextUse)
+            {
+                from.SendLocalizedMessage(502643); // Aborting execution... (or a custom "The staff is still warm" message)
+                return;
+            }
+
+            int range = 6; 
+            bool healedAny = false;
+
+            // Gather the flock
+            foreach (Mobile m in from.GetMobilesInRange(range))
+            {
+                if (m is BaseCreature pet && pet.Controlled && pet.ControlMaster == from)
+                {
+                    if (pet.Hits < pet.HitsMax)
+                    {
+                        // Scaling heal: Based on Veterinary and Taming
+                        // Formula: (Vet + Taming) / 4 + Random(10-20)
+                        double skillTotal = from.Skills[SkillName.Veterinary].Value + from.Skills[SkillName.Taming].Value;
+                        int healAmount = (int)(skillTotal / 4) + Utility.RandomMinMax(10, 20);
+
+                        pet.Hits += healAmount;
+                        
+                        // Visual effect on the pet (Sparkle)
+                        pet.FixedEffect(0x376A, 9, 32);
+                        healedAny = true;
+                    }
+                }
+            }
+
+            if (healedAny)
+            {
+                // Spend the mana
+                from.Mana -= manaCost;
+
+                // Visual effect on the Tamer (The Pulse)
+                from.FixedEffect(0x3709, 10, 30); // Fire/Energy pulse at feet
+                from.PlaySound(0x5C9); // Deep "thrum" sound
+                
+                from.SendMessage("You strike the ground, sending a wave of rejuvenation to your flock.");
+                
+                // 6-second cooldown (similar to spell recovery)
+                m_NextUse = DateTime.UtcNow + TimeSpan.FromSeconds(6.0);
+            }
+            else
+            {
+                from.SendMessage("Your flock is already in good spirits.");
+            }
+        }
+
+        private DateTime m_NextUse;
+
+        public ShepherdsVigil(Serial serial) : base(serial) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+}
