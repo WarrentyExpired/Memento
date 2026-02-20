@@ -100,7 +100,7 @@ namespace Server.Gumps
 					from.SendLocalizedMessage( 1042564 ); // I'm sorry.  Your pet seems to be busy. 
 				else if ( pet.GetType() == MonsterContractType.Get[MCparent.Monster].Type )
 					{
-						MCparent.Reward += (int)((double)Server.Mobiles.AnimalTrainerLord.ValuatePet( pet, from ) * (1+(Utility.RandomMinMax(15,35)/100)));
+						MCparent.Reward += (int)((double)Server.Mobiles.AnimalBroker.ValuatePet( pet, from ) * (1+(Utility.RandomMinMax(15,35)/100)));
 						MCparent.AmountTamed += 1;
 						MCparent.InvalidateProperties();
 						pet.ControlTarget = null; 

@@ -7,13 +7,13 @@ using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-    public class AnimalTrainerLord : BaseCreature
+    public class AnimalBroker : BaseCreature
     {
         // Controls how often he shouts so he doesn't spam the journal
         private DateTime m_NextShout;
 
         [Constructable]
-        public AnimalTrainerLord() : base(AIType.AI_Thief, FightMode.None, 10, 1, 0.4, 1.6)
+        public AnimalBroker() : base(AIType.AI_Thief, FightMode.None, 10, 1, 0.4, 1.6)
         {
             InitStats(85, 75, 65);
             Name = this.Female ? NameList.RandomName("female") : NameList.RandomName("male");
@@ -69,7 +69,7 @@ namespace Server.Mobiles
             }
         }
 
-        public AnimalTrainerLord(Serial serial) : base(serial) { }
+        public AnimalBroker(Serial serial) : base(serial) { }
         public override void Serialize(GenericWriter writer) { base.Serialize(writer); writer.Write((int)0); }
         public override void Deserialize(GenericReader reader) { base.Deserialize(reader); reader.ReadInt(); }
     }

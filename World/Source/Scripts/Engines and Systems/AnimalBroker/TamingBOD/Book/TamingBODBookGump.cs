@@ -114,7 +114,7 @@ namespace Server.Gumps
 					from.SendLocalizedMessage( 1042564 ); // I'm sorry.  Your pet seems to be busy. 
 				else if (pet.Tamable)
 					{
-						MCE.Reward += (int)((double)Server.Mobiles.AnimalTrainerLord.ValuatePet( pet, from ) * 0.75);
+						MCE.Reward += (int)((double)Server.Mobiles.AnimalBroker.ValuatePet( pet, from ) * 0.75);
 						MCE.AmountTamed += 1;
 						pet.ControlTarget = null; 
 						pet.ControlOrder = OrderType.None; 
