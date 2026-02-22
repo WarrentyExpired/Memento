@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		[Constructable]
 		public AbysmalDrake () : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			Name = "a drake";
+			Name = "an abysmal drake";
 			Body = 134;
 			BaseSoundID = 362;
 			Resource = CraftResource.BlackScales;
