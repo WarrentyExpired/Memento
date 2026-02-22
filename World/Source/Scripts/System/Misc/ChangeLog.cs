@@ -27,10 +27,13 @@ namespace Server.Misc
 			builder.Append("- Item - Quivers now accept harpoon rope and throwing weapons<br>");
 			builder.Append("- Skill - Tracking bonus for Ninjitsu now builds twice as fast<br>");
 			builder.Append("- Skill - Tracking is now 50% more likely to gain<br>");
+			builder.Append("- Skill - Death Strike now applies a mortal wound to the target<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
+			builder.Append("- Champs - Fixed issue where spawns would cancel immediately after starting<br>");
 			builder.Append("- Item - Fixed tooltip for Consecrated sharpening stones to indicate 4 hour durations<br>");
+			builder.Append("- Item - Mixtures can now be placed into Alchemist Pouches<br>");
 			builder.Append("- Mobs - Casters are now aware when Players can Reflect their spells<br>");
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
