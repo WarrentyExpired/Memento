@@ -1,3 +1,10 @@
 Monster Contract Mobs that need fixed.
  - DeathWatchBeetles/Hatchlings = Skitter/Skitterlings
  - Ridgebacks = Stegladon
+ - Savage Ridgebacks
+ - Sabretooth bear = Sabreclaw bear
+ - Cu Sidhe
+ - DemonDog
+ - GemDragon
+ - Kirin
+ - Silver Steeds
