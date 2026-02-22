@@ -1,0 +1,3 @@
+Monster Contract Mobs that need fixed.
+ - DeathWatchBeetles/Hatchlings = Skitter/Skitterlings
+ - Ridgebacks = Stegladon
