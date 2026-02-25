@@ -1,0 +1,21 @@
+- Added AdminToolbar
+- Added Pet summoning balls/Translocation poweder to animal trainers
+- Added Animal broker spawns in Sosaria around Stables
+- Added Animal broker books around Animal broker spawn points.
+- Added Tamer Satchel
+- Added Xanto's Pet shinking system
+- Added Tamers crook "Shepherds Resolve"
+- Added effects for Bard skills
+  - Bullseye for Peacemaking
+  - Shatter for Provocation
+  - Echo of Pain for Discordance
+- Bone armor is now medable
+- Changed how Hiding skill works abover 100 skill.
+- Removed mobs ability to "Undress" you
+- Hitching post now works with Camping and/or Taming skill.
+- Changed how hunger/thirst work. Now get a buff or debuff.
+- Changed Guild enhancement tool requirements.
+- Increased auto-harvest range to make it easier for MobilieUO players.
+- Vendors will now take gold from backpack first then try bankbox.
+- Disabled mobs ability to steal and the hide from you. Going to comeback and revise this.
+

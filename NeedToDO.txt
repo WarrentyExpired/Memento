@@ -1,0 +1,4 @@
+- Add Petleash to loot table
+- Add satchel to lootable/Animal broker reward
+- Add Shepherds Resolve to lootable/Animal broker reward
+- Come up with a way to make full spellbooks a little less daunting to get.
