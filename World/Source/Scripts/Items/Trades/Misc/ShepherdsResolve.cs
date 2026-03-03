@@ -17,6 +17,7 @@ namespace Server.Items
             Name = "Shepherd's Resolve";
             Hue = 2213; 
             Layer = Layer.TwoHanded;
+            Attributes.SpellChanneling = 1;
         }
 
         public override void OnDoubleClick(Mobile from)

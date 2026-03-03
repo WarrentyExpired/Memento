@@ -5,7 +5,7 @@ using Server.Network;
 using Server.Targeting;
 using Server.Prompts;
 using Server.Misc;
-
+using Xanthos.ShrinkSystem;
 namespace Server.Items
 {
 	public class HoardPiles : Item
@@ -111,6 +111,24 @@ namespace Server.Items
 						CustomEventSink.InvokeLootPull(new LootPullEventArgs(from, item));
 						break;
 					case 1:
+            double cofferChance = 0.05 + (from.Luck / 2500);
+            if (Utility.RandomDouble() < cofferChance)
+            {
+              switch (Utility.Random(3))
+              {
+                case 0: item = new MageryCoffer(); break;
+                case 1: item = new ElementalismCoffer(); break;
+                case 2: item = new NecromancyCoffer(); break;
+              }
+              from.SendMessage("Hidden beneath the pile, you find an ancient spellbound coffer!");
+              from.PlaySound(0x2E2);
+            }
+            else
+            {
+              item = new PetLeash();
+              from.SendMessage("You dig through the pile and find a Magic Pet Leash!");
+            }
+            break;
 					case 2:
 						item = Loot.RandomSArty( Server.LootPackEntry.playOrient( from ), from );
 						break;
@@ -139,7 +157,19 @@ namespace Server.Items
 							item = new Gold( ( luckMod + Utility.RandomMinMax( 1000, 2000 ) ) );
 
 						break;
-					case 8: case 9: case 10: case 11:
+					case 8:
+            switch (Utility.Random(5))
+            {
+              case 0: item = new TamersSatchel(); break;
+              case 1: item = new TamersCrook(); break;
+              case 2: item = new PetLeash(); break;
+              case 3: item = new HitchingPostSouthDeed(); break;
+              case 4: item = new HitchingPostEastDeed(); break;
+            }
+            break;
+          case 9: 
+          case 10:
+          case 11:
 						item = Loot.RandomMagicalItem( Server.LootPackEntry.playOrient( from ) );
 						item = LootPackEntry.Enchant( from, 500, item );
 						break;

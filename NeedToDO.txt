@@ -1,4 +1,6 @@
-- Add Petleash to loot table
-- Add satchel to lootable/Animal broker reward
-- Add Shepherds Resolve to lootable/Animal broker reward
-- Add Magery Spellbound Coffer to Mage/Inscription NPC (Guild only maybe)
+- Add Petleash to loot table (Added To HoardPiles)
+- Add satchel to lootable/Animal broker reward (Added to HoardPiles)
+- Add Shepherds Resolve to lootable/Animal broker reward (Added to HoardPiles)
+- Add Magery Spellbound Coffer to Mage/Inscription NPC (Guild only maybe)(Added to HoardPiles)
+- Add Necromancer Coffer to Necromancer NPC (Added to HoardPiles)
+- Add Elementalism Coffer to Elementist NPC (Added to HoardPiles)

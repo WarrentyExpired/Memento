@@ -27,3 +27,4 @@
   - Cooking will add a 1% for every 5 Cooking skill points to the "Total pool" 10% + 25% from cooking.
 - Magery Spellbound Coffer
   - Add all 64 Mage spells to it and you can pay to fill a magery book of your choice.
+- Added Spell scroll coffers, Petleashes, Shirking Hitchingpost deeds, Tamers satchel, and Tamers Crook to Hoard Piles.
