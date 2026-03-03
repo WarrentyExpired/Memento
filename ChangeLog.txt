@@ -18,4 +18,10 @@
 - Increased auto-harvest range to make it easier for MobilieUO players.
 - Vendors will now take gold from backpack first then try bankbox.
 - Disabled mobs ability to steal and the hide from you. Going to comeback and revise this.
-
+- FoodBuff Changes
+  - Now the buff/debuff is a constant drain/regen over S_FoodBuff duration in settings.cs
+  - You get a "Total pool" 10% of each stat, that will be spread out of that duration if above 10
+    Hunger/Thirst
+  - Camping lowers the threshold for when the debuff starts at 10 Hunger/Thirst for 0 Camping
+    5 Hunger/Thirst for 125 Camping
+  - Cooking will add a 1% for every 5 Cooking skill points to the "Total pool" 10% + 25% from cooking.
