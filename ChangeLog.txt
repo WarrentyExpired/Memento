@@ -25,3 +25,5 @@
   - Camping lowers the threshold for when the debuff starts at 10 Hunger/Thirst for 0 Camping
     5 Hunger/Thirst for 125 Camping
   - Cooking will add a 1% for every 5 Cooking skill points to the "Total pool" 10% + 25% from cooking.
+- Magery Spellbound Coffer
+  - Add all 64 Mage spells to it and you can pay to fill a magery book of your choice.
