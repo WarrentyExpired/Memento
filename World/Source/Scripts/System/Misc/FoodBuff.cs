@@ -12,10 +12,13 @@ namespace Server.Misc
         {
             new FoodBuffTimer().Start();
         }
-        public FoodBuffTimer() : base(TimeSpan.FromSeconds(MyServerSettings.FoodBuffTimer()), TimeSpan.FromSeconds(MyServerSettings.FoodBuffTimer()))
+
+        // Ticking every 1 second for the scrolling "Juiced" effect
+        public FoodBuffTimer() : base(TimeSpan.FromSeconds(1.0), TimeSpan.FromSeconds(1.0))
         {
             Priority = TimerPriority.OneSecond;
         }
+
         protected override void OnTick()
         {
             foreach (NetState state in NetState.Instances)
@@ -23,103 +26,106 @@ namespace Server.Misc
                 Mobile m = state.Mobile;
                 if (m is PlayerMobile && m.Alive)
                 {
-                    HungerBuff(m);
-                    ThirstBuff(m);
+                    ProcessStats(m);
                 }
             }
         }
-        public static void HungerBuff(Mobile m)
+
+        public static void ProcessStats(Mobile m)
         {
-          bool insideInn = false;
-          if (MySettings.S_Belly)
-          {
-            insideInn = (m.Region is PublicRegion || m.Region is CrashRegion ||
-                         m.Region is PrisonArea || m.Region is SafeRegion ||
-                         m.Region is StartRegion || m.Region is HouseRegion);
-          }
-          if (Server.Items.BaseRace.NoFood(m.RaceID) || Server.Items.BaseRace.NoFoodOrDrink(m.RaceID))
-            return;
-          if (insideInn)
-             return;
-          if (m.Hunger >= 20)
-          {
-            ApplyBuff(m, SkillName.Cooking, 0.2, true);
-          }
-          else if (m.Hunger > 15)
-          {
-            ApplyBuff(m, SkillName.Cooking, 0.1, true);
-          }
-          else if (m.Hunger > 10)
-          {
-            ApplyBuff(m, 10, true);
-          }
-          else // Hunger < 10
-          {
-            ApplyDebuff(m, "HitsStam");
-          }
+            if (IsInsideSafeRegion(m))
+                return;
+
+            double timerDuration = (double)MyServerSettings.FoodBuffTimer();
+            
+            // Camping Threshold: 0 Skill = 10, 125 Skill = 5.
+            double campingBonus = (m.Skills[SkillName.Camping].Value / 125.0) * 5.0;
+            double starvationThreshold = 10.0 - campingBonus;
+
+            // 1. Hunger Effects (Hits/Stam)
+            if (!Server.Items.BaseRace.NoFood(m.RaceID) && !Server.Items.BaseRace.NoFoodOrDrink(m.RaceID))
+            {
+                if (m.Hunger >= starvationThreshold)
+                {
+                    // Optimization: Only run math if they actually need stats
+                    if (m.Hits < m.HitsMax || m.Stam < m.StamMax)
+                        ApplyJuicedEffect(m, timerDuration, true);
+                }
+                else
+                {
+                    ApplyJuicedDebuff(m, timerDuration, true);
+                }
+            }
+
+            // 2. Thirst Effects (Mana)
+            if (!Server.Items.BaseRace.NoFoodOrDrink(m.RaceID) && !Server.Items.BaseRace.BrainEater(m.RaceID))
+            {
+                if (m.Thirst >= starvationThreshold)
+                {
+                    if (m.Mana < m.ManaMax)
+                        ApplyJuicedEffect(m, timerDuration, false);
+                }
+                else
+                {
+                    ApplyJuicedDebuff(m, timerDuration, false);
+                }
+            }
         }
-        public static void ThirstBuff(Mobile m)
+
+        private static void ApplyJuicedEffect(Mobile m, double duration, bool isHunger)
         {
-          bool insideInn = false;
-          if ( MySettings.S_Belly )
-          {
-                insideInn = (m.Region is PublicRegion || m.Region is CrashRegion || 
-                             m.Region is PrisonArea || m.Region is SafeRegion || 
-                             m.Region is StartRegion || m.Region is HouseRegion);
-          }
-          if (Server.Items.BaseRace.NoFoodOrDrink(m.RaceID) || Server.Items.BaseRace.BrainEater(m.RaceID))
-            return;
-          if (insideInn)
-            return;
-          if (m.Thirst >= 20)
-          {
-            ApplyBuff(m, SkillName.Cooking, 0.2, false);
-          }
-          else if (m.Thirst > 15)
-          {
-            ApplyBuff(m, SkillName.Cooking, 0.1, false);
-          }
-          else if (m.Thirst > 10)
-          {
-            ApplyBuff(m, 10, false);
-          }
-          else // Thirst < 10
-          {
-            ApplyDebuff(m, "Mana");
-          }
+            // 10% Base Pool + 1% for every 5 points in Cooking
+            double basePercent = 0.10; 
+            double cookingBonus = (m.Skills[SkillName.Cooking].Value / 5.0) * 0.01; 
+            double totalPercent = basePercent + cookingBonus;
+            
+            // Saturation Efficiency: Benefit scales with how full you are
+            double saturationMult = (isHunger ? m.Hunger : m.Thirst) / 20.0;
+            
+            double totalPoints = (isHunger ? m.HitsMax : m.ManaMax) * totalPercent * saturationMult;
+            double perSecond = totalPoints / duration;
+
+            if (isHunger)
+            {
+                int gain = (int)Math.Max(1, perSecond);
+                if (m.Hits < m.HitsMax) m.Hits += gain;
+                if (m.Stam < m.StamMax) m.Stam += gain;
+            }
+            else
+            {
+                if (m.Mana < m.ManaMax) m.Mana += (int)Math.Max(1, perSecond);
+            }
         }
-        private static void ApplyBuff(Mobile m, SkillName skill, double scale, bool isHunger)
+
+        private static void ApplyJuicedDebuff(Mobile m, double duration, bool isHunger)
         {
-          int amount = (int)(m.Skills[skill].Value * scale) + 10;
-          ApplyBuff(m, amount, isHunger);
+            // Starvation: 5% pool loss distributed per second over the window
+            double lossPerWindow = 0.05; 
+            double lossPerSecond = ((isHunger ? m.HitsMax : m.ManaMax) * lossPerWindow) / duration;
+            int loss = (int)Math.Max(1, lossPerSecond);
+
+            if (isHunger)
+            {
+                if (m.Hits > (loss + 10)) m.Hits -= loss;
+                else m.Hits = 10;
+
+                if (m.Stam > (loss + 10)) m.Stam -= loss;
+                else m.Stam = 10;
+            }
+            else
+            {
+                if (m.Mana > (loss + 10)) m.Mana -= loss;
+                else m.Mana = 10;
+            }
         }
-        private static void ApplyBuff(Mobile m, int amount, bool isHunger)
+
+        private static bool IsInsideSafeRegion(Mobile m)
         {
-          if (isHunger)
-          {
-            if (m.Hits < m.HitsMax) m.Hits += amount;
-            if (m.Stam < m.StamMax) m.Stam += amount;
-          }
-          else if (m.Mana < m.ManaMax)
-          {
-            m.Mana += amount;
-          }
-        }
-        private static void ApplyDebuff(Mobile m, string type)
-        {
-          int debuff = (int)(MySettings.S_PlayerLevelMod * 10);
-          if (type == "HitsStam")
-          {
-            if (m.Hits > (debuff + 10)) m.Hits -= debuff;
-            else if (m.Hits > 10) m.Hits = 10;
-            if (m.Stam > (debuff + 10)) m.Stam -= debuff;
-            else if (m.Stam > 10) m.Stam = 10;
-          }
-          else if (type == "Mana")
-          {
-            if (m.Mana > (debuff + 10)) m.Mana -= debuff;
-            else if (m.Mana > 10) m.Mana = 10;
-          }
+            if (!MySettings.S_Belly) return false;
+
+            return (m.Region is PublicRegion || m.Region is CrashRegion || 
+                    m.Region is PrisonArea || m.Region is SafeRegion || 
+                    m.Region is StartRegion || m.Region is HouseRegion);
         }
     }
 }
