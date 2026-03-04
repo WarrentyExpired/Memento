@@ -7,12 +7,26 @@ using Server.Misc;
 using Server.Engines.Mahjong;
 using System.Collections.Generic;
 using System.Collections;
-
+using Xanthos.ShrinkSystem;
 namespace Server
 {
 	public class Loot
 	{
 		#region List definitions
+    private static Type[] m_CofferTypes = new Type[]
+    {
+      typeof( MageryCoffer ),
+      typeof( ElementalismCoffer ),
+      typeof( NecromancyCoffer ),
+    };
+    private static Type[] m_TamerTypes = new Type[]
+    {
+      typeof( PetLeash ),
+      typeof( TamersSatchel ),
+      typeof( TamersCrook ),
+      typeof( HitchingPostSouthDeed ),
+      typeof( HitchingPostEastDeed ),
+    };
 		private static Type[] m_OrientWeaponTypes = new Type[]
 			{
 				typeof( Bokuto ),				typeof( Daisho ),				typeof( Kama ),
@@ -1294,6 +1308,15 @@ namespace Server
 
 		public static Item RandomRare( int level, Mobile from )
 		{
+      if ( level > 12 ) level = 12;
+      if ( level >= 8 && Utility.RandomDouble() < 0.15)
+      {
+        return RandomCoffer();
+      }
+      if ( level >= 6 && Utility.RandomDouble() < 0.30)
+      {
+        return RandomTamerItem();
+      }
 			level = LootPackChange.ScaleLevel( level );
 
 			Item item = Construct( m_RareItemTypes );
@@ -1519,6 +1542,14 @@ namespace Server
 
 			return null;
 		}
+    public static Item RandomCoffer()
+    {
+      return Construct( m_CofferTypes );
+    }
+    public static Item RandomTamerItem()
+    {
+      return Construct( m_TamerTypes );
+    }
 		#endregion
 	}
 }

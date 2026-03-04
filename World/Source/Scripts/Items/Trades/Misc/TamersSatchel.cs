@@ -15,7 +15,7 @@ namespace Server.Items
         [Constructable]
         public TamersSatchel() : base()
         {
-            Name = "Shepherd's Resolve";
+            Name = "a Tamers Medical Satchel";
             Hue = 2129; 
             MaxItems = 20; 
         }
