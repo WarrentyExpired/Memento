@@ -17,8 +17,37 @@ namespace Server.Items
         public BaseResourceBox(int itemID) : base(itemID)
         {
             Weight = 20.0;
-            LootType = LootType.Blessed;
             m_Resources = new Dictionary<Type, int>();
+        }
+        public static int GetRarityValue(Type type)
+        {
+          string name = type.Name;
+          // We map the names from your text file to their order
+          string[] rarityOrder = new string[]
+          {
+            // Metal
+            "IronIngot", "DullCopperIngot", "ShadowIronIngot", "CopperIngot", "BronzeIngot", 
+            "GoldIngot", "AgapiteIngot", "VeriteIngot", "ValoriteIngot", "NepturiteIngot", 
+            "ObsidianIngot", "SteelIngot", "BrassIngot", "MithrilIngot", "XormiteIngot", "DwarvenIngot",
+            // Leather
+            "Leather", "HornedLeather", "BarbedLeather", "NecroticLeather", "VolcanicLeather", 
+            "FrozenLeather", "SpinedLeather", "GoliathLeather", "DraconicLeather", "HellishLeather",
+            "DinosaurLeather", "AlienLeather",
+            // Wood
+            "Board", "AshBoard", "CherryBoard", "EbonyBoard", "GoldenOakBoard", 
+            "HickoryBoard", "MahoganyBoard", "OakBoard", "PineBoard", "GhostBoard", 
+            "RosewoodBoard", "WalnutBoard", "PetrifiedBoard", "DriftwoodBoard", "ElvenBoard",
+            // Fabric
+            "Fabric", "FurryFabric", "WoolyFabric", "SilkFabric", "HauntedFabric", 
+            "ArcticFabric", "PyreFabric", "VenomousFabric", "MysteriousFabric", "VileFabric", 
+            "DivineFabric", "FiendishFabric"
+          };
+          for (int i = 0; i < rarityOrder.Length; i++)
+          {
+            if (name == rarityOrder[i])
+              return i;
+          }
+          return 999; // Unknown items go to the end
         }
         public bool CheckAccessible(Mobile from)
         {

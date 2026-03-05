@@ -11,104 +11,143 @@ namespace Server.Items
     public class ResourceStorageGump : Gump
     {
         private BaseResourceBox m_Box;
+        private int m_Page;
+        private List<KeyValuePair<Type, int>> m_SortedList;
 
-        public ResourceStorageGump(Mobile from, BaseResourceBox box) : base(50, 50)
+        public ResourceStorageGump(Mobile from, BaseResourceBox box, int page = 0) : base(50, 50)
         {
             m_Box = box;
+            m_Page = page;
 
             AddPage(0);
-            AddBackground(0, 0, 480, 450, 9270);
-            AddAlphaRegion(10, 10, 460, 430);
-            AddLabel(160, 20, 1152, m_Box.BoxTitle);
+            AddBackground(0, 0, 540, 500, 9270); 
+            AddAlphaRegion(10, 10, 520, 480);
+            AddLabel(210, 20, 1152, m_Box.BoxTitle);
 
             AddLabel(30, 50, 1152, "Resource");
             AddLabel(210, 50, 1152, "Amount");
-            AddLabel(290, 50, 1152, "Withdraw (1 / 50 / 500 / ...)");
+            // Updated Header Label
+            AddLabel(300, 50, 1152, "(100 / 500 / All / Amount)");
 
-            // Alphabetical Sort
-            var sortedList = m_Box.Resources.OrderBy(x => x.Key.Name).ToList();
+            m_SortedList = m_Box.Resources.OrderBy(x => GetRarityIndex(x.Key)).ToList();
+
+            int itemsPerPage = 12;
+            int start = m_Page * itemsPerPage;
+            int end = Math.Min(start + itemsPerPage, m_SortedList.Count);
 
             int y = 80;
-            int buttonID = 1;
-
-            foreach (var entry in sortedList)
+            for (int i = start; i < end; i++)
             {
+                var entry = m_SortedList[i];
                 string name = entry.Key.Name;
+                
                 name = System.Text.RegularExpressions.Regex.Replace(name, "([a-z])([A-Z])", "$1 $2");
                 name = name.Replace("Base ", "");
+                name = name.Replace("Fabric", "Cloth");
+                name = name.Replace("Spined Leather", "Deep Sea Leather");
+                name = name.Replace("Horned Leather", "Lizard Leather");
+                name = name.Replace("Barbed Leather", "Serpent Leather");
 
                 AddLabel(30, y, 0x481, name);
                 AddLabel(210, y, 0x481, entry.Value.ToString());
 
-                AddButton(290, y + 2, 2117, 2118, buttonID, GumpButtonType.Reply, 0); 
-                AddButton(325, y + 2, 2117, 2118, buttonID + 1, GumpButtonType.Reply, 0); 
-                AddButton(365, y + 2, 2117, 2118, buttonID + 2, GumpButtonType.Reply, 0); 
+                int buttonID = (i * 4) + 10; 
+
+                AddButton(305, y + 2, 2117, 2118, buttonID, GumpButtonType.Reply, 0); // 100
+                AddButton(345, y + 2, 2117, 2118, buttonID + 1, GumpButtonType.Reply, 0); // 500
+                AddButton(385, y + 2, 2117, 2118, buttonID + 2, GumpButtonType.Reply, 0); // All
                 
-                AddButton(410, y + 2, 4005, 4007, buttonID + 3, GumpButtonType.Reply, 0);
-                AddLabel(440, y, 1152, "...");
+                AddButton(435, y + 2, 4005, 4007, buttonID + 3, GumpButtonType.Reply, 0); // Custom
+                AddLabel(465, y, 1152, "...");
 
-                y += 25;
-                buttonID += 4;
-
-                if (y > 380) break;
+                y += 30;
             }
+
+            if (m_Page > 0)
+            {
+                AddButton(30, 460, 4014, 4016, 1, GumpButtonType.Reply, 0);
+                AddLabel(65, 460, 1152, "Previous");
+            }
+
+            if (end < m_SortedList.Count)
+            {
+                AddButton(450, 460, 4005, 4007, 2, GumpButtonType.Reply, 0);
+                AddLabel(410, 460, 1152, "Next");
+            }
+        }
+
+        private int GetRarityIndex(Type type)
+        {
+            return BaseResourceBox.GetRarityValue(type);
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)
         {
             if (info.ButtonID == 0 || m_Box == null || m_Box.Deleted) return;
 
-            int val = info.ButtonID - 1;
-            int index = val / 4;
-            int subType = val % 4; 
-
-            var sortedList = m_Box.Resources.OrderBy(x => x.Key.Name).ToList();
-
-            if (index >= 0 && index < sortedList.Count)
+            if (info.ButtonID == 1)
             {
-                Type targetType = sortedList[index].Key;
+                sender.Mobile.SendGump(new ResourceStorageGump(sender.Mobile, m_Box, m_Page - 1));
+                return;
+            }
+            if (info.ButtonID == 2)
+            {
+                sender.Mobile.SendGump(new ResourceStorageGump(sender.Mobile, m_Box, m_Page + 1));
+                return;
+            }
 
-                if (subType < 3) 
+            int val = info.ButtonID - 10;
+            int itemIndex = val / 4;
+            int subType = val % 4;
+
+            var sorted = m_Box.Resources.OrderBy(x => GetRarityIndex(x.Key)).ToList();
+
+            if (itemIndex >= 0 && itemIndex < sorted.Count)
+            {
+                Type targetType = sorted[itemIndex].Key;
+                int available = sorted[itemIndex].Value;
+
+                if (subType < 3) // Fixed Amounts (100, 500, All)
                 {
-                    int amount = (subType == 0) ? 1 : (subType == 1) ? 50 : 500;
+                    int amount = 0;
+                    if (subType == 0) amount = 100;
+                    else if (subType == 1) amount = 500;
+                    else amount = available; // "All" logic
+
                     m_Box.Withdraw(sender.Mobile, targetType, amount);
-                    sender.Mobile.SendGump(new ResourceStorageGump(sender.Mobile, m_Box));
+                    sender.Mobile.SendGump(new ResourceStorageGump(sender.Mobile, m_Box, m_Page));
                 }
-                else 
+                else // Custom
                 {
                     sender.Mobile.SendMessage("Enter amount to withdraw:");
-                    // This is line 82 - it will now find the nested class below
-                    sender.Mobile.Prompt = new ResourceWithdrawPrompt(m_Box, targetType);
+                    sender.Mobile.Prompt = new ResourceWithdrawPrompt(m_Box, targetType, m_Page);
                 }
             }
         }
 
-        // NESTED CLASS: This must be inside the ResourceStorageGump curly brackets
         private class ResourceWithdrawPrompt : Prompt
         {
             private BaseResourceBox m_Box;
             private Type m_Type;
+            private int m_Page;
 
-            public ResourceWithdrawPrompt(BaseResourceBox box, Type type)
+            public ResourceWithdrawPrompt(BaseResourceBox box, Type type, int page)
             {
                 m_Box = box;
                 m_Type = type;
+                m_Page = page;
             }
 
             public override void OnResponse(Mobile from, string text)
             {
                 int amount = Utility.ToInt32(text);
-                if (amount > 0) 
-                    m_Box.Withdraw(from, m_Type, amount);
-                else 
-                    from.SendMessage("Invalid withdrawal amount.");
-
-                from.SendGump(new ResourceStorageGump(from, m_Box));
+                if (amount > 0) m_Box.Withdraw(from, m_Type, amount);
+                from.SendGump(new ResourceStorageGump(from, m_Box, m_Page));
             }
 
             public override void OnCancel(Mobile from)
             {
-                from.SendGump(new ResourceStorageGump(from, m_Box));
+                from.SendGump(new ResourceStorageGump(from, m_Box, m_Page));
             }
         }
     }
