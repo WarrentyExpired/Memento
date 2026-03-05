@@ -23,7 +23,7 @@ namespace Server.Items
             AddPage(0);
             AddBackground(0, 0, 540, 500, 9270); // Height increased to 500 for page buttons
             AddAlphaRegion(10, 10, 520, 480);
-            AddLabel(210, 20, 1152, "Tool Storage Ledger");
+            AddLabel(210, 20, 1152, "Tool Storage Box");
 
             AddLabel(30, 50, 1152, "Tool Type");
             AddLabel(210, 50, 1152, "Total Uses");
@@ -57,8 +57,9 @@ namespace Server.Items
 
                 y += 30;
             }
-
             // Pagination Controls
+            AddButton(150, 460, 4005, 4007, 3, GumpButtonType.Reply, 0);
+            AddLabel(185, 460, 1152, "Fill from Backpack");
             if (m_Page > 0)
             {
                 AddButton(30, 460, 4014, 4016, 1, GumpButtonType.Reply, 0);
@@ -87,7 +88,13 @@ namespace Server.Items
                 sender.Mobile.SendGump(new ToolStorageGump(sender.Mobile, m_Box, m_Page + 1));
                 return;
             }
-
+            // Handle Fill from Backpack
+            if (info.ButtonID == 3)
+            {
+                m_Box.FillFromBackpack(sender.Mobile);
+                sender.Mobile.SendGump(new ToolStorageGump(sender.Mobile, m_Box, m_Page));
+                return;
+            }
             int val = info.ButtonID - 10;
             int itemIndex = val / 4;
             int subType = val % 4;

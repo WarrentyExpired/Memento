@@ -5,7 +5,7 @@ namespace Server.Items
 {
     public class MetalStorageBox : BaseResourceBox
     {
-        public override string BoxTitle => "Blacksmith's Ledger";
+        public override string BoxTitle => "Blacksmith's Storage Box";
         
         // This box only accepts Ingots
         public override bool IsAllowed(Item item) => item is BaseIngot;

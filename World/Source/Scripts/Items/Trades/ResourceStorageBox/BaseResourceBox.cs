@@ -92,7 +92,50 @@ namespace Server.Items
             from.SendMessage("That doesn't belong in this storage box.");
             return false;
         }
+        public void FillFromBackpack(Mobile from)
+        {
+            if (!CheckAccessible(from))
+                return;
 
+            Container pack = from.Backpack;
+
+            if (pack == null)
+                return;
+
+            int count = 0;
+            // Iterate backwards when deleting/moving items from a list
+            for (int i = pack.Items.Count - 1; i >= 0; --i)
+            {
+                if (i >= pack.Items.Count)
+                    continue;
+
+                Item item = pack.Items[i];
+
+                if (IsAllowed(item))
+                {
+                    Type resType = item.GetType();
+                    int amount = item.Amount;
+
+                    if (m_Resources.ContainsKey(resType)) 
+                        m_Resources[resType] += amount;
+                    else 
+                        m_Resources[resType] = amount;
+
+                    count++;
+                    item.Delete();
+                }
+            }
+
+            if (count > 0)
+            {
+                from.SendMessage("Stored {0} types of resources from your backpack.", count);
+                from.PlaySound(0x42);
+            }
+            else
+            {
+                from.SendMessage("No matching resources were found in your backpack.");
+            }
+        }
         public void Withdraw(Mobile from, Type type, int amount)
         {
             if (m_Resources.ContainsKey(type) && m_Resources[type] >= amount)

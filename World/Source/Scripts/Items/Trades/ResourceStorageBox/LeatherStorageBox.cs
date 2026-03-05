@@ -5,7 +5,7 @@ namespace Server.Items
 {
     public class LeatherStorageBox : BaseResourceBox
     {
-        public override string BoxTitle => "Tanner's Ledger";
+        public override string BoxTitle => "Tanner's Storage Box";
         
         // This box only accepts Leather (Plain, Spined, Horned, Barbed)
         public override bool IsAllowed(Item item) => item is BaseLeather;

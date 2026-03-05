@@ -5,7 +5,7 @@ namespace Server.Items
 {
     public class ClothStorageBox : BaseResourceBox
     {
-        public override string BoxTitle => "Tailor's Ledger";
+        public override string BoxTitle => "Tailor's Storage Box";
         
         // This box accepts Cloth, Uncut Cloth, and Feathers
         public override bool IsAllowed(Item item) => item is BaseFabric;

@@ -26,7 +26,7 @@ namespace Server.Items
 
             AddLabel(30, 50, 1152, "Resource");
             AddLabel(210, 50, 1152, "Amount");
-            // Updated Header Label
+            // Updated label to reflect 100 / 500 / All
             AddLabel(300, 50, 1152, "(100 / 500 / All / Amount)");
 
             m_SortedList = m_Box.Resources.OrderBy(x => GetRarityIndex(x.Key)).ToList();
@@ -40,7 +40,6 @@ namespace Server.Items
             {
                 var entry = m_SortedList[i];
                 string name = entry.Key.Name;
-                
                 name = System.Text.RegularExpressions.Regex.Replace(name, "([a-z])([A-Z])", "$1 $2");
                 name = name.Replace("Base ", "");
                 name = name.Replace("Fabric", "Cloth");
@@ -54,11 +53,10 @@ namespace Server.Items
                 int buttonID = (i * 4) + 10; 
 
                 AddButton(305, y + 2, 2117, 2118, buttonID, GumpButtonType.Reply, 0); // 100
-                AddButton(345, y + 2, 2117, 2118, buttonID + 1, GumpButtonType.Reply, 0); // 500
-                AddButton(385, y + 2, 2117, 2118, buttonID + 2, GumpButtonType.Reply, 0); // All
-                
-                AddButton(435, y + 2, 4005, 4007, buttonID + 3, GumpButtonType.Reply, 0); // Custom
-                AddLabel(465, y, 1152, "...");
+                AddButton(340, y + 2, 2117, 2118, buttonID + 1, GumpButtonType.Reply, 0); // 500
+                AddButton(380, y + 2, 2117, 2118, buttonID + 2, GumpButtonType.Reply, 0); // All
+                AddButton(430, y + 2, 4005, 4007, buttonID + 3, GumpButtonType.Reply, 0); // Custom
+                AddLabel(460, y, 1152, "...");
 
                 y += 30;
             }
@@ -74,6 +72,9 @@ namespace Server.Items
                 AddButton(450, 460, 4005, 4007, 2, GumpButtonType.Reply, 0);
                 AddLabel(410, 460, 1152, "Next");
             }
+
+            AddButton(150, 460, 4005, 4007, 3, GumpButtonType.Reply, 0);
+            AddLabel(185, 460, 1152, "Fill from Backpack");
         }
 
         private int GetRarityIndex(Type type)
@@ -96,6 +97,13 @@ namespace Server.Items
                 return;
             }
 
+            if (info.ButtonID == 3) 
+            {
+                m_Box.FillFromBackpack(sender.Mobile);
+                sender.Mobile.SendGump(new ResourceStorageGump(sender.Mobile, m_Box, m_Page));
+                return;
+            }
+
             int val = info.ButtonID - 10;
             int itemIndex = val / 4;
             int subType = val % 4;
@@ -105,19 +113,22 @@ namespace Server.Items
             if (itemIndex >= 0 && itemIndex < sorted.Count)
             {
                 Type targetType = sorted[itemIndex].Key;
-                int available = sorted[itemIndex].Value;
+                // Get the total amount available for "All" option
+                int available = sorted[itemIndex].Value; 
 
-                if (subType < 3) // Fixed Amounts (100, 500, All)
+                if (subType < 3)
                 {
                     int amount = 0;
+
+                    // Updated logic for 100, 500, and All
                     if (subType == 0) amount = 100;
                     else if (subType == 1) amount = 500;
-                    else amount = available; // "All" logic
+                    else amount = available;
 
                     m_Box.Withdraw(sender.Mobile, targetType, amount);
                     sender.Mobile.SendGump(new ResourceStorageGump(sender.Mobile, m_Box, m_Page));
                 }
-                else // Custom
+                else
                 {
                     sender.Mobile.SendMessage("Enter amount to withdraw:");
                     sender.Mobile.Prompt = new ResourceWithdrawPrompt(m_Box, targetType, m_Page);
@@ -133,9 +144,7 @@ namespace Server.Items
 
             public ResourceWithdrawPrompt(BaseResourceBox box, Type type, int page)
             {
-                m_Box = box;
-                m_Type = type;
-                m_Page = page;
+                m_Box = box; m_Type = type; m_Page = page;
             }
 
             public override void OnResponse(Mobile from, string text)

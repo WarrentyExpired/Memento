@@ -13,7 +13,7 @@ namespace Server.Items
         [Constructable]
         public ToolStorageBox() : base(0x9AA) // Wooden Box graphic
         {
-            Name = "Tool Storage Ledger";
+            Name = "Tool Storage Box";
             Hue = 1161; // Teal-ish hue to distinguish from resources
             Weight = 20.0;
             m_ToolUses = new Dictionary<Type, int>();
@@ -60,7 +60,49 @@ namespace Server.Items
             from.SendMessage("This box only accepts crafting tools.");
             return false;
         }
+        public void FillFromBackpack(Mobile from)
+        {
+            if (!IsLockedDown && !IsSecure && from.AccessLevel == AccessLevel.Player)
+            {
+                from.SendMessage("The tool ledger must be locked down or secured to use.");
+                return;
+            }
 
+            Container pack = from.Backpack;
+            if (pack == null) return;
+
+            int count = 0;
+            for (int i = pack.Items.Count - 1; i >= 0; --i)
+            {
+                if (i >= pack.Items.Count) continue;
+
+                Item item = pack.Items[i];
+
+                if (item is BaseTool tool)
+                {
+                    Type toolType = tool.GetType();
+                    int uses = tool.UsesRemaining;
+
+                    if (m_ToolUses.ContainsKey(toolType))
+                        m_ToolUses[toolType] += uses;
+                    else
+                        m_ToolUses[toolType] = uses;
+
+                    count++;
+                    item.Delete();
+                }
+            }
+
+            if (count > 0)
+            {
+                from.SendMessage("Stored uses from {0} tools in your backpack.", count);
+                from.PlaySound(0x249);
+            }
+            else
+            {
+                from.SendMessage("No crafting tools were found in your backpack.");
+            }
+        }
         public void Withdraw(Mobile from, Type type, int amount)
         {
             if (m_ToolUses.ContainsKey(type) && m_ToolUses[type] >= amount)

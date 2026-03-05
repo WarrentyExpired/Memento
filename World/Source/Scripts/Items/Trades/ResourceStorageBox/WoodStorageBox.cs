@@ -5,7 +5,7 @@ namespace Server.Items
 {
     public class WoodStorageBox : BaseResourceBox
     {
-        public override string BoxTitle => "Carpenter's Ledger";
+        public override string BoxTitle => "Carpenter's Storage Box";
         
         // This box accepts Boards and Shafts
         public override bool IsAllowed(Item item) => item is BaseWoodBoard;
