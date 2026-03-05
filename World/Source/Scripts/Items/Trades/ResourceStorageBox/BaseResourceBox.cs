@@ -81,6 +81,11 @@ namespace Server.Items
                 from.SendMessage("Stored {0} units.", amount);
                 dropped.Delete();
                 from.PlaySound(0x42);
+                if (from.HasGump(typeof(ResourceStorageGump)))
+                {
+                    from.CloseGump(typeof(ResourceStorageGump));
+                    from.SendGump(new ResourceStorageGump(from, this));
+                }
                 return true;
             }
 
