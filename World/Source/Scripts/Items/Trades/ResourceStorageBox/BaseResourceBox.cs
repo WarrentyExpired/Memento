@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Items
 {
-    public abstract class BaseResourceBox : Item
+    public abstract class BaseResourceBox : Container
     {
         private Dictionary<Type, int> m_Resources;
         public Dictionary<Type, int> Resources => m_Resources;
@@ -157,7 +157,7 @@ namespace Server.Items
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)0);
+            writer.Write((int)1);
             writer.Write(m_Resources.Count);
             foreach (KeyValuePair<Type, int> entry in m_Resources)
             {

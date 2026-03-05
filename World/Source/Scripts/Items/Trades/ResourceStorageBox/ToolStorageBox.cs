@@ -5,7 +5,7 @@ using Server.Items;
 
 namespace Server.Items
 {
-    public class ToolStorageBox : Item
+    public class ToolStorageBox : Container
     {
         private Dictionary<Type, int> m_ToolUses;
         public Dictionary<Type, int> ToolUses => m_ToolUses;
@@ -131,7 +131,7 @@ namespace Server.Items
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)0);
+            writer.Write((int)1);
             writer.Write(m_ToolUses.Count);
             foreach (KeyValuePair<Type, int> entry in m_ToolUses)
             {
