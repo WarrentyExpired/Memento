@@ -54,7 +54,7 @@ namespace Server.Items
                 case 2: if (m_Ledger.WoodBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.WoodBox)); break;
                 case 3: if (m_Ledger.ClothBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.ClothBox)); break;
                 case 4: if (m_Ledger.LeatherBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.LeatherBox)); break;
-                case 5: if (m_Ledger.ToolBox != null) from.SendGump(new ToolStorageGump(from, m_Ledger.ToolBox)); break;
+                case 5: if (m_Ledger.ToolBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.ToolBox)); break;
                 case 6: if (m_Ledger.ArcaneBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.ArcaneBox)); break;
                 case 10: m_Ledger.BeginLink(from); break;
 

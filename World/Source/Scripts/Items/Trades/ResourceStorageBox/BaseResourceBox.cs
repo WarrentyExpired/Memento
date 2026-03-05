@@ -5,12 +5,17 @@ using Server.Items;
 
 namespace Server.Items
 {
-    public abstract class BaseResourceBox : Container
+    public interface IStorageBox
+    {
+        string BoxTitle { get; }
+        Dictionary<Type, int> GetStorage();
+        void Withdraw(Mobile from, Type type, int amount);
+    }
+    public abstract class BaseResourceBox : Container, IStorageBox
     {
         private Dictionary<Type, int> m_Resources;
         public Dictionary<Type, int> Resources => m_Resources;
-
-        // Each box will define what it's allowed to hold
+        public Dictionary<Type, int> GetStorage() { return m_Resources; }
         public abstract bool IsAllowed(Item item);
         public abstract string BoxTitle { get; }
 
