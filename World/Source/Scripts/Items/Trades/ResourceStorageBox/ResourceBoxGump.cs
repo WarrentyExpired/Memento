@@ -5,7 +5,6 @@ using Server.Gumps;
 using Server.Network;
 using Server.Items;
 using Server.Prompts;
-
 namespace Server.Items
 {
     public class ResourceStorageGump : Gump
@@ -13,32 +12,24 @@ namespace Server.Items
         private IStorageBox m_Box;
         private int m_Page;
         private List<KeyValuePair<Type, int>> m_SortedList;
-
         public ResourceStorageGump(Mobile from, IStorageBox box, int page = 0) : base(50, 50)
         {
             m_Box = box;
             m_Page = page;
-
             AddPage(0);
             AddBackground(0, 0, 540, 500, 9270); 
             AddAlphaRegion(10, 10, 520, 480);
             AddLabel(210, 20, 1152, m_Box.BoxTitle);
-
             AddLabel(30, 50, 1152, m_Box is ToolStorageBox ? "Tool Type" : "Resource");
             AddLabel(210, 50, 1152, m_Box is ToolStorageBox ? "Total Uses" : "Amount");
-            AddLabel(300, 50, 1152, "Withdraw (100 / 500 / All / ...)");
-
-            // --- SMART SORTING ---
-            // Sort Alphabetically if it's a Tool Box or Arcane Box
+            AddLabel(300, 50, 1152, "(100 / 500 / All / Custom)");
             if (m_Box is ToolStorageBox || m_Box is ArcaneStorageBox)
                 m_SortedList = m_Box.GetStorage().OrderBy(x => x.Key.Name).ToList();
             else
                 m_SortedList = m_Box.GetStorage().OrderBy(x => BaseResourceBox.GetRarityValue(x.Key)).ToList();
-
             int itemsPerPage = 12;
             int start = m_Page * itemsPerPage;
             int end = Math.Min(start + itemsPerPage, m_SortedList.Count);
-
             int y = 80;
             for (int i = start; i < end; i++)
             {
@@ -46,10 +37,8 @@ namespace Server.Items
                 string name = entry.Key.Name;
                 name = System.Text.RegularExpressions.Regex.Replace(name, "([a-z])([A-Z])", "$1 $2");
                 name = name.Replace("Base ", "").Replace("Fabric", "Cloth");
-
                 AddLabel(30, y, 0x481, name);
                 AddLabel(210, y, 0x481, entry.Value.ToString());
-
                 int buttonID = (i * 4) + 10; 
                 AddButton(305, y + 2, 2117, 2118, buttonID, GumpButtonType.Reply, 0);
                 AddButton(340, y + 2, 2117, 2118, buttonID + 1, GumpButtonType.Reply, 0);
@@ -58,11 +47,9 @@ namespace Server.Items
                 AddLabel(460, y, 1152, "...");
                 y += 30;
             }
-
             if (m_Page > 0) AddButton(30, 460, 4014, 4016, 1, GumpButtonType.Reply, 0);
             if (end < m_SortedList.Count) AddButton(450, 460, 4005, 4007, 2, GumpButtonType.Reply, 0);
         }
-
         public override void OnResponse(NetState sender, RelayInfo info)
         {
             if (info.ButtonID == 0 || m_Box == null) return;
@@ -74,7 +61,6 @@ namespace Server.Items
                 int val = info.ButtonID - 10;
                 int itemIndex = val / 4;
                 int subType = val % 4;
-
                 if (itemIndex >= 0 && itemIndex < m_SortedList.Count)
                 {
                     Type targetType = m_SortedList[itemIndex].Key;
@@ -92,7 +78,6 @@ namespace Server.Items
                 }
             }
         }
-
         private class StorageWithdrawPrompt : Prompt
         {
             private IStorageBox m_Box; private Type m_Type; private int m_Page;

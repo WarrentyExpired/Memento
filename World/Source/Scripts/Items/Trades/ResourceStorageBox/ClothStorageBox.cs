@@ -1,6 +1,5 @@
 using System;
 using Server.Items;
-
 namespace Server.Items
 {
     public class ClothStorageBox : BaseResourceBox
@@ -11,20 +10,17 @@ namespace Server.Items
         public override bool IsAllowed(Item item) => item is BaseFabric;
 
         [Constructable]
-        public ClothStorageBox() : base(0x9A9) // Wooden Box
+        public ClothStorageBox() : base(0x9A9)
         {
             Name = "Cloth Storage Box";
-            Hue = 1150; // White/Cloth Hue
+            Hue = 1150;
         }
-
         public ClothStorageBox(Serial serial) : base(serial) { }
-
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
             writer.Write((int)0);
         }
-
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);

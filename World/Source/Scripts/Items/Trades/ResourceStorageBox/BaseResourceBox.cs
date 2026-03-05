@@ -27,7 +27,6 @@ namespace Server.Items
         public static int GetRarityValue(Type type)
         {
           string name = type.Name;
-          // We map the names from your text file to their order
           string[] rarityOrder = new string[]
           {
             // Metal
@@ -52,11 +51,10 @@ namespace Server.Items
             if (name == rarityOrder[i])
               return i;
           }
-          return 999; // Unknown items go to the end
+          return 999;
         }
         public bool CheckAccessible(Mobile from)
         {
-            // If the box is locked down or secured, it is accessible
             if (IsLockedDown || IsSecure)
                 return true;
             from.SendMessage("The storage box must be locked down or secured in a house to use.");
@@ -108,7 +106,6 @@ namespace Server.Items
                 return;
 
             int count = 0;
-            // Iterate backwards when deleting/moving items from a list
             for (int i = pack.Items.Count - 1; i >= 0; --i)
             {
                 if (i >= pack.Items.Count)

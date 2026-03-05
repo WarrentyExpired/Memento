@@ -9,10 +9,10 @@ namespace Server.Items
         public override string BoxTitle => "Arcane & Alchemy Storage Box";
 
         [Constructable]
-        public ArcaneStorageBox() : base(0x9A9) // Wooden box graphic
+        public ArcaneStorageBox() : base(0x9A9)
         {
             Name = "Arcane Storage Box";
-            Hue = 1101; // A deep blue/purple for magic
+            Hue = 1101;
             Weight = 20;
         }
 
