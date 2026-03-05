@@ -11,7 +11,7 @@ namespace Server.Items
         public Dictionary<Type, int> ToolUses => m_ToolUses;
 
         [Constructable]
-        public ToolStorageBox() : base(0x9AA) // Wooden Box graphic
+        public ToolStorageBox() : base(0x9A9) // Wooden Box graphic
         {
             Name = "Tool Storage Box";
             Hue = 1161; // Teal-ish hue to distinguish from resources

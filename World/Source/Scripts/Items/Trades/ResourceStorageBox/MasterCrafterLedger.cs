@@ -14,14 +14,14 @@ namespace Server.Items
         private LeatherStorageBox m_LeatherBox;
         private ClothStorageBox m_ClothBox;
         private ToolStorageBox m_ToolBox;
-
+        private ArcaneStorageBox m_ArcaneBox;
         // Accessors
         public MetalStorageBox MetalBox { get => m_MetalBox; set => m_MetalBox = value; }
         public WoodStorageBox WoodBox { get => m_WoodBox; set => m_WoodBox = value; }
         public LeatherStorageBox LeatherBox { get => m_LeatherBox; set => m_LeatherBox = value; }
         public ClothStorageBox ClothBox { get => m_ClothBox; set => m_ClothBox = value; }
         public ToolStorageBox ToolBox { get => m_ToolBox; set => m_ToolBox = value; }
-
+        public ArcaneStorageBox ArcaneBox { get => m_ArcaneBox; set => m_ArcaneBox = value; }
         [Constructable]
         public MasterCrafterLedger() : base(0x2259) // Book graphic
         {
@@ -61,6 +61,7 @@ namespace Server.Items
                 else if (targeted is LeatherStorageBox leather) { m_Ledger.LeatherBox = leather; from.SendMessage("Leather Ledger linked."); }
                 else if (targeted is ClothStorageBox cloth) { m_Ledger.ClothBox = cloth; from.SendMessage("Cloth Ledger linked."); }
                 else if (targeted is ToolStorageBox tool) { m_Ledger.ToolBox = tool; from.SendMessage("Tool Ledger linked."); }
+                else if (targeted is ArcaneStorageBox arcane) { m_Ledger.ArcaneBox = arcane; from.SendMessage("Arcane Ledger linked."); }
                 else { from.SendMessage("That is not a compatible storage box."); return; }
 
                 from.SendGump(new MasterCrafterGump(from, m_Ledger));
@@ -78,6 +79,7 @@ namespace Server.Items
             writer.Write(m_LeatherBox);
             writer.Write(m_ClothBox);
             writer.Write(m_ToolBox);
+            writer.Write(m_ArcaneBox);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -89,6 +91,7 @@ namespace Server.Items
             m_LeatherBox = reader.ReadItem() as LeatherStorageBox;
             m_ClothBox = reader.ReadItem() as ClothStorageBox;
             m_ToolBox = reader.ReadItem() as ToolStorageBox;
+            m_ArcaneBox = reader.ReadItem() as ArcaneStorageBox;
         }
     }
 }

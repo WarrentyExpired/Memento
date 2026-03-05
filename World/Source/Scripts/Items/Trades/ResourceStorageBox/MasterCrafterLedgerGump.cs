@@ -26,6 +26,7 @@ namespace Server.Items
             DrawEntry(from, "Tailoring", m_Ledger.ClothBox, 3, y); y += 40;
             DrawEntry(from, "Tanning", m_Ledger.LeatherBox, 4, y); y += 40;
             DrawEntry(from, "Tools", m_Ledger.ToolBox, 5, y); y += 40;
+            DrawEntry(from, "Arcane/Alchemy", m_Ledger.ArcaneBox, 6, y); y += 40;
 
             AddButton(40, 300, 4005, 4007, 10, GumpButtonType.Reply, 0);
             AddLabel(75, 300, 1152, "Link a Storage Box");
@@ -54,7 +55,7 @@ namespace Server.Items
                 case 3: if (m_Ledger.ClothBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.ClothBox)); break;
                 case 4: if (m_Ledger.LeatherBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.LeatherBox)); break;
                 case 5: if (m_Ledger.ToolBox != null) from.SendGump(new ToolStorageGump(from, m_Ledger.ToolBox)); break;
-                
+                case 6: if (m_Ledger.ArcaneBox != null) from.SendGump(new ResourceStorageGump(from, m_Ledger.ArcaneBox)); break;
                 case 10: m_Ledger.BeginLink(from); break;
 
                 case 20: // DEPOSIT ALL
@@ -63,6 +64,7 @@ namespace Server.Items
                     if (m_Ledger.ClothBox != null) m_Ledger.ClothBox.FillFromBackpack(from);
                     if (m_Ledger.LeatherBox != null) m_Ledger.LeatherBox.FillFromBackpack(from);
                     if (m_Ledger.ToolBox != null) m_Ledger.ToolBox.FillFromBackpack(from);
+                    if (m_Ledger.ArcaneBox != null) m_Ledger.ArcaneBox.FillFromBackpack(from);
                     from.SendGump(new MasterCrafterGump(from, m_Ledger));
                     break;
             }
