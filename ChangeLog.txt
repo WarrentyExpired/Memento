@@ -29,3 +29,6 @@
   - Add all the spells scrolls for the appropriate class of magic to it and you can pay to fill a appropriate spell book of your choice.
 - Added Spell scroll coffers, Petleashes, Shirking Hitchingpost deeds, Tamers satchel, and Tamers Crook to Hoard Piles.
 - Added Coffers and pet items to the loot table.
+- Added Storage boxes and Master crafter ledger. The ledger can be linked to the boxes so you have a portable inventroy.
+- Added Resource Shelf. It combinds the usefulness of the storage boxes, but lacks the ability to eventually be linked 
+  and made portable.
