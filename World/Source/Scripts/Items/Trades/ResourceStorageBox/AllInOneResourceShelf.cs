@@ -25,7 +25,7 @@ namespace Server.Items
         public AllInOneResourceShelf() : base(0x3CC6)
         {
             Name = "Grand Resource Repository";
-            Hue = 1150;
+            //Hue = 1150;
             Weight = 50.0;
             LootType = LootType.Regular; 
         }
