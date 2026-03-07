@@ -22,19 +22,32 @@ namespace Server.Misc
 			builder.Append("- Craft - Runic tools now have 15/10/5 uses, up from 5/5/5<br>");
 			builder.Append("- Gump - Sending buttons/switches that don't exist now warn the Player instead of disconnecting<br>");
 			builder.Append("- Gump - Avatars can now view their Skill Archive<br>");
+			builder.Append("- Gump - Skill craft list now has an info button next to each item<br>");
+			builder.Append("- Gump - Declining a healer resurrect gump no longer queues the red (penalty) res gump<br>");
+			builder.Append("- Gump - Resurrect Now (penalty) gump can now trigger after re-logging<br>");
+			builder.Append("- Gump - Resurrect gumps now have a confirmation when you will incur a penalty<br>");
 			builder.Append("- Item - Harpoon attack speed is now 4s, down from 5s<br>");
 			builder.Append("- Item - Harpoon weapon abilities are now less off-meta<br>");
 			builder.Append("- Item - Quivers now accept harpoon rope and throwing weapons<br>");
+			builder.Append("- Item - Throwing slimes have been nerfed (production caps at 2 per jar and amount no longer benefits from alch/ep%)<br>");
+			builder.Append("- Misc - Fishing poles dropped from sunken ships are no longer basic wood<br>");
+			builder.Append("- Misc - Treasure hoards now announce the items that are pulled<br>");
 			builder.Append("- Skill - Tracking bonus for Ninjitsu now builds twice as fast<br>");
 			builder.Append("- Skill - Tracking is now 50% more likely to gain<br>");
 			builder.Append("- Skill - Death Strike now applies a mortal wound to the target<br>");
+			builder.Append("- Skill - Remove Trap only sets a cooldown when targeting a valid entity<br>");
+			builder.Append("- Skill - Initial targeting range for Taming is now 3, up from 2<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
+			builder.Append("- Avatar - Avatars can now delete skills from Soulstones<br>");
 			builder.Append("- Champs - Fixed issue where spawns would cancel immediately after starting<br>");
 			builder.Append("- Item - Fixed tooltip for Consecrated sharpening stones to indicate 4 hour durations<br>");
 			builder.Append("- Item - Mixtures can now be placed into Alchemist Pouches<br>");
+			builder.Append("- Item - Nosferatu's Robe now has a Spiritualism bonus<br>");
+			builder.Append("- Misc - Treasure hoards now delete when they run out of uses<br>");
 			builder.Append("- Mobs - Casters are now aware when Players can Reflect their spells<br>");
+			builder.Append("- NPC - Barber will now sell you their items<br>");
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
