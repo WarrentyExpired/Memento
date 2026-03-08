@@ -142,7 +142,9 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(5000, () => { return new ScribesPenRunicI(15); }, uses: 15, name: "Runic (I)", description: "Runic tool; crafted items have 1 magical property."),
 					_Reward.Create(20000, () => { return new ScribesPenRunicII(10); }, uses: 10, name: "Runic (II)", description: "Runic tool; crafted items have 2 magical properties."),
 					_Reward.Create(50000, () => { return new ScribesPenRunicIII(5); }, uses: 5, name: "Runic (III)", description: "Runic tool; crafted items have 3 magical properties."),
-
+          _Reward.Create(10000, () => { return new MageryCoffer(); }, description: "Used to create full Magery Spellbooks."),
+          _Reward.Create(10000, () => { return new NecromancyCoffer(); }, description: "Used to create full Necromancy Spellbooks."),
+          _Reward.Create(10000, () => { return new ElementalismCoffer(); }, description: "Used to create full Elementalism Spellbooks."),
 					_Reward.Create(100000, () => { return new Artifact_BootsofHermes(); }, description: "Allows players to run at mounted speed."),
           _Reward.Create(100000, () => { return new AllInOneResourceShelf(); }, description: "Keep your various crafting materials organized in one place."),
 				}
@@ -157,7 +159,6 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(5000, () => { return new UndertakerKitRunicI(15); }, uses: 15, name: "Runic (I)", description: "Runic tool; crafted items have 1 magical property."),
 					_Reward.Create(20000, () => { return new UndertakerKitRunicII(10); }, uses: 10, name: "Runic (II)", description: "Runic tool; crafted items have 2 magical properties."),
 					_Reward.Create(50000, () => { return new UndertakerKitRunicIII(5); }, uses: 5, name: "Runic (III)", description: "Runic tool; crafted items have 3 magical properties."),
-
 					_Reward.Create(100000, () => { return new Artifact_BootsofHermes(); }, description: "Allows players to run at mounted speed."),
           _Reward.Create(100000, () => { return new AllInOneResourceShelf(); }, description: "Keep your various crafting materials organized in one place."),
 				}
