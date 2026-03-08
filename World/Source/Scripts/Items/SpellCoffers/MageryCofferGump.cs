@@ -62,16 +62,28 @@ namespace Server.Items
                 y += 25;
             }
 
-            string progress = String.Format("<BASEFONT COLOR=#FFFFFF>Collected: {0} / 64</BASEFONT>", m_Coffer.GetTotalScrolls());
-            AddHtml(25, 510, 200, 20, progress, false, false);
-
-            if (m_Coffer.GetTotalScrolls() >= 64)
+            //string progress = String.Format("<BASEFONT COLOR=#FFFFFF>Collected: {0} / 64</BASEFONT>", m_Coffer.GetTotalScrolls());
+            //AddHtml(25, 510, 200, 20, progress, false, false);
+            AddLabel(25, 480, 1152, string.Format("Remaining Charges: {0}", m_Coffer.Charges));
+            string scrollStatus = string.Format("Scrolls: {0} / 64", m_Coffer.ScrollsStored);
+            string diamondStatus = string.Format("Diamonds: {0} / 8", m_Coffer.DiamondsStored);
+            AddLabel(25, 505, m_Coffer.ScrollsStored >= 64 ? 67 : 907, scrollStatus);
+            AddLabel(160, 505, m_Coffer.DiamondsStored >= 8 ? 67 : 907, diamondStatus);
+            //if (m_Coffer.GetTotalScrolls() >= 64)
+            //{
+            //    AddButton(620, 505, 4005, 4007, 1, GumpButtonType.Reply, 0);
+            //    AddLabel(655, 505, 67, String.Format("Fill Book ({0}gp)", m_Coffer.BindingCost));
+            //}
+            if (m_Coffer.Charges > 0)
             {
-                AddButton(620, 505, 4005, 4007, 1, GumpButtonType.Reply, 0);
-                AddLabel(655, 505, 67, String.Format("Fill Book ({0}gp)", m_Coffer.BindingCost));
+              AddLabel(550, 510, 1152, "Fill Spellbook (10,000gp)");
+              AddButton(740, 510, 4005, 4006, 1, GumpButtonType.Reply, 0);
+            }
+            else
+            {
+              AddLabel(500, 510, 907, "Coffer needs recharging to fill books.");
             }
         }
-
         public override void OnResponse(NetState sender, RelayInfo info)
         {
             if (info.ButtonID == 1)

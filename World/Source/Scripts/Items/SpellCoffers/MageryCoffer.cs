@@ -10,10 +10,16 @@ namespace Server.Items
     {
         private bool[] m_Slots;
         public bool[] Slots => m_Slots;
-
-        // The gold cost to fill a book
+        private int m_Charges;
+        private int m_ScrollsStored;
+        private int m_DiamondsStored;
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Charges { get { return m_Charges; } set { m_Charges = value; InvalidateProperties(); } }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int ScrollsStored { get { return m_ScrollsStored; } set { m_ScrollsStored = value; InvalidateProperties(); } }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int DiamondsStored { get { return m_DiamondsStored; } set { m_DiamondsStored = value; InvalidateProperties(); } }
         public virtual int BindingCost => 10000; 
-
         [Constructable]
         public MageryCoffer() : base(0x1C0E)
         {
@@ -22,7 +28,6 @@ namespace Server.Items
             Hue = 33;
             m_Slots = new bool[64];
         }
-
         public override void OnDoubleClick(Mobile from)
         {
             if (!from.InRange(GetWorldLocation(), 2))
@@ -30,16 +35,29 @@ namespace Server.Items
                 from.LocalOverheadMessage(MessageType.Regular, 0x3B2, 1019045);
                 return;
             }
-
             from.SendGump(new MageryCofferGump(this));
         }
-
         public override bool OnDragDrop(Mobile from, Item dropped)
         {
-            if (dropped is SpellScroll scroll)
+         if (dropped is BlankScroll)
+         {
+            m_ScrollsStored += dropped.Amount;
+            from.SendMessage("The coffer absorbs the blank scrolls. Total: {0}/64", m_ScrollsStored);
+            dropped.Consume();
+            CheckConversion(from);
+            return true;
+         }
+         else if (dropped is Diamond)
+         {
+            m_DiamondsStored += dropped.Amount;
+            from.SendMessage("The coffer absorbs the diamonds. Total: {0}/8", m_DiamondsStored);
+            dropped.Consume();
+            CheckConversion(from);
+            return true;
+         }
+         if (dropped is SpellScroll scroll)
             {
                 int id = scroll.SpellID;
-
                 if (id >= 0 && id < 64)
                 {
                     if (m_Slots[id])
@@ -47,21 +65,26 @@ namespace Server.Items
                         from.SendMessage("This spell is already preserved within the coffer.");
                         return false;
                     }
-
                     m_Slots[id] = true;
-                    from.SendMessage("You add the {0} scroll to the collection.", scroll.Name ?? "spell");
+                    from.SendMessage("You permanently preserve the {0} spell in the coffer.", scroll.Name ?? "spell");
                     dropped.Delete();
                     return true;
                 }
-                
-                from.SendMessage("That is not a Magery scroll.");
-                return false;
             }
-
-            from.SendMessage("The coffer only accepts spell scrolls.");
-            return false;
+            from.SendMessage("The coffer only accepts magery spell scrolls, diamonds, and blank scrolls.");
+            return base.OnDragDrop(from, dropped);
         }
-
+        private void CheckConversion(Mobile from)
+        {
+          while (m_ScrollsStored >= 64 && m_DiamondsStored >= 8)
+          {
+            m_ScrollsStored -= 64;
+            m_DiamondsStored -= 8;
+            m_Charges++;
+            from.SendMessage(0x35, "The materials combine! One charge has been added to the coffer.");
+            from.PlaySound(0x242);
+          }
+        }
         public void BeginBinding(Mobile from)
         {
             if (GetTotalScrolls() < 64)
