@@ -32,11 +32,13 @@ namespace Server.Misc
 			builder.Append("- Item - Throwing slimes have been nerfed (production caps at 2 per jar and amount no longer benefits from alch/ep%)<br>");
 			builder.Append("- Misc - Fishing poles dropped from sunken ships are no longer basic wood<br>");
 			builder.Append("- Misc - Treasure hoards now announce the items that are pulled<br>");
+			builder.Append("- Spell - Curse now reduces elemental resistances for Monsters by 10<br>");
 			builder.Append("- Skill - Tracking bonus for Ninjitsu now builds twice as fast<br>");
 			builder.Append("- Skill - Tracking is now 50% more likely to gain<br>");
 			builder.Append("- Skill - Death Strike now applies a mortal wound to the target<br>");
 			builder.Append("- Skill - Remove Trap only sets a cooldown when targeting a valid entity<br>");
 			builder.Append("- Skill - Initial targeting range for Taming is now 3, up from 2<br>");
+			builder.Append("- Skill - Players can now target themselves for the second target in provocation<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
