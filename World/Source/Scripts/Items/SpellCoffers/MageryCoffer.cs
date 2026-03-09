@@ -122,7 +122,7 @@ namespace Server.Items
                         book.Content = ulong.MaxValue; 
                         from.SendMessage("You pay the fee, and the coffer imprints the spells into your book.");
                         m_Coffer.Charges--;
-                        from.SendMessage("The coffer has lost a charge");
+                        from.SendMessage("The coffer has lost a charge.");
                         from.PlaySound(0x242); 
                       }
                       else

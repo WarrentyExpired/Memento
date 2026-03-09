@@ -60,13 +60,27 @@ namespace Server.Items
                 y += 25;
             }
 
-            string progress = String.Format("<BASEFONT COLOR=#FFFFFF>Collected: {0} / 32</BASEFONT>", m_Coffer.GetTotalScrolls());
+            /*string progress = String.Format("<BASEFONT COLOR=#FFFFFF>Collected: {0} / 32</BASEFONT>", m_Coffer.GetTotalScrolls());
             AddHtml(25, 510, 200, 20, progress, false, false);
 
             if (m_Coffer.GetTotalScrolls() >= 32)
             {
                 AddButton(270, 505, 4005, 4007, 1, GumpButtonType.Reply, 0);
                 AddLabel(305, 505, 67, String.Format("Fill Book ({0}gp)", m_Coffer.BindingCost));
+            }*/
+            AddLabel(25, 450, 1266, string.Format("Remaining Charges: {0}", m_Coffer.Charges));
+            string scrollStatus = string.Format("Scrolls: {0} / 32", m_Coffer.ScrollsStored);
+            string rubyStatus = string.Format("Rubies: {0} / 8", m_Coffer.RubysStored);
+            AddLabel(25, 470, m_Coffer.ScrollsStored >= 32 ? 67 : 907, scrollStatus);
+            AddLabel(25, 490, m_Coffer.RubysStored >= 8 ? 67 : 907, rubyStatus);
+            if (m_Coffer.Charges > 0)
+            {
+                AddLabel(25, 510, 1266, "Fill Elementalism Book (10,000gp)");
+                AddButton(250, 505, 4005, 4006, 1, GumpButtonType.Reply, 0);
+            }
+            else
+            {
+                AddLabel(25, 510, 907, "Coffer needs Rubies and Scrolls.");
             }
         }
 
