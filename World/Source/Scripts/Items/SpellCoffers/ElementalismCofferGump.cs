@@ -56,7 +56,7 @@ namespace Server.Items
             string arcanegemStatus = string.Format("Arcane Gems: {0} / 1", m_Coffer.ArcaneGemsStored);
             AddLabel(25, 490, 1266, string.Format("Remaining Charges: {0}", m_Coffer.Charges));
             AddLabel(25, 470, m_Coffer.ScrollsStored >= 32 ? 67 : 907, scrollStatus);
-            AddLabel(160, 470, m_Coffer.RubysStored >= 8 ? 67 : 907, rubyStatus);
+            AddLabel(170, 470, m_Coffer.RubysStored >= 8 ? 67 : 907, rubyStatus);
             AddLabel(280, 470, m_Coffer.ArcaneGemsStored >= 1 ? 67 : 907, arcanegemStatus);
             if (m_Coffer.Charges > 0)
             {
