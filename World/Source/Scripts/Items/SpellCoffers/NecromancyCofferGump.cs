@@ -41,13 +41,30 @@ namespace Server.Items
                 y += 25;
             }
 
-            string progress = String.Format("<BASEFONT COLOR=#FFFFFF>Rituals: {0} / 17</BASEFONT>", m_Coffer.GetTotalScrolls());
-            AddHtml(25, 500, 200, 20, progress, false, false);
-
-            if (m_Coffer.GetTotalScrolls() >= 17)
+            //string progress = String.Format("<BASEFONT COLOR=#FFFFFF>Rituals: {0} / 17</BASEFONT>", m_Coffer.GetTotalScrolls());
+            //AddHtml(25, 500, 200, 20, progress, false, false);
+            
+            //if (m_Coffer.GetTotalScrolls() >= 17)
+            //{
+            //    AddButton(25, 530, 4005, 4007, 1, GumpButtonType.Reply, 0);
+            //    AddLabel(60, 530, 67, String.Format("Fill Book ({0}gp)", m_Coffer.BindingCost));
+            //}
+            // Display current charges
+            AddLabel(25, 480, 1157, string.Format("Remaining Charges: {0}", m_Coffer.Charges));
+            // Display partial progress
+            string scrollStatus = string.Format("Scrolls: {0} / 17", m_Coffer.ScrollsStored);
+            string emeraldStatus = string.Format("Emeralds: {0} / 8", m_Coffer.EmeraldsStored);
+            AddLabel(25, 505, m_Coffer.ScrollsStored >= 17 ? 67 : 907, scrollStatus); 
+            AddLabel(140, 505, m_Coffer.EmeraldsStored >= 8 ? 67 : 907, emeraldStatus);
+            // Update the Button logic to check for Charges 
+            if (m_Coffer.Charges > 0)
             {
-                AddButton(25, 530, 4005, 4007, 1, GumpButtonType.Reply, 0);
-                AddLabel(60, 530, 67, String.Format("Fill Book ({0}gp)", m_Coffer.BindingCost));
+              AddLabel(50, 535, 1157, "Fill Spellbook (10,000gp)");
+              AddButton(210, 535, 4005, 4006, 1, GumpButtonType.Reply, 0);
+            }
+            else
+            {
+              AddLabel(35, 535, 907, "Coffer needs ritual components.");
             }
         }
 

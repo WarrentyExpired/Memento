@@ -3,7 +3,6 @@ using Server;
 using Server.Items;
 using Server.Network;
 using Server.Targeting;
-
 namespace Server.Items
 {
     public class MageryCoffer : Item
@@ -92,26 +91,21 @@ namespace Server.Items
                 from.SendMessage("The coffer must be full to bind books.");
                 return;
             }
-
             if (from.Backpack == null || (from.Backpack.GetAmount(typeof(Gold)) < BindingCost && from.BankBox.GetAmount(typeof(Gold)) < BindingCost))
             {
                 from.SendMessage("You need {0} gold to pay for the binding service.", BindingCost);
                 return;
             }
-
-            from.SendMessage("Target the empty spellbook you wish to fill.");
+            from.SendMessage("Target the empty magery spellbook you wish to fill.");
             from.Target = new InternalBindTarget(this);
         }
-
         private class InternalBindTarget : Target
         {
             private MageryCoffer m_Coffer;
-
             public InternalBindTarget(MageryCoffer coffer) : base(1, false, TargetFlags.None)
             {
                 m_Coffer = coffer;
             }
-
             protected override void OnTarget(Mobile from, object targeted)
             {
                 if (targeted is Spellbook book)
@@ -121,25 +115,28 @@ namespace Server.Items
                         from.SendMessage("That spellbook is already full!");
                         return;
                     }
-
-                    if (from.Backpack.ConsumeTotal(typeof(Gold), m_Coffer.BindingCost) || from.BankBox.ConsumeTotal(typeof(Gold), m_Coffer.BindingCost))
+                    if (m_Coffer.Charges > 0)
                     {
+                      if (from.Backpack.ConsumeTotal(typeof(Gold), m_Coffer.BindingCost) || from.BankBox.ConsumeTotal(typeof(Gold), m_Coffer.BindingCost))
+                      {
                         book.Content = ulong.MaxValue; 
                         from.SendMessage("You pay the fee, and the coffer imprints the spells into your book.");
+                        m_Coffer.Charges--;
+                        from.SendMessage("The coffer has lost a charge");
                         from.PlaySound(0x242); 
-                    }
-                    else
-                    {
-                        from.SendMessage("You no longer have enough gold.");
+                      }
+                      else
+                      {
+                        from.SendMessage("You lack the gold fee to pay for this.");
+                      }
                     }
                 }
                 else
                 {
-                    from.SendMessage("That is not a spellbook.");
+                    from.SendMessage("That is not a magery spellbook.");
                 }
             }
         }
-
         public int GetTotalScrolls()
         {
             int count = 0;
@@ -148,24 +145,27 @@ namespace Server.Items
                 if (m_Slots[i]) count++;
             return count;
         }
-
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)0);
+            writer.Write((int)1);
+            writer.Write(m_Charges);
+            writer.Write(m_ScrollsStored);
+            writer.Write(m_DiamondsStored);
             for (int i = 0; i < 64; i++)
                 writer.Write(m_Slots[i]);
         }
-
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            m_Charges = reader.ReadInt();
+            m_ScrollsStored = reader.ReadInt();
+            m_DiamondsStored = reader.ReadInt();
             m_Slots = new bool[64];
             for (int i = 0; i < 64; i++)
                 m_Slots[i] = reader.ReadBool();
         }
-
         public MageryCoffer(Serial serial) : base(serial) { }
     }
 }
