@@ -25,10 +25,10 @@
   - Camping lowers the threshold for when the debuff starts at 10 Hunger/Thirst for 0 Camping
     5 Hunger/Thirst for 125 Camping
   - Cooking will add a 1% for every 5 Cooking skill points to the "Total pool" 10% + 25% from cooking.
-- Magery/Necro/Elemental Spellbound Coffers
+- Magery/Necro/Elemental/Bardic Spellbound Coffers
   - Add all the spells scrolls for the appropriate class of magic to it and you can pay to fill a appropriate spell book of your choice.
-- Added Spell scroll coffers, Petleashes, Shirking Hitchingpost deeds, Tamers satchel, and Tamers Crook to Hoard Piles.
-- Added Coffers and pet items to the loot table.
+  - Also added a "recharge" function. It takes scrolls, gems, and arcane gems to add charges to it.
+- Added pet items to the loot table.
 - Added Storage boxes and Master crafter ledger. The ledger can be linked to the boxes so you have a portable inventroy.
 - Added Resource Shelf. It combinds the usefulness of the storage boxes, but lacks the ability to eventually be linked 
   and made portable.

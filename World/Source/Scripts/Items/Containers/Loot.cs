@@ -13,12 +13,6 @@ namespace Server
 	public class Loot
 	{
 		#region List definitions
-    private static Type[] m_CofferTypes = new Type[]
-    {
-      typeof( MageryCoffer ),
-      typeof( ElementalismCoffer ),
-      typeof( NecromancyCoffer ),
-    };
     private static Type[] m_TamerTypes = new Type[]
     {
       typeof( PetLeash ),
@@ -1309,10 +1303,6 @@ namespace Server
 		public static Item RandomRare( int level, Mobile from )
 		{
       if ( level > 12 ) level = 12;
-      if ( level >= 8 && Utility.RandomDouble() < 0.15)
-      {
-        return RandomCoffer();
-      }
       if ( level >= 6 && Utility.RandomDouble() < 0.30)
       {
         return RandomTamerItem();
@@ -1542,10 +1532,6 @@ namespace Server
 
 			return null;
 		}
-    public static Item RandomCoffer()
-    {
-      return Construct( m_CofferTypes );
-    }
     public static Item RandomTamerItem()
     {
       return Construct( m_TamerTypes );

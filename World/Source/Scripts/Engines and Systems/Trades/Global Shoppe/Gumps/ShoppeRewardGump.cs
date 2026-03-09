@@ -145,6 +145,7 @@ namespace Server.Engines.GlobalShoppe
           _Reward.Create(10000, () => { return new MageryCoffer(); }, description: "Used to create full Magery Spellbooks."),
           _Reward.Create(10000, () => { return new NecromancyCoffer(); }, description: "Used to create full Necromancy Spellbooks."),
           _Reward.Create(10000, () => { return new ElementalismCoffer(); }, description: "Used to create full Elementalism Spellbooks."),
+          _Reward.Create(10000, () => { return new BardicCoffer(); }, description: "Used to create full Elementalism Spellbooks."),
 					_Reward.Create(100000, () => { return new Artifact_BootsofHermes(); }, description: "Allows players to run at mounted speed."),
           _Reward.Create(100000, () => { return new AllInOneResourceShelf(); }, description: "Keep your various crafting materials organized in one place."),
 				}
