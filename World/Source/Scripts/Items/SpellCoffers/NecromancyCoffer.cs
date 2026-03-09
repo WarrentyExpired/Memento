@@ -33,11 +33,15 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
             if (!from.InRange(GetWorldLocation(), 2))
+              return;
+            if (from.HasGump(typeof(NecromancyCofferGump)))
             {
-                from.LocalOverheadMessage(MessageType.Regular, 0x3B2, 1019045);
-                return;
+              from.CloseGump(typeof(NecromancyCofferGump));
             }
-            from.SendGump(new NecromancyCofferGump(this));
+            else
+            {
+             from.SendGump(new NecromancyCofferGump(this));
+            }
         }
         public override bool OnDragDrop(Mobile from, Item dropped)
         {
@@ -47,6 +51,11 @@ namespace Server.Items
             from.SendMessage("The coffer absorbs the arcane gem. Total: {0}/1", m_ArcaneGemsStored);
             dropped.Consume();
             CheckConversion(from);
+            if (from.HasGump(typeof(NecromancyCofferGump)))
+            {
+              from.CloseGump(typeof(NecromancyCofferGump));
+              from.SendGump(new NecromancyCofferGump(this));
+            }
             return true;
           }
           if (dropped is BlankScroll)
@@ -55,6 +64,11 @@ namespace Server.Items
             from.SendMessage("The coffer absorbs the blank scrolls. Total: {0}/17", m_ScrollsStored);
             dropped.Consume();
             CheckConversion(from);
+            if (from.HasGump(typeof(NecromancyCofferGump)))
+            {
+              from.CloseGump(typeof(NecromancyCofferGump));
+              from.SendGump(new NecromancyCofferGump(this));
+            }
             return true;
           }
           else if (dropped is Emerald)
@@ -63,6 +77,11 @@ namespace Server.Items
             from.SendMessage("The coffer absorbs the Emeralds. Total: {0}/8", m_EmeraldsStored);
             dropped.Consume();
             CheckConversion(from);
+            if (from.HasGump(typeof(NecromancyCofferGump)))
+            {
+              from.CloseGump(typeof(NecromancyCofferGump));
+              from.SendGump(new NecromancyCofferGump(this));
+            }
             return true;
           }
           if (dropped is SpellScroll scroll) 
@@ -80,6 +99,11 @@ namespace Server.Items
                 from.SendMessage("You permanetly preserve the {0} spell in the coffer.", scroll.Name ?? "scroll");
                 dropped.Delete();
                 from.PlaySound(0x1FB); 
+                if (from.HasGump(typeof(NecromancyCofferGump)))
+                {
+                  from.CloseGump(typeof(NecromancyCofferGump));
+                  from.SendGump(new NecromancyCofferGump(this));
+                }
                 return true;
             }
           }

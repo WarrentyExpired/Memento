@@ -32,8 +32,16 @@ namespace Server.Items
     }
     public override void OnDoubleClick(Mobile from)
     {
-      if (!from.InRange(GetWorldLocation(), 2)) return;
-      from.SendGump(new BardicCofferGump(this));
+      if (!from.InRange(GetWorldLocation(), 2)) 
+        return;
+      if (from.HasGump(typeof(BardicCofferGump)))
+      {
+        from.CloseGump(typeof(BardicCofferGump));
+      }
+      else
+      {
+        from.SendGump(new BardicCofferGump(this));
+      }
     }
     public override bool OnDragDrop(Mobile from, Item dropped)
     {
@@ -43,6 +51,11 @@ namespace Server.Items
         from.SendMessage("The coffer absorbs the arcane gems. Total: {0}/1", m_ArcaneGemsStored);
         dropped.Consume();
         CheckConversion(from);
+        if (from.HasGump(typeof(BardicCofferGump)))
+        {
+            from.CloseGump(typeof(BardicCofferGump));
+            from.SendGump(new BardicCofferGump(this));
+        }       
         return true;
       }
       if (dropped is BlankScroll)
@@ -51,6 +64,11 @@ namespace Server.Items
           from.SendMessage("The coffer absorbs the blank scrolls. Total: {0}/16", m_ScrollsStored);
           dropped.Consume();
           CheckConversion(from);
+          if (from.HasGump(typeof(BardicCofferGump)))
+           {
+            from.CloseGump(typeof(BardicCofferGump));
+            from.SendGump(new BardicCofferGump(this));
+           }          
           return true;
         }
         if (dropped is Sapphire)
@@ -59,6 +77,11 @@ namespace Server.Items
           from.SendMessage("The coffer absorbs the sapphires. Total: {0}/8", m_SapphiresStored);
           dropped.Consume();
           CheckConversion(from);
+          if (from.HasGump(typeof(BardicCofferGump)))
+          {
+            from.CloseGump(typeof(BardicCofferGump));
+            from.SendGump(new BardicCofferGump(this));
+          } 
           return true;
         }
         if (dropped is SpellScroll scroll)
@@ -75,6 +98,11 @@ namespace Server.Items
             m_Slots[index] = true;
             from.SendMessage("You permanently preserve the {0} song.", scroll.Name ?? "song");
             scroll.Consume();
+            if (from.HasGump(typeof(BardicCofferGump)))
+            {
+              from.CloseGump(typeof(BardicCofferGump));
+              from.SendGump(new BardicCofferGump(this));
+            } 
             return true;
           }
         }
