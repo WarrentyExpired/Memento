@@ -65,7 +65,7 @@ namespace Server.Items
             }
             else
             {
-                AddLabel(25, 510, 907, "Coffer needs Rubies and Scrolls.");
+                AddLabel(25, 510, 907, "Coffer needs recharging to fill books.");
             }
         }
 

@@ -121,7 +121,7 @@ namespace Server.Items
             }
             protected override void OnTarget(Mobile from, object targeted)
             {
-                if (targeted is Spellbook book) 
+                if (targeted is Spellbook book && book.SpellbookType == SpellbookType.Elementalism)
                 {
                   if (book.SpellCount >= 32)
                   {

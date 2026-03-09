@@ -47,7 +47,7 @@ namespace Server.Items
             }
             else
             {
-              AddLabel(25, 560, 907, "Coffer needs ritual components.");
+              AddLabel(25, 560, 907, "Coffer needs recharging to fill books.");
             }
         }
         public override void OnResponse(NetState sender, RelayInfo info)
