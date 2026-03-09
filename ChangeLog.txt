@@ -1,4 +1,6 @@
 - Added AdminToolbar
+- Added GiveAllScrolls.cs
+  - Addes the commands [givemagescrolls [givenecroscrolls [giveelemsrolls [givebardscrolls
 - Added Pet summoning balls/Translocation poweder to animal trainers
 - Added Animal broker spawns in Sosaria around Stables
 - Added Animal broker books around Animal broker spawn points.
