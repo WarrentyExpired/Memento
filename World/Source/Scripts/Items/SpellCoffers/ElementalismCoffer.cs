@@ -13,12 +13,15 @@ namespace Server.Items
         private int m_Charges;
         private int m_ScrollsStored;
         private int m_RubysStored;
+        private int m_ArcaneGemsStored;
         [CommandProperty(AccessLevel.GameMaster)]
         public int Charges { get { return m_Charges; } set { m_Charges = value; InvalidateProperties(); } }
         [CommandProperty(AccessLevel.GameMaster)]
         public int ScrollsStored { get { return m_ScrollsStored; } set { m_ScrollsStored = value; InvalidateProperties(); } }
         [CommandProperty(AccessLevel.GameMaster)]
         public int RubysStored { get { return m_RubysStored; } set { m_RubysStored = value; InvalidateProperties(); } }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int ArcaneGemsStored { get { return m_ArcaneGemsStored; } set { m_ArcaneGemsStored = value; InvalidateProperties(); } }
         [Constructable]
         public ElementalismCoffer() : base(0x1C0E)
         {
@@ -54,32 +57,41 @@ namespace Server.Items
             CheckConversion(from);
             return true;
          }
-            if (dropped is SpellScroll scroll) 
-            {
-                int id = scroll.SpellID;
-                if (id >= 300 && id <= 331) 
-                {
-                    int index = id - 300;
-                    if (m_Slots[index])
-                    {
-                        from.SendMessage("That spell is already preserved within the coffer.");
-                        return false;
-                    }
-                    m_Slots[index] = true;
-                    from.SendMessage("You permanently preserve the {0} spell in the coffer.", scroll.Name ?? "spell");
-                    dropped.Delete();
-                    return true;
-                }
-            }
-            from.SendMessage("The coffer only accepts elementalism spell scrolls, rubies, and blank scrolls.");
-            return base.OnDragDrop(from, dropped);
+         else if (dropped is ArcaneGem)
+         {
+           m_ArcaneGemsStored += dropped.Amount;
+           from.SendMessage("The coffer absorbs the arcane gem. Total: {0}/1", m_ArcaneGemsStored);
+           dropped.Consume();
+           CheckConversion(from);
+           return true;
+         }
+         if (dropped is SpellScroll scroll) 
+         {
+           int id = scroll.SpellID;
+           if (id >= 300 && id <= 331) 
+           {
+             int index = id - 300;
+             if (m_Slots[index])
+             {
+               from.SendMessage("That spell is already preserved within the coffer.");
+               return false;
+             }
+             m_Slots[index] = true;
+             from.SendMessage("You permanently preserve the {0} spell in the coffer.", scroll.Name ?? "spell");
+             dropped.Delete();
+             return true;
+           }
+         }
+         from.SendMessage("The coffer only accepts elementalism spell scrolls, rubies, arcane gems, and blank scrolls.");
+         return base.OnDragDrop(from, dropped);
         }
         private void CheckConversion(Mobile from)
         {
-          while (m_ScrollsStored >= 32 && m_RubysStored >= 8)
+          while (m_ScrollsStored >= 32 && m_RubysStored >= 8 && m_ArcaneGemsStored >= 1)
           {
             m_ScrollsStored -= 32;
             m_RubysStored -= 8;
+            m_ArcaneGemsStored -= 1;
             m_Charges++;
             from.SendMessage(0x35, "The materials combine! One charge has been added to the coffer.");
             from.PlaySound(0x242);
@@ -152,6 +164,7 @@ namespace Server.Items
             writer.Write(m_Charges);
             writer.Write(m_ScrollsStored);
             writer.Write(m_RubysStored);
+            writer.Write(m_ArcaneGemsStored);
             for (int i = 0; i < 32; i++) 
               writer.Write(m_Slots[i]);
         }
@@ -162,6 +175,7 @@ namespace Server.Items
             m_Charges = reader.ReadInt();
             m_ScrollsStored = reader.ReadInt();
             m_RubysStored = reader.ReadInt();
+            m_ArcaneGemsStored = reader.ReadInt();
             m_Slots = new bool[32];
             for (int i = 0; i < 32; i++) m_Slots[i] = reader.ReadBool();
         }

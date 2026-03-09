@@ -12,12 +12,15 @@ namespace Server.Items
         private int m_Charges;
         private int m_ScrollsStored;
         private int m_DiamondsStored;
+        private int m_ArcaneGemsStored;
         [CommandProperty(AccessLevel.GameMaster)]
         public int Charges { get { return m_Charges; } set { m_Charges = value; InvalidateProperties(); } }
         [CommandProperty(AccessLevel.GameMaster)]
         public int ScrollsStored { get { return m_ScrollsStored; } set { m_ScrollsStored = value; InvalidateProperties(); } }
         [CommandProperty(AccessLevel.GameMaster)]
         public int DiamondsStored { get { return m_DiamondsStored; } set { m_DiamondsStored = value; InvalidateProperties(); } }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int ArcaneGemsStored { get { return m_ArcaneGemsStored; } set { m_ArcaneGemsStored = value; InvalidateProperties(); } }
         public virtual int BindingCost => 10000; 
         [Constructable]
         public MageryCoffer() : base(0x1C0E)
@@ -54,6 +57,14 @@ namespace Server.Items
             CheckConversion(from);
             return true;
          }
+         else if (dropped is ArcaneGem)
+         {
+           m_ArcaneGemsStored += dropped.Amount;
+           from.SendMessage("The coffer absorbs the arcane gems. Total: {0}/1", m_ArcaneGemsStored);
+           dropped.Consume();
+           CheckConversion(from);
+           return true;
+         }
          if (dropped is SpellScroll scroll)
             {
                 int id = scroll.SpellID;
@@ -70,15 +81,16 @@ namespace Server.Items
                     return true;
                 }
             }
-            from.SendMessage("The coffer only accepts magery spell scrolls, diamonds, and blank scrolls.");
+            from.SendMessage("The coffer only accepts magery spell scrolls, diamonds, arcane gems, and blank scrolls.");
             return base.OnDragDrop(from, dropped);
         }
         private void CheckConversion(Mobile from)
         {
-          while (m_ScrollsStored >= 64 && m_DiamondsStored >= 8)
+          while (m_ScrollsStored >= 64 && m_DiamondsStored >= 8 && m_ArcaneGemsStored >= 1)
           {
             m_ScrollsStored -= 64;
             m_DiamondsStored -= 8;
+            m_ArcaneGemsStored -= 1;
             m_Charges++;
             from.SendMessage(0x35, "The materials combine! One charge has been added to the coffer.");
             from.PlaySound(0x242);
@@ -152,6 +164,7 @@ namespace Server.Items
             writer.Write(m_Charges);
             writer.Write(m_ScrollsStored);
             writer.Write(m_DiamondsStored);
+            writer.Write(m_ArcaneGemsStored);
             for (int i = 0; i < 64; i++)
                 writer.Write(m_Slots[i]);
         }
@@ -162,6 +175,7 @@ namespace Server.Items
             m_Charges = reader.ReadInt();
             m_ScrollsStored = reader.ReadInt();
             m_DiamondsStored = reader.ReadInt();
+            m_ArcaneGemsStored = reader.ReadInt();
             m_Slots = new bool[64];
             for (int i = 0; i < 64; i++)
                 m_Slots[i] = reader.ReadBool();
