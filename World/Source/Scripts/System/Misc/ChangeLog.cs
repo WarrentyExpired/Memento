@@ -16,6 +16,7 @@ namespace Server.Misc
 			builder.Append(Version() + "<br>");
 
 			builder.Append("Changes<br>");
+			builder.Append("- Avatar - Add a new ascension for a persistent storage container<br>");
 			builder.Append("- Ability - Focus Attack is now usable with ranged weapons<br>");
 			builder.Append("- Ability - Focus Attack is now usable while holding a shield<br>");
 			builder.Append("- Ability - Mortal Strike now prevents mobs from cheating death<br>");
@@ -30,6 +31,8 @@ namespace Server.Misc
 			builder.Append("- Item - Harpoon weapon abilities are now less off-meta<br>");
 			builder.Append("- Item - Quivers now accept harpoon rope and throwing weapons<br>");
 			builder.Append("- Item - Throwing slimes have been nerfed (production caps at 2 per jar and amount no longer benefits from alch/ep%)<br>");
+			builder.Append("- Item - Instruments can now roll slayers<br>");
+			builder.Append("- Item - Elemental spellbooks can now roll slayers<br>");
 			builder.Append("- Misc - Fishing poles dropped from sunken ships are no longer basic wood<br>");
 			builder.Append("- Misc - Treasure hoards now announce the items that are pulled<br>");
 			builder.Append("- Spell - Curse now reduces elemental resistances for Monsters by 10<br>");
