@@ -34,3 +34,7 @@
 - Added Storage boxes and Master crafter ledger. The ledger can be linked to the boxes so you have a portable inventroy.
 - Added Resource Shelf. It combinds the usefulness of the storage boxes, but lacks the ability to eventually be linked 
   and made portable.
+- Changed how the avatar ascension "Blessed Beginnings" works. Now instead of getting a flat +10 to your starting skills
+  it scales base on the number you have unlocked. When all 5 are unlocked you will start with 80 skill level.
+- Add PetCagingLeash. No you can turn tamed horses and Llamas into "Caged" animals. It has 10 charges and can be purchased
+  from an animal trainer.
