@@ -79,13 +79,9 @@ namespace Server.Items
                         cage = new CagedHorse();
                     else if (mount is RidableLlama)
                         cage = new CagedRidableLlama();
-                    else if (mount is DesertOstard)
-                        cage = new CagedDesertOstard();
-                    else if (mount is ForestOstard)
-                        cage = new CagedForestOstard();
                     else
                     {
-                        from.SendMessage("This Leash only works on standard mounts (Horses, Llamas, and Ostards).");
+                        from.SendMessage("This Leash only works on standard mounts (Horses and Llamas).");
                         return;
                     }
 
