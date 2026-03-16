@@ -18,5 +18,12 @@ namespace Server.Engines.Avatar
 		Brute,
 		Acrobat,
 		Scholar,
+    Blacksmith,
+    Tailor,
+    Tinkerer,
+    Carpenter,
+    Alchemist,
+    Scribe,
+    Fletcher,
 	}
 }

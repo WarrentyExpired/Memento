@@ -376,14 +376,166 @@ namespace Server.Engines.Avatar
 										{
 											m_From.InitStats(10, 10, 60);
 											context.SelectedTemplate = AvatarStarterTemplates.Scholar;
-
 											return false;
 										}
 									);
 								}
 							),
-						};
-
+						  ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+							  "The Blacksmith",
+								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(60, 10, 10);
+                      SkillName[] skills = new [] { SkillName.Blacksmith, SkillName.Mining, SkillName.ArmsLore, SkillName.Tinkering };
+                      foreach (SkillName skName in skills)
+                      {
+                        m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Blacksmith;
+											return false;
+										}
+									);
+								}
+							),
+							ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+								"The Tailor",
+								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(60, 10, 10);
+                      SkillName[] skills = new SkillName[] { SkillName.Tailoring, SkillName.Tinkering, SkillName.Mercantile, SkillName.ArmsLore };
+                      foreach (SkillName skName in skills)
+                      {
+                          m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Tailor;
+											return false;
+										}
+									);
+								}
+							),
+							ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+								"The Tinkerer",
+								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(60, 10, 10);
+                      SkillName[] skills = new SkillName[] { SkillName.Tinkering, SkillName.Mining, SkillName.Mercantile, SkillName.Lockpicking };
+                      foreach (SkillName skName in skills)
+                      {
+                        m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Tinkerer;
+											return false;
+										}
+									);
+								}
+							),
+							ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+								"The Carpenter",
+								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(60, 10, 10);
+                      SkillName[] skills = new SkillName[] { SkillName.Carpentry, SkillName.Lumberjacking, SkillName.Tinkering, SkillName.ArmsLore };
+                      foreach (SkillName skName in skills)
+                      {
+                        m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Tinkerer;
+											return false;
+										}
+									);
+								}
+							),
+              ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+								"The Alchemist",
+								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(60, 10, 10);
+                      SkillName[] skills = new SkillName[] { SkillName.Alchemy, SkillName.Tasting, SkillName.Tinkering, SkillName.Mercantile };
+                      foreach (SkillName skName in skills)
+                      {
+                        m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Alchemist;
+											return false;
+										}
+									);
+								}
+							),
+							ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+								"The Scribe",
+								"Starts with 30 strength, 10 dexterity, and 40 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(30, 10, 40);
+                      SkillName[] skills = new SkillName[] { SkillName.Inscribe, SkillName.Meditation, SkillName.Magery, SkillName.Tinkering };
+                      foreach (SkillName skName in skills)
+                      {
+                        m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Scribe;
+											return false;
+										}
+									);
+								}
+							),
+							ActionReward.Create(
+								AvatarShopGump.COST_FREE,
+								AvatarShopGump.NO_ITEM_ID,
+								"The Fletcher",
+								"Starts with 40 strength, 30 dexterity, and 10 intelligence.",
+								() =>
+								{
+									applyTemplate(
+										player =>
+										{
+											m_From.InitStats(40, 30, 10);
+                      SkillName[] skills = new SkillName[] { SkillName.Bowcraft, SkillName.Lumberjacking, SkillName.ArmsLore, SkillName.Tinkering };
+                      foreach (SkillName skName in skills)
+                      {
+                        m_From.Skills[skName].Base = 50.0;
+                      }
+											context.SelectedTemplate = AvatarStarterTemplates.Fletcher;
+											return false;
+										}
+									);
+								}
+							),
+            };
 						var templates = new List<AvatarStarterTemplates>
 						{
 							// StarterProfessions.Custom,
