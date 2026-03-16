@@ -315,7 +315,7 @@ namespace Server.Engines.Avatar
 										if (0 < skill.Value)
 										{
 											if (boosted)
-												skill.BaseFixedPoint += (context.ImprovedTemplateCount * 100);
+												skill.BaseFixedPoint += (context.ImprovedTemplateCount * 60);
 										}
 									}
 
