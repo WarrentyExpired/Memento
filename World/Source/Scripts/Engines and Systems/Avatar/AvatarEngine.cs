@@ -57,7 +57,6 @@ namespace Server.Engines.Avatar
 		public void ApplyContext(PlayerMobile player, PlayerContext context)
 		{
 			if (!context.Active) return;
-
 			player.StatCap = 100 + context.StatCapLevel * Constants.STAT_CAP_PER_LEVEL;
 
 			// Skill cap could have changed
@@ -249,7 +248,7 @@ namespace Server.Engines.Avatar
 
 			var context = GetContextOrDefault(player);
 			if (!context.Active) return;
-
+      context.StarterTemplate = AvatarStarterTemplates.None;
 			DeathContext.TrySave(player, context);
 
 			context.LifetimeDeaths += 1;

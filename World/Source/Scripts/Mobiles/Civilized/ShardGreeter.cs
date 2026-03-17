@@ -532,7 +532,7 @@ namespace Server.Gumps
 			
 			ConfirmationGump.PromptIfFalse(
 				m,
-				m.Avatar.Active && m.Avatar.SelectedTemplate == AvatarStarterTemplates.None,
+				m.Avatar.Active && m.Avatar.SelectedTemplate == AvatarStarterTemplates.None && m.Avatar.StarterTemplate == AvatarStarterTemplates.None,
 				() => EnterLand( page, m ),
 				onConfirmed => new ConfirmationGump(m, "No template selected", "You have not selected a template yet. Are you sure you want to enter the land?", onConfirmed)
 			);
@@ -540,7 +540,8 @@ namespace Server.Gumps
 
 		public void EnterLand( int page, Mobile m )
 		{
-			Point3D loc = new Point3D(2999, 1030, 0);
+      PlayerMobile pm = m as PlayerMobile;
+      Point3D loc = new Point3D(2999, 1030, 0);
 			Map map = Map.Sosaria;
 
 			if ( m.RaceID > 0 )
@@ -706,6 +707,65 @@ namespace Server.Gumps
 			CustomEventSink.InvokeBeginJourney(new BeginJourneyArgs(player));
 
 			m.MoveToWorld( loc, map );
+      AvatarStarterTemplates temp = pm.Avatar.StarterTemplate;
+      if (temp == AvatarStarterTemplates.Blacksmith)
+      {
+        pm.Backpack.DropItem( new SmithHammer());
+        pm.Backpack.DropItem( new Pickaxe());
+        pm.Backpack.DropItem( new IronIngot(100));
+        pm.Backpack.DropItem( new TinkerTools());
+      }
+      else if (temp == AvatarStarterTemplates.Tailor)
+      {
+        pm.Backpack.DropItem( new SewingKit());
+        pm.Backpack.DropItem( new Fabric(100));
+        pm.Backpack.DropItem( new Scissors());
+        pm.Backpack.DropItem( new TinkerTools());
+        pm.Backpack.DropItem( new IronIngot(50));
+      }
+      else if (temp == AvatarStarterTemplates.Carpenter)
+      {
+        pm.Backpack.DropItem( new CarpenterTools());
+        pm.Backpack.DropItem( new Board(100));
+        pm.Backpack.DropItem( new Hatchet());
+        pm.Backpack.DropItem( new TinkerTools());
+        pm.Backpack.DropItem( new IronIngot(50));
+      }
+      else if (temp == AvatarStarterTemplates.Tinkerer)
+      {
+        pm.Backpack.DropItem( new TinkerTools());
+        pm.Backpack.DropItem( new IronIngot(100));
+        pm.Backpack.DropItem( new Pickaxe());
+      }
+      else if (temp == AvatarStarterTemplates.Alchemist)
+      {
+        pm.Backpack.DropItem( new TinkerTools());
+        pm.Backpack.DropItem( new IronIngot(50));
+        pm.Backpack.DropItem( new Bottle(100));
+        pm.Backpack.DropItem( new BagOfReagents());
+        pm.Backpack.DropItem( new MortarPestle());
+      }
+      else if (temp == AvatarStarterTemplates.Scribe)
+      {
+        pm.Backpack.DropItem( new TinkerTools());
+        pm.Backpack.DropItem( new IronIngot(50));
+        pm.Backpack.DropItem( new ScribesPen());
+        pm.Backpack.DropItem( new BagOfReagents());
+        pm.Backpack.DropItem( new BlankScroll(100));
+        pm.Backpack.DropItem( new Spellbook());
+        pm.Backpack.DropItem( new HarmScroll());
+        pm.Backpack.DropItem( new HealScroll());
+        pm.Backpack.DropItem( new BlessScroll());
+      }
+      else if (temp == AvatarStarterTemplates.Fletcher)
+      {
+        pm.Backpack.DropItem( new TinkerTools());
+        pm.Backpack.DropItem( new IronIngot(50));
+        pm.Backpack.DropItem( new FletcherTools());
+        pm.Backpack.DropItem( new Hatchet());
+        pm.Backpack.DropItem( new Board(100));
+      }
+      //pm.Avatar.StarterTemplate = AvatarStarterTemplates.None; // Moved to AvatarEngine
 			Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 0, 0, 5024, 0 );
 			m.SendSound( 0x65C );
 			m.SendMessage( "The card vanishes from your hand as you magically appear elsewhere." );
@@ -741,6 +801,7 @@ namespace Server.Gumps
 				{
 					from.SendGump( new TemptationGump(from, new Temptation.PlayerContext(from.Temptations), from, () => TryEnterLand( page, from ), () => TryEnterLand( page, from )) );
 				}
+
 				else
 				{
 					TryEnterLand( page, from );

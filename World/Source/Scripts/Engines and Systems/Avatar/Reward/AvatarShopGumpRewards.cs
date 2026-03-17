@@ -385,7 +385,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 							  "The Blacksmith",
-								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								"Starts the skills of a Blacksmith.",
 								() =>
 								{
 									applyTemplate(
@@ -397,7 +397,7 @@ namespace Server.Engines.Avatar
                       {
                         m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Blacksmith;
+											context.StarterTemplate = AvatarStarterTemplates.Blacksmith;
 											return false;
 										}
 									);
@@ -407,7 +407,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 								"The Tailor",
-								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								"Starts with the skills of a Tailor",
 								() =>
 								{
 									applyTemplate(
@@ -419,7 +419,7 @@ namespace Server.Engines.Avatar
                       {
                           m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Tailor;
+											context.StarterTemplate = AvatarStarterTemplates.Tailor;
 											return false;
 										}
 									);
@@ -429,7 +429,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 								"The Tinkerer",
-								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								"Starts with the skills of a Tinkerer.",
 								() =>
 								{
 									applyTemplate(
@@ -441,7 +441,7 @@ namespace Server.Engines.Avatar
                       {
                         m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Tinkerer;
+											context.StarterTemplate = AvatarStarterTemplates.Tinkerer;
 											return false;
 										}
 									);
@@ -451,7 +451,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 								"The Carpenter",
-								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								"Starts with the skills of a Carpenter.",
 								() =>
 								{
 									applyTemplate(
@@ -463,7 +463,7 @@ namespace Server.Engines.Avatar
                       {
                         m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Tinkerer;
+											context.StarterTemplate = AvatarStarterTemplates.Tinkerer;
 											return false;
 										}
 									);
@@ -473,7 +473,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 								"The Alchemist",
-								"Starts with 60 strength, 10 dexterity, and 10 intelligence.",
+								"Starts with the skills of an Alchemist.",
 								() =>
 								{
 									applyTemplate(
@@ -485,7 +485,7 @@ namespace Server.Engines.Avatar
                       {
                         m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Alchemist;
+											context.StarterTemplate = AvatarStarterTemplates.Alchemist;
 											return false;
 										}
 									);
@@ -495,7 +495,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 								"The Scribe",
-								"Starts with 30 strength, 10 dexterity, and 40 intelligence.",
+								"Starts with the skills of a Scribe.",
 								() =>
 								{
 									applyTemplate(
@@ -507,7 +507,7 @@ namespace Server.Engines.Avatar
                       {
                         m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Scribe;
+											context.StarterTemplate = AvatarStarterTemplates.Scribe;
 											return false;
 										}
 									);
@@ -517,7 +517,7 @@ namespace Server.Engines.Avatar
 								AvatarShopGump.COST_FREE,
 								AvatarShopGump.NO_ITEM_ID,
 								"The Fletcher",
-								"Starts with 40 strength, 30 dexterity, and 10 intelligence.",
+								"Starts with the skills of a Fletcher.",
 								() =>
 								{
 									applyTemplate(
@@ -529,7 +529,7 @@ namespace Server.Engines.Avatar
                       {
                         m_From.Skills[skName].Base = 50.0;
                       }
-											context.SelectedTemplate = AvatarStarterTemplates.Fletcher;
+											context.StarterTemplate = AvatarStarterTemplates.Fletcher;
 											return false;
 										}
 									);

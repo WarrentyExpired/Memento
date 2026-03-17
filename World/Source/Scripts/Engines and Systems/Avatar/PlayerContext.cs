@@ -7,7 +7,10 @@ namespace Server.Engines.Avatar
 	[PropertyObject]
 	public partial class PlayerContext
 	{
-		public static readonly PlayerContext Default = new PlayerContext();
+    [CommandProperty(AccessLevel.GameMaster)]
+    public AvatarStarterTemplates StarterTemplate { get; set; }
+    
+    public static readonly PlayerContext Default = new PlayerContext();
 
 		private Serial _safetyDepositBoxSerial;
 
@@ -48,13 +51,13 @@ namespace Server.Engines.Avatar
 			}
 			else
 				GenerateRivalry();
-
-			if (5 < version)
+			if (version >= 10)
 			{
+        StarterTemplate = (AvatarStarterTemplates)reader.ReadInt();
 				SelectedTemplate = (AvatarStarterTemplates)reader.ReadInt();
 				LifetimePointsGained = reader.ReadInt();
 				LifetimeDeaths = reader.ReadInt();
-			}
+		  }
 
 			if (6 < version)
 			{
@@ -198,7 +201,7 @@ namespace Server.Engines.Avatar
 
 		public void Serialize(GenericWriter writer)
 		{
-			writer.Write(9); // version
+			writer.Write(10); // version
 
 			writer.Write(PointsFarmed);
 			writer.Write(PointsSaved);
@@ -220,6 +223,7 @@ namespace Server.Engines.Avatar
 			writer.Write((int)RivalSlayerName);
 			writer.Write(RivalBonusEnabled);
 			writer.Write(RivalBonusPoints);
+      writer.Write((int)StarterTemplate);
 			writer.Write((int)SelectedTemplate);
 			writer.Write(LifetimePointsGained);
 			writer.Write(LifetimeDeaths);
@@ -230,6 +234,8 @@ namespace Server.Engines.Avatar
 			writer.Write(LifetimeCreatureKills);
 			writer.Write(_safetyDepositBoxSerial);
 			writer.Write(SafetyDepositBoxLevel);
+      writer.Write(5);
+      writer.Write((int)StarterTemplate);
 		}
 
 		public override string ToString()
