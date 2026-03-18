@@ -12,18 +12,17 @@ namespace Server.Engines.Avatar
 		Warrior = 5,
 		Mage = 6,
 		Archer = 7,
-
+    Blacksmith = 8,
+    Tailor = 9,
+    Carpenter = 10,
+    Tinkerer = 11,
+    Alchemist = 12,
+    Scribe = 13,
+    Fletcher = 14,
 		DEFAULT_END,
 
 		Brute,
 		Acrobat,
 		Scholar,
-    Blacksmith,
-    Tailor,
-    Tinkerer,
-    Carpenter,
-    Alchemist,
-    Scribe,
-    Fletcher,
 	}
 }

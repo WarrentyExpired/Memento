@@ -11,9 +11,9 @@ namespace Server.Engines.Avatar
 {
 	public class RewardFactory
 	{
-		public const int TEN_GOLD = 100;
 		public const int ONE_HUNDRED_GOLD = 1000;
 		public const int ONE_THOUSAND_GOLD = 10000;
+		public const int TEN_GOLD = 100;
 
 		public static List<IReward> CreateRewards(PlayerMobile m_From, Categories selectedCategory, PlayerContext context)
 		{
@@ -215,7 +215,7 @@ namespace Server.Engines.Avatar
 
 							ActionReward.Create(
 								Constants.IMPROVED_TEMPLATE_MAX_COUNT <= context.ImprovedTemplateCount,
-								ONE_THOUSAND_GOLD * (context.ImprovedTemplateCount + 1),
+								ONE_HUNDRED_GOLD * (context.ImprovedTemplateCount + 1),
 								AvatarShopGump.NO_ITEM_ID,
 								string.Format("Blessed Beginnings ({0} of {1})", context.ImprovedTemplateCount, Constants.IMPROVED_TEMPLATE_MAX_COUNT),
 								string.Format("Awaken to your true potential. Ancestral relatives may enhance your template choices."),
@@ -315,7 +315,7 @@ namespace Server.Engines.Avatar
 										if (0 < skill.Value)
 										{
 											if (boosted)
-												skill.BaseFixedPoint += (context.ImprovedTemplateCount * 60);
+												skill.BaseFixedPoint += 100; // +10 to each skill that was set
 										}
 									}
 
@@ -376,215 +376,14 @@ namespace Server.Engines.Avatar
 										{
 											m_From.InitStats(10, 10, 60);
 											context.SelectedTemplate = AvatarStarterTemplates.Scholar;
+
 											return false;
 										}
 									);
 								}
 							),
-						  ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-							  "The Blacksmith",
-								"Starts the skills of a Blacksmith.",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(60, 10, 10);
-                      SkillName[] skills = new [] { SkillName.Blacksmith, SkillName.Mining, SkillName.ArmsLore, SkillName.Tinkering };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Blacksmith;
-											return false;
-										}
-									);
-								}
-							),
-							ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-								"The Tailor",
-								"Starts with the skills of a Tailor",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(60, 10, 10);
-                      SkillName[] skills = new SkillName[] { SkillName.Tailoring, SkillName.Tinkering, SkillName.Mercantile, SkillName.ArmsLore };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Tailor;
-											return false;
-										}
-									);
-								}
-							),
-							ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-								"The Tinkerer",
-								"Starts with the skills of a Tinkerer.",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(60, 10, 10);
-                      SkillName[] skills = new SkillName[] { SkillName.Tinkering, SkillName.Mining, SkillName.Mercantile, SkillName.Lockpicking };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Tinkerer;
-											return false;
-										}
-									);
-								}
-							),
-							ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-								"The Carpenter",
-								"Starts with the skills of a Carpenter.",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(60, 10, 10);
-                      SkillName[] skills = new SkillName[] { SkillName.Carpentry, SkillName.Lumberjacking, SkillName.Tinkering, SkillName.ArmsLore };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Tinkerer;
-											return false;
-										}
-									);
-								}
-							),
-              ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-								"The Alchemist",
-								"Starts with the skills of an Alchemist.",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(60, 10, 10);
-                      SkillName[] skills = new SkillName[] { SkillName.Alchemy, SkillName.Tasting, SkillName.Tinkering, SkillName.Mercantile };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Alchemist;
-											return false;
-										}
-									);
-								}
-							),
-							ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-								"The Scribe",
-								"Starts with the skills of a Scribe.",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(30, 10, 40);
-                      SkillName[] skills = new SkillName[] { SkillName.Inscribe, SkillName.Meditation, SkillName.Magery, SkillName.Tinkering };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Scribe;
-											return false;
-										}
-									);
-								}
-							),
-							ActionReward.Create(
-								AvatarShopGump.COST_FREE,
-								AvatarShopGump.NO_ITEM_ID,
-								"The Fletcher",
-								"Starts with the skills of a Fletcher.",
-								() =>
-								{
-									applyTemplate(
-										player =>
-										{
-											m_From.InitStats(40, 30, 10);
-                      SkillName[] skills = new SkillName[] { SkillName.Bowcraft, SkillName.Lumberjacking, SkillName.ArmsLore, SkillName.Tinkering };
-                      foreach (SkillName skName in skills)
-                      {
-                        if (context.ImprovedTemplateCount > 1)
-                        {
-                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
-                        }
-                        else
-                        {
-                          m_From.Skills[skName].Base = 30;
-                        }
-                      }
-											context.StarterTemplate = AvatarStarterTemplates.Fletcher;
-											return false;
-										}
-									);
-								}
-							),
-            };
+						};
+
 						var templates = new List<AvatarStarterTemplates>
 						{
 							// StarterProfessions.Custom,
@@ -595,6 +394,13 @@ namespace Server.Engines.Avatar
 							AvatarStarterTemplates.Warrior,
 							AvatarStarterTemplates.Mage,
 							AvatarStarterTemplates.Archer,
+              AvatarStarterTemplates.Blacksmith,
+							AvatarStarterTemplates.Tailor,
+							AvatarStarterTemplates.Carpenter,
+							AvatarStarterTemplates.Tinkerer,
+							AvatarStarterTemplates.Alchemist,
+							AvatarStarterTemplates.Scribe,
+							AvatarStarterTemplates.Fletcher,
 						};
 
 						HashSet<AvatarStarterTemplates> boostedTemplates = context.BoostedTemplateCache;

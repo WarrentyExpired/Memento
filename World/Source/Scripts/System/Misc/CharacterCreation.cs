@@ -22,7 +22,13 @@ namespace Server.Misc
 		Warrior = 5,
 		Mage = 6,
 		Archer = 7,
-
+    Blacksmith = 8,
+    Tailor = 9,
+    Carpenter = 10,
+    Tinkerer = 11,
+    Alchemist = 12,
+    Scribe = 13,
+    Fletcher,
 		LAST = Archer
 	}
 
@@ -353,7 +359,6 @@ namespace Server.Misc
 						PackItem(bag, new SewingKit());
 						PackItem(bag, new Fabric { Amount = 50 });
 						break;
-
 					case SkillName.Taming:
 						PackItem(bag, GenerateSkillBonusItem(skill.Name, 5, 5));
 						switch (Utility.RandomMinMax(1, 4))
@@ -962,7 +967,82 @@ namespace Server.Misc
 							};
 					}
 
-				case StarterProfessions.Custom:
+        case StarterProfessions.Blacksmith:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Blacksmith, 30 ),
+								new SkillNameValue( SkillName.Mining, 30 ),
+								new SkillNameValue( SkillName.Tinkering, 30 ),
+								new SkillNameValue( SkillName.ArmsLore, 30 )
+							};
+					}
+
+        case StarterProfessions.Tailor:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Tailoring, 30 ),
+								new SkillNameValue( SkillName.Tinkering, 30 ),
+								new SkillNameValue( SkillName.ArmsLore, 30 ),
+								new SkillNameValue( SkillName.Mercantile, 30 )
+							};
+					}
+
+        case StarterProfessions.Carpenter:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Carpentry, 30 ),
+								new SkillNameValue( SkillName.Lumberjacking, 30 ),
+								new SkillNameValue( SkillName.ArmsLore, 30 ),
+								new SkillNameValue( SkillName.Tinkering, 30 )
+							};
+					}
+
+        case StarterProfessions.Tinkerer:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Tinkering, 30 ),
+								new SkillNameValue( SkillName.Mining, 30 ),
+								new SkillNameValue( SkillName.Mercantile, 30 ),
+								new SkillNameValue( SkillName.Lockpicking, 30 )
+							};
+					}
+
+        case StarterProfessions.Alchemist:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Alchemy, 30 ),
+								new SkillNameValue( SkillName.Tinkering, 30 ),
+								new SkillNameValue( SkillName.Tasting, 30 ),
+								new SkillNameValue( SkillName.Mercantile, 30 )
+							};
+					}
+
+        case StarterProfessions.Scribe:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Inscribe, 30 ),
+								new SkillNameValue( SkillName.Magery, 30 ),
+								new SkillNameValue( SkillName.Tinkering, 30 ),
+								new SkillNameValue( SkillName.Mercantile, 30 )
+							};
+					}
+        case StarterProfessions.Fletcher:
+					{
+						return new SkillNameValue[]
+							{
+								new SkillNameValue( SkillName.Bowcraft, 30 ),
+								new SkillNameValue( SkillName.Lumberjacking, 30 ),
+								new SkillNameValue( SkillName.Tinkering, 30 ),
+								new SkillNameValue( SkillName.ArmsLore, 30 )
+							};
+					}
+        case StarterProfessions.Custom:
 				default:
 					{
 						return new SkillNameValue[] { };
@@ -1019,6 +1099,50 @@ namespace Server.Misc
 				case StarterProfessions.Druid:
 					{
 						m.InitStats(30, 20, 40); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+
+				case StarterProfessions.Blacksmith:
+					{
+						m.InitStats(60, 20, 10); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+
+				case StarterProfessions.Tailor:
+					{
+						m.InitStats(60, 20, 10); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+				case StarterProfessions.Carpenter:
+					{
+						m.InitStats(60, 20, 10); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+				case StarterProfessions.Tinkerer:
+					{
+						m.InitStats(60, 20, 10); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+				case StarterProfessions.Alchemist:
+					{
+						m.InitStats(60, 20, 10); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+				case StarterProfessions.Scribe:
+					{
+						m.InitStats(50, 10, 30); // 90
+						skills = GetTemplateSkills(prof);
+						break;
+					}
+				case StarterProfessions.Fletcher:
+					{
+						m.InitStats(60, 20, 10); // 90
 						skills = GetTemplateSkills(prof);
 						break;
 					}
