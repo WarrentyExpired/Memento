@@ -20,6 +20,8 @@ namespace Server.Misc
 			builder.Append("- Ability - Focus Attack is now usable with ranged weapons<br>");
 			builder.Append("- Ability - Focus Attack is now usable while holding a shield<br>");
 			builder.Append("- Ability - Mortal Strike now prevents mobs from cheating death<br>");
+			builder.Append("- Combat - Melee damage absorb now absorbs 50% of melee damage<br>");
+			builder.Append("- Combat - Melee damage absorb now absorbs at 200% efficiency<br>");
 			builder.Append("- Craft - Runic tools now have 15/10/5 uses, up from 5/5/5<br>");
 			builder.Append("- Gump - Sending buttons/switches that don't exist now warn the Player instead of disconnecting<br>");
 			builder.Append("- Gump - Avatars can now view their Skill Archive<br>");
@@ -27,6 +29,7 @@ namespace Server.Misc
 			builder.Append("- Gump - Declining a healer resurrect gump no longer queues the red (penalty) res gump<br>");
 			builder.Append("- Gump - Resurrect Now (penalty) gump can now trigger after re-logging<br>");
 			builder.Append("- Gump - Resurrect gumps now have a confirmation when you will incur a penalty<br>");
+			builder.Append("- Gump - Failed runebook casts now reopen the gump<br>");
 			builder.Append("- Item - Harpoon attack speed is now 4s, down from 5s<br>");
 			builder.Append("- Item - Harpoon weapon abilities are now less off-meta<br>");
 			builder.Append("- Item - Quivers now accept harpoon rope and throwing weapons<br>");
@@ -42,11 +45,13 @@ namespace Server.Misc
 			builder.Append("- Skill - Remove Trap only sets a cooldown when targeting a valid entity<br>");
 			builder.Append("- Skill - Initial targeting range for Taming is now 3, up from 2<br>");
 			builder.Append("- Skill - Players can now target themselves for the second target in provocation<br>");
+			builder.Append("- Skill - Parrying can now be activated to temporarily provide damage absorption<br>");
 
 			builder.Append("<br>");
 			builder.Append("Fixes<br>");
 			builder.Append("- Avatar - Avatars can now delete skills from Soulstones<br>");
 			builder.Append("- Champs - Fixed issue where spawns would cancel immediately after starting<br>");
+			builder.Append("- Combat - Fix issue where melee damage absorb would never be consumed<br>");
 			builder.Append("- Item - Fixed tooltip for Consecrated sharpening stones to indicate 4 hour durations<br>");
 			builder.Append("- Item - Mixtures can now be placed into Alchemist Pouches<br>");
 			builder.Append("- Item - Nosferatu's Robe now has a Spiritualism bonus<br>");
@@ -54,6 +59,8 @@ namespace Server.Misc
 			builder.Append("- Mobs - Casters are now aware when Players can Reflect their spells<br>");
 			builder.Append("- NPC - Barber will now sell you their items<br>");
 			builder.Append("- Spell - Mages Ballad and Army's Paeon buffs now use the correct tooltip<br>");
+			builder.Append("- Spell - Difficulty checks now correctly match the spell circle<br>");
+			builder.Append("- Spell - Reactive Armor and defensive spell checks no longer incorrectly check Melee Damage Absorb<br>");
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
