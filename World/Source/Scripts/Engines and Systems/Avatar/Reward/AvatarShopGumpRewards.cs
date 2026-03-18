@@ -395,7 +395,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new [] { SkillName.Blacksmith, SkillName.Mining, SkillName.ArmsLore, SkillName.Tinkering };
                       foreach (SkillName skName in skills)
                       {
-                        m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Blacksmith;
 											return false;
@@ -417,7 +424,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new SkillName[] { SkillName.Tailoring, SkillName.Tinkering, SkillName.Mercantile, SkillName.ArmsLore };
                       foreach (SkillName skName in skills)
                       {
-                          m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Tailor;
 											return false;
@@ -439,7 +453,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new SkillName[] { SkillName.Tinkering, SkillName.Mining, SkillName.Mercantile, SkillName.Lockpicking };
                       foreach (SkillName skName in skills)
                       {
-                        m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Tinkerer;
 											return false;
@@ -461,7 +482,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new SkillName[] { SkillName.Carpentry, SkillName.Lumberjacking, SkillName.Tinkering, SkillName.ArmsLore };
                       foreach (SkillName skName in skills)
                       {
-                        m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Tinkerer;
 											return false;
@@ -483,7 +511,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new SkillName[] { SkillName.Alchemy, SkillName.Tasting, SkillName.Tinkering, SkillName.Mercantile };
                       foreach (SkillName skName in skills)
                       {
-                        m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Alchemist;
 											return false;
@@ -505,7 +540,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new SkillName[] { SkillName.Inscribe, SkillName.Meditation, SkillName.Magery, SkillName.Tinkering };
                       foreach (SkillName skName in skills)
                       {
-                        m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Scribe;
 											return false;
@@ -527,7 +569,14 @@ namespace Server.Engines.Avatar
                       SkillName[] skills = new SkillName[] { SkillName.Bowcraft, SkillName.Lumberjacking, SkillName.ArmsLore, SkillName.Tinkering };
                       foreach (SkillName skName in skills)
                       {
-                        m_From.Skills[skName].Base = 50.0;
+                        if (context.ImprovedTemplateCount > 1)
+                        {
+                          m_From.Skills[skName].Base = 30 + (context.ImprovedTemplateCount * 6);
+                        }
+                        else
+                        {
+                          m_From.Skills[skName].Base = 30;
+                        }
                       }
 											context.StarterTemplate = AvatarStarterTemplates.Fletcher;
 											return false;

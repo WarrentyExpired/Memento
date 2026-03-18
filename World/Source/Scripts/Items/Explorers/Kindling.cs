@@ -43,10 +43,10 @@ namespace Server.Items
 
 		public static bool EnemiesNearby( Mobile from )
 		{
-			if ( from is PlayerMobile && from.Combatant != null && from.InRange( from.Combatant.Location, 20 ) && from.Combatant.InLOS( from ) )
+			if ( from is PlayerMobile && from.Combatant != null && from.InRange( from.Combatant.Location, 10 ) && from.Combatant.InLOS( from ) )
 				return true;
 
-			foreach( Mobile m in from.GetMobilesInRange( 20 ) )
+			foreach( Mobile m in from.GetMobilesInRange( 10 ) )
 			{
 				if ( m is BaseCreature && !BaseCreature.IsCitizen( m ) && !((BaseCreature)m).Controlled && !((BaseCreature)m).Summoned && ((BaseCreature)m).FightMode == FightMode.Closest )
 					return true;
@@ -74,7 +74,7 @@ namespace Server.Items
 
 		private bool CampsNearby()
 		{
-			foreach( Item i in GetItemsInRange( 20 ) )
+			foreach( Item i in GetItemsInRange( 10 ) )
 			{
 				if ( i is Campfire )
 				{
@@ -108,7 +108,7 @@ namespace Server.Items
 				if ( !this.VerifyMove( from ) )
 					return;
 
-				bool inCombat = ( from.Combatant != null && from.InRange( from.Combatant.Location, 20 ) && from.Combatant.InLOS( from ) );
+				bool inCombat = ( from.Combatant != null && from.InRange( from.Combatant.Location, 10 ) && from.Combatant.InLOS( from ) );
 
 				if ( !from.InRange( this.GetWorldLocation(), 2 ) )
 				{
