@@ -215,7 +215,7 @@ namespace Server.Engines.Avatar
 
 							ActionReward.Create(
 								Constants.IMPROVED_TEMPLATE_MAX_COUNT <= context.ImprovedTemplateCount,
-								ONE_HUNDRED_GOLD * (context.ImprovedTemplateCount + 1),
+								ONE_THOUSAND_GOLD * (context.ImprovedTemplateCount + 1),
 								AvatarShopGump.NO_ITEM_ID,
 								string.Format("Blessed Beginnings ({0} of {1})", context.ImprovedTemplateCount, Constants.IMPROVED_TEMPLATE_MAX_COUNT),
 								string.Format("Awaken to your true potential. Ancestral relatives may enhance your template choices."),
@@ -315,7 +315,7 @@ namespace Server.Engines.Avatar
 										if (0 < skill.Value)
 										{
 											if (boosted)
-												skill.BaseFixedPoint += 100; // +10 to each skill that was set
+												skill.BaseFixedPoint += (context.ImprovedTemplateCount * 60);
 										}
 									}
 
