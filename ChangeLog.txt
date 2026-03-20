@@ -41,3 +41,4 @@
 - Added Crafter templates to the Avatar system.
 - Lowered the Range mob check on kindling.
 - You can now ride a mount while mining!
+- Reworked the CombatBar. It is now horizontal. Much thinner and sleeker.
