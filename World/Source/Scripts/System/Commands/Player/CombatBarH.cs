@@ -35,12 +35,14 @@ namespace Server.Gumps
                 Closable = true;
                 Disposable = true;
                 Dragable = true;
-                AddAlphaRegion(0, 0, 750, 25); 
-                AddBackground(0, 0, 750, 25, 9270); 
-                AddAlphaRegion(2, 2, 746, 21);
-                Render();
+                bool isAvatar = (m_Player.Avatar != null && m_Player.Avatar.Active);
+                int width  = isAvatar ? 750 : 565;
+                AddAlphaRegion(0, 0, width, 25); 
+                AddBackground(0, 0, width, 25, 9270); 
+                AddAlphaRegion(2, 2, width - 4, 21);
+                Render(isAvatar);
             }
-            private void Render()
+            private void Render(bool isAvatar)
             {
                 int x = 15; 
                 int y = 3; 
@@ -58,15 +60,10 @@ namespace Server.Gumps
                 int bandages = m_Player.Backpack?.GetAmount(typeof(Bandage)) ?? 0;
                 DrawStat(x, y, "Bandages", bandages, "#FFFFFF");
                 x += 115;
-                if (m_Player.Avatar != null && m_Player.Avatar.Active)
+                if (isAvatar)
                 {
                     int coins = m_Player.Avatar.PointsFarmed + m_Player.Avatar.PointsSaved;
                     DrawStat(x, y, "Avatar Coins", coins, "#55FF55");
-                }
-                else
-                {
-                    string content = "<BASEFONT Color=#888888>Avatar Coins: </BASEFONT><BASEFONT Color=#FF0000>Not Enabled</BASEFONT>";
-                    AddHtml(x, y, 250, 20, content, false, false);
                 }
             }
             private void DrawStat(int x, int y, string label, int amount, string color)
