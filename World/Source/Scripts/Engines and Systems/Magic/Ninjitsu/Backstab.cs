@@ -1,4 +1,3 @@
-using System;
 using Server.Items;
 using Server.SkillHandlers;
 
@@ -22,6 +21,11 @@ namespace Server.Spells.Ninjitsu
 			return 1.0 + (ninjitsu / 360) + Tracking.GetStalkingBonus( attacker, defender ) / 100;
 		}
 
+		public override bool IgnoreArmor( Mobile attacker, Mobile defender )
+		{
+			return defender.IsBehind( attacker );
+		}
+
 		public override bool Validate( Mobile from )
 		{
 			if( !from.Hidden || from.AllowedStealthSteps <= 0 )
@@ -35,16 +39,7 @@ namespace Server.Spells.Ninjitsu
 
 		public override bool OnBeforeSwing( Mobile attacker, Mobile defender )
 		{
-			bool valid = Validate( attacker ) && CheckMana( attacker, true );
-
-			if( valid )
-			{
-				attacker.BeginAction( typeof( Stealth ) );
-				Timer.DelayCall( TimeSpan.FromSeconds( 5.0 ), delegate { attacker.EndAction( typeof( Stealth ) ); } );
-			}
-
-			return valid;
-
+			return Validate( attacker ) && CheckMana( attacker, true );
 		}
 
 		public override bool ValidatesDuringHit { get { return false; } }

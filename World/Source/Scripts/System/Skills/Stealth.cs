@@ -1,5 +1,4 @@
 using System;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.SkillHandlers
@@ -22,56 +21,62 @@ namespace Server.SkillHandlers
 				m.SendLocalizedMessage( 502726 ); // You are not hidden well enough.  Become better at hiding.
 				m.RevealingAction();
 			}
-			else if( !m.CanBeginAction( typeof( Stealth ) ) )
-			{
-				m.SendLocalizedMessage( 1063086 ); // You cannot use this skill right now.
-				m.RevealingAction();
-			}
 			else
 			{
-				int armorRating = Server.Spells.Elementalism.ElementalSpell.ArmorFizzle( m );
-				int min = armorRating - 32;
-					if ( min < -20 )
-						min = -20;
-							if ( min > 50 )
-								min = 50;
-				int max = armorRating + 50;
-					if ( max < ( min + 50 ) )
-						max = min + 50;
-					if ( max > 150 )
-						max = 150;
-
-				if ( ( armorRating - (int)(m.Skills[SkillName.Stealth].Value/5) ) > 50 )
-				{
-					m.SendLocalizedMessage( 502727 ); // You could not hope to move quietly wearing this much armor.
-					m.RevealingAction();
-				}
-				else if( m.CheckSkill( SkillName.Stealth, min, max ) )
-				{
-					int steps = (int)(m.Skills[SkillName.Stealth].Value / 5.0 );
-
-					if( steps < 1 )
-						steps = 1;
-
-					m.AllowedStealthSteps = steps;
-
-					PlayerMobile pm = m as PlayerMobile; // IsStealthing should be moved to Server.Mobiles
-
-					if( pm != null )
-    						pm.IsStealthing = true;
-
-					m.SendLocalizedMessage( 502730 ); // You begin to move quietly.
-
-					return TimeSpan.FromSeconds( 2.0 );
-				}
-				else
-				{
-					m.SendLocalizedMessage( 502731 ); // You fail in your attempt to move unnoticed.
-					m.RevealingAction();
-				}
+				TryStealth( m, true );
 			}
 
 			return TimeSpan.FromSeconds( 2.0 );
+		}
+
+		public static bool TryStealth( Mobile m, bool playerActivated )
+		{
+			int armorRating = Server.Spells.Elementalism.ElementalSpell.ArmorFizzle( m );
+			int min = armorRating - 32;
+				if ( min < -20 )
+					min = -20;
+						if ( min > 50 )
+							min = 50;
+			int max = armorRating + 50;
+				if ( max < ( min + 50 ) )
+					max = min + 50;
+				if ( max > 150 )
+					max = 150;
+
+			if ( ( armorRating - (int)(m.Skills[SkillName.Stealth].Value/5) ) > 50 )
+			{
+				m.SendLocalizedMessage( 502727 ); // You could not hope to move quietly wearing this much armor.
+
+				if ( playerActivated )
+					m.RevealingAction();
+			}
+			else if( m.CheckSkill( SkillName.Stealth, min, max ) )
+			{
+				int steps = (int)(m.Skills[SkillName.Stealth].Value / 5.0 );
+
+				if( steps < 1 )
+					steps = 1;
+
+				m.AllowedStealthSteps = steps;
+
+				PlayerMobile pm = m as PlayerMobile; // IsStealthing should be moved to Server.Mobiles
+
+				if( pm != null )
+					pm.IsStealthing = true;
+
+				m.SendLocalizedMessage( 502730 ); // You begin to move quietly.
+
+				return true;
+			}
+			else
+			{
+				m.SendLocalizedMessage( 502731 ); // You fail in your attempt to move unnoticed.
+
+				if ( playerActivated )
+					m.RevealingAction();
+			}
+
+			return false;
 		}
 	}
 }
