@@ -43,7 +43,7 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(2500, () => { return new MagicalDyes(); }, uses: 1, description: "A vial of a rare hue, usable on a single item."),
 					_Reward.Create(10000, () => { return new AncientCraftingGloves(SkillName.Alchemy, 5, 10); }, uses: 10, name: "Ancient Alchemy Gloves (+5 skill)"),
           
-          _Reward.Create(10000, () => { return new ArcaneStorageBox(); }, description: "Keep your various reagents organized in one place."),
+          _Reward.Create(5000, () => { return new ArcaneStorageBox(); }, description: "Keep your various reagents organized in one place."),
 					_Reward.Create(20000, () => { return new SoulstoneFragment(1); }, uses: 1, description: "Extract a single skill. Binds to account."),
 
 					_Reward.Create(100000, () => { return new Artifact_BootsofHermes(); }, description: "Allows players to run at mounted speed."),
@@ -71,7 +71,7 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(5000, () => { return new SmithHammerRunicI(15); }, uses: 15, name: "Runic (I)", description: "Runic tool; crafted items have 1 magical property."),
 					_Reward.Create(20000, () => { return new SmithHammerRunicII(10); }, uses: 10, name: "Runic (II)", description: "Runic tool; crafted items have 2 magical properties."),
 					_Reward.Create(50000, () => { return new SmithHammerRunicIII(5); }, uses: 5, name: "Runic (III)", description: "Runic tool; crafted items have 3 magical properties."),
-          _Reward.Create(10000, () => { return new MetalStorageBox(); }, description: "Keep your various ingots and ore organized in one place."),
+          _Reward.Create(5000, () => { return new MetalStorageBox(); }, description: "Keep your various ingots and ore organized in one place."),
 					_Reward.Create(100000, () => { return new Artifact_BootsofHermes(); }, description: "Allows players to run at mounted speed."),
           _Reward.Create(100000, () => { return new AllInOneResourceShelf(); }, description: "Keep your various crafting materials organized in one place."),
 				}
@@ -98,7 +98,7 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(5000, () => { return new ArboristTool(50); }, uses: 50, name: "Arborist Tool"),
 					_Reward.Create(5000, () => { return new WoodDyeTubTemp(20); }, uses: 20, description: "Apply dye to wooden items."),
 					_Reward.Create(10000, () => { return new AncientCraftingGloves(SkillName.Carpentry, 5, 10); }, uses: 10, name: "Ancient Carpenter Gloves (+5 skill)"),
-          _Reward.Create(10000, () => { return new WoodStorageBox(); }, description: "Keep your various boards and logs organized in one place."),
+          _Reward.Create(5000, () => { return new WoodStorageBox(); }, description: "Keep your various boards and logs organized in one place."),
 					_Reward.Create(5000, () => { return new CarpenterToolsRunicI(15); }, uses: 15, name: "Runic (I)", description: "Runic tool; crafted items have 1 magical property."),
 					_Reward.Create(20000, () => { return new CarpenterToolsRunicII(10); }, uses: 10, name: "Runic (II)", description: "Runic tool; crafted items have 2 magical properties."),
 					_Reward.Create(50000, () => { return new CarpenterToolsRunicIII(5); }, uses: 5, name: "Runic (III)", description: "Runic tool; crafted items have 3 magical properties."),
@@ -125,7 +125,7 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(2500, () => { return new DurabilityPotion(); }),
 					_Reward.Create(2500, () => { return new MagicalDyes(); }, uses: 1, description: "A vial of a rare hue, usable on a single item."),
 					_Reward.Create(10000, () => { return new AncientCraftingGloves(SkillName.Druidism, 5, 10); }, uses: 10, name: "Ancient Herbalist Gloves (+5 skill)"),
-          _Reward.Create(10000, () => { return new ArcaneStorageBox(); }, description: "Keep your various reagents organized in one place."),
+          _Reward.Create(5000, () => { return new ArcaneStorageBox(); }, description: "Keep your various reagents organized in one place."),
 					_Reward.Create(20000, () => { return new SoulstoneFragment(1); }, uses: 1, description: "Extract a single skill. Binds to account."),
 
 					_Reward.Create(100000, () => { return new Artifact_BootsofHermes(); }, description: "Allows players to run at mounted speed."),
@@ -156,7 +156,7 @@ namespace Server.Engines.GlobalShoppe
 					_Reward.Create(1000, () => { return new WitchCauldron(1000); }, uses: 1000),
 					_Reward.Create(2500, () => { return new DurabilityPotion(); }),
 					_Reward.Create(10000, () => { return new AncientCraftingGloves(SkillName.Forensics, 5, 10); }, uses: 10, name: "Ancient Mortician Gloves (+5 skill)"),
-          _Reward.Create(10000, () => { return new ArcaneStorageBox(); }, description: "Keep your various reagents organized in one place."),
+          _Reward.Create(5000, () => { return new ArcaneStorageBox(); }, description: "Keep your various reagents organized in one place."),
 					_Reward.Create(5000, () => { return new UndertakerKitRunicI(15); }, uses: 15, name: "Runic (I)", description: "Runic tool; crafted items have 1 magical property."),
 					_Reward.Create(20000, () => { return new UndertakerKitRunicII(10); }, uses: 10, name: "Runic (II)", description: "Runic tool; crafted items have 2 magical properties."),
 					_Reward.Create(50000, () => { return new UndertakerKitRunicIII(5); }, uses: 5, name: "Runic (III)", description: "Runic tool; crafted items have 3 magical properties."),
