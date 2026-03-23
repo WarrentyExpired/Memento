@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x1403, 0x1402 )]
 	public class ShortSpear : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.AchillesStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.EarthStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 40; } }
 		public override int AosMinDamage{ get{ return 10; } }

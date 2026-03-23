@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x1405, 0x1404 )]
 	public class WarFork : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ForceOfNature; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.MagicProtection2; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 12; } }

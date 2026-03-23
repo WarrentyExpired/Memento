@@ -22,14 +22,14 @@ namespace Server.Items
 				return false;
 
 			m_AttackTable[m] = new AttackTimer( m );
-			m.SendLocalizedMessage( 1062319 ); // Your attack chance has been reduced!
+			//m.SendLocalizedMessage( 1062319 ); // Your attack chance has been reduced!
 			return true;
 		}
 
 		private static void RemoveAttack( Mobile m )
 		{
 			m_AttackTable.Remove( m );
-			m.SendLocalizedMessage( 1062320 ); // Your attack chance has returned to normal.
+			//m.SendLocalizedMessage( 1062320 ); // Your attack chance has returned to normal.
 		}
 
 		private class AttackTimer : Timer
@@ -64,14 +64,14 @@ namespace Server.Items
 				return false;
 
 			m_DefenseTable[m] = new DefenseTimer( m );
-			m.SendLocalizedMessage( 1062318 ); // Your defense chance has been reduced!
+			//m.SendLocalizedMessage( 1062318 ); // Your defense chance has been reduced!
 			return true;
 		}
 
 		private static void RemoveDefense( Mobile m )
 		{
 			m_DefenseTable.Remove( m );
-			m.SendLocalizedMessage( 1062321 ); // Your defense chance has returned to normal.
+			//m.SendLocalizedMessage( 1062321 ); // Your defense chance has returned to normal.
 		}
 
 		private class DefenseTimer : Timer

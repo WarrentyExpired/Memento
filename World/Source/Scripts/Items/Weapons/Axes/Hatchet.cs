@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0xF43, 0xF44 )]
 	public class Hatchet : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.MagicProtection2; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.MeleeProtection2; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 13; } }

@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class BlackStaff : BaseStaff
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.MagicProtection; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ElementalStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.MagicProtection2; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.LightningStriker; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 13; } }

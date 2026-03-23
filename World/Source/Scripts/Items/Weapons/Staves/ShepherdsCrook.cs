@@ -10,10 +10,10 @@ namespace Server.Items
 	public class ShepherdsCrook : BaseStaff
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DevastatingBlow; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.PsychicAttack; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.SpinAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 13; } }

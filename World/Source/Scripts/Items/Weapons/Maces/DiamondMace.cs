@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class DiamondMace : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ConcussionBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.PsychicAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Block; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DoubleWhirlwindAttack; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 35; } }
 		public override int AosMinDamage{ get{ return 14; } }

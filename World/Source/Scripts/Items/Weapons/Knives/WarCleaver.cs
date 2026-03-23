@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x2D2F, 0x2D23 )]
 	public class WarCleaver : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Bladeweave; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ZapStrStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ZapDexStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.Block; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 15; } }
 		public override int AosMinDamage{ get{ return 9; } }

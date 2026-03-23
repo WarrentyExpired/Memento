@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class BoneHarvester : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.Disrobe; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ZapManaStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.Block; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 25; } }
 		public override int AosMinDamage{ get{ return 13; } }

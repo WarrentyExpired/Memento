@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class VikingSword : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.RidingSwipe; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DeathBlow; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.MeleeProtection2; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 40; } }
 		public override int AosMinDamage{ get{ return 15; } }

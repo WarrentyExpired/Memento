@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class HammerPick : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
 		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.SpinAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ElementalStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.EarthStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 15; } }

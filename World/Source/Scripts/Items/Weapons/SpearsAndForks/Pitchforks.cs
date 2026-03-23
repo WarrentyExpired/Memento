@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class Pitchforks : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DoubleStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.AchillesStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DoubleWhirlwindAttack; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 11; } }

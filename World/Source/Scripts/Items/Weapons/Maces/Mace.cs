@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class Mace : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ConcussionBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.MeleeProtection; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 12; } }

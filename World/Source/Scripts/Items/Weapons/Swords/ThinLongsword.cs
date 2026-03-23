@@ -7,10 +7,10 @@ namespace Server.Items
 	public class ThinLongsword : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 35; } }
 		public override int AosMinDamage{ get{ return 15; } }

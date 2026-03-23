@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class TwoHandedAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ToxicStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ZapIntStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DefenseMastery; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 40; } }
 		public override int AosMinDamage{ get{ return 16; } }

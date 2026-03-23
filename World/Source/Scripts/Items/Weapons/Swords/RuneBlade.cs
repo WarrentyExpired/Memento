@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x2D32, 0x2D26 )]
 	public class RuneBlade : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Bladeweave; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.TalonStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ForceOfNature; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ToxicStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 30; } }
 		public override int AosMinDamage{ get{ return 15; } }

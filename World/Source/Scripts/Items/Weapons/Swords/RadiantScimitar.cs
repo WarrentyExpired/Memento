@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x2D33, 0x2D27 )]
 	public class RadiantScimitar : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Bladeweave; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DefenseMastery; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ConsecratedStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.FireStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 12; } }

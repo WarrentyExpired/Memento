@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0xF4D, 0xF4E )]
 	public class Bardiche : BasePoleArm
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Dismount; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.PsychicAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 17; } }

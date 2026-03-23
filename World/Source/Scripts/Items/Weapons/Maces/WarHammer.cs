@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class WarHammer : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ZapIntStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ZapManaStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.RidingAttack; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 95; } }
 		public override int AosMinDamage{ get{ return 17; } }

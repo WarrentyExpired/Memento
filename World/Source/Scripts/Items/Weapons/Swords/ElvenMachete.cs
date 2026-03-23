@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x2D35, 0x2D29 )]
 	public class ElvenMachete : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DefenseMastery; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Bladeweave; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ElementalStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 13; } }

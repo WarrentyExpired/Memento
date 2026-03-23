@@ -1410,6 +1410,11 @@ namespace Server.Items
 
 		public virtual void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
+            bool innatePierce = false;
+            bool innatevitalsStrike = false;
+            bool innatestaggeringBlow = false;
+            bool innateBleeding = false;
+            bool innateHinder = false;
 			if ( MirrorImage.HasClone( defender ) && (defender.Skills.Ninjitsu.Value / 150.0) > Utility.RandomDouble() )
 			{
 				Clone bc;
@@ -1437,6 +1442,37 @@ namespace Server.Items
 			int damage = ComputeDamage( attacker, defender );
 
 			#region Damage Multipliers
+            // --- START INNATE ABILITY OVERHAUL ---
+            // Base 10% chance + 15% at 120 Arms Lore
+            double innateChance = 0.10 + (attacker.Skills[SkillName.ArmsLore].Value / 800.0);
+            if ( innateChance > Utility.RandomDouble() )
+            {
+                switch ( this.Skill )
+                {
+                    case SkillName.Swords:
+                        //BleedAttack.BeginBleed( defender, attacker ); // Standard 5-tick bleed
+                        innateBleeding = true;
+                        attacker.SendMessage("You open a wound! Target is bleeding");
+                        break;
+                    case SkillName.Bludgeoning:
+                        innatePierce = true;
+                        attacker.SendMessage( "Your blow pierces through their armor!" );
+                        break;
+                    case SkillName.Fencing:
+                        innatevitalsStrike = true;
+                        attacker.SendMessage( "You strike a vital nerve, paralyzing your target!" );
+                        break;
+                    case SkillName.FistFighting:
+                        innatestaggeringBlow = true;
+                        attacker.SendMessage( "You deliver a staggering blow to your enemy!" );
+                        break;
+                    case SkillName.Marksmanship:
+                        innateHinder = true;
+                        attacker.SendMessage( "Your shot hinders the enemy's movement!" );
+                        break;
+                }
+            }
+            // --- END INNATE ABILITY OVERHAUL --- //
 			/*
 			 * The following damage bonuses multiply damage by a factor.
 			 * Capped at x3 (300%).
@@ -1639,7 +1675,42 @@ namespace Server.Items
 			bool BladeWeaving = Bladeweave.BladeWeaving(attacker, out weaponA);
 
 			bool ignoreArmor = ( a is ArmorIgnore || (move != null && move.IgnoreArmor( attacker, defender )) || (BladeWeaving && weaponA is ArmorIgnore ));
-
+            if ( innatePierce )
+            {
+                //damage = (int)(damage * 3.00);
+                int pierceBonus = (int)(damage * 2.00);
+                AOS.Damage( defender, attacker, pierceBonus, ignoreArmor, 0, 0, 0, 0, 0, 0, 100, false, this is BaseRanged, false );
+            }
+            else if ( innatevitalsStrike )
+            {
+                HitLower.ApplyDefense( defender );
+                defender.Freeze( TimeSpan.FromSeconds( 5.0 ) );
+                damage = (int)(damage * 1.50);
+            }
+            else if ( innatestaggeringBlow )
+            {
+                HitLower.ApplyAttack( defender );
+                defender.Stam -= Utility.RandomMinMax( 10, 30 );
+                defender.Mana -= Utility.RandomMinMax( 10, 30 );
+                damage = (int)(damage * 1.50);
+            }
+            else if ( innateHinder )
+            {
+                defender.Freeze( TimeSpan.FromSeconds( 5.0 ));
+                damage = (int)(damage * 1.50);
+            }
+            else if ( innateBleeding )
+            {
+                Timer.DelayCall( TimeSpan.FromSeconds( 1.0 ), TimeSpan.FromSeconds( 1.0 ), 5, delegate
+                {
+                    if (defender != null && defender.Alive)
+                    {
+                        int bleedDamage = 2;
+                        AOS.Damage( defender, attacker, bleedDamage, ignoreArmor, 0, 0, 0, 0, 0, 0, 100, false, this is BaseRanged, false );
+                         defender.PlaySound( 0x113 );
+                    }
+                });
+            }
 			damageGiven = AOS.Damage( defender, attacker, damage, ignoreArmor, phys, fire, cold, pois, nrgy, chaos, direct, false, this is BaseRanged, false );
 
 			double propertyBonus = ( move == null ) ? 1.0 : move.GetPropertyBonus( attacker );

@@ -7,10 +7,10 @@ namespace Server.Items
 	public class Cleaver : BaseKnife
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.MeleeProtection2; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ZapDexStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ZapStamStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 10; } }
 		public override int AosMinDamage{ get{ return 11; } }

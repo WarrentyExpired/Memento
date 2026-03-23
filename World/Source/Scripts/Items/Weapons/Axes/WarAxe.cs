@@ -7,11 +7,11 @@ namespace Server.Items
 {
 	public class WarAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DefenseMastery; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.StunningStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.MeleeProtection2; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 35; } }
 		public override int AosMinDamage{ get{ return 14; } }

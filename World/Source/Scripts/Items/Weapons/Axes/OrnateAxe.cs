@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class OrnateAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.TalonStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.LightningStriker; } }
+        public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 40; } }
 		public override int AosMinDamage{ get{ return 15; } }

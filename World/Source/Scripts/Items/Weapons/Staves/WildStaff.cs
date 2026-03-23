@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x2D25, 0x2D31 )]
 	public class WildStaff : BaseStaff
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Block; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ForceOfNature; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.MagicProtection; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FreezeStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.PsychicAttack; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 15; } }
 		public override int AosMinDamage{ get{ return 10; } }

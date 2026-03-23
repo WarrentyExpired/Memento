@@ -7,10 +7,10 @@ namespace Server.Items
 	public class AssassinSpike : BaseKnife
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.LightningStriker; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.MeleeProtection; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.FireStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 15; } }
 		public override int AosMinDamage{ get{ return 10; } }

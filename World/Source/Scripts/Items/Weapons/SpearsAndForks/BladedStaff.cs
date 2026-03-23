@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x26BD, 0x26C7 )]
 	public class BladedStaff : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Dismount; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.EarthStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.MagicProtection; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 40; } }
 		public override int AosMinDamage{ get{ return 14; } }

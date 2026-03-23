@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class Club : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Dismount; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.StunningStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.SpinAttack; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.Disarm; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
 
 		public override int AosStrengthReq{ get{ return 40; } }
 		public override int AosMinDamage{ get{ return 11; } }

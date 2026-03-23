@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class ElvenSpellblade : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.PsychicAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.MagicProtection2; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FireStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.MeleeProtection; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 35; } }
 		public override int AosMinDamage{ get{ return 12; } }

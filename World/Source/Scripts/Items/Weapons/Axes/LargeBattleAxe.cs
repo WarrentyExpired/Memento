@@ -6,11 +6,12 @@ namespace Server.Items
 {
 	public class LargeBattleAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.RidingAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FreezeStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.RidingSwipe; } }
+
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 80; } }
 		public override int AosMinDamage{ get{ return 16; } }

@@ -6,11 +6,11 @@ namespace Server.Items
 {
 	public class Katana : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleWhirlwindAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DoubleStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FireStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 25; } }
 		public override int AosMinDamage{ get{ return 11; } }

@@ -8,10 +8,10 @@ namespace Server.Items
 	public class BattleAxe : BaseAxe
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ConcussionBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.RidingAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ElementalStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 35; } }
 		public override int AosMinDamage{ get{ return 15; } }

@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x2D22, 0x2D2E )]
 	public class Leafblade : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ZapIntStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.PsychicAttack; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ZapStamStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 13; } }

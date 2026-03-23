@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0xf4b, 0xf4c )]
 	public class DoubleAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
 		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.RidingAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ConsecratedStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.StunningStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 15; } }

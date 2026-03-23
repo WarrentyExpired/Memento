@@ -8,10 +8,10 @@ namespace Server.Items
 	public class Scythe : BasePoleArm
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ElementalStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.LightningStriker; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return 15; } }

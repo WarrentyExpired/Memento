@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x26BE, 0x26C8 )]
 	public class Pike : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.MagicProtection; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.StunningStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ForceOfNature; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 50; } }
 		public override int AosMinDamage{ get{ return 14; } }

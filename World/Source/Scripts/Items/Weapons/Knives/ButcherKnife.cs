@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x13F6, 0x13F7 )]
 	public class ButcherKnife : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ConsecratedStrike; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleWhirlwindAttack; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.MagicProtection2; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ArmorIgnore; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
 
 		public override int AosStrengthReq{ get{ return 5; } }
 		public override int AosMinDamage{ get{ return 9; } }

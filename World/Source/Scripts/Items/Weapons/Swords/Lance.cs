@@ -7,11 +7,11 @@ namespace Server.Items
 	[FlipableAttribute( 0x26C0, 0x26CA )]
 	public class Lance : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Dismount; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ConcussionBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.RidingAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DevastatingBlow; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 95; } }
 		public override int AosMinDamage{ get{ return 17; } }

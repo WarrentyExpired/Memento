@@ -10,11 +10,11 @@ namespace Server.Items
 		public override Type AmmoType{ get{ return typeof( Arrow ); } }
 		public override Item Ammo{ get{ return new Arrow(); } }
 
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MovingShot; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.DoubleShot; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ZapDexStrike; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ZapManaStrike; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleShot; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.SerpentArrow; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.ForceArrow; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.PsychicAttack; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.LightningArrow; } }
 
 		public override int AosStrengthReq{ get{ return 45; } }
 		public override int AosMinDamage{ get{ return Core.ML ? 13 : 15; } }

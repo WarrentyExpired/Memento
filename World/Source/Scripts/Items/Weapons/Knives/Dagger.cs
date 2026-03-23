@@ -8,10 +8,10 @@ namespace Server.Items
 	public class Dagger : BaseKnife
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.DoubleWhirlwindAttack; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ToxicStrike; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.AchillesStrike; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.ShadowStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ShadowInfectiousStrike; } }
 
 		public override int AosStrengthReq{ get{ return 10; } }
 		public override int AosMinDamage{ get{ return 10; } }

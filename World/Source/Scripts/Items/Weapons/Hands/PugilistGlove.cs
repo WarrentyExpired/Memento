@@ -10,11 +10,11 @@ namespace Server.Items
 
 	public abstract class PugilistGloveWeapon : BaseWeapon, IPugilistGlove
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.FistsOfFury; } }
-		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.DeathBlow; } }
+		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.FistsOfFury; } }
+		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Block; } }
+		public override WeaponAbility ThirdAbility{ get{ return WeaponAbility.Feint; } }
+		public override WeaponAbility FourthAbility{ get{ return WeaponAbility.NerveStrike; } }
+		public override WeaponAbility FifthAbility{ get{ return WeaponAbility.ForceOfNature; } }
 
 		public override int AosStrengthReq{ get{ return 20; } }
 		public override int AosMinDamage{ get{ return 8; } }
