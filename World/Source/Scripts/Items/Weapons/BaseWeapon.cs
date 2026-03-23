@@ -1678,14 +1678,14 @@ namespace Server.Items
             if ( innatePierce )
             {
                 //damage = (int)(damage * 3.00);
-                int pierceBonus = (int)(damage * 2.00);
+                int pierceBonus = (int)(damage * 2.50);
                 AOS.Damage( defender, attacker, pierceBonus, ignoreArmor, 0, 0, 0, 0, 0, 0, 100, false, this is BaseRanged, false );
             }
             else if ( innatevitalsStrike )
             {
                 HitLower.ApplyDefense( defender );
                 defender.Freeze( TimeSpan.FromSeconds( 5.0 ) );
-                damage = (int)(damage * 1.50);
+                damage = (int)(damage * 1.75);
             }
             else if ( innatestaggeringBlow )
             {
@@ -1697,7 +1697,7 @@ namespace Server.Items
             else if ( innateHinder )
             {
                 defender.Freeze( TimeSpan.FromSeconds( 5.0 ));
-                damage = (int)(damage * 1.50);
+                damage = (int)(damage * 1.75);
             }
             else if ( innateBleeding )
             {
@@ -1710,6 +1710,15 @@ namespace Server.Items
                          defender.PlaySound( 0x113 );
                     }
                 });
+            }
+            // --- FEINT COUNTER-STRIKE (ANATOMY) ---
+            // Checks if the player has an active "Opening" from the Feint ability
+            if (!attacker.CanBeginAction("FeintOpening"))
+            {
+                // Apply 25% damage boost and consume the opening
+                damage = (int)(damage * 1.75);
+                attacker.EndAction("FeintOpening");
+                attacker.SendMessage("You exploit the opening for a powerful counter-strike!");
             }
 			damageGiven = AOS.Damage( defender, attacker, damage, ignoreArmor, phys, fire, cold, pois, nrgy, chaos, direct, false, this is BaseRanged, false );
 

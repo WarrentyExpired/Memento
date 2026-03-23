@@ -33,8 +33,30 @@ namespace Server.Items
 			attacker.FixedParticles( 0x37C4, 1, 16, 0x251D, 0x39D, 0x3, EffectLayer.RightHand );
 
 			int bonus = (int)(10.0 * ((Math.Max( attacker.Skills[SkillName.Tactics].Value, attacker.Skills[SkillName.Anatomy].Value ) - 50.0) / 70.0 + 5));
+            double tactics = attacker.Skills[SkillName.Tactics].Value;
+            double anatomy = attacker.Skills[SkillName.Anatomy].Value;
+            double armsLore = attacker.Skills[SkillName.ArmsLore].Value;
+            int blockBonus = (int)(5.0 + (tactics / 12.0));
+            if ( anatomy >= 50.0 )
+            {
+                int damageBasis = (int)(defender.Str * 0.20);
+                int reflectPercent = (int)((anatomy - 50.0) / 2.33); // Max ~30%
+                int reflectedDamage = (int)(damageBasis * (reflectPercent / 100.0));
 
-			BeginBlock( attacker, bonus );
+                if ( reflectedDamage > 0 )
+                {
+                    AOS.Damage( defender, attacker, reflectedDamage, false, 0, 0, 0, 0, 0, 0, 100, false, false, false );
+                    attacker.SendMessage( "You block the blow and counter-strike for {0} damage!", reflectedDamage );
+                    defender.PlaySound( 0x3BC ); // Metal "Clang" sound
+                }
+            }
+            if ( armsLore >= 80.0 )
+            {
+                attacker.Stam += (int)(armsLore / 10.0); // Restore a bit of stamina on a perfect block
+                attacker.SendMessage( "Your mastery of arms allows a effortless parry." );
+            }
+            BeginBlock( attacker, blockBonus );
+            attacker.FixedParticles( 0x37C4, 1, 16, 0x251D, 0x39D, 0x3, EffectLayer.RightHand );           
 		}
 
 		private class BlockInfo
