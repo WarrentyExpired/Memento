@@ -4041,7 +4041,6 @@ namespace Server.Mobiles
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
-      Discordance.ApplyEcho( this, from );
       base.OnDamage( amount, from, willKill );
 
 			SlayerEntry undead_creatures = SlayerGroup.GetEntryByName( SlayerName.Silver );
