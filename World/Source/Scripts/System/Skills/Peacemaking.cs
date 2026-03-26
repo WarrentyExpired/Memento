@@ -126,7 +126,6 @@ namespace Server.SkillHandlers
 
 										calmed = true;
 										from.SendMessage( "You play hypnotic music, calming " + m.Name + "." );
-
 										m.SendLocalizedMessage( 500616 ); // You hear lovely music, and forget to continue battling!
 										m.Combatant = null;
 										m.Warmode = false;
@@ -160,6 +159,7 @@ namespace Server.SkillHandlers
 						else if ( targ is BaseCreature && ((BaseCreature)targ).BardPacified )
 						{
 							from.SendLocalizedMessage( 1049527 ); // That creature is already being calmed.
+                            BardicInnate.CheckProc(from, targ, Server.SkillName.Peacemaking);
 							m_SetSkillTime = true;
 						}
 						else if ( !BaseInstrument.CheckMusicianship( from ) )
@@ -210,7 +210,7 @@ namespace Server.SkillHandlers
 									BaseCreature bc = (BaseCreature)targ;
 
 									from.SendLocalizedMessage( 1049532 ); // You play hypnotic music, calming your target.
-
+                                    BardicInnate.CheckProc(from, targ, Server.SkillName.Peacemaking);
 									targ.Combatant = null;
 									targ.Warmode = false;
 

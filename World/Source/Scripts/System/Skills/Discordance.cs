@@ -222,6 +222,7 @@ namespace Server.SkillHandlers
                     from.SendLocalizedMessage(1049539); // You play the song surpressing your targets strength
                     m_Instrument.PlayInstrumentWell( from );
                     m_Instrument.ConsumeUse( from );
+                    BardicInnate.CheckProc(from, targ, Server.SkillName.Discordance);
 				}
 				else
                 {

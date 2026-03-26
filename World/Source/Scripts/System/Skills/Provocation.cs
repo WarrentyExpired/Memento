@@ -163,7 +163,14 @@ namespace Server.SkillHandlers
 					}
 					else
 					{
-						from.SendLocalizedMessage( 501593 ); // You can't tell someone to attack themselves!
+                        if (creature.CanBeginAction("Cacophony"))
+                        {
+                            BardicInnate.CheckProc(from, creature, Server.SkillName.Provocation);
+                        }
+                        else
+                        {
+                            from.SendMessage("Target is already in a frenzy.");
+                        }
 					}
 				}
 				else if ( from is PlayerMobile && targeted == from )
