@@ -17,11 +17,8 @@ namespace Server.Items
             defender.Stam -= stamDrain;
             //attacker.Mana += (manaDrain / 2);
             //attacker.Stam += (stamDrain / 2);
-            if (HitLower.ApplyDefense(defender))
-            {
-                attacker.SendMessage("Your enemy has became easier to hit!");
-            }
-            attacker.SendMessage("You drain the target's spirit and energy!");
+            HitLower.ApplyDefense(defender);
+            attacker.SendMessage("You deliver a draining punch!");
             defender.FixedParticles(0x374A, 1, 15, 5054, 0x482, 0, EffectLayer.Waist);
         }
     }

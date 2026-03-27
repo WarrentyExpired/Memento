@@ -1,15 +1,33 @@
 using System;
 using Server;
 using Server.Mobiles;
+using System.Collections;
 
 namespace Server.Items
 {
     public class InnateAbilityManager
     {
+        private static Hashtable m_CooldownTable = new Hashtable();
+        public static TimeSpan InnateCooldown = TimeSpan.FromSeconds(5.0);
         public static void CheckInnate(BaseWeapon weapon, Mobile attacker, Mobile defender, int damage)
         {
             if (attacker == null || defender == null || !attacker.Alive || !defender.Alive)
                 return;
+            bool isPlayer = attacker.Player;
+            bool isPet = (attacker is BaseCreature && ((BaseCreature)attacker).Controlled);
+            bool isWild = (!isPlayer && !isPet);
+            if (isPlayer && !MySettings.S_PlayersUseInnates)
+                return;
+            if (isPet && !MySettings.S_PetsUseInnates)
+                return;
+            if (isWild && !MySettings.S_MonstersUseInnates)
+                return;
+            if (m_CooldownTable.Contains(attacker))
+            {
+                DateTime nextAllowed = (DateTime)m_CooldownTable[attacker];
+                if (DateTime.UtcNow < nextAllowed)
+                    return;
+            }
             double anatomy = attacker.Skills[SkillName.Anatomy].Value;
             double tactics = attacker.Skills[SkillName.Tactics].Value;
             double armsLore = attacker.Skills[SkillName.ArmsLore].Value;
@@ -17,6 +35,7 @@ namespace Server.Items
             double procChance = 0.10 + ((armsLore) / 800);
             if (Utility.RandomDouble() < procChance)
             {
+                m_CooldownTable[attacker] = DateTime.UtcNow + InnateCooldown;
                 if (weapon.DefSkill == SkillName.Swords)
                 {
                     ApplySwords(attacker, defender, anatomy);

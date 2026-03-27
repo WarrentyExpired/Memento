@@ -18,6 +18,7 @@ namespace Server.Items
             if (defender is BaseCreature && ((BaseCreature)defender).BleedImmune)
                 return;
             attacker.SendMessage("Your blade opens a deep, jagged wound!");
+            defender.SendMessage("You are wounded and start bleeding!");
             Timer t = (Timer)m_Table[defender];
             if (t != null)
                 t.Stop();

@@ -143,6 +143,10 @@ namespace Server
 	// 003 - PLAYER OPTIONS ///////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////
 
+    // Enable innate abilities to be used by Players.
+
+        public static bool S_PlayersUseInnates = true;
+
 	// If true, a player character cannot use macros to improve their skills quickly.
 
 		public static bool S_NoMacroing = false;
@@ -427,6 +431,10 @@ namespace Server
 	// 007 - MONSTERS & CREATURES /////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////
 
+    //Enabling this will allow monsters and NPC's to have weapon innate abilities (Bleed, Pierce, Hinder, etc..)
+
+        public static bool S_MonstersUseInnates = false;
+
 	// If true, all creatures will have an ability to detect hidden characters based on their difficulty level.
 
 		public static bool S_CreaturesSearching = true;
@@ -681,6 +689,10 @@ namespace Server
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// 010 - PETS, MOUNTS, & FOLLOWERS ////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Enabling this will allow pets to use innate abilites.
+
+        public static bool S_PetsUseInnates = true;
 
 	// How many minutes between stat gains for pets that you can train. This can be between 1.0 to 60.0 minutes.
 
