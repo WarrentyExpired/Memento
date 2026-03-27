@@ -54,19 +54,9 @@
             Fists of Fury, Block, Feint, Nerve Strike, Force of Nature
         Marksmanship:
             Double Shot, Serpent Arrow, Force Arrow, Psychic Attack, Lightning Arrow
-    Innate Abilities. Each weapon class a unique ability that has a base 10% change to proc. Arms lore can increase     the to 25% at 120 skill level.
-        Swords - Bleed:
-            2 DPS over 5 seconds. Stackable?!
-        Fencing - Vital Strike:
-            Lowers targets attack chance for 6-8 seconds
-            Freezes the target for 5 seconds.
-            50% DI for the next hit.
-        Bludgoening - Pierce:
-            150% Direct Damage increase on next hit
-        Fistfighting - Staggering Blow:
-            Lowers Attack Chance for 6-8 seconds
-            Drains 10-30 Stam and Mana
-            75% DI on next hit.
-        Marksmanship - Hinder:
-            Freezes target for 5 seconds
-            75% DI on next hit.
+    Innate Abilities. Each weapon class a unique ability that has a base 10% change to proc. Arms lore can increase     the to 25% at 120 skill level. There are 3 new settings in Settings.cs PlayersUseInnates, PetsUseInnates, and MonstersUseInnates.
+        Swords - Bleed
+        Fencing - Pierce
+        Bludgoening - PowerfullBlow
+        Fistfighting - Drain Punch
+        Marksmanship - Hinder
