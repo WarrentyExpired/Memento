@@ -3,10 +3,71 @@ using System.Collections;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Network;
+using Server.Commands;
+using Server.Items;
 namespace Server.Items
 {
     public class AdrenalineManager
     {
+        public class AdrenalineCommands
+        {
+            public static void Initialize()
+            {
+                CommandSystem.Register("Adrenaline1", AccessLevel.Player, new CommandEventHandler(OnAbility1));
+                CommandSystem.Register("Adrenaline2", AccessLevel.Player, new CommandEventHandler(OnAbility2));
+                CommandSystem.Register("Adrenaline3", AccessLevel.Player, new CommandEventHandler(OnAbility3));
+            }
+            [Usage("Adrenaline1")]
+            public static void OnAbility1(CommandEventArgs e)
+            {
+                HandleAbility(e.Mobile as PlayerMobile, 1);
+            }
+            [Usage("Adrenaline2")]
+            public static void OnAbility2(CommandEventArgs e)
+            {
+                HandleAbility(e.Mobile as PlayerMobile, 2);
+            }
+            [Usage("Adrenaline3")]
+            public static void OnAbility3(CommandEventArgs e)
+            {
+                HandleAbility(e.Mobile as PlayerMobile, 3);
+            }
+            private static void HandleAbility(PlayerMobile pm, int slot)
+            {
+                if (pm == null || !pm.Alive) return;
+                BaseWeapon weapon = pm.Weapon as BaseWeapon;
+                if (weapon == null) return;
+                if (weapon.Skill == SkillName.Swords)
+                {
+                    switch (slot)
+                    {
+                        case 1: CleaveAbility.OnUse(pm); break;
+                        case 2: pm.SendMessage("Defensive Sword move not implemented yet."); break;
+                        case 3: pm.SendMessage("Executioner Strike not implemented yet."); break;
+                    }
+                }
+                else if (weapon.Skill == SkillName.Marksmanship)
+                {
+                    pm.SendMessage("Marksmanship abilites coming soon!");
+                }
+                else if (weapon.Skill == SkillName.Fencing)
+                {
+                    pm.SendMessage("Fencing abilites coming soon!");
+                }
+                else if (weapon.Skill == SkillName.Bludgeoning)
+                {
+                    pm.SendMessage("Bludgeoning abilies coming soon!");
+                }
+                else if (weapon.Skill == SkillName.FistFighting)
+                {
+                    pm.SendMessage("FistFighting abilitys coming soon!");
+                }
+                else
+                {
+                    pm.SendMessage("Your current weapon does not support Adrenaline abilites.");
+                }
+            }
+        }
         private static Hashtable m_Table = new Hashtable();
         public static void Initialize()
         {
@@ -14,7 +75,7 @@ namespace Server.Items
         }
         private class AdrenalineTimer : Timer
         {
-            public AdrenalineTimer() : base(TimeSpan.FromSeconds(8.0), TimeSpan.FromSeconds(8.0))
+            public AdrenalineTimer() : base(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(8))
             {
                 Priority = TimerPriority.OneSecond;
             }
@@ -35,42 +96,41 @@ namespace Server.Items
             if (m == null || !m_Table.Contains(m)) return 0;
             return (int)m_Table[m];
         }
-
         public static void SetAdrenaline(Mobile m, int val)
         {
             if (m == null) return;
             if (val < 0) val = 0;
             if (val > 100) val = 100;
-
             int oldVal = GetAdrenaline(m);
             m_Table[m] = val;
-
-            // If the value changed, refresh the Gump
             if (oldVal != val && m is PlayerMobile)
                 AdrenalineGump.SendGump((PlayerMobile)m);
         }
-
         public static void OnHit(Mobile attacker)
         {
-            if (!attacker.Player) return;
-
-            double focus = attacker.Skills[SkillName.Focus].Value;
+            if (!attacker.Player || !attacker.Alive) return;
+            BaseWeapon weapon = attacker.Weapon as BaseWeapon;
+            if (weapon == null) return;
+            double speedFactor = weapon.Speed * 2.5;
+            double focusBonus = attacker.Skills[SkillName.Focus].Value;
             
-            // Gain Logic: Base 4 + up to 6 bonus from Focus (Total 10 per hit max)
-            int gain = 4 + (int)(focus / 20); 
-            
+            int gain = (int)(speedFactor + focusBonus);
+            if (gain < 5) gain = 5;
             SetAdrenaline(attacker, GetAdrenaline(attacker) + gain);
         }
         public static void Slice(Mobile m)
         {
             int current = GetAdrenaline(m);
             if (current <= 0) return;
+            if (m.Combatant != null && m.InRange(m.Combatant.Location, 12) && m.Combatant.Alive)
+            {
+                return;
+            }
             double focus = m.Skills[SkillName.Focus].Value;
             int loss = 5 - (int)(focus / 20);
             if (loss > 0)
             {
                 SetAdrenaline(m, current - loss);
-                m.SendMessage("Adrenaline Decaying: -{0}", loss);
             }
         }
     }

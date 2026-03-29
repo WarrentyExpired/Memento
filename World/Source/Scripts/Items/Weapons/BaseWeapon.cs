@@ -1881,6 +1881,10 @@ namespace Server.Items
 					}
 				}
 			}
+            if (attacker.Player)
+            {
+                AdrenalineManager.OnHit(attacker);
+            }
 		}
 
 		public virtual double GetAosDamage( Mobile attacker, int bonus, int dice, int sides )

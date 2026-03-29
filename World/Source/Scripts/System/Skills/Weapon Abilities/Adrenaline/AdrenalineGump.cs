@@ -4,63 +4,78 @@ using Server.Network;
 using Server.Commands;
 using Server.Mobiles;
 using Server.Items;
-
 namespace Server.Gumps
 {
     public class AdrenalineGump : Gump
     {
         public static void SendGump(PlayerMobile pm)
         {
+            if (pm == null) return;
             pm.CloseGump(typeof(AdrenalineGump));
             pm.SendGump(new AdrenalineGump(pm));
         }
-
-        public AdrenalineGump(PlayerMobile pm) : base(100, 130) // Adjusted position to sit near toolbar
+        public AdrenalineGump(PlayerMobile pm) : base(100, 130)
         {
             this.Closable = true;
             this.Disposable = true;
             this.Dragable = true;
             this.Resizable = false;
-
             int current = AdrenalineManager.GetAdrenaline(pm);
-            
-            // Width matches the smaller version of your combat bar
-            int width = 160; 
-            int height = 45;
-
+            int width = 160;
+            int height = 75;
             AddPage(0);
-
-            // Background matching CombatBarH: Alpha region for transparency + Border 9270
             AddAlphaRegion(0, 0, width, height); 
-            AddBackground(0, 0, width, height, 9270);
+            AddBackground(0, 0, width, height, 9270); 
             AddAlphaRegion(2, 2, width, height);
-
-            // The Label - Using the grey color from your toolbar stats (#888888)
             AddHtml(10, 5, 140, 20, $"<BASEFONT Color=#888888>ADRENALINE: <BASEFONT Color=#FF4500>{current}%", false, false);
-
-            // The Progress Bar Background (Empty slot)
-            AddImageTiled(10, 25, 140, 10, 2626); // Darker inset look
-            
-            // The actual "fill" 
-            // We scale 'current' from 100% to 140 pixels wide
             int barWidth = (int)(current * 1.4);
             if (barWidth > 0)
+                AddImageTiled(10, 25, barWidth, 8, 2056); 
+            for (int i = 0; i <= 10; i++)
             {
-                // Using 2056 (Reddish/Orange) to match the "Hot" theme of Adrenaline
-                AddImageTiled(10, 25, barWidth, 10, 2056); 
+                int xOffset = 10 + (i * 14);
+                if (i == 0 || i == 10)
+                {
+                    AddImageTiled(xOffset, 25, 2, 8, 2626);
+                }
+                else
+                {
+                    AddImageTiled(xOffset, 25, 1, 8, 2622);
+                }
             }
+            // Button 1
+            string color1 = (current >= 25) ? "#00FF00" : "#FFFFFF"; 
+            AddButton(10, 42, 2225, 2225, 1, GumpButtonType.Reply, 0); 
+            AddHtml(35, 45, 30, 20, $"<BASEFONT Color={color1}>25", false, false);
+            // Button 2
+            string color2 = (current >= 40) ? "#00FF00" : "#FFFFFF";
+            AddButton(60, 42, 2226, 2226, 2, GumpButtonType.Reply, 0); 
+            AddHtml(85, 45, 30, 20, $"<BASEFONT Color={color2}>40", false, false);
+            // Button 3
+            string color3 = (current >= 60) ? "#00FF00" : "#FFFFFF";
+            AddButton(110, 42, 2227, 2227, 3, GumpButtonType.Reply, 0); 
+            AddHtml(135, 45, 30, 20, $"<BASEFONT Color={color3}>60", false, false);
+        }
+        public override void OnResponse(NetState sender, RelayInfo info)
+        {
+            PlayerMobile pm = sender.Mobile as PlayerMobile;
+            if (pm == null) return;
+            switch (info.ButtonID)
+            {
+                case 1: Server.Items.AdrenalineManager.AdrenalineCommands.OnAbility1(new CommandEventArgs(pm, "Adrenaline1", "", null)); break;
+                case 2: Server.Items.AdrenalineManager.AdrenalineCommands.OnAbility2(new CommandEventArgs(pm, "Adrenaline2", "", null)); break;
+                case 3: Server.Items.AdrenalineManager.AdrenalineCommands.OnAbility3(new CommandEventArgs(pm, "Adrenaline3", "", null)); break;
+            }
+            SendGump(pm);
         }
     }
-
-    public class AdrenalineCommands
+    public class AdrenalineGumpCommands
     {
         public static void Initialize()
         {
             CommandSystem.Register("Adrenaline", AccessLevel.Player, new CommandEventHandler(Adrenaline_OnCommand));
         }
-
         [Usage("Adrenaline")]
-        [Description("Toggles the Adrenaline display bar.")]
         private static void Adrenaline_OnCommand(CommandEventArgs e)
         {
             PlayerMobile pm = e.Mobile as PlayerMobile;
