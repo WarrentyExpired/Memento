@@ -10,16 +10,16 @@ namespace Server.Commands
 	{
 		public static void Initialize()
 		{
-			CommandSystem.Register( "SetPrimaryAbility", AccessLevel.Player, new CommandEventHandler( SetPrimaryAbility_OnCommand ) );
-			CommandSystem.Register( "SetSecondaryAbility", AccessLevel.Player, new CommandEventHandler( SetSecondaryAbility_OnCommand ) );
-			CommandSystem.Register( "SetThirdAbility", AccessLevel.Player, new CommandEventHandler( SetThirdAbility_OnCommand ) );
-			CommandSystem.Register( "SetFourthAbility", AccessLevel.Player, new CommandEventHandler( SetFourthAbility_OnCommand ) );
-			CommandSystem.Register( "SetFifthAbility", AccessLevel.Player, new CommandEventHandler( SetFifthAbility_OnCommand ) );
-			CommandSystem.Register( "Set1", AccessLevel.Player, new CommandEventHandler( SetPrimaryAbility_OnCommand ) );
-			CommandSystem.Register( "Set2", AccessLevel.Player, new CommandEventHandler( SetSecondaryAbility_OnCommand ) );
-			CommandSystem.Register( "Set3", AccessLevel.Player, new CommandEventHandler( SetThirdAbility_OnCommand ) );
-			CommandSystem.Register( "Set4", AccessLevel.Player, new CommandEventHandler( SetFourthAbility_OnCommand ) );
-			CommandSystem.Register( "Set5", AccessLevel.Player, new CommandEventHandler( SetFifthAbility_OnCommand ) );
+			CommandSystem.Register( "SetPrimaryAbility", AccessLevel.Administrator, new CommandEventHandler( SetPrimaryAbility_OnCommand ) );
+			CommandSystem.Register( "SetSecondaryAbility", AccessLevel.Administrator, new CommandEventHandler( SetSecondaryAbility_OnCommand ) );
+			CommandSystem.Register( "SetThirdAbility", AccessLevel.Administrator, new CommandEventHandler( SetThirdAbility_OnCommand ) );
+			CommandSystem.Register( "SetFourthAbility", AccessLevel.Administrator, new CommandEventHandler( SetFourthAbility_OnCommand ) );
+			CommandSystem.Register( "SetFifthAbility", AccessLevel.Administrator, new CommandEventHandler( SetFifthAbility_OnCommand ) );
+			CommandSystem.Register( "Set1", AccessLevel.Administrator, new CommandEventHandler( SetPrimaryAbility_OnCommand ) );
+			CommandSystem.Register( "Set2", AccessLevel.Administrator, new CommandEventHandler( SetSecondaryAbility_OnCommand ) );
+			CommandSystem.Register( "Set3", AccessLevel.Administrator, new CommandEventHandler( SetThirdAbility_OnCommand ) );
+			CommandSystem.Register( "Set4", AccessLevel.Administrator, new CommandEventHandler( SetFourthAbility_OnCommand ) );
+			CommandSystem.Register( "Set5", AccessLevel.Administrator, new CommandEventHandler( SetFifthAbility_OnCommand ) );
 		}
 
 		[Usage( "SetPrimaryAbility" )]

@@ -55,6 +55,8 @@ namespace Server.Gumps
 
 		private void InitializeGump( Mobile from )
 		{
+            if (from is PlayerMobile)
+                return;
 			Closable=false;
 			Disposable=true;
 			Dragable=true;

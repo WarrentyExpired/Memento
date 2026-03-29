@@ -391,6 +391,11 @@ namespace Server.Items
 
 		public static bool SetCurrentAbility( Mobile m, WeaponAbility a )
 		{
+            if ( m.Player )
+            {
+                m.SendMessage("Weapon abiities have been disabled for now. Innate abilities still work.");
+                return false;
+            }
 			if ( !Core.AOS )
 			{
 				ClearCurrentAbility( m );
