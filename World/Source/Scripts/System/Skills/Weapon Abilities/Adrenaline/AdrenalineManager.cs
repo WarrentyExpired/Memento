@@ -11,25 +11,34 @@ namespace Server.Items
     {
         public static void OnCombatEvent(BaseWeapon weapon, Mobile attacker, Mobile defender)
         {
+            double armsLore = attacker.Skills[SkillName.ArmsLore].Value;
+            double procChance = 0.10 + ((armsLore) / 800);
             if (weapon == null || attacker == null || defender == null)
                 return;
             OnHit(attacker);
             // Swords Logic
             if (weapon.Skill == SkillName.Swords)
             {
-                // Innate Bleed
-                double armsLore = attacker.Skills[SkillName.ArmsLore].Value;
-                double procChance = 0.10 + ((armsLore) / 800);
-                if (Utility.RandomDouble () < procChance)
-                {
-                    double anatomy = attacker.Skills[SkillName.Anatomy].Value;
-                    InnateBleed.Apply(attacker, defender, anatomy);
-                }
-                // Riposte Stance
                 if (RiposteAbility.IsUnderEffects(defender))
                 {
                     RiposteAbility.CheckCounter(defender, attacker);
                 }
+            }
+            // Bludgeioning Logic
+            else if (weapon.Skill == SkillName.Bludgeoning)
+            {
+            }
+            // Marksmanship Logic
+            else if (weapon.Skill == SkillName.Marksmanship)
+            {
+            }
+            // FistFighting Logic
+            else if (weapon.Skill == SkillName.FistFighting)
+            {
+            }
+            // Fencing Logic
+            else if (weapon.Skill == SkillName.Fencing)
+            {
             }
         }
         public class AdrenalineCommands
@@ -67,7 +76,7 @@ namespace Server.Items
                     {
                         case 1: CleaveAbility.OnUse(pm); break;
                         case 2: RiposteAbility.OnUse(pm); break;
-                        case 3: pm.SendMessage("Executioner Strike not implemented yet."); break;
+                        case 3: ExecutionerStrike.OnUse(pm); break;
                     }
                 }
                 else if (weapon.Skill == SkillName.Marksmanship)

@@ -1639,7 +1639,7 @@ namespace Server.Items
 			bool BladeWeaving = Bladeweave.BladeWeaving(attacker, out weaponA);
 
 			bool ignoreArmor = ( a is ArmorIgnore || (move != null && move.IgnoreArmor( attacker, defender )) || (BladeWeaving && weaponA is ArmorIgnore ));
-            //InnateAbilityManager.CheckInnate(this, attacker, defender, damage);
+            InnateAbilityManager.CheckInnate(this, attacker, defender, damage);
 			damageGiven = AOS.Damage( defender, attacker, damage, ignoreArmor, phys, fire, cold, pois, nrgy, chaos, direct, false, this is BaseRanged, false );
 
 			double propertyBonus = ( move == null ) ? 1.0 : move.GetPropertyBonus( attacker );

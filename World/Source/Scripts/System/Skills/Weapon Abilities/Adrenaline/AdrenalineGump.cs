@@ -21,6 +21,13 @@ namespace Server.Gumps
             this.Dragable = true;
             this.Resizable = false;
             int current = AdrenalineManager.GetAdrenaline(pm);
+            double focusBonus = pm.Skills[SkillName.Focus].Value / 20;
+            int cost1 = 25 - (int)focusBonus;
+            int cost2 = 40 - (int)focusBonus;
+            int cost3 = 60 - (int)focusBonus;
+            string color1 = (current >= cost1) ? "#00FF00" : "#888888";
+            string color2 = (current >= cost2) ? "#00FF00" : "#888888";
+            string color3 = (current >= cost3) ? "#00FF00" : "#888888";
             int width = 160;
             int height = 75;
             AddPage(0);
@@ -44,17 +51,14 @@ namespace Server.Gumps
                 }
             }
             // Button 1
-            string color1 = (current >= 25) ? "#00FF00" : "#FFFFFF"; 
             AddButton(10, 42, 2225, 2225, 1, GumpButtonType.Reply, 0); 
-            AddHtml(35, 45, 30, 20, $"<BASEFONT Color={color1}>25", false, false);
+            AddHtml(35, 45, 30, 20, $"<BASEFONT Color={color1}>{cost1}", false, false);
             // Button 2
-            string color2 = (current >= 40) ? "#00FF00" : "#FFFFFF";
             AddButton(60, 42, 2226, 2226, 2, GumpButtonType.Reply, 0); 
-            AddHtml(85, 45, 30, 20, $"<BASEFONT Color={color2}>40", false, false);
+            AddHtml(85, 45, 30, 20, $"<BASEFONT Color={color2}>{cost2}", false, false);
             // Button 3
-            string color3 = (current >= 60) ? "#00FF00" : "#FFFFFF";
             AddButton(110, 42, 2227, 2227, 3, GumpButtonType.Reply, 0); 
-            AddHtml(135, 45, 30, 20, $"<BASEFONT Color={color3}>60", false, false);
+            AddHtml(135, 45, 30, 20, $"<BASEFONT Color={color3}>{cost3}", false, false);
         }
         public override void OnResponse(NetState sender, RelayInfo info)
         {

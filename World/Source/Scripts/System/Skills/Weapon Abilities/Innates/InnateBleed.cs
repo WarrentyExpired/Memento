@@ -61,5 +61,16 @@ namespace Server.Items
                 }
             }
         }
+        public static void ClearBleed(Mobile m)
+        {
+            if (m != null && m_Table.Contains(m))
+            {
+                Timer t = (Timer)m_Table[m];
+                if (t != null)
+                    t.Stop();
+                m_Table.Remove(m);
+                m.SendMessage("The deep wound has been closed by the strike.");
+            }
+        }
     }
 }
