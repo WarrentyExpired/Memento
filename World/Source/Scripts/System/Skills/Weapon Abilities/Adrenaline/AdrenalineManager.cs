@@ -9,6 +9,29 @@ namespace Server.Items
 {
     public class AdrenalineManager
     {
+        public static void OnCombatEvent(BaseWeapon weapon, Mobile attacker, Mobile defender)
+        {
+            if (weapon == null || attacker == null || defender == null)
+                return;
+            OnHit(attacker);
+            // Swords Logic
+            if (weapon.Skill == SkillName.Swords)
+            {
+                // Innate Bleed
+                double armsLore = attacker.Skills[SkillName.ArmsLore].Value;
+                double procChance = 0.10 + ((armsLore) / 800);
+                if (Utility.RandomDouble () < procChance)
+                {
+                    double anatomy = attacker.Skills[SkillName.Anatomy].Value;
+                    InnateBleed.Apply(attacker, defender, anatomy);
+                }
+                // Riposte Stance
+                if (RiposteAbility.IsUnderEffects(defender))
+                {
+                    RiposteAbility.CheckCounter(defender, attacker);
+                }
+            }
+        }
         public class AdrenalineCommands
         {
             public static void Initialize()
@@ -16,6 +39,7 @@ namespace Server.Items
                 CommandSystem.Register("Adrenaline1", AccessLevel.Player, new CommandEventHandler(OnAbility1));
                 CommandSystem.Register("Adrenaline2", AccessLevel.Player, new CommandEventHandler(OnAbility2));
                 CommandSystem.Register("Adrenaline3", AccessLevel.Player, new CommandEventHandler(OnAbility3));
+                new AdrenalineTimer().Start();
             }
             [Usage("Adrenaline1")]
             public static void OnAbility1(CommandEventArgs e)
@@ -42,7 +66,7 @@ namespace Server.Items
                     switch (slot)
                     {
                         case 1: CleaveAbility.OnUse(pm); break;
-                        case 2: pm.SendMessage("Defensive Sword move not implemented yet."); break;
+                        case 2: RiposteAbility.OnUse(pm); break;
                         case 3: pm.SendMessage("Executioner Strike not implemented yet."); break;
                     }
                 }
@@ -75,7 +99,7 @@ namespace Server.Items
         }
         private class AdrenalineTimer : Timer
         {
-            public AdrenalineTimer() : base(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(8))
+            public AdrenalineTimer() : base(TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(10))
             {
                 Priority = TimerPriority.OneSecond;
             }
@@ -112,8 +136,7 @@ namespace Server.Items
             BaseWeapon weapon = attacker.Weapon as BaseWeapon;
             if (weapon == null) return;
             double speedFactor = weapon.Speed * 2.5;
-            double focusBonus = attacker.Skills[SkillName.Focus].Value;
-            
+            double focusBonus = attacker.Skills[SkillName.Focus].Value / 20.0;
             int gain = (int)(speedFactor + focusBonus);
             if (gain < 5) gain = 5;
             SetAdrenaline(attacker, GetAdrenaline(attacker) + gain);
@@ -122,16 +145,10 @@ namespace Server.Items
         {
             int current = GetAdrenaline(m);
             if (current <= 0) return;
-            if (m.Combatant != null && m.InRange(m.Combatant.Location, 12) && m.Combatant.Alive)
-            {
-                return;
-            }
             double focus = m.Skills[SkillName.Focus].Value;
             int loss = 5 - (int)(focus / 20);
-            if (loss > 0)
-            {
-                SetAdrenaline(m, current - loss);
-            }
+            if (loss < 1) loss = 1;
+            SetAdrenaline(m, current - loss);
         }
     }
 }
