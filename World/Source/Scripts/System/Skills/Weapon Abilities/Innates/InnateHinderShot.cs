@@ -17,6 +17,7 @@ namespace Server.Items
             AOS.Damage(defender, attacker, extraDamage, false, 100, 0, 0, 0, 0, 0, 0, false, true, false);
             defender.FixedParticles(0x376A, 1, 32, 0x1535, 0x0, 0, EffectLayer.Waist);
             attacker.SendMessage("Your shot hinders the enemy's movement!");
+            defender.SendMessage("The shot hinders your movment!");
         }
     }
 }

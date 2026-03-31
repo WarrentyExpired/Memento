@@ -19,9 +19,11 @@ namespace Server.Items
                 { 
                     defender.RemoveResistanceMod(mod);
                     attacker.SendMessage("Your enemy fixed thier armor.");
+                    defender.SendMessage("You fixed your armor.");
                 });
             }
             attacker.SendMessage("You pierce through a weak point in their armor!");
+            defender.SendMessage("Your armor has been weakened!");
             defender.FixedParticles(0x3728, 1, 13, 0x480, 0, 0, EffectLayer.Waist);
             AOS.Damage(defender, attacker, bonusDamage, false, 0, 0, 0, 0, 0, 0, 100, false, false, false);
         }

@@ -19,6 +19,7 @@ namespace Server.Items
             //attacker.Stam += (stamDrain / 2);
             HitLower.ApplyDefense(defender);
             attacker.SendMessage("You deliver a draining punch!");
+            defender.SendMessage("You recieve a draining punch!");
             defender.FixedParticles(0x374A, 1, 15, 5054, 0x482, 0, EffectLayer.Waist);
         }
     }

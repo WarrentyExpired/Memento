@@ -89,7 +89,12 @@ namespace Server.Items
                 }
                 else if (weapon.Skill == SkillName.Bludgeoning)
                 {
-                    pm.SendMessage("Bludgeoning abilies coming soon!");
+                    switch (slot)
+                    {
+                        case 1: ArmorBuster.OnUse(pm); break;
+                        case 2: IronWill.OnUse(pm); break;
+                        case 3: pm.SendMessage("Coming soon"); break;
+                    }
                 }
                 else if (weapon.Skill == SkillName.FistFighting)
                 {

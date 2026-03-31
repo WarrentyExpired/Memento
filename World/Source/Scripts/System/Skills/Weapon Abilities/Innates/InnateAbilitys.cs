@@ -68,7 +68,7 @@ namespace Server.Items
         private static void ApplyBludgeoning(Mobile attacker, Mobile defender, double tactics)
         {
             // Bludgeoning
-            InnateCrushingBlow.Apply(attacker, defender, tactics);
+            InnateConcussiveBlow.Apply(attacker, defender, tactics);
         }
 
         private static void ApplyFencing(Mobile attacker, Mobile defender, double tactics)
