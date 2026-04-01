@@ -53,7 +53,7 @@ namespace Server.SkillHandlers
 			if ( !Utility.RandomBool() ) return false;
 			if ( armsLore < Utility.Random(100) ) return false;
 
-			parent.SendMessage(0x3B2, "You notice your equipment is especially durable.");
+			//parent.SendMessage(0x3B2, "You notice your equipment is especially durable.");
 
 			return true;
 		}
