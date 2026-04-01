@@ -1881,10 +1881,7 @@ namespace Server.Items
 					}
 				}
 			}
-            if (attacker.Player)
-            {
-                Server.Items.AdrenalineManager.OnCombatEvent(this, attacker, defender);
-            }
+            Server.Items.AdrenalineManager.OnCombatEvent(this, attacker, defender);
 		}
 
 		public virtual double GetAosDamage( Mobile attacker, int bonus, int dice, int sides )

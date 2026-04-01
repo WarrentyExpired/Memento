@@ -9,12 +9,11 @@ namespace Server.Items
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
-            int cost = 25;
-            cost -= (int)(attacker.Skills[SkillName.Focus].Value / 20);
+            int cost = 20 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
             int current = AdrenalineManager.GetAdrenaline(attacker);
             if (current < cost)
             {
-                attacker.SendMessage("You need {0} Adrenaline to Cleave!", cost);
+                attacker.SendMessage("You need atleast {0} Adrenaline to use Cleave", cost);
                 return;
             }
             var targets = new List<Mobile>();

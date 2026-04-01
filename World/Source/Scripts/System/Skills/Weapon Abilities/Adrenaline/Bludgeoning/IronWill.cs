@@ -12,11 +12,11 @@ namespace Server.Items
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
-            int cost = 40 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
-            int currentAdrenaline = AdrenalineManager.GetAdrenaline(attacker);
-            if (currentAdrenaline < cost)
+            int cost = 30 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
+            int current = AdrenalineManager.GetAdrenaline(attacker);
+            if (current < cost)
             {
-                attacker.SendMessage("You need more adrenaline to harden your resolve.");
+                attacker.SendMessage("You need atleast {0} Adrenaline to use Iron Will.", cost);
                 return;
             }
             if (IsActive(attacker))
@@ -27,7 +27,7 @@ namespace Server.Items
             double focus = attacker.Skills[SkillName.Focus].Value;
             int strBonus = (int)(focus / 5);
             if (strBonus < 5) strBonus = 5;
-            AdrenalineManager.SetAdrenaline(attacker, currentAdrenaline - cost);
+            AdrenalineManager.SetAdrenaline(attacker, current - cost);
             attacker.PlaySound(0x6B4); 
             attacker.FixedEffect(0x376A, 9, 32, 5015, 0); 
             attacker.SendMessage("You harden your resolve, surging with temporary strength!");

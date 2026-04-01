@@ -7,7 +7,7 @@ namespace Server.Items
     public class RiposteAbility
     {
         private static Hashtable m_Table = new Hashtable();
-        public static bool IsUnderEffects(Mobile m)
+        public static bool IsActive(Mobile m)
         {
             return m != null && m_Table.Contains(m);
         }
@@ -39,15 +39,14 @@ namespace Server.Items
         {
             if (!attacker.Player || !attacker.Alive) return;
 
-            int cost = 40;
-            cost -= (int)(attacker.Skills[SkillName.Focus].Value / 20);
+            int cost = 30 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
             int current = AdrenalineManager.GetAdrenaline(attacker);
             if (current < cost)
             {
-                attacker.SendMessage("You need {0} Adrenaline to Riposte!", cost);
+                attacker.SendMessage("You need atleast {0} Adrenaline to use Riposte.", cost);
                 return;
             }
-            if (IsUnderEffects(attacker))
+            if (IsActive(attacker))
             {
                 attacker.SendMessage("You are already in a defensive stance.");
                 return;

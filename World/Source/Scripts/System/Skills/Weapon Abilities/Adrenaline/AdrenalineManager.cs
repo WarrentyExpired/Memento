@@ -11,34 +11,32 @@ namespace Server.Items
     {
         public static void OnCombatEvent(BaseWeapon weapon, Mobile attacker, Mobile defender)
         {
-            double armsLore = attacker.Skills[SkillName.ArmsLore].Value;
-            double procChance = 0.10 + ((armsLore) / 800);
-            if (weapon == null || attacker == null || defender == null)
+            if (attacker == null || defender == null)
                 return;
             OnHit(attacker);
-            // Swords Logic
-            if (weapon.Skill == SkillName.Swords)
+            // --- Defensive abilities section
+            PlayerMobile pmDef = defender as PlayerMobile;
+            if (pmDef != null)
             {
-                if (RiposteAbility.IsUnderEffects(defender))
+                if (PunchingBag.IsActive(pmDef))
                 {
-                    RiposteAbility.CheckCounter(defender, attacker);
+                    PunchingBag.CheckAbsorb(pmDef);
+                }
+                if (RiposteAbility.IsActive(pmDef))
+                {
+                    RiposteAbility.CheckCounter(pmDef, attacker);
                 }
             }
-            // Bludgeioning Logic
-            else if (weapon.Skill == SkillName.Bludgeoning)
+            // --- Offensive abilities section
+            if (weapon == null)
+                return;
+            if (weapon.Skill == SkillName.Marksmanship && Hawkeye.IsActive(attacker))
             {
+                Hawkeye.CheckDamage(attacker, defender, weapon);
             }
-            // Marksmanship Logic
-            else if (weapon.Skill == SkillName.Marksmanship)
-            {
-            }
-            // FistFighting Logic
             else if (weapon.Skill == SkillName.FistFighting)
             {
-            }
-            // Fencing Logic
-            else if (weapon.Skill == SkillName.Fencing)
-            {
+                Haymaker.CheckFinish(attacker, defender);
             }
         }
         public class AdrenalineCommands
@@ -81,7 +79,12 @@ namespace Server.Items
                 }
                 else if (weapon.Skill == SkillName.Marksmanship)
                 {
-                    pm.SendMessage("Marksmanship abilites coming soon!");
+                    switch (slot)
+                    {
+                        case 1: CripplingShot.OnUse(pm); break;
+                        case 2: Hawkeye.OnUse(pm); break;
+                        case 3: Trueflight.OnUse(pm); break;
+                    }
                 }
                 else if (weapon.Skill == SkillName.Fencing)
                 {
@@ -93,12 +96,17 @@ namespace Server.Items
                     {
                         case 1: ArmorBuster.OnUse(pm); break;
                         case 2: IronWill.OnUse(pm); break;
-                        case 3: pm.SendMessage("Coming soon"); break;
+                        case 3: Skullcracker.OnUse(pm); break;
                     }
                 }
                 else if (weapon.Skill == SkillName.FistFighting)
                 {
-                    pm.SendMessage("FistFighting abilitys coming soon!");
+                    switch (slot)
+                    {
+                        case 1: KidneyShot.OnUse(pm); break;
+                        case 2: PunchingBag.OnUse(pm); break;
+                        case 3: Haymaker.OnUse(pm); break;
+                    }
                 }
                 else
                 {
@@ -148,7 +156,8 @@ namespace Server.Items
         {
             if (!attacker.Player || !attacker.Alive) return;
             BaseWeapon weapon = attacker.Weapon as BaseWeapon;
-            if (weapon == null) return;
+            if (weapon == null || (weapon.Skill == SkillName.FistFighting && !(weapon is IPugilistGlove)))
+                return;
             double speedFactor = weapon.Speed * 2.5;
             double focusBonus = attacker.Skills[SkillName.Focus].Value / 20.0;
             int gain = (int)(speedFactor + focusBonus);

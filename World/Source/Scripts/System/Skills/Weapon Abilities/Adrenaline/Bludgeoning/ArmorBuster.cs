@@ -14,11 +14,11 @@ namespace Server.Items
                 attacker.SendMessage("Target out of range.");
                 return;
             }
-            int cost = 25 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
+            int cost = 20 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
             int current = AdrenalineManager.GetAdrenaline(attacker);
             if (current < cost)
             {
-                attacker.SendMessage("Need more Adrenaline!");
+                attacker.SendMessage("You need atleast {0} Adrenaline to use Armor Buster.", cost);
                 return;
             }
             AdrenalineManager.SetAdrenaline(attacker, current - cost);

@@ -52,7 +52,7 @@ namespace Server.Items
                 {
                     ApplyMarksmanship(attacker, defender, tactics);
                 }
-                else if (weapon.DefSkill == SkillName.FistFighting || weapon is IPugilistGlove)
+                else if (weapon is IPugilistGlove)
                 {
                     ApplyFistFighting(attacker, defender, anatomy);
                 }

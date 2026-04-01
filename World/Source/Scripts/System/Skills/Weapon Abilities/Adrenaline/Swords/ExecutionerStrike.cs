@@ -14,12 +14,11 @@ namespace Server.Items
                 attacker.SendMessage("You must be closer to your target to execute this move!");
                 return;
             }
-            int cost = 60;
-            cost -= (int)(attacker.Skills[SkillName.Focus].Value / 20);
+            int cost = 50 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
             int current = AdrenalineManager.GetAdrenaline(attacker);
             if (current < cost)
             {
-                attacker.SendMessage("You need {0} Adrenaline for an Executioner's Strike!", cost);
+                attacker.SendMessage("You need atleast {0} to use Executioner Strike.", cost);
                 return;
             }
             BaseWeapon weapon = attacker.Weapon as BaseWeapon;
