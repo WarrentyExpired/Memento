@@ -8,26 +8,23 @@ namespace Server.Items
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
-            Mobile defender = attacker.Combatant as Mobile;
-            if (defender == null || !defender.Alive || !attacker.InRange(defender, 2))
+            if (AdrenalineManager.GetQueuedAbility(attacker) == 3)
             {
-                attacker.SendMessage("You must be closer to your target to execute this move!");
+                attacker.SendMessage("You are already preparing an execution!");
                 return;
             }
-            int cost = 50 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
-            int current = AdrenalineManager.GetAdrenaline(attacker);
-            if (current < cost)
-            {
-                attacker.SendMessage("You need atleast {0} to use Executioner Strike.", cost);
+            if (!AdrenalineManager.HasAndConsume(attacker, 3))
                 return;
-            }
+            AdrenalineManager.QueueAbility(attacker, 3);
+            attacker.PlaySound(0x64F); 
+            attacker.SendMessage("You prepare a final, decisive strike.");
+        }
+        public static void OnHit(Mobile attacker, Mobile defender)
+        {
+            if (attacker == null || defender == null || !defender.Alive)
+                return;
             BaseWeapon weapon = attacker.Weapon as BaseWeapon;
-            if (weapon == null || weapon.Skill != SkillName.Swords)
-            {
-                attacker.SendMessage("You must be wielding a blade to use this ability!");
-                return;
-            }
-            AdrenalineManager.SetAdrenaline(attacker, current - cost);
+            if (weapon == null) return;
             attacker.Animate(9, 8, 1, true, false, 0);
             attacker.PlaySound(0x213);
             double damageScalar = 1.75;
@@ -35,7 +32,7 @@ namespace Server.Items
             {
                 defender.FixedParticles(0x377A, 244, 25, 9533, 994, 0, EffectLayer.Waist);
                 attacker.SendMessage("You execute the wounded foe, consuming the bleed!");
-                damageScalar += 1.0; 
+                damageScalar += 1.0;
                 InnateBleed.ClearBleed(defender);
             }
             if (defender.Hits < (defender.HitsMax / 3))
@@ -43,7 +40,7 @@ namespace Server.Items
                 double hpPercent = (double)defender.Hits / defender.HitsMax;
                 double executeBonus = (0.5 - hpPercent) * 2.0;
                 damageScalar += Math.Max(0, executeBonus);
-                attacker.SendMessage("Your target is weak taking extra damage!");
+                attacker.SendMessage("Your target is weak, taking extra damage!");
             }
             weapon.OnHit(attacker, defender, damageScalar);
         }

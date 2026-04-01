@@ -1,41 +1,37 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using Server.Mobiles;
+using Server.Items;
 namespace Server.Items
 {
     public class Hawkeye
     {
-        private static Hashtable m_Table = new Hashtable();
+        private static HashSet<Mobile> m_ActiveSet = new HashSet<Mobile>();
         public static bool IsActive(Mobile m)
         {
-            return m != null && m_Table.Contains(m);
+            return m != null && m_ActiveSet.Contains(m);
         }
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
-            int cost = 30 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
-            int current = AdrenalineManager.GetAdrenaline(attacker);
-            if (current < cost)
-            {
-                attacker.SendMessage("You need atleast {0} Adrenaline to use Hawkeye.", cost);
-                return;
-            }
             if (IsActive(attacker))
             {
                 attacker.SendMessage("Your vision is already focused.");
                 return;
             }
-            AdrenalineManager.SetAdrenaline(attacker, current - cost);
+            if (!AdrenalineManager.HasAndConsume(attacker, 2))
+                return;
             attacker.PlaySound(0x2E6); 
             attacker.FixedEffect(0x375A, 10, 20); 
             attacker.SendMessage("Your vision sharpens, highlighting enemy weaknesses.");
-            m_Table[attacker] = true;
+            m_ActiveSet.Add(attacker);
             Timer.DelayCall(TimeSpan.FromSeconds(10.0), () =>
             {
-                if (m_Table.Contains(attacker))
+                if (m_ActiveSet.Contains(attacker))
                 {
-                    m_Table.Remove(attacker);
-                    attacker.SendMessage("Your Hawkeye focus fades.");
+                    m_ActiveSet.Remove(attacker);
+                    if (attacker.Alive)
+                        attacker.SendMessage("Your Hawkeye focus fades.");
                 }
             });
         }
@@ -47,10 +43,9 @@ namespace Server.Items
             int extraDamage = (int)(weapon.MaxDamage * bonus);
             if (extraDamage > 0)
             {
-                // AOS.Damage(defender, attacker, damage, phys, fire, cold, pois, nrgy, bonus, etc)
-                AOS.Damage(defender, attacker, extraDamage, false, 0, 0, 0, 0, 0, 0, 100, false, true, false);
-                attacker.SendMessage("Your precise aim finds a gap in thier armor!");
-                defender.FixedEffect(0x37B9, 1, 16, 0x1, 0);
+                defender.Damage(extraDamage, attacker);
+                attacker.SendMessage("Your precise aim finds a gap in their armor!");
+                defender.FixedEffect(0x37B9, 1, 16, 0x1, 0); 
             }
         }
     }

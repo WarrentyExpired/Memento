@@ -5,36 +5,34 @@ namespace Server.Items
 {
     public class CripplingShot
     {
+        // 1. THE BUTTON CLICK: Queues the move
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
-            Mobile defender = attacker.Combatant as Mobile;
-            if (defender == null || !defender.Alive || !attacker.InRange(defender, 12))
+            if (AdrenalineManager.GetQueuedAbility(attacker) == 1)
             {
-                attacker.SendMessage("You must have a target in range to cripple them!");
+                attacker.SendMessage("You are already lining up a crippling shot!");
                 return;
             }
-            // --- ADRENALINE COST ---
-            int cost = 20 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
-            int current = AdrenalineManager.GetAdrenaline(attacker);
-            if (current < cost)
-            {
-                attacker.SendMessage("You need atleast {0} Adrenaline to use Crippling Shot!", cost);
+            if (!AdrenalineManager.HasAndConsume(attacker, 1))
                 return;
-            }
-            AdrenalineManager.SetAdrenaline(attacker, current - cost);
+            AdrenalineManager.QueueAbility(attacker, 1);
+            attacker.PlaySound(0x64F); 
+            attacker.SendMessage("You aim for the target's joints, preparing to cripple them.");
+        }
+        public static void OnHit(Mobile attacker, Mobile defender)
+        {
+            if (attacker == null || defender == null || !defender.Alive)
+                return;
+            BaseWeapon weapon = attacker.Weapon as BaseWeapon;
+            if (weapon == null) return;
             attacker.PlaySound(0x234); 
-            defender.FixedEffect(0x376A, 9, 32, 1168, 0); // Green sparkle effect
+            defender.FixedEffect(0x376A, 9, 32, 1168, 0);
             int dexReduction = (int)(attacker.Skills[SkillName.Focus].Value / 4);
             if (dexReduction < 10) dexReduction = 10;
             defender.AddStatMod(new StatMod(StatType.Dex, "CripplingShot", -dexReduction, TimeSpan.FromSeconds(6.0)));
             attacker.SendMessage("Your shot cripples the enemy's movement!");
-            defender.SendMessage("You have been crippled, slowing your actions!");
-            BaseWeapon weapon = attacker.Weapon as BaseWeapon;
-            if (weapon != null)
-            {
-                weapon.OnHit(attacker, defender, 1.5);
-            }
+            weapon.OnHit(attacker, defender, 1.5);
         }
     }
 }

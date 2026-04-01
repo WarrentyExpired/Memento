@@ -8,41 +8,44 @@ namespace Server.Items
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
-            Mobile defender = attacker.Combatant as Mobile;
-            if (defender == null || !defender.Alive || !attacker.InRange(defender, 2))
+            if (AdrenalineManager.GetQueuedAbility(attacker) == 1)
             {
-                attacker.SendMessage("Target out of range.");
+                attacker.SendMessage("You are already preparing that move!");
                 return;
             }
-            int cost = 20 - (int)(attacker.Skills[SkillName.Focus].Value / 20);
-            int current = AdrenalineManager.GetAdrenaline(attacker);
-            if (current < cost)
-            {
-                attacker.SendMessage("You need atleast {0} Adrenaline to use Armor Buster.", cost);
+            if (!AdrenalineManager.HasAndConsume(attacker, 1))
                 return;
-            }
-            AdrenalineManager.SetAdrenaline(attacker, current - cost);
+            AdrenalineManager.QueueAbility(attacker, 1);
+            attacker.PlaySound(0x64F);
+            attacker.SendMessage("You prepare to shatter your target's armor.");
+        }
+        public static void OnHit(Mobile attacker, Mobile defender)
+        {
+            if (attacker == null || defender == null || !defender.Alive)
+                return;
             attacker.Animate(9, 8, 1, true, false, 0);
             attacker.PlaySound(0x3B3);
-            int stripAmount = defender.Resistances[0] / 4; 
+            defender.FixedParticles(0x37B9, 1, 15, 9502, 0, 3, EffectLayer.Waist);
+            int stripAmount = defender.PhysicalResistance / 4; 
             if (stripAmount > 0)
             {
-                defender.Resistances[0] -= stripAmount;
+                ResistanceMod mod = new ResistanceMod(ResistanceType.Physical, -stripAmount);
+                defender.AddResistanceMod(mod);
                 attacker.SendMessage("You shatter their armor, exposing a weakness!");
-                defender.SendMessage("Your armor has been shattered!");
-                defender.FixedParticles(0x37B9, 1, 15, 9502, 0, 3, EffectLayer.Waist);
                 Timer.DelayCall(TimeSpan.FromSeconds(6.0), () =>
                 {
                     if (defender != null)
                     {
-                        defender.Resistances[0] += stripAmount;
+                        defender.RemoveResistanceMod(mod);
                         defender.SendMessage("Your armor has been repaired.");
                     }
                 });
             }
             BaseWeapon weapon = attacker.Weapon as BaseWeapon;
             if (weapon != null)
+            {
                 weapon.OnHit(attacker, defender, 1.25);
+            }
         }
     }
 }

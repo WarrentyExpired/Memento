@@ -21,10 +21,9 @@ namespace Server.Gumps
             this.Dragable = true;
             this.Resizable = false;
             int current = AdrenalineManager.GetAdrenaline(pm);
-            double focusBonus = pm.Skills[SkillName.Focus].Value / 20;
-            int cost1 = 20 - (int)focusBonus;
-            int cost2 = 30 - (int)focusBonus;
-            int cost3 = 50 - (int)focusBonus;
+            int cost1 = AdrenalineManager.GetCost(pm, 1);
+            int cost2 = AdrenalineManager.GetCost(pm, 2);
+            int cost3 = AdrenalineManager.GetCost(pm, 3);
             string color1 = (current >= cost1) ? "#00FF00" : "#888888";
             string color2 = (current >= cost2) ? "#00FF00" : "#888888";
             string color3 = (current >= cost3) ? "#00FF00" : "#888888";

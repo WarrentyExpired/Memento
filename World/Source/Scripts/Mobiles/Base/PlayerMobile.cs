@@ -2170,7 +2170,7 @@ namespace Server.Mobiles
 
 			if ( willKill && from is PlayerMobile )
 				Timer.DelayCall( TimeSpan.FromSeconds( 10 ), new TimerCallback( ((PlayerMobile) from).RecoverAmmo ) );
-
+            Server.Items.AdrenalineManager.ProcessDefense(this, from, amount);
 			base.OnDamage( amount, from, willKill );
 		}
 
