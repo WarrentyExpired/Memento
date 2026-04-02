@@ -51,7 +51,7 @@ namespace Server.Items
             AddLabel(345, 80, 1152, "100");
             AddLabel(385, 80, 1152, "500");
             AddLabel(430, 80, 1152, "All");
-            AddLabel(475, 80, 1152, "Tool");
+            AddLabel(475, 80, 1152, "Amount");
 
             int itemsPerPage = 10;
             int start = m_Page * itemsPerPage;

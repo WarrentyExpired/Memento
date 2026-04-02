@@ -134,7 +134,7 @@ namespace Server.Items
                 double speedGain = weapon.Speed;// / 5.0;
                 double focusGain = attacker.Skills[SkillName.Focus].Value / 10.0;
                 int totalGain = (int)(speedGain + focusGain);
-                SetAdrenaline(attacker, GetAdrenaline(attacker) + Math.Max(2, totalGain));
+                SetAdrenaline(attacker, GetAdrenaline(attacker) + Math.Max(5, totalGain));
             }
         }
         // --- THE DEFENSIVE SENSOR (From PlayerMobile) ---
