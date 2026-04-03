@@ -10,7 +10,7 @@ namespace Server.Items
         {
             if (attacker == null || defender == null)
                 return;
-            int bonusDamage = 15 + (int)(tactics / 8.0);
+            int bonusDamage = 5 + (int)(tactics / 8.0);
             if (defender is BaseCreature)
             {
                 ResistanceMod mod = new ResistanceMod(ResistanceType.Physical, -10);

@@ -10,7 +10,7 @@ namespace Server.Items
             if (attacker == null || !attacker.Alive) return;
             if (AdrenalineManager.GetQueuedAbility(attacker) == 1)
             {
-                attacker.SendMessage("You are already lining up a venomous strike!");
+                attacker.SendMessage("You are already lining up for a vipers strike!");
                 return;
             }
             if (!AdrenalineManager.HasAndConsume(attacker, 1))
@@ -18,7 +18,7 @@ namespace Server.Items
             AdrenalineManager.QueueAbility(attacker, 1);
             attacker.PlaySound(0x64F); 
             attacker.FixedEffect(0x376A, 1, 32, 0x47, 0);
-            attacker.SendMessage("You prepare a toxic opening in your target's defenses.");
+            attacker.SendMessage("You prepare a damaging vipers strike!");
         }
         public static void OnHit(Mobile attacker, Mobile defender)
         {
@@ -31,8 +31,7 @@ namespace Server.Items
             if (poisonSkill >= 30.0 || isPoisonedBlade)
             {
                 attacker.SendMessage("You deliver a venomous strike!");
-                defender.SendMessage("A toxic chill runs through your veins!");
-                ResistanceMod mod = new ResistanceMod(ResistanceType.Poison, -20);
+                ResistanceMod mod = new ResistanceMod(ResistanceType.Poison, -10);
                 defender.AddResistanceMod(mod);
                 Timer.DelayCall(TimeSpan.FromSeconds(10.0), () => defender.RemoveResistanceMod(mod));
                 Poison p = weapon.Poison ?? Poison.Lesser;

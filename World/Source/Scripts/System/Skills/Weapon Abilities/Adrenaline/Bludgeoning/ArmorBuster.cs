@@ -10,7 +10,7 @@ namespace Server.Items
             if (!attacker.Player || !attacker.Alive) return;
             if (AdrenalineManager.GetQueuedAbility(attacker) == 1)
             {
-                attacker.SendMessage("You are already preparing that move!");
+                attacker.SendMessage("You are already winding up to bust there armor!");
                 return;
             }
             if (!AdrenalineManager.HasAndConsume(attacker, 1))
@@ -37,7 +37,6 @@ namespace Server.Items
                     if (defender != null)
                     {
                         defender.RemoveResistanceMod(mod);
-                        defender.SendMessage("Your armor has been repaired.");
                     }
                 });
             }

@@ -36,7 +36,7 @@ namespace Server.Items
             attacker.SendMessage("You let fly a perfect shot from {0} tiles away!", dist);
             if (Hawkeye.IsActive(attacker))
             {
-                attacker.SendMessage("Your Hawkeye focus makes the shot find the heart!");
+                attacker.SendMessage("Your Hawkeye focus makes the shot find its target!");
                 defender.FixedParticles(0x373A, 10, 30, 5024, EffectLayer.Waist);
                 damageScalar += 0.5;
             }

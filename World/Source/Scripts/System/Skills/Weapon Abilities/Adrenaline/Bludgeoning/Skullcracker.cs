@@ -32,7 +32,7 @@ namespace Server.Items
                 damageScalar += (missingStam / 40.0);
                 if (damageScalar > 4.0)
                     damageScalar = 4.0;
-                attacker.SendMessage("You exploit their exhaustion, shattering their resolve!");
+                attacker.SendMessage("You exploit their exhaustion, for a devastating hit!");
                 defender.FixedParticles(0, 1, 0, 9946, 1153, 0, EffectLayer.Head);
             }
             if (defender.Stam < (defender.StamMax / 2))

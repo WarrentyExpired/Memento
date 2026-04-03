@@ -5,7 +5,6 @@ namespace Server.Items
 {
     public class CripplingShot
     {
-        // 1. THE BUTTON CLICK: Queues the move
         public static void OnUse(Mobile attacker)
         {
             if (!attacker.Player || !attacker.Alive) return;
