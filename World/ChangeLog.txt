@@ -1,0 +1,8 @@
+Initial Commit:
+  - Settings.cs setup with personal preferences.
+  - Increased auto-harvest range to 2.
+  - Removed overhead bandage message.
+  - Vendors now take gold from backpack first.
+  - Removed "Undress" attack from mobs.
+  - Removed mobs ability to steal and hide from players.
+  - Added Horizontal version of the CombatBar ([combatbarh).
