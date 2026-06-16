@@ -64,10 +64,10 @@ namespace Server.Mobiles
 		{
 			if ( DateTime.Now >= NextPickup )
 			{
-				switch( Utility.Random( 2 ) )
+				switch( Utility.Random( 1 ) )
 				{
 					case 0:	Peace( Combatant ); break;
-					case 1:	Undress( Combatant ); break;
+					//case 1:	Undress( Combatant ); break;
 				}
 			}
 			base.OnThink();

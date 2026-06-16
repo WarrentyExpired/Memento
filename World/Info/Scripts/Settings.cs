@@ -35,12 +35,12 @@ namespace Server
 	// button will simply say Website. When players select the button, it should open their browser to that site.
 	// EXAMPLE: https://google.com
 
-		public static string S_WebsiteLink = "https://discord.gg/mu7aAbRyJf";
-		public static string S_WebsiteName = "Memento Community Discord";
+		public static string S_WebsiteLink = "";
+		public static string S_WebsiteName = "";
 
 	// The game saves itself after this many minutes in decimal format between 10 and 240 minutes.
 
-		public static double S_ServerSaveMinutes = 30.0;
+		public static double S_ServerSaveMinutes = 10.0;
 
 	// If true, saves the game when your character logs out. Helpful for single player games.
 
@@ -51,11 +51,11 @@ namespace Server
 	// single player, and you turn the server on/off as required, then set this to true so these routines at least run
 	// when you start the game for you.
 
-		public static bool S_RunRoutinesAtStartup = true;
+		public static bool S_RunRoutinesAtStartup = false;
 
 	// This setting is the number of days a character must exist before a player can delete them.
 
-		public static double S_DeleteDays = 3.0;
+		public static double S_DeleteDays = 1.0;
 
 	// If true, players can just type in a name and password and it will create an account for them.
 
@@ -63,7 +63,7 @@ namespace Server
 
 	// The port you want your server to listen on.
 
-		public static int S_Port = 2593;
+		public static int S_Port = 8085;
 
 	// If you want to enter your IP for external connections, you can enter it here. Otherwise, the autodetect function
 	// below can likely do it for you automatically.
@@ -75,7 +75,7 @@ namespace Server
 
 	// Here you can enter the name of your server/world
 
-		public static string S_ServerName = "Memento";
+		public static string S_ServerName = "Avatars Conquest";
 
 	// If true, your public IP address will be auto detected to help with external connections.
 
@@ -126,7 +126,7 @@ namespace Server
 	// player has to find their corpse and potentially collect their belongings. The default for this setting is 10 minutes
 	// and the below is 110 minutes for a combined 2 hours or 120 minutes.
 
-		public static int S_CorpseDecay = 10;
+		public static int S_CorpseDecay = 60;
 
 	// The below setting is the number of minutes that a player character bones will decay. This option, as well as the
 	// option above, could potentially be used to have player character corpses remain longer or for a more difficult style
@@ -145,7 +145,7 @@ namespace Server
 
 	// If true, a player character cannot use macros to improve their skills quickly.
 
-		public static bool S_NoMacroing = true;
+		public static bool S_NoMacroing = false;
 
 	// You can increase the rate that stats gain from 50.0 (slow) to 10.0 (fast).
 
@@ -153,7 +153,7 @@ namespace Server
 
 	// How many minutes between stat gains which helps with the above setting. This can be between 5.0 to 60.0 minutes.
 
-		public static double S_StatGainDelay = 7.5;
+		public static double S_StatGainDelay = 5.0;
 
 	// If true, new characters can choose to take the alien origin route.
 	// This is a play style where one can choose to enter a transporter and be a character that crashed
@@ -179,7 +179,7 @@ namespace Server
 	// options, but also allows for creatures such as giants and balrons. There is a more details explanation of this system
 	// using the gypsy's shelf in her starting tent.
 
-		public static int S_MonsterCharacters = 1;
+		public static int S_MonsterCharacters = 0;
 
 	// If true, then characters will not get hungry or thirsty when inside places like banks, inns, or houses...allowing you
 	// to step away from the game without your character starving eventually.
@@ -212,7 +212,7 @@ namespace Server
 	// setting, and it cannot be lower than 1. If it was set to 20, and a charcter was level 10, then their resurrection cost
 	// would be a base of 200 gold/tithe ( 20 x 10 ).
 
-		public static int S_DeathPayLevel = 5;
+		public static int S_DeathPayLevel = 20;
 		public static int S_DeathPayAmount = 20;
 
 	// Spell damage toward monsters can be between 25 and 200 percent.
@@ -226,19 +226,19 @@ namespace Server
 	// Maximum amount of lower reagent percentage, up to 100 for 100%. For equipment with lower reagent properties.
 	// Setting it to zero will disable the attribute from the game.
 
-		public static int S_LowerReg = 100;
-		public static int S_LowerRegEnchantment = 20;
+		public static int S_LowerReg = 75;
+		public static int S_LowerRegEnchantment = 15;
 
 	// Maximum amount of lower mana percentage, up to 100 for 100%. For equipment with lower mana properties.
 	// Setting it to zero will disable the attribute from the game.
 
-		public static int S_LowerMana = 40;
+		public static int S_LowerMana = 30;
 		public static int S_LowerManaEnchantment = 8;
 
 	// This setting between 0.5 and 3.0 (decimal format) will give a character that much hit points, mana, or stamina based
 	// on the attribute. So a strength of 100 will give a character 200 hit points if this is set at 2.0.
 
-		public static double S_PlayerLevelMod = 2.0;
+		public static double S_PlayerLevelMod = 1.5;
 
 	// If true, then characters will be able to set a custom title for their character in the HELP section.
 
@@ -247,8 +247,8 @@ namespace Server
 	// This is the minimum and maximum gold that a player character starts with. Default is 100 and 150. The most gold a
 	// character can begin with is 10,000 gold.
 
-		public static int S_MinGold = 500;
-		public static int S_MaxGold = 600;
+		public static int S_MinGold = 600;
+		public static int S_MaxGold = 1000;
 
 	// If true, powerscrolls must be eaten in order 105 -> 110 -> 115 -> 120 -> 125
 
@@ -407,7 +407,7 @@ namespace Server
 
 	// If true, players cannot learn a recipe if their skill level is not high enough to craft the item.
 
-		public static bool S_RecipesRequireMinSkill = false;
+		public static bool S_RecipesRequireMinSkill = true;
 
 	// If false, only the player (or any character on their account) who acquired them can use them.
 
@@ -437,7 +437,7 @@ namespace Server
 	// occurs if the enemy can pass the various checks to even determine that they can dispel the summoned creature.
 	// If set to zero, this check does not occur as per default. Valid values are between 10 and 90.
 
-		public static int S_DispelFailure = 0;
+		public static int S_DispelFailure = 50;
 
 	// Increasing this number will only increase the hit points of all creatures that percentage, so setting this
 	// to 100 will double the hit points of creatures (adding an additional 100% on top of their normal hit points).
@@ -490,8 +490,8 @@ namespace Server
 	// rate than most of the creatures, and those particular creatures will use this spawn rate. They will then
 	// add additional minutes to reflect the longer spawn.
 
-		public static int S_SpawnMin = 45;
-		public static int S_SpawnMax = 60;
+		public static int S_SpawnMin = 25;
+		public static int S_SpawnMax = 40;
 
 
 	// This settings controls the limit in seconds by which you can be paralyzed by a monster. 
@@ -499,7 +499,7 @@ namespace Server
 	// value higher than 10 could mean that the paralyze cooldown is lower than its duration, 
 	// which can lead to frustrating fights as enemies can flee and chain-paralyze a character until they heal 
 	// enough to get back into the fight. 
-		public static double S_paralyzeDuration = 10.0;
+		public static double S_paralyzeDuration = 5.0;
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// 008 - MERCHANTS ////////////////////////////////////////////////////////////////////////////
@@ -517,12 +517,12 @@ namespace Server
 
 	// If true (default false) then vendors will buy anything they normally stock. Some items have a default rarity % that this setting does not affect.
 
-		public static bool S_BuyAll = true;
+		public static bool S_BuyAll = false;
 
 	// If false, then vendors will NOT buy some tailor materials (cotton, flax, wool, regular cloth, and string).
 	// Does not affect a custom merchant that is set to buy such items.
 
-		public static bool S_BuyCloth = false;
+		public static bool S_BuyCloth = true;
 
 	// If false, then vendors will not buy things from player characters. Merchant crates will also be disabled and act as normal containers.
 
@@ -611,7 +611,7 @@ namespace Server
 	// then specify this dual ownership when choosing an item security level. The default setting is false, where
 	// co-owners have much more limited permissions as the standard game allows.
 
-		public static bool S_HouseOwners = false;
+		public static bool S_HouseOwners = true;
 
 	// When true (default setting), characters can use lawn tools (from architects) to add items to the outside
 	// of their home like trees, shrubs, fences, lave, water, and other items. Lawn tools require an amount of
@@ -654,7 +654,7 @@ namespace Server
 	// If true, then players can make use of the custom house system. Otherwise they can only purchase the
 	// pre-built classic houses.
 
-		public static bool S_AllowCustomHomes = true;
+		public static bool S_AllowCustomHomes = false;
 
 	// If true, the public basement system is active. This lets players buy basement doors for their homes
 	// and basement doors will appear in some trade shops. These lead to the same basement public area and
@@ -740,7 +740,7 @@ namespace Server
 	// This number can be set from 0 to 30, which determines the number of days before you can bond
 	// a pet one tamed (default is 7).
 
-		public static int S_BondDays = 7;
+		public static int S_BondDays = 1;
 
 
 
