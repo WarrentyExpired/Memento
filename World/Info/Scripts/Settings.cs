@@ -51,7 +51,7 @@ namespace Server
 	// single player, and you turn the server on/off as required, then set this to true so these routines at least run
 	// when you start the game for you.
 
-		public static bool S_RunRoutinesAtStartup = false;
+		public static bool S_RunRoutinesAtStartup = true;
 
 	// This setting is the number of days a character must exist before a player can delete them.
 
