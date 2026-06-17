@@ -15,65 +15,6 @@ using Server.Engines.CannedEvil;
 
 namespace Server.Misc
 {
-    class BuildQuestItems
-    {
-        public static void CreateQuestItems()
-        {
-            // FIRST DELETE THE SHADOWLORDS ROAMING AROUND ////////////////////////////////////////
-            // THEN DELETE SERPENT ISLE CHARACTERS ////////////////////////////////////////////////
-            // THEN DELETE MANGAR IF HE IS STILL ROAMING AROUND ///////////////////////////////////
-            // THEN DELETE TIME LORD CHAMPIONS IF ROAMING AROUND //////////////////////////////////
-            // THE SPAWNERS APPEARS IN THE DECORATION FILES ///////////////////////////////////////
-            ArrayList npcs = new ArrayList();
-            ArrayList mounts = new ArrayList();
-            foreach (Mobile npc in World.Mobiles.Values)
-            {
-                if (npc is Mangar ||
-                        npc is CaddelliteDragon ||
-                        npc is Xurtzar ||
-                        npc is Arachnar ||
-                        npc is Surtaz ||
-                        npc is Vulcrum ||
-                        npc is Shadowlord ||
-                        npc is BaneOfAnarchy ||
-                        npc is BaneOfWantoness ||
-                        npc is BaneOfInsanity ||
-                        npc is SerpentOfOrder ||
-                        npc is SerpentOfChaos)
-                {
-                    npcs.Add(npc);
-                }
-                else if (npc is BaseMount && !(npc is EvilMount) && !(npc is Horse))
-                {
-                    mounts.Add(npc);
-                }
-            }
-
-            for (int i = 0; i < mounts.Count; ++i)
-            {
-                Mobile mnt = (Mobile)mounts[i];
-                BaseMount mounter = (BaseMount)mnt;
-                if (mounter.Controlled && mounter.ControlMaster is PlayerMobile) continue;
-
-                Type mobType = mnt.GetType();
-                Mobile mob = (Mobile)Activator.CreateInstance(mobType);
-                BaseMount mounted = (BaseMount)mob;
-                mounter.Body = mounted.Body;
-                mounter.ItemID = mounted.ItemID;
-                mounted.Delete();
-            }
-
-            for (int i = 0; i < npcs.Count; ++i)
-            {
-                Mobile dude = (Mobile)npcs[i];
-                dude.Delete();
-            }
-        }
-    }
-}
-
-namespace Server.Misc
-{
     class BuildTreasureChests
     {
         public static void CreateTreasureChests()
@@ -136,19 +77,11 @@ namespace Server.Commands
             }
 
             m_Mobile.SendMessage("Generating world decoration, please wait.");
-
-            ///// BUILD THE QUEST TELEPORTERS //////////////////////////////////////
-            BuildQuestItems.CreateQuestItems();
-
-            GenerateFile("Data/Decoration", "Bastion.cfg", Map.Vaelen);
-
+            GenerateFile("Data/Decoration", "MeetingSpots.cfg", Map.Vaelen);
+            GenerateFile("Data/Decoration", "Teleporters.cfg", Map.Vaelen);
+            GenerateFile("Data/Decoration", "Doors.cfg", Map.Vaelen);
+            GenerateFile("Data/Decoration", "Signs.cfg", Map.Vaelen);
             GenerateFile("Info/Decorations", "Vaelen.cfg", Map.Vaelen);
-            GenerateFile("Info/Decorations", "Lodor.cfg", Map.Lodor);
-            GenerateFile("Info/Decorations", "Underworld.cfg", Map.Underworld);
-            GenerateFile("Info/Decorations", "SerpentIsland.cfg", Map.SerpentIsland);
-            GenerateFile("Info/Decorations", "IslesOfDread.cfg", Map.IslesDread);
-            GenerateFile("Info/Decorations", "SavagedEmpire.cfg", Map.SavagedEmpire);
-            GenerateFile("Info/Decorations", "Atlantis.cfg", Map.Atlantis);
 
             ///// BUILD THE SEARCH PEDESTALS ///////////////////////////////////////
             BuildQuests.SearchCreate();
@@ -1802,26 +1735,13 @@ namespace Server.Misc
                 if (item != null) { item.Delete(); }
             }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("cotton"); plant.MoveToWorld(new Point3D(268, 1719, 40), Map.SavagedEmpire); }
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(288, 1707, 40), Map.SavagedEmpire); }
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("flax"); plant.MoveToWorld(new Point3D(268, 1707, 41), Map.SavagedEmpire); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("tailor"); plant.MoveToWorld(new Point3D(941, 639, 0), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2976, 1268, 0), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("tailor"); plant.MoveToWorld(new Point3D(6791, 1781, 20), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("food"); plant.MoveToWorld(new Point3D(6829, 1680, 1), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(922, 776, 0), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("cotton"); plant.MoveToWorld(new Point3D(1586, 1472, 2), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2637, 521, 0), Map.Vaelen); }
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2693, 608, 0), Map.Vaelen); }
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1829,297 +1749,66 @@ namespace Server.Misc
             string thisCrop = RandomCrop();
 
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6607, 3207, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6583, 3205, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6609, 3220, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6597, 3235, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6585, 3229, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6580, 3217, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(202, 1330, 0), Map.SavagedEmpire); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(201, 1336, 0), Map.SavagedEmpire); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(199, 1343, 0), Map.SavagedEmpire); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(219, 1298, 0), Map.SavagedEmpire); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(229, 1299, 0), Map.SavagedEmpire); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(225, 1298, 0), Map.SavagedEmpire); }
-
-            thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2966, 1268, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(922, 768, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(928, 768, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2700, 603, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2700, 608, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 603, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2704, 608, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 608, 0), Map.Vaelen); }
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 613, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 605, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 605, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 608, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 613, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 613, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 608, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2800, 613, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2800, 608, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2785, 918, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2785, 928, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2824, 989, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 977, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 987, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2832, 989, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 992, 0), Map.Vaelen); }
-
             thisCrop = RandomCrop();
-
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2832, 992, 0), Map.Vaelen); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(849, 2030, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(856, 2030, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(849, 2032, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(856, 2032, 0), Map.Lodor); }
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(849, 1998, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(860, 1998, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(849, 2000, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(860, 2000, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(860, 2006, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(864, 1998, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(864, 2006, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2087, 2430, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2087, 2440, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2096, 2430, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2096, 2440, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2072, 2050, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2080, 2050, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2101, 2141, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(4292, 1454, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(4300, 1454, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(4292, 1456, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(4300, 1456, 0), Map.Lodor); }
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2736, 1204, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2736, 1213, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2746, 1213, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2736, 1216, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2746, 1216, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2752, 1204, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2752, 1213, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2962, 1229, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2973, 1229, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2962, 1232, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2973, 1232, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(4214, 3022, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(4226, 2963, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2325, 3142, 0), Map.Lodor); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2092, 2191, 0), Map.Lodor); }
         }
     }
 }
@@ -3246,31 +2935,14 @@ namespace Server.Scripts.Commands
                 being.Delete();
             }
 
-            if (MySettings.ConsoleLog) { Console.WriteLine("Decorate Dungeon Homes..."); }
+            //if (MySettings.ConsoleLog) { Console.WriteLine("Decorate Dungeon Homes..."); }
             Server.Commands.Decorate.Decorate_OnCommand(e);
-            if (DungeonHomesDecorated == 0) { Server.Commands.Monopoly.Monopoly_OnCommand(e); }
+            //if (DungeonHomesDecorated == 0) { Server.Commands.Monopoly.Monopoly_OnCommand(e); }
 
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Dungeons..."); }
-            Server.SpawnGenerator.Parse(e.Mobile, "dangers.map");
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Land..."); }
-            Server.SpawnGenerator.Parse(e.Mobile, "land.map");
             if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Animals..."); }
             Server.SpawnGenerator.Parse(e.Mobile, "animals.map");
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn World..."); }
-            Server.SpawnGenerator.Parse(e.Mobile, "world.map");
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Pirates..."); }
-            Server.SpawnGenerator.Parse(e.Mobile, "pirates.map");
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Healers and Sea Creatures..."); }
-            Server.SpawnGenerator.Parse(e.Mobile, "spread.map");
             if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Bastion..."); }
             Server.SpawnGenerator.Parse(e.Mobile, "bastion.map");
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Terrors..."); }
-            if (MySettings.S_Scary)
-                Server.SpawnGenerator.Parse(e.Mobile, "scary.map");
-
-            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Custom..."); }
-            Server.SpawnGenerator.Parse(e.Mobile, "Spawns.map");
-            if (MySettings.S_CustomMerchant) { Server.SpawnGenerator.Parse(e.Mobile, "Merchant.map"); }
 
             if (MySettings.ConsoleLog) { Console.WriteLine("Respawn Regions..."); }
             Server.Regions.SpawnEntry.RespawnAllRegions_OnCommand(e);
@@ -3281,11 +2953,10 @@ namespace Server.Scripts.Commands
             Server.Items.TavernTable.PopulateHomes();
             if (MySettings.ConsoleLog) { Console.WriteLine("Build Workers..."); }
             Server.Items.WorkingSpots.PopulateVillages();
-
-            if (MySettings.ConsoleLog) { Console.WriteLine("Remove Stealables..."); }
-            Server.Items.StealableArtifactsSpawner.RemoveStealArties_OnCommand(e);
-            if (MySettings.ConsoleLog) { Console.WriteLine("Create Stealables..."); }
-            Server.Items.StealableArtifactsSpawner.GenStealArties_OnCommand(e);
+			if ( MySettings.ConsoleLog ){ Console.WriteLine( "Remove Stealables..." ); }
+			Server.Items.StealableArtifactsSpawner.RemoveStealArties_OnCommand( e );
+			if ( MySettings.ConsoleLog ){ Console.WriteLine( "Create Stealables..." ); }
+			Server.Items.StealableArtifactsSpawner.GenStealArties_OnCommand( e );
 
             // CLEAR THESE OUT AT CREATION TIME BECAUSE THEY DUPLICATE FOR SOME REASON
             if (MySettings.ConsoleLog) { Console.WriteLine("Delete Spawners, Cauldrons, and Pools...Again..."); }
@@ -3300,6 +2971,7 @@ namespace Server.Scripts.Commands
                 Item item = (Item)specials[i];
                 item.Delete();
             }
+            /*
             if (MySettings.ConsoleLog) { Console.WriteLine("Build Coffers..."); }
             Server.Items.Coffer.ConfigureAllThiefQuestItems();
 
@@ -3313,7 +2985,7 @@ namespace Server.Scripts.Commands
             if (MySettings.ConsoleLog) { Console.WriteLine("Rebuild ML Quest Spawners..."); }
             Engines.MLQuests.MLQuestSystem.MLQuestsClearSpawners_OnCommand(e);
             Engines.MLQuests.MLQuestSystem.MLQuestsGenerate_OnCommand(e);
-
+            */
             if (MySettings.ConsoleLog) { Console.WriteLine("World Has Been Rebuilt!"); }
             e.Mobile.SendMessage("The world has been rebuilt.");
         }
