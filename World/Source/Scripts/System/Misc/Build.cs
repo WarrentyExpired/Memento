@@ -140,13 +140,7 @@ namespace Server.Commands
             ///// BUILD THE QUEST TELEPORTERS //////////////////////////////////////
             BuildQuestItems.CreateQuestItems();
 
-            GenerateFile("Data/Decoration", "Sosaria.cfg", Map.Sosaria);
-            GenerateFile("Data/Decoration", "Lodor.cfg", Map.Lodor);
-            GenerateFile("Data/Decoration", "Underworld.cfg", Map.Underworld);
-            GenerateFile("Data/Decoration", "SerpentIsland.cfg", Map.SerpentIsland);
-            GenerateFile("Data/Decoration", "IslesOfDread.cfg", Map.IslesDread);
-            GenerateFile("Data/Decoration", "SavagedEmpire.cfg", Map.SavagedEmpire);
-            GenerateFile("Data/Decoration", "Atlantis.cfg", Map.Atlantis);
+            GenerateFile("Data/Decoration", "Bastion.cfg", Map.Sosaria);
 
             GenerateFile("Info/Decorations", "Sosaria.cfg", Map.Sosaria);
             GenerateFile("Info/Decorations", "Lodor.cfg", Map.Lodor);
