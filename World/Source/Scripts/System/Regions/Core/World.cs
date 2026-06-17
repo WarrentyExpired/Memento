@@ -38,7 +38,7 @@ namespace Server.Misc
 				bool runLog = false;
 
 				if ( world == "the Land of Lodoria" ){ PlayerSettings.SetDiscovered( from, world, true ); runLog = true; }
-				else if ( world == "the Land of Sosaria" )
+				else if ( world == "the Land of Vaelen" )
 				{
 					if ( from.X >= 3546 && from.Y >= 3383 && from.X <= 3590 && from.Y <= 3428 ){ /* DO NOTHING IN TIME LORD CHAMBER */ }
 					else { PlayerSettings.SetDiscovered( from, world, true ); runLog = true; }
@@ -83,7 +83,7 @@ namespace Server.Misc
 
 		public static bool isHauntedRegion( Mobile m )
 		{
-			if ( m.Map == Map.Sosaria )
+			if ( m.Map == Map.Vaelen )
 			{
 				if ( m.X >= 2612 && m.Y >= 3197 && m.X <= 2758 && m.Y <= 3373 )
 					return true;
@@ -177,9 +177,9 @@ namespace Server.Misc
 				{
 					if ( location.X >= 0 && location.Y >= 0 && location.X <= 5118 && location.Y <= 4092 ){ regionName = "the Land of Lodoria"; }
 				}
-				else if ( map == Map.Sosaria )
+				else if ( map == Map.Vaelen )
 				{
-					if ( location.X >= 0 && location.Y >= 0 && location.X <= 5118 && location.Y <= 3125 ){ regionName = "the Land of Sosaria"; }
+					if ( location.X >= 0 && location.Y >= 0 && location.X <= 5118 && location.Y <= 3125 ){ regionName = "the Land of Vaelen"; }
 					else if ( location.X >= 699 && location.Y >= 3129 && location.X <= 2272 && location.Y <= 4095 ){ regionName = "the Island of Umber Veil"; }
 					else if ( location.X >= 5122 && location.Y >= 3036 && location.X <= 6126 && location.Y <= 4095 ){ regionName = "the Land of Ambrosia"; }
 					else if ( location.X >= 6127 && location.Y >= 828 && location.X <= 7167 && location.Y <= 2743 ){ regionName = "the Bottle World of Kuldar"; }
@@ -208,7 +208,7 @@ namespace Server.Misc
 		public static bool IsMainRegion( string region )
 		{
 			if ( 	region == "the Land of Lodoria" || 
-					region == "the Land of Sosaria" || 
+					region == "the Land of Vaelen" || 
 					region == "the Island of Umber Veil" || 
 					region == "the Land of Ambrosia" || 
 					region == "the Bottle World of Kuldar" || 
@@ -229,7 +229,7 @@ namespace Server.Misc
 
 		public static string GetMyMapString( Map map )
 		{
-			string world = "Sosaria";
+			string world = "Vaelen";
 
 			if ( map == Map.Lodor ){ world = "Lodor"; }
 			else if ( map == Map.Underworld ){ world = "Underworld"; }
@@ -242,7 +242,7 @@ namespace Server.Misc
 
 		public static string GetMyMapDisplayName( Map map )
 		{
-			if ( map == Map.Sosaria ) return "Sosaria"; 
+			if ( map == Map.Vaelen ) return "Vaelen"; 
 			if ( map == Map.Lodor ) return "Lodor"; 
 			if ( map == Map.Underworld ) return "Underworld"; 
 			if ( map == Map.SerpentIsland ) return "Serpent Island"; 
@@ -255,7 +255,7 @@ namespace Server.Misc
 
 		public static Map GetMyDefaultMap( Land land )
 		{
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 
 			if ( land == Land.SkaraBrae ){ map = Map.Lodor; }
 			else if ( land == Land.Lodoria ){ map = Map.Lodor; }
@@ -263,14 +263,14 @@ namespace Server.Misc
 			else if ( land == Land.IslesDread ){ map = Map.IslesDread; }
 			else if ( land == Land.Savaged ){ map = Map.SavagedEmpire; }
 			else if ( land == Land.Underworld ){ map = Map.Underworld; }
-			/// THE REST ARE ON SOSARIA ///
+			/// THE REST ARE ON Vaelen ///
 
 			return map;
 		}
 
 		public static Map GetPCDefaultMap( Mobile m )
 		{
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 
 			if ( m.Land == Land.SkaraBrae ){ map = Map.Lodor; }
 			else if ( m.Land == Land.Lodoria ){ map = Map.Lodor; }
@@ -278,21 +278,21 @@ namespace Server.Misc
 			else if ( m.Land == Land.IslesDread ){ map = Map.IslesDread; }
 			else if ( m.Land == Land.Savaged ){ map = Map.SavagedEmpire; }
 			else if ( m.Land == Land.Underworld ){ map = Map.Underworld; }
-			/// THE REST ARE ON SOSARIA ///
+			/// THE REST ARE ON Vaelen ///
 
 			return map;
 		}
 
 		public static Map GetMyDefaultTreasureMap( Land land )
 		{
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 
 			if ( land == Land.Lodoria ){ map = Map.Lodor; }
 			else if ( land == Land.Serpent ){ map = Map.SerpentIsland; }
 			else if ( land == Land.IslesDread ){ map = Map.IslesDread; }
 			else if ( land == Land.Savaged ){ map = Map.SavagedEmpire; }
 			else if ( land == Land.Underworld ){ map = Map.Underworld; }
-			/// THE REST ARE ON SOSARIA ///
+			/// THE REST ARE ON Vaelen ///
 
 			return map;
 		}
@@ -540,7 +540,7 @@ namespace Server.Misc
 				return false;
 
 			// The one true Ambrosia. All others (ex: dungeon home) are fake
-			if ( land == Land.Ambrosia && map == Map.Sosaria )
+			if ( land == Land.Ambrosia && map == Map.Vaelen )
 				return false;
 
 			if ( land == Land.SkaraBrae )
@@ -614,7 +614,7 @@ namespace Server.Misc
 						if ( nEntry == 1 ){ mX = Convert.ToInt32(exits); } // 6578
 						else if ( nEntry == 2 ){ mY = Convert.ToInt32(exits); } // 2033
 						else if ( nEntry == 3 ){ mZ = Convert.ToInt32(exits); } // 45
-						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Sosaria; } } // Lodor
+						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Vaelen; } } // Lodor
 						nEntry++;
 					}
 
@@ -699,7 +699,7 @@ namespace Server.Misc
 
 			if ( land == Land.Luna && x >= 5801 && y >= 2716 && x <= 6125 && y <= 3034 )
 				return true;
-			else if ( land == Land.Sosaria && x >= 0 && y >= 0 && x <= 5119 && y <= 3127 )
+			else if ( land == Land.Vaelen && x >= 0 && y >= 0 && x <= 5119 && y <= 3127 )
 				return true;
 			else if ( land == Land.Lodoria && x >= 0 && y >= 0 && x <= 5120 && y <= 4095 )
 				return true;
@@ -741,7 +741,7 @@ namespace Server.Misc
 		public static void MoveToRandomDungeon( Mobile m )
 		{
 			Point3D loc = new Point3D(0, 0, 0);
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 
 			switch ( Utility.RandomMinMax( 0, 69 ) )
 			{
@@ -759,22 +759,22 @@ namespace Server.Misc
 				case 11: loc = new Point3D(5247, 436, 0); map = Map.Lodor; break; // the Halls of Undermountain
 				case 12: loc = new Point3D(5859, 3427, 0); map = Map.Lodor; break; // the Volcanic Cave
 				case 13: loc = new Point3D(5443, 1398, 0); map = Map.Lodor; break; // Dungeon Wrong
-				case 14: loc = new Point3D(5854, 1756, 0); map = Map.Sosaria; break; // the Caverns of Poseidon
-				case 15: loc = new Point3D(6387, 3754, -2); map = Map.Sosaria; break; // the Tower of Brass
-				case 16: loc = new Point3D(3943, 3370, 0); map = Map.Sosaria; break; // the Mausoleum
-				case 17: loc = new Point3D(6384, 490, 0); map = Map.Sosaria; break; // Vordo's Dungeon
-				case 18: loc = new Point3D(7028, 3824, 5); map = Map.Sosaria; break; // the Cave of the Zuluu
-				case 19: loc = new Point3D(4629, 3599, 0); map = Map.Sosaria; break; // the Dragon's Maw
-				case 20: loc = new Point3D(5354, 923, 0); map = Map.Sosaria; break; // the Ancient Pyramid
-				case 21: loc = new Point3D(5965, 636, 0); map = Map.Sosaria; break; // Dungeon Exodus
-				case 22: loc = new Point3D(262, 3380, 0); map = Map.Sosaria; break; // the Cave of Banished Mages
-				case 23: loc = new Point3D(5981, 2154, 0); map = Map.Sosaria; break; // Dungeon Clues
-				case 24: loc = new Point3D(5550, 393, 0); map = Map.Sosaria; break; // Dardin's Pit
-				case 25: loc = new Point3D(5259, 262, 0); map = Map.Sosaria; break; // Dungeon Doom
-				case 26: loc = new Point3D(5526, 1228, 0); map = Map.Sosaria; break; // the Fires of Hell
-				case 27: loc = new Point3D(5587, 1602, 0); map = Map.Sosaria; break; // the Mines of Morinia
-				case 28: loc = new Point3D(5995, 423, 0); map = Map.Sosaria; break; // the Perinian Depths
-				case 29: loc = new Point3D(5638, 821, 0); map = Map.Sosaria; break; // the Dungeon of Time Awaits
+				case 14: loc = new Point3D(5854, 1756, 0); map = Map.Vaelen; break; // the Caverns of Poseidon
+				case 15: loc = new Point3D(6387, 3754, -2); map = Map.Vaelen; break; // the Tower of Brass
+				case 16: loc = new Point3D(3943, 3370, 0); map = Map.Vaelen; break; // the Mausoleum
+				case 17: loc = new Point3D(6384, 490, 0); map = Map.Vaelen; break; // Vordo's Dungeon
+				case 18: loc = new Point3D(7028, 3824, 5); map = Map.Vaelen; break; // the Cave of the Zuluu
+				case 19: loc = new Point3D(4629, 3599, 0); map = Map.Vaelen; break; // the Dragon's Maw
+				case 20: loc = new Point3D(5354, 923, 0); map = Map.Vaelen; break; // the Ancient Pyramid
+				case 21: loc = new Point3D(5965, 636, 0); map = Map.Vaelen; break; // Dungeon Exodus
+				case 22: loc = new Point3D(262, 3380, 0); map = Map.Vaelen; break; // the Cave of Banished Mages
+				case 23: loc = new Point3D(5981, 2154, 0); map = Map.Vaelen; break; // Dungeon Clues
+				case 24: loc = new Point3D(5550, 393, 0); map = Map.Vaelen; break; // Dardin's Pit
+				case 25: loc = new Point3D(5259, 262, 0); map = Map.Vaelen; break; // Dungeon Doom
+				case 26: loc = new Point3D(5526, 1228, 0); map = Map.Vaelen; break; // the Fires of Hell
+				case 27: loc = new Point3D(5587, 1602, 0); map = Map.Vaelen; break; // the Mines of Morinia
+				case 28: loc = new Point3D(5995, 423, 0); map = Map.Vaelen; break; // the Perinian Depths
+				case 29: loc = new Point3D(5638, 821, 0); map = Map.Vaelen; break; // the Dungeon of Time Awaits
 				case 30: loc = new Point3D(1955, 523, 0); map = Map.SerpentIsland; break; // the Ancient Prison
 				case 31: loc = new Point3D(2090, 863, 0); map = Map.SerpentIsland; break; // the Cave of Fire
 				case 32: loc = new Point3D(2440, 53, 2); map = Map.SerpentIsland; break; // the Cave of Souls
@@ -831,20 +831,20 @@ namespace Server.Misc
 		public static void MoveToRandomOcean( Mobile m )
 		{
 			Point3D loc = new Point3D(20, 20, 0);
-			Map map = Map.Sosaria;
-			Land land = Land.Sosaria;
+			Map map = Map.Vaelen;
+			Land land = Land.Vaelen;
 
 			switch ( Utility.RandomMinMax( 0, 8 ) )
 			{
-				case 0: land = Land.Kuldar;			map = Map.Sosaria;			break;
-				case 1: land = Land.Ambrosia;		map = Map.Sosaria;			break;
-				case 2: land = Land.UmberVeil;		map = Map.Sosaria;			break;
+				case 0: land = Land.Kuldar;			map = Map.Vaelen;			break;
+				case 1: land = Land.Ambrosia;		map = Map.Vaelen;			break;
+				case 2: land = Land.UmberVeil;		map = Map.Vaelen;			break;
 				case 3: land = Land.Lodoria;		map = Map.Lodor;			break;
 				case 4: land = Land.Underworld;		map = Map.Underworld;		break;
 				case 5: land = Land.Serpent;		map = Map.SerpentIsland;	break;
 				case 6: land = Land.IslesDread;		map = Map.IslesDread;		break;
 				case 7: land = Land.Savaged;		map = Map.SavagedEmpire;	break;
-				case 8: land = Land.Sosaria;		map = Map.Sosaria;			break;
+				case 8: land = Land.Vaelen;		map = Map.Vaelen;			break;
 			}
 
 			loc = GetRandomLocation( land, "ocean" );
@@ -898,7 +898,7 @@ namespace Server.Misc
 
 			Point3D loc = new Point3D(0, 0, 0);
 
-			if ( exact >= 1 && exact <= 24 || exact == 90 || exact == 91 ){ map = Map.Sosaria; }
+			if ( exact >= 1 && exact <= 24 || exact == 90 || exact == 91 ){ map = Map.Vaelen; }
 			else if ( exact >= 25 && exact <= 44 || exact == 86 ){ map = Map.Lodor; }
 			else if ( exact >= 45 && exact <= 56 || exact == 87 || exact == 88 || exact == 89 ){ map = Map.SavagedEmpire; }
 			else if ( exact >= 57 && exact <= 71 ){ map = Map.SerpentIsland; }
@@ -906,30 +906,30 @@ namespace Server.Misc
 			else if ( exact == 75 || exact == 82 ){ map = Map.Underworld; }
 			else if ( exact >= 76 && exact <= 84 ){ map = Map.Lodor; }
 
-			if ( ( exact == 1 || zone == "the City of the Dead" ) && map == Map.Sosaria ){ loc = new Point3D(5828, 3263, 0); zone = "the City of the Dead"; }
-			else if ( ( exact == 2 || zone == "the Mausoleum" ) && map == Map.Sosaria ){ loc = new Point3D(1529, 3599, 0); zone = "the Mausoleum"; }
-			else if ( ( exact == 3 || zone == "the Valley of Dark Druids" ) && map == Map.Sosaria ){ loc = new Point3D(6763, 1423, 2); zone = "the Valley of Dark Druids"; }
-			else if ( ( exact == 4 || zone == "Vordo's Castle" ) && map == Map.Sosaria ){ loc = new Point3D(6708, 1729, 25); zone = "Vordo's Castle"; }
-			else if ( ( exact == 5 || zone == "Vordo's Dungeon" ) && map == Map.Sosaria ){ loc = new Point3D(6708, 1729, 25); zone = "Vordo's Dungeon"; }
-			else if ( ( exact == 6 || zone == "the Crypts of Kuldar" ) && map == Map.Sosaria ){ loc = new Point3D(6668, 1568, 10); zone = "the Crypts of Kuldar"; }
-			else if ( ( exact == 7 || zone == "the Kuldara Sewers" ) && map == Map.Sosaria ){ loc = new Point3D(6790, 1745, 24); zone = "the Kuldara Sewers"; }
-			else if ( ( exact == 8 || zone == "the Ancient Pyramid" ) && map == Map.Sosaria ){ loc = new Point3D(1162, 472, 0); zone = "the Ancient Pyramid"; }
-			else if ( ( exact == 9 || zone == "Dungeon Exodus" ) && map == Map.Sosaria ){ loc = new Point3D(877, 2702, 0); zone = "Dungeon Exodus"; }
-			else if ( ( exact == 10 || zone == "the Cave of Banished Mages" ) && map == Map.Sosaria ){ loc = new Point3D(3798, 1879, 2); zone = "the Cave of Banished Mages"; }
-			else if ( ( exact == 11 || zone == "Dungeon Clues" ) && map == Map.Sosaria ){ loc = new Point3D(3760, 2038, 0); zone = "Dungeon Clues"; }
-			else if ( ( exact == 12 || zone == "Dardin's Pit" ) && map == Map.Sosaria ){ loc = new Point3D(3006, 446, 0); zone = "Dardin's Pit"; }
-			else if ( ( exact == 13 || zone == "Dungeon Doom" ) && map == Map.Sosaria ){ loc = new Point3D(1628, 2561, 0); zone = "Dungeon Doom"; }
-			else if ( ( exact == 14 || zone == "the Fires of Hell" ) && map == Map.Sosaria ){ loc = new Point3D(3345, 1647, 0); zone = "the Fires of Hell"; }
-			else if ( ( exact == 15 || zone == "the Mines of Morinia" ) && map == Map.Sosaria ){ loc = new Point3D(1022, 1369, 2); zone = "the Mines of Morinia"; }
-			else if ( ( exact == 16 || zone == "the Perinian Depths" ) && map == Map.Sosaria ){ loc = new Point3D(3619, 456, 0); zone = "the Perinian Depths"; }
-			else if ( ( exact == 17 || zone == "the Dungeon of Time Awaits" ) && map == Map.Sosaria ){ loc = new Point3D(3831, 1494, 0); zone = "the Dungeon of Time Awaits"; }
-			else if ( ( exact == 18 || zone == "the Pirate Cave" ) && map == Map.Sosaria ){ loc = new Point3D(1842, 2211, 0); zone = "the Pirate Cave"; }
-			else if ( ( exact == 19 || zone == "the Dragon's Maw" ) && map == Map.Sosaria ){ loc = new Point3D(5315, 3430, 2); zone = "the Dragon's Maw"; }
-			else if ( ( exact == 20 || zone == "the Cave of the Zuluu" ) && map == Map.Sosaria ){ loc = new Point3D(5901, 3999, 0); zone = "the Cave of the Zuluu"; }
-			else if ( ( exact == 21 || zone == "the Ratmen Lair" ) && map == Map.Sosaria ){ loc = new Point3D(1303, 1458, 0); zone = "the Ratmen Lair"; }
-			else if ( ( exact == 22 || zone == "the Caverns of Poseidon" ) && map == Map.Sosaria ){ loc = new Point3D(198, 2295, 12); zone = "the Caverns of Poseidon"; }
-			else if ( ( exact == 23 || zone == "the Tower of Brass" ) && map == Map.Sosaria ){ loc = new Point3D(1593, 3376, 15); zone = "the Tower of Brass"; }
-			else if ( ( exact == 24 || zone == "the Forgotten Halls" ) && map == Map.Sosaria ){ loc = new Point3D(3015, 944, 0); zone = "the Forgotten Halls"; }
+			if ( ( exact == 1 || zone == "the City of the Dead" ) && map == Map.Vaelen ){ loc = new Point3D(5828, 3263, 0); zone = "the City of the Dead"; }
+			else if ( ( exact == 2 || zone == "the Mausoleum" ) && map == Map.Vaelen ){ loc = new Point3D(1529, 3599, 0); zone = "the Mausoleum"; }
+			else if ( ( exact == 3 || zone == "the Valley of Dark Druids" ) && map == Map.Vaelen ){ loc = new Point3D(6763, 1423, 2); zone = "the Valley of Dark Druids"; }
+			else if ( ( exact == 4 || zone == "Vordo's Castle" ) && map == Map.Vaelen ){ loc = new Point3D(6708, 1729, 25); zone = "Vordo's Castle"; }
+			else if ( ( exact == 5 || zone == "Vordo's Dungeon" ) && map == Map.Vaelen ){ loc = new Point3D(6708, 1729, 25); zone = "Vordo's Dungeon"; }
+			else if ( ( exact == 6 || zone == "the Crypts of Kuldar" ) && map == Map.Vaelen ){ loc = new Point3D(6668, 1568, 10); zone = "the Crypts of Kuldar"; }
+			else if ( ( exact == 7 || zone == "the Kuldara Sewers" ) && map == Map.Vaelen ){ loc = new Point3D(6790, 1745, 24); zone = "the Kuldara Sewers"; }
+			else if ( ( exact == 8 || zone == "the Ancient Pyramid" ) && map == Map.Vaelen ){ loc = new Point3D(1162, 472, 0); zone = "the Ancient Pyramid"; }
+			else if ( ( exact == 9 || zone == "Dungeon Exodus" ) && map == Map.Vaelen ){ loc = new Point3D(877, 2702, 0); zone = "Dungeon Exodus"; }
+			else if ( ( exact == 10 || zone == "the Cave of Banished Mages" ) && map == Map.Vaelen ){ loc = new Point3D(3798, 1879, 2); zone = "the Cave of Banished Mages"; }
+			else if ( ( exact == 11 || zone == "Dungeon Clues" ) && map == Map.Vaelen ){ loc = new Point3D(3760, 2038, 0); zone = "Dungeon Clues"; }
+			else if ( ( exact == 12 || zone == "Dardin's Pit" ) && map == Map.Vaelen ){ loc = new Point3D(3006, 446, 0); zone = "Dardin's Pit"; }
+			else if ( ( exact == 13 || zone == "Dungeon Doom" ) && map == Map.Vaelen ){ loc = new Point3D(1628, 2561, 0); zone = "Dungeon Doom"; }
+			else if ( ( exact == 14 || zone == "the Fires of Hell" ) && map == Map.Vaelen ){ loc = new Point3D(3345, 1647, 0); zone = "the Fires of Hell"; }
+			else if ( ( exact == 15 || zone == "the Mines of Morinia" ) && map == Map.Vaelen ){ loc = new Point3D(1022, 1369, 2); zone = "the Mines of Morinia"; }
+			else if ( ( exact == 16 || zone == "the Perinian Depths" ) && map == Map.Vaelen ){ loc = new Point3D(3619, 456, 0); zone = "the Perinian Depths"; }
+			else if ( ( exact == 17 || zone == "the Dungeon of Time Awaits" ) && map == Map.Vaelen ){ loc = new Point3D(3831, 1494, 0); zone = "the Dungeon of Time Awaits"; }
+			else if ( ( exact == 18 || zone == "the Pirate Cave" ) && map == Map.Vaelen ){ loc = new Point3D(1842, 2211, 0); zone = "the Pirate Cave"; }
+			else if ( ( exact == 19 || zone == "the Dragon's Maw" ) && map == Map.Vaelen ){ loc = new Point3D(5315, 3430, 2); zone = "the Dragon's Maw"; }
+			else if ( ( exact == 20 || zone == "the Cave of the Zuluu" ) && map == Map.Vaelen ){ loc = new Point3D(5901, 3999, 0); zone = "the Cave of the Zuluu"; }
+			else if ( ( exact == 21 || zone == "the Ratmen Lair" ) && map == Map.Vaelen ){ loc = new Point3D(1303, 1458, 0); zone = "the Ratmen Lair"; }
+			else if ( ( exact == 22 || zone == "the Caverns of Poseidon" ) && map == Map.Vaelen ){ loc = new Point3D(198, 2295, 12); zone = "the Caverns of Poseidon"; }
+			else if ( ( exact == 23 || zone == "the Tower of Brass" ) && map == Map.Vaelen ){ loc = new Point3D(1593, 3376, 15); zone = "the Tower of Brass"; }
+			else if ( ( exact == 24 || zone == "the Forgotten Halls" ) && map == Map.Vaelen ){ loc = new Point3D(3015, 944, 0); zone = "the Forgotten Halls"; }
 
 			else if ( ( exact == 25 || zone == "the Vault of the Black Knight" ) && map == Map.Lodor ){ loc = new Point3D(1581, 202, 0); map = Map.SerpentIsland; zone = "the Vault of the Black Knight"; }
 			else if ( ( exact == 26 || zone == "the Undersea Pass" ) && map == Map.Lodor ){ loc = new Point3D(1179, 1931, 0); zone = "the Undersea Pass"; }
@@ -1001,8 +1001,8 @@ namespace Server.Misc
 			else if ( ( exact == 87 || zone == "the Cave of the Ancient Wyrm" ) && map == Map.SavagedEmpire ){ loc = new Point3D(774, 611, 0); map = Map.SavagedEmpire; zone = "the Cave of the Ancient Wyrm"; }
 			else if ( ( exact == 88 || zone == "the Great Pyramid" ) && map == Map.SavagedEmpire ){ loc = new Point3D(1131, 1550, 0); map = Map.SavagedEmpire; zone = "the Great Pyramid"; }
 			else if ( ( exact == 89 || zone == "the Spider Cave" ) && map == Map.SavagedEmpire ){ loc = new Point3D(1129, 1551, 0); map = Map.SavagedEmpire; zone = "the Spider Cave"; }
-			else if ( ( exact == 90 || zone == "the Ruins of the Black Blade" ) && map == Map.Sosaria ){ loc = new Point3D(4504, 1892, 0); map = Map.Sosaria; zone = "the Ruins of the Black Blade"; }
-			else if ( ( exact == 91 || zone == "the Montor Sewers" ) && map == Map.Sosaria ){ loc = new Point3D(3058, 2565, 0); map = Map.Sosaria; zone = "the Montor Sewers"; }
+			else if ( ( exact == 90 || zone == "the Ruins of the Black Blade" ) && map == Map.Vaelen ){ loc = new Point3D(4504, 1892, 0); map = Map.Vaelen; zone = "the Ruins of the Black Blade"; }
+			else if ( ( exact == 91 || zone == "the Montor Sewers" ) && map == Map.Vaelen ){ loc = new Point3D(3058, 2565, 0); map = Map.Vaelen; zone = "the Montor Sewers"; }
 
 			place = map;
 			x = loc.X;
@@ -1030,24 +1030,24 @@ namespace Server.Misc
 			Point3D loc = new Point3D(0, 0, 0);
 			Map map = Map.Internal;
 
-			if ( exact == 1 || zone == "the City of Britain" ){ loc = new Point3D(2999, 1063, 0); map = Map.Sosaria; zone = "the City of Britain"; }
-			else if ( exact == 2 || zone == "the City of Kuldara" ){ loc = new Point3D(6773, 1739, 20); map = Map.Sosaria; zone = "the City of Kuldara"; }
+			if ( exact == 1 || zone == "the City of Britain" ){ loc = new Point3D(2999, 1063, 0); map = Map.Vaelen; zone = "the City of Britain"; }
+			else if ( exact == 2 || zone == "the City of Kuldara" ){ loc = new Point3D(6773, 1739, 20); map = Map.Vaelen; zone = "the City of Kuldara"; }
 			else if ( exact == 3 || zone == "the Cimmeran Hold" ){ loc = new Point3D(384, 1086, 15); map = Map.IslesDread; zone = "the Cimmeran Hold"; }
 			else if ( exact == 4 || zone == "the Fort of Tenebrae" ){ loc = new Point3D(756, 384, 0); map = Map.Underworld; zone = "the Fort of Tenebrae"; }
-			else if ( exact == 5 || zone == "the Town of Renika" ){ loc = new Point3D(1449, 3787, 0); map = Map.Sosaria; zone = "the Town of Renika"; }
+			else if ( exact == 5 || zone == "the Town of Renika" ){ loc = new Point3D(1449, 3787, 0); map = Map.Vaelen; zone = "the Town of Renika"; }
 			else if ( exact == 6 || zone == "the City of Furnace" ){ loc = new Point3D(804, 1121, 43); map = Map.SerpentIsland; zone = "the City of Furnace"; }
 			else if ( exact == 7 || zone == "the Village of Barako" ){ loc = new Point3D(285, 1698, 37); map = Map.SavagedEmpire; zone = "the Village of Barako"; }
 			else if ( exact == 8 || zone == "the Village of Kurak" ){ loc = new Point3D(741, 914, -1); map = Map.SavagedEmpire; zone = "the Village of Kurak"; }
-			else if ( exact == 9 || zone == "Death Gulch" ){ loc = new Point3D(3717, 1501, 0); map = Map.Sosaria; zone = "Death Gulch"; }
-			else if ( exact == 10 || zone == "the Town of Devil Guard" ){ loc = new Point3D(1652, 1557, 2); map = Map.Sosaria; zone = "the Town of Devil Guard"; }
-			else if ( exact == 11 || zone == "the Village of Fawn" ){ loc = new Point3D(2124, 276, 0); map = Map.Sosaria; zone = "the Village of Fawn"; }
-			else if ( exact == 12 || zone == "Glacial Coast Village" ){ loc = new Point3D(4762, 1177, 2); map = Map.Sosaria; zone = "Glacial Coast Village"; }
-			else if ( exact == 13 || zone == "the Village of Grey" ){ loc = new Point3D(902, 2063, 0); map = Map.Sosaria; zone = "the Village of Grey"; }
-			else if ( exact == 14 || zone == "Iceclad Fisherman's Village" ){ loc = new Point3D(4326, 1169, 2); map = Map.Sosaria; zone = "Iceclad Fisherman's Village"; }
-			else if ( exact == 15 || zone == "the City of Montor" ){ loc = new Point3D(3223, 2606, 1); map = Map.Sosaria; zone = "the City of Montor"; }
-			else if ( exact == 16 || zone == "the Town of Moon" ){ loc = new Point3D(806, 728, 0); map = Map.Sosaria; zone = "the Town of Moon"; }
-			else if ( exact == 17 || zone == "the Town of Mountain Crest" ){ loc = new Point3D(4514, 1276, 2); map = Map.Sosaria; zone = "the Town of Mountain Crest"; }
-			else if ( exact == 18 || zone == "the Village of Yew" ){ loc = new Point3D(2433, 873, 2); map = Map.Sosaria; zone = "the Village of Yew"; }
+			else if ( exact == 9 || zone == "Death Gulch" ){ loc = new Point3D(3717, 1501, 0); map = Map.Vaelen; zone = "Death Gulch"; }
+			else if ( exact == 10 || zone == "the Town of Devil Guard" ){ loc = new Point3D(1652, 1557, 2); map = Map.Vaelen; zone = "the Town of Devil Guard"; }
+			else if ( exact == 11 || zone == "the Village of Fawn" ){ loc = new Point3D(2124, 276, 0); map = Map.Vaelen; zone = "the Village of Fawn"; }
+			else if ( exact == 12 || zone == "Glacial Coast Village" ){ loc = new Point3D(4762, 1177, 2); map = Map.Vaelen; zone = "Glacial Coast Village"; }
+			else if ( exact == 13 || zone == "the Village of Grey" ){ loc = new Point3D(902, 2063, 0); map = Map.Vaelen; zone = "the Village of Grey"; }
+			else if ( exact == 14 || zone == "Iceclad Fisherman's Village" ){ loc = new Point3D(4326, 1169, 2); map = Map.Vaelen; zone = "Iceclad Fisherman's Village"; }
+			else if ( exact == 15 || zone == "the City of Montor" ){ loc = new Point3D(3223, 2606, 1); map = Map.Vaelen; zone = "the City of Montor"; }
+			else if ( exact == 16 || zone == "the Town of Moon" ){ loc = new Point3D(806, 728, 0); map = Map.Vaelen; zone = "the Town of Moon"; }
+			else if ( exact == 17 || zone == "the Town of Mountain Crest" ){ loc = new Point3D(4514, 1276, 2); map = Map.Vaelen; zone = "the Town of Mountain Crest"; }
+			else if ( exact == 18 || zone == "the Village of Yew" ){ loc = new Point3D(2433, 873, 2); map = Map.Vaelen; zone = "the Village of Yew"; }
 			else if ( exact == 19 || zone == "the Port of Dusk" ){ loc = new Point3D(2675, 3202, 0); map = Map.Lodor; zone = "the Port of Dusk"; }
 			else if ( exact == 20 || zone == "the City of Elidor" ){ loc = new Point3D(2930, 1327, 0); map = Map.Lodor; zone = "the City of Elidor"; }
 			else if ( exact == 21 || zone == "the Town of Glacial Hills" ){ loc = new Point3D(3677, 419, 0); map = Map.Lodor; zone = "the Town of Glacial Hills"; }
@@ -1185,32 +1185,32 @@ namespace Server.Misc
 
 			switch(dungeon)
 			{
-				// Sosaria
-				case "Dardin's Pit": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "Dungeon Clues": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "Dungeon Doom": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "Dungeon Exodus": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Pirate Cave": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Ancient Pyramid": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Cave of Banished Mages": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Caverns of Poseidon": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Dungeon of Time Awaits": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Fires of Hell": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Forgotten Halls": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Mines of Morinia": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Perinian Depths": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Ratmen Lair": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Montor Sewers": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
-				case "the Ruins of the Black Blade": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Sosaria"; break;
+				// Vaelen
+				case "Dardin's Pit": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "Dungeon Clues": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "Dungeon Doom": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "Dungeon Exodus": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Pirate Cave": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Ancient Pyramid": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Cave of Banished Mages": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Caverns of Poseidon": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Dungeon of Time Awaits": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Fires of Hell": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Forgotten Halls": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Mines of Morinia": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Perinian Depths": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Ratmen Lair": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Montor Sewers": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
+				case "the Ruins of the Black Blade": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Vaelen"; break;
 
 				// Ambrosia
-				case "the Cave of the Zuluu": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Ambrosia"; break;
-				case "the City of the Dead": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Ambrosia"; break;
-				case "the Dragon's Maw": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Ambrosia"; break;
+				case "the Cave of the Zuluu": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Ambrosia"; break;
+				case "the City of the Dead": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Ambrosia"; break;
+				case "the Dragon's Maw": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Ambrosia"; break;
 
 				// Umber Veil
-				case "the Mausoleum": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Umber Veil"; break;
-				case "the Tower of Brass": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Umber Veil"; break;
+				case "the Mausoleum": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Umber Veil"; break;
+				case "the Tower of Brass": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Umber Veil"; break;
 
 				// Lodoria
 				case "Dungeon Covetous": location = GetAreaEntrance( 0, dungeon, Map.Lodor, out placer, out xc, out yc ); world = "Lodoria"; break;
@@ -1280,11 +1280,11 @@ namespace Server.Misc
 				case "the Spider Cave": location = GetAreaEntrance( 0, dungeon, Map.SavagedEmpire, out placer, out xc, out yc ); world = "Savaged Empire"; break;
 
 				// Kuldar
-				case "the Crypts of Kuldar": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Kuldar"; break;
-				case "the Kuldara Sewers": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Kuldar"; break;
-				case "the Valley of Dark Druids": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Kuldar"; break;
-				case "Vordo's Castle": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Kuldar"; break;
-				case "Vordo's Dungeon": location = GetAreaEntrance( 0, dungeon, Map.Sosaria, out placer, out xc, out yc ); world = "Kuldar"; break;
+				case "the Crypts of Kuldar": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Kuldar"; break;
+				case "the Kuldara Sewers": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Kuldar"; break;
+				case "the Valley of Dark Druids": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Kuldar"; break;
+				case "Vordo's Castle": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Kuldar"; break;
+				case "Vordo's Dungeon": location = GetAreaEntrance( 0, dungeon, Map.Vaelen, out placer, out xc, out yc ); world = "Kuldar"; break;
 
 				// Underworld
 				case "Argentrock Castle": location = GetAreaEntrance( 0, dungeon, Map.Lodor, out placer, out xc, out yc ); world = "Underworld"; break;
@@ -1307,7 +1307,7 @@ namespace Server.Misc
 			Point3D failover = new Point3D(0, 0, 0);
 			Point3D testLocation = new Point3D(0, 0, 0);
 
-			Map tl = Map.Sosaria;
+			Map tl = Map.Vaelen;
             int tx = 0;
 			int ty = 0;
 			int tz = 0;
@@ -1322,7 +1322,7 @@ namespace Server.Misc
             {
                 if (land == Land.Kuldar)
                 {
-					tl = Map.Sosaria;
+					tl = Map.Vaelen;
                     tx = Utility.RandomMinMax( 6166+swrapx, 7204-swrapx );
                     ty = Utility.RandomMinMax( 829+swrapy, 2741-swrapy );
                     tz = tl.GetAverageZ(tx, ty);
@@ -1330,7 +1330,7 @@ namespace Server.Misc
                 }
                 else if (land == Land.Ambrosia)
                 {
-					tl = Map.Sosaria;
+					tl = Map.Vaelen;
                     tx = Utility.RandomMinMax( 5160+swrapx, 6163-swrapx );
                     ty = Utility.RandomMinMax( 3036+swrapy, 4095-swrapy );
                     tz = tl.GetAverageZ(tx, ty);
@@ -1338,7 +1338,7 @@ namespace Server.Misc
                 }
                 else if (land == Land.UmberVeil)
                 {
-					tl = Map.Sosaria;
+					tl = Map.Vaelen;
                     tx = Utility.RandomMinMax( 737+swrapx, 2310-swrapx );
                     ty = Utility.RandomMinMax( 3130+swrapy, 4095-swrapy );
                     tz = tl.GetAverageZ(tx, ty);
@@ -1346,7 +1346,7 @@ namespace Server.Misc
                 }
                 else if (land == Land.Luna)
                 {
-					tl = Map.Sosaria;
+					tl = Map.Vaelen;
                     tx = Utility.RandomMinMax( 5856+swrapx, 6164-swrapx );
                     ty = Utility.RandomMinMax( 2740+swrapy, 3018-swrapy );
                     tz = tl.GetAverageZ(tx, ty);
@@ -1400,9 +1400,9 @@ namespace Server.Misc
                     tz = tl.GetAverageZ(tx, ty);
 					if ( scape == "land" ){ failover = new Point3D(653, 1269, -2); } else { failover = new Point3D(320, 638, -5); }
                 }
-                else if (land == Land.Sosaria)
+                else if (land == Land.Vaelen)
                 {
-					tl = Map.Sosaria;
+					tl = Map.Vaelen;
                     tx = Utility.RandomMinMax( 0+swrapx, 5158-swrapx );
                     ty = Utility.RandomMinMax( 0+swrapy, 3128-swrapy );
                     tz = tl.GetAverageZ(tx, ty);
@@ -1460,7 +1460,7 @@ namespace Server.Misc
 				return false;
 
 			// A TWEAK FOR ONE GUARD WHO SOMETIMES MOUNTS BECAUSE THEY SPAWN AT Z OF 0
-			if ( m is TownGuards && m.Map == Map.Sosaria & ((BaseCreature)m).Home.X == 2999 && ((BaseCreature)m).Home.Y == 1124 )
+			if ( m is TownGuards && m.Map == Map.Vaelen & ((BaseCreature)m).Home.X == 2999 && ((BaseCreature)m).Home.Y == 1124 )
 				return true;
 
             return Server.Terrains.InBuilding( m.Map, m.X, m.Y, m.Z );
@@ -1470,13 +1470,13 @@ namespace Server.Misc
 		{
 			if (
 				( x >= 0 && y >= 0 && x <= 6 && y <= 6 && map == Map.Lodor ) || 
-				( x >= 0 && y >= 0 && x <= 6 && y <= 6 && map == Map.Sosaria ) || 
+				( x >= 0 && y >= 0 && x <= 6 && y <= 6 && map == Map.Vaelen ) || 
 				( x >= 0 && y >= 0 && x <= 6 && y <= 6 && map == Map.SerpentIsland ) || 
 				( x >= 0 && y >= 0 && x <= 6 && y <= 6 && map == Map.IslesDread ) || 
 				( x >= 1125 && y >= 298 && x <= 1131 && y <= 305 && map == Map.SavagedEmpire ) || 
-				( x >= 5457 && y >= 3300 && x <= 5459 && y <= 3302 && map == Map.Sosaria ) || 
-				( x >= 608 && y >= 4090 && x <= 704 && y <= 4096 && map == Map.Sosaria ) || 
-				( x >= 6126 && y >= 827 && x <= 6132 && y <= 833 && map == Map.Sosaria ) || 
+				( x >= 5457 && y >= 3300 && x <= 5459 && y <= 3302 && map == Map.Vaelen ) || 
+				( x >= 608 && y >= 4090 && x <= 704 && y <= 4096 && map == Map.Vaelen ) || 
+				( x >= 6126 && y >= 827 && x <= 6132 && y <= 833 && map == Map.Vaelen ) || 
 				( x >= 2 && y >= 2 && x <= 5 && y <= 5 && map == Map.Underworld )
 				)
 				return true;
@@ -1528,7 +1528,7 @@ namespace Server.Misc
 			LandTile landTile9 = map.Tiles.GetLandTile( x+1, y+1 );
 
 			// YEW FOREST PATCH
-			if ( map == Map.Sosaria && category == "forest" )
+			if ( map == Map.Vaelen && category == "forest" )
 			{
 				if (
 					( x >= 2089 && y >= 841 && x <= 2207 && y <= 1001 ) || 

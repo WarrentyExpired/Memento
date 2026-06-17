@@ -30,7 +30,7 @@ namespace Server.Items
 				if ( this.Map == Map.Lodor )
 				{
 					coord = new Point3D( 4333, 2316, 0 );
-					map = Map.Sosaria;
+					map = Map.Vaelen;
 				}
 
 				if ( PlayerSettings.GetKeys( m, "SerpentPillars" ) )

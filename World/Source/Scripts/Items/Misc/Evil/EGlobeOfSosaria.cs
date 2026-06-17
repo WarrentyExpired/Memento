@@ -5,10 +5,10 @@ using Server.Network;
 
 namespace Server.Items
 {
-    public class EGlobeOfSosariaComponent : AddonComponent
+    public class EGlobeOfVaelenComponent : AddonComponent
     {
         [Constructable]
-        public EGlobeOfSosariaComponent(int itemID)
+        public EGlobeOfVaelenComponent(int itemID)
             : base(itemID)
         {
             Weight = 100.0;
@@ -16,7 +16,7 @@ namespace Server.Items
         }
 
         public override int LabelNumber { get { return 1076681; } }
-        public EGlobeOfSosariaComponent(Serial serial)
+        public EGlobeOfVaelenComponent(Serial serial)
             : base(serial)
         {
         }
@@ -44,20 +44,20 @@ namespace Server.Items
         }
     }
 
-    public class EGlobeOfSosariaAddon : BaseAddon
+    public class EGlobeOfVaelenAddon : BaseAddon
     {
-        public override BaseAddonDeed Deed { get { return new EGlobeOfSosariaDeed(); } }
+        public override BaseAddonDeed Deed { get { return new EGlobeOfVaelenDeed(); } }
 
         [Constructable]
-        public EGlobeOfSosariaAddon()
+        public EGlobeOfVaelenAddon()
         {
-            AddComponent(new EGlobeOfSosariaComponent(0x3657), 1, 0, 0);
-            AddComponent(new EGlobeOfSosariaComponent(0x3658), 0, 0, 0);
-            AddComponent(new EGlobeOfSosariaComponent(0x3661), 1, 0, 0);
-            AddComponent(new EGlobeOfSosariaComponent(0x3659), 1, -1, 0);
+            AddComponent(new EGlobeOfVaelenComponent(0x3657), 1, 0, 0);
+            AddComponent(new EGlobeOfVaelenComponent(0x3658), 0, 0, 0);
+            AddComponent(new EGlobeOfVaelenComponent(0x3661), 1, 0, 0);
+            AddComponent(new EGlobeOfVaelenComponent(0x3659), 1, -1, 0);
         }
 
-        public EGlobeOfSosariaAddon(Serial serial)
+        public EGlobeOfVaelenAddon(Serial serial)
             : base(serial)
         {
         }
@@ -77,13 +77,13 @@ namespace Server.Items
         }
     }
 
-    public class EGlobeOfSosariaDeed : BaseAddonDeed
+    public class EGlobeOfVaelenDeed : BaseAddonDeed
     {
-        public override BaseAddon Addon { get { return new EGlobeOfSosariaAddon(); } }
+        public override BaseAddon Addon { get { return new EGlobeOfVaelenAddon(); } }
         public override int LabelNumber { get { return 1076681; } }
 
         [Constructable]
-        public EGlobeOfSosariaDeed()
+        public EGlobeOfVaelenDeed()
         {
             ItemID = 0x14EF;
             Hue = 0x774;
@@ -91,7 +91,7 @@ namespace Server.Items
             LootType = LootType.Blessed;
         }
 
-        public EGlobeOfSosariaDeed(Serial serial)
+        public EGlobeOfVaelenDeed(Serial serial)
             : base(serial)
         {
         }

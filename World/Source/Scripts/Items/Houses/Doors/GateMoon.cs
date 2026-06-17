@@ -167,21 +167,21 @@ namespace Server.Items
 					bool gate29 = info.ButtonID == 29;
 					bool gate30 = info.ButtonID == 30;
 
-					int gX = 0; int gY = 0; int gZ = 0; Map map = Map.Sosaria;
+					int gX = 0; int gY = 0; int gZ = 0; Map map = Map.Vaelen;
 
-					if (gate1){gX = 2518; gY = 1529; gZ = 3; map = Map.Sosaria;  }
-					else if (gate2){gX = 3723; gY = 2155; gZ = 4; map = Map.Sosaria;  }
-					else if (gate3){gX = 1779; gY = 1714; gZ = 6; map = Map.Sosaria;  }
-					else if (gate4){gX = 3718; gY = 1136; gZ = 0; map = Map.Sosaria;  }
-					else if (gate5){gX = 4970; gY = 1297; gZ = 4; map = Map.Sosaria;  }
-					else if (gate6){gX = 2548; gY = 2685; gZ = 4; map = Map.Sosaria;  }
-					else if (gate7){gX = 963; gY = 514; gZ = 4; map = Map.Sosaria;  }
-					else if (gate8){gX = 1052; gY = 1570; gZ = 2; map = Map.Sosaria;  }
-					else if (gate9){gX = 1792; gY = 913; gZ = 27; map = Map.Sosaria;  }
-					else if (gate10){gX = 968; gY = 2726; gZ = 4; map = Map.Sosaria;  }
-					else if (gate11){gX = 4038; gY = 179; gZ = 2; map = Map.Sosaria;  }
-					else if (gate12){gX = 6092; gY = 3595; gZ = 4; map = Map.Sosaria;  }
-					else if (gate13){gX = 1249; gY = 3815; gZ = 2; map = Map.Sosaria;  }
+					if (gate1){gX = 2518; gY = 1529; gZ = 3; map = Map.Vaelen;  }
+					else if (gate2){gX = 3723; gY = 2155; gZ = 4; map = Map.Vaelen;  }
+					else if (gate3){gX = 1779; gY = 1714; gZ = 6; map = Map.Vaelen;  }
+					else if (gate4){gX = 3718; gY = 1136; gZ = 0; map = Map.Vaelen;  }
+					else if (gate5){gX = 4970; gY = 1297; gZ = 4; map = Map.Vaelen;  }
+					else if (gate6){gX = 2548; gY = 2685; gZ = 4; map = Map.Vaelen;  }
+					else if (gate7){gX = 963; gY = 514; gZ = 4; map = Map.Vaelen;  }
+					else if (gate8){gX = 1052; gY = 1570; gZ = 2; map = Map.Vaelen;  }
+					else if (gate9){gX = 1792; gY = 913; gZ = 27; map = Map.Vaelen;  }
+					else if (gate10){gX = 968; gY = 2726; gZ = 4; map = Map.Vaelen;  }
+					else if (gate11){gX = 4038; gY = 179; gZ = 2; map = Map.Vaelen;  }
+					else if (gate12){gX = 6092; gY = 3595; gZ = 4; map = Map.Vaelen;  }
+					else if (gate13){gX = 1249; gY = 3815; gZ = 2; map = Map.Vaelen;  }
 					else if (gate14){gX = 1017; gY = 546; gZ = 3; map = Map.IslesDread;  }
 					else if (gate15){gX = 4199; gY = 2516; gZ = 7; map = Map.Lodor;  }
 					else if (gate16){gX = 2497; gY = 1981; gZ = 5; map = Map.Lodor;  }
@@ -196,13 +196,13 @@ namespace Server.Items
 					else if (gate25){gX = 656; gY = 240; gZ = 3; map = Map.SavagedEmpire;  }
 					else if (gate26){gX = 1112; gY = 1710; gZ = 20; map = Map.SavagedEmpire;  }
 					else if (gate27){gX = 303; gY = 1269; gZ = 3; map = Map.SavagedEmpire;  }
-					else if (gate28){gX = 6603; gY = 1082; gZ = 2; map = Map.Sosaria;  }
+					else if (gate28){gX = 6603; gY = 1082; gZ = 2; map = Map.Vaelen;  }
 					else if (gate29){gX = 6377; gY = 302; gZ = 15; map = Map.Lodor;  }
 					else if (gate30)
 					{
-						if ( PlayerSettings.GetDiscovered( from, "the Land of Sosaria" ) && from.Karma >= 0 && from.Kills < 1 && !Server.Items.BaseRace.IsEvil( from ) )
+						if ( PlayerSettings.GetDiscovered( from, "the Land of Vaelen" ) && from.Karma >= 0 && from.Kills < 1 && !Server.Items.BaseRace.IsEvil( from ) )
 						{
-							gX = 3907; gY = 3962; gZ = 5; map = Map.Sosaria;
+							gX = 3907; gY = 3962; gZ = 5; map = Map.Vaelen;
 						}
 						else if ( Server.Items.BaseRace.IsEvilSeaCreature( from ) && from.RaceHomeLand == 2 )
 						{
@@ -210,7 +210,7 @@ namespace Server.Items
 						}
 						else if ( Server.Items.BaseRace.IsEvilSeaCreature( from ) && from.RaceHomeLand == 1 )
 						{
-							gX = 7061; gY = 340; gZ = 5; map = Map.Sosaria;
+							gX = 7061; gY = 340; gZ = 5; map = Map.Vaelen;
 						}
 						else if ( Server.Items.BaseRace.IsEvilDeadCreature( from ) && from.RaceHomeLand == 2 )
 						{
@@ -218,7 +218,7 @@ namespace Server.Items
 						}
 						else if ( Server.Items.BaseRace.IsEvilDeadCreature( from ) && from.RaceHomeLand == 1 )
 						{
-							gX = 5254; gY = 1063; gZ = 5; map = Map.Sosaria;
+							gX = 5254; gY = 1063; gZ = 5; map = Map.Vaelen;
 						}
 						else if ( Server.Items.BaseRace.IsEvilDemonCreature( from ) )
 						{
@@ -246,15 +246,15 @@ namespace Server.Items
 			string sGate = "";
 
 			if ( m.Land == Land.Kuldar && !(PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" )) ){}
-			else if ( gate == 1 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" ) ){ sGate = "Sosaria - Central"; }
-			else if ( gate == 2 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Clues"; }
-			else if ( gate == 3 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Devil Guard"; }
-			else if ( gate == 4 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - East"; }
-			else if ( gate == 5 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Frozen Isles"; }
-			else if ( gate == 6 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Montor"; }
-			else if ( gate == 7 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Moon"; }
-			else if ( gate == 8 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - West"; }
-			else if ( gate == 9 && PlayerSettings.GetDiscovered( m, "the Land of Sosaria" )){ sGate = "Sosaria - Yew"; }
+			else if ( gate == 1 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" ) ){ sGate = "Vaelen - Central"; }
+			else if ( gate == 2 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - Clues"; }
+			else if ( gate == 3 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - Devil Guard"; }
+			else if ( gate == 4 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - East"; }
+			else if ( gate == 5 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - Frozen Isles"; }
+			else if ( gate == 6 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - Montor"; }
+			else if ( gate == 7 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - Moon"; }
+			else if ( gate == 8 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - West"; }
+			else if ( gate == 9 && PlayerSettings.GetDiscovered( m, "the Land of Vaelen" )){ sGate = "Vaelen - Yew"; }
 
 			else if ( gate == 10 && PlayerSettings.GetDiscovered( m, "the Land of Ambrosia" ) ){ sGate = "Isle of Fire"; }
 			else if ( gate == 11 && PlayerSettings.GetDiscovered( m, "the Island of Umber Veil" ) ){ sGate = "Lost Isle"; }
@@ -285,7 +285,7 @@ namespace Server.Items
 
 			else if ( gate == 30 )
 			{
-				if ( PlayerSettings.GetDiscovered( m, "the Land of Sosaria" ) && m.Karma >= 0 && m.Kills < 1 && !Server.Items.BaseRace.IsEvil( m ) )
+				if ( PlayerSettings.GetDiscovered( m, "the Land of Vaelen" ) && m.Karma >= 0 && m.Kills < 1 && !Server.Items.BaseRace.IsEvil( m ) )
 				{
 					sGate = "Woodlands - Druid's Glade";
 				}

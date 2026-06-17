@@ -56,7 +56,7 @@ namespace Server.Items
 			{
 				((PlayerMobile)m).CharacterBoatDoor = this.Serial.ToString() + "#" + BoatCode +"#" + sWorld;
 				Point3D loc = new Point3D(3254, 3477, 30);
-				CabinDoor( m, loc, Map.Sosaria );
+				CabinDoor( m, loc, Map.Vaelen );
 			}
 		}
 

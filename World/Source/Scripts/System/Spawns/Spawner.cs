@@ -841,13 +841,13 @@ namespace Server.Mobiles
 
 				///////////////// SPREAD WANDERING HEALERS AROUND THE LAND /////////////////
 				if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.Lodor ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
-				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.Sosaria ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
+				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.Vaelen ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
 				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.SerpentIsland ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
 				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.IslesDread ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
 				else if ( m.X >= 1125 && m.Y >= 298 && m.X <= 1131 && m.Y <= 305 && m.Map == Map.SavagedEmpire ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
-				else if ( m.X >= 5457 && m.Y >= 3300 && m.X <= 5459 && m.Y <= 3302 && m.Map == Map.Sosaria ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
-				else if ( m.X >= 608 && m.Y >= 4090 && m.X <= 704 && m.Y <= 4096 && m.Map == Map.Sosaria ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
-				else if ( m.X >= 6126 && m.Y >= 827 && m.X <= 6132 && m.Y <= 833 && m.Map == Map.Sosaria ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
+				else if ( m.X >= 5457 && m.Y >= 3300 && m.X <= 5459 && m.Y <= 3302 && m.Map == Map.Vaelen ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
+				else if ( m.X >= 608 && m.Y >= 4090 && m.X <= 704 && m.Y <= 4096 && m.Map == Map.Vaelen ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
+				else if ( m.X >= 6126 && m.Y >= 827 && m.X <= 6132 && m.Y <= 833 && m.Map == Map.Vaelen ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
 				else if ( m.X == 4 && m.Y == 4 && m.Map == Map.Underworld ){ cleanUp = true; m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
 
 				if ( cleanUp && startLoc == m.Location ){ m.Delete(); }
@@ -856,13 +856,13 @@ namespace Server.Mobiles
 			{
 				///////////////// SPREAD SEA SPAWNS OVER THE OCEANS AROUND THE LAND /////////////////
 				if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.Lodor ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
-				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.Sosaria ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
+				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.Vaelen ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
 				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.SerpentIsland ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
 				else if ( m.X >= 0 && m.Y >= 0 && m.X <= 6 && m.Y <= 6 && m.Map == Map.IslesDread ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
 				else if ( m.X >= 1125 && m.Y >= 298 && m.X <= 1131 && m.Y <= 305 && m.Map == Map.SavagedEmpire ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
-				else if ( m.X >= 5457 && m.Y >= 3300 && m.X <= 5459 && m.Y <= 3302 && m.Map == Map.Sosaria ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
-				else if ( m.X >= 608 && m.Y >= 4090 && m.X <= 704 && m.Y <= 4096 && m.Map == Map.Sosaria ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
-				else if ( m.X >= 6126 && m.Y >= 827 && m.X <= 6132 && m.Y <= 833 && m.Map == Map.Sosaria ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
+				else if ( m.X >= 5457 && m.Y >= 3300 && m.X <= 5459 && m.Y <= 3302 && m.Map == Map.Vaelen ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
+				else if ( m.X >= 608 && m.Y >= 4090 && m.X <= 704 && m.Y <= 4096 && m.Map == Map.Vaelen ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
+				else if ( m.X >= 6126 && m.Y >= 827 && m.X <= 6132 && m.Y <= 833 && m.Map == Map.Vaelen ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
 				else if ( m.X == 3 && m.Y == 3 && m.Map == Map.Underworld ){ m.Location = Worlds.GetRandomLocation( m.Land, "sea" ); m.WhisperHue = 999; }
 				else if ( m.X == 4 && m.Y == 4 && m.Map == Map.Underworld ){ m.Location = Worlds.GetRandomLocation( m.Land, "land" ); m.WhisperHue = 911; }
 
@@ -878,25 +878,25 @@ namespace Server.Mobiles
 			{
 				///////////////// SPREAD CORPSES AND PORTALS AROUND THE LAND /////////////////
 				if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.Lodor ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
-				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
+				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
 				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.SerpentIsland ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
 				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.IslesDread ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
 				else if ( i.X >= 1125 && i.Y >= 298 && i.X <= 1131 && i.Y <= 305 && i.Map == Map.SavagedEmpire ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
-				else if ( i.X >= 5457 && i.Y >= 3300 && i.X <= 5459 && i.Y <= 3302 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
-				else if ( i.X >= 608 && i.Y >= 4090 && i.X <= 704 && i.Y <= 4096 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
+				else if ( i.X >= 5457 && i.Y >= 3300 && i.X <= 5459 && i.Y <= 3302 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
+				else if ( i.X >= 608 && i.Y >= 4090 && i.X <= 704 && i.Y <= 4096 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
 				else if ( i.X == 4 && i.Y == 4 && i.Map == Map.Underworld ){ i.Location = Worlds.GetRandomLocation( i.Land, "land" ); }
 			}
 			else if ( i is WaterChest )
 			{
 				///////////////// SPREAD BOATS OVER THE OCEANS /////////////////
 				if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.Lodor ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
-				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
+				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
 				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.SerpentIsland ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
 				else if ( i.X >= 0 && i.Y >= 0 && i.X <= 6 && i.Y <= 6 && i.Map == Map.IslesDread ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
 				else if ( i.X >= 1125 && i.Y >= 298 && i.X <= 1131 && i.Y <= 305 && i.Map == Map.SavagedEmpire ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
-				else if ( i.X >= 5457 && i.Y >= 3300 && i.X <= 5459 && i.Y <= 3302 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
-				else if ( i.X >= 608 && i.Y >= 4090 && i.X <= 704 && i.Y <= 4096 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
-				else if ( i.X >= 6126 && i.Y >= 827 && i.X <= 6132 && i.Y <= 833 && i.Map == Map.Sosaria ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
+				else if ( i.X >= 5457 && i.Y >= 3300 && i.X <= 5459 && i.Y <= 3302 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
+				else if ( i.X >= 608 && i.Y >= 4090 && i.X <= 704 && i.Y <= 4096 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
+				else if ( i.X >= 6126 && i.Y >= 827 && i.X <= 6132 && i.Y <= 833 && i.Map == Map.Vaelen ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
 				else if ( i.X == 3 && i.Y == 3 && i.Map == Map.Underworld ){ i.Location = Worlds.GetRandomLocation( i.Land, "sea" ); }
 			}
 

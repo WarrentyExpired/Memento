@@ -247,8 +247,8 @@ namespace Server.Network
 			m_Stream.Write( (int) Map.Lodor.Tiles.Patch.StaticBlocks );
 			m_Stream.Write( (int) Map.Lodor.Tiles.Patch.LandBlocks );
 
-			m_Stream.Write( (int) Map.Sosaria.Tiles.Patch.StaticBlocks );
-			m_Stream.Write( (int) Map.Sosaria.Tiles.Patch.LandBlocks );
+			m_Stream.Write( (int) Map.Vaelen.Tiles.Patch.StaticBlocks );
+			m_Stream.Write( (int) Map.Vaelen.Tiles.Patch.LandBlocks );
 
 			m_Stream.Write( (int) Map.Underworld.Tiles.Patch.StaticBlocks );
 			m_Stream.Write( (int) Map.Underworld.Tiles.Patch.LandBlocks );
@@ -3647,11 +3647,11 @@ namespace Server.Network
 		{
 		}
 
-		public CityInfo( string city, string building, int description, int x, int y, int z ) : this( city, building, description, x, y, z, Map.Sosaria )
+		public CityInfo( string city, string building, int description, int x, int y, int z ) : this( city, building, description, x, y, z, Map.Vaelen )
 		{
 		}
 
-		public CityInfo( string city, string building, int x, int y, int z ) : this( city, building, 0, x, y, z, Map.Sosaria )
+		public CityInfo( string city, string building, int x, int y, int z ) : this( city, building, 0, x, y, z, Map.Vaelen )
 		{
 		}
 

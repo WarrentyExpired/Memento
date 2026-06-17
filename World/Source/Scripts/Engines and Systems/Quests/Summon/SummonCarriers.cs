@@ -195,7 +195,7 @@ namespace Server.Misc
 					skullsun.Hue = 0x54F;
 					b.PackItem( skullsun );
 			}
-			else if ( reg.IsPartOf( "the Mausoleum" ) && m is AncientLich && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 3827, 3299, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Mausoleum" ) && m is AncientLich && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 3827, 3299, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = "Mezlo";
@@ -208,7 +208,7 @@ namespace Server.Misc
 					mezlo.Hue = 0x54F;
 					b.PackItem( mezlo );
 			}
-			else if ( reg.IsPartOf( "the Tower of Brass" ) && m is Daemon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 6519, 3572, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Tower of Brass" ) && m is Daemon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 6519, 3572, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Title = "of the dark forest";
@@ -220,7 +220,7 @@ namespace Server.Misc
 					glood.Hue = 0xA60;
 					b.PackItem( glood );
 			}
-			else if ( reg.IsPartOf( "Vordo's Dungeon" ) && m is MagmaElemental && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 6470, 466, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "Vordo's Dungeon" ) && m is MagmaElemental && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 6470, 466, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = "a magma flow";
@@ -232,7 +232,7 @@ namespace Server.Misc
 					inferno.Hue = 0x550;
 					b.PackItem( inferno );
 			}
-			else if ( reg.IsPartOf( "the Dragon's Maw" ) && m is CrystalDragon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 4498, 3924, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Dragon's Maw" ) && m is CrystalDragon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 4498, 3924, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				Item crysts = new SummonItems();
@@ -241,7 +241,7 @@ namespace Server.Misc
 					crysts.Hue = 0xA0B;
 					b.PackItem( crysts );
 			}
-			else if ( reg.IsPartOf( "the Ancient Pyramid" ) && m is Lich && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5325, 957, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Ancient Pyramid" ) && m is Lich && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5325, 957, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Title = "the pharaoh of suffering";
@@ -253,7 +253,7 @@ namespace Server.Misc
 					suffer.Hue = 0x9C7;
 					b.PackItem( suffer );
 			}
-			else if ( reg.IsPartOf( "Dungeon Exodus" ) && m is Daemon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5944, 628, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "Dungeon Exodus" ) && m is Daemon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5944, 628, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Body = 9;
@@ -266,7 +266,7 @@ namespace Server.Misc
 					whip.Hue = 0;
 					b.PackItem( whip );
 			}
-			else if ( reg.IsPartOf( "the Caverns of Poseidon" ) && m is WaterNaga && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5902, 1769, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Caverns of Poseidon" ) && m is WaterNaga && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5902, 1769, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = NameList.RandomName( "evil witch" );
@@ -279,7 +279,7 @@ namespace Server.Misc
 					scaly.Hue = 0xA09;
 					b.PackItem( scaly );
 			}
-			else if ( reg.IsPartOf( "Dungeon Clues" ) && m is Titan && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5971, 2232, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "Dungeon Clues" ) && m is Titan && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5971, 2232, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = "Marxas";
@@ -292,7 +292,7 @@ namespace Server.Misc
 					warb.Hue = 0x9D3;
 					b.PackItem( warb );
 			}
-			else if ( reg.IsPartOf( "Dardin's Pit" ) && m is WalkingReaper && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5616, 400, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "Dardin's Pit" ) && m is WalkingReaper && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5616, 400, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = NameList.RandomName( "trees" );
@@ -305,7 +305,7 @@ namespace Server.Misc
 					stump.Hue = m.Hue;
 					b.PackItem( stump );
 			}
-			else if ( reg.IsPartOf( "Dungeon Doom" ) && m is BloodElemental && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5325, 331, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "Dungeon Doom" ) && m is BloodElemental && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5325, 331, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = "a dark blood elemental";
@@ -317,7 +317,7 @@ namespace Server.Misc
 					dlood.Hue = 0x5B5;
 					b.PackItem( dlood );
 			}
-			else if ( reg.IsPartOf( "the Fires of Hell" ) && m is Drake && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5712, 1280, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Fires of Hell" ) && m is Drake && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5712, 1280, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Name = "a firescale drake";
@@ -339,7 +339,7 @@ namespace Server.Misc
 					ichor.Hue = 0xB96;
 					b.PackItem( ichor );
 			}
-			else if ( reg.IsPartOf( "the Perinian Depths" ) && m is VampireLord && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5918, 419, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Perinian Depths" ) && m is VampireLord && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5918, 419, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Title = "the vampire queen";
@@ -352,7 +352,7 @@ namespace Server.Misc
 					vamph.Hue = 0;
 					b.PackItem( vamph );
 			}
-			else if ( reg.IsPartOf( "the Dungeon of Time Awaits" ) && m is Daemon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5736, 793, Map.Sosaria ) )
+			else if ( reg.IsPartOf( "the Dungeon of Time Awaits" ) && m is Daemon && Server.Misc.SummonQuests.IsInLocation( b.Home.X, b.Home.Y, m.Map, 5736, 793, Map.Vaelen ) )
 			{
 				m.EmoteHue = 123;
 				m.Body = 9;

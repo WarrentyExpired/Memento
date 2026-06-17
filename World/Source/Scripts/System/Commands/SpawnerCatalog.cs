@@ -31,7 +31,7 @@ namespace Server.Scripts.Commands
 			string sY = e.Mobile.Y.ToString();
 			string sZ = e.Mobile.Z.ToString();
 			string sRegion = Server.Misc.Worlds.GetRegionName( e.Mobile.Map, e.Mobile.Location );
-			string sMap = "Map.Sosaria";
+			string sMap = "Map.Vaelen";
 
 			ArrayList targets = new ArrayList();
 			foreach ( Item item in World.Items.Values )
@@ -49,7 +49,7 @@ namespace Server.Scripts.Commands
 				else if ( item.Map == Map.IslesDread ){ sMap = "Map.IslesDread"; }
 				else if ( item.Map == Map.SavagedEmpire ){ sMap = "Map.SavagedEmpire"; }
 				else if ( item.Map == Map.Atlantis ){ sMap = "Map.Atlantis"; }
-				else { sMap = "Map.Sosaria"; }
+				else { sMap = "Map.Vaelen"; }
 
 				sRegion = Region.Find( item.Location, item.Map ).Name;
 

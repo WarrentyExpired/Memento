@@ -322,7 +322,7 @@ namespace Server
 							case "Lodor":
 								mapnumber = 1;
 								break;
-							case "Sosaria":
+							case "Vaelen":
 								mapnumber = 2;
 								break;
 							case "Underworld":
@@ -606,15 +606,15 @@ namespace Server
 
 			switch ( map )
 			{
-				case 0://Sosaria and Lodor
+				case 0://Vaelen and Lodor
 					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Lodor, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );
-					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Sosaria, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );
+					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Vaelen, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );
 					break;
 				case 1://Lodor
 					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Lodor, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );
 					break;
-				case 2://Sosaria
-					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Sosaria, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );
+				case 2://Vaelen
+					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Vaelen, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );
 					break;
 				case 3://Underworld
 					MakeSpawner( types, fakespawnsA, fakespawnsB, fakespawnsC, fakespawnsD, fakespawnsE, x, y, z, Map.Underworld, mintime, maxtime, walkingrange, homerange, spawnid, npccount, fakecountA, fakecountB, fakecountC, fakecountD, fakecountE );

@@ -398,7 +398,7 @@ namespace Server.Items
 			{
 				reg = Region.Find( target.Location, target.Map );
 
-				if (	target.Land == Land.Sosaria || 
+				if (	target.Land == Land.Vaelen || 
 						target.Land == Land.Lodoria || 
 						target.Land == Land.Serpent || 
 						target.Land == Land.IslesDread || 

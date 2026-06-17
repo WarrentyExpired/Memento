@@ -577,7 +577,7 @@ namespace Server.Engines.Help
 				if ( from.RaceID > 0 
 					&& (
 					(from.Region).Name == "the Tavern" ||
-					( from.Map == Map.Sosaria && from.X >= 6982 && from.Y >= 694 && from.X <= 6999 && from.Y <= 713 )
+					( from.Map == Map.Vaelen && from.X >= 6982 && from.Y >= 694 && from.X <= 6999 && from.Y <= 713 )
 				))
 				{
 					AddSetting(xs, g, from, "Creature Type", PageActionType.Setting_CreatureType, PageActionType.Setting_CreatureType_Info);
@@ -1674,12 +1674,12 @@ namespace Server.Engines.Help
 
 			if ( PlayerSettings.GetKeys( from, "UndermountainKey" ) ){ sQuests = sQuests + "-Found a key made of dwarven steel.<br><br>"; }
 			if ( PlayerSettings.GetKeys( from, "BlackKnightKey" ) ){ sQuests = sQuests + "-Found the Black Knight's key.<br><br>"; }
-			if ( PlayerSettings.GetKeys( from, "SkullGate" ) ){ sQuests = sQuests + "-Discovered the secret of Skull Gate.<br>   One is in the Undercity of Umbra in Sosaria.<br>   The other is in the Ravendark Woods.<br><br>"; }
-			if ( PlayerSettings.GetKeys( from, "SerpentPillars" ) ){ sQuests = sQuests + "-Discovered the secret of the Serpent Pillars.<br>   Sosaria: 86° 41'S, 124° 39'E<br>   Lodoria: 35° 36'S, 65° 2'E<br><br>"; }
+			if ( PlayerSettings.GetKeys( from, "SkullGate" ) ){ sQuests = sQuests + "-Discovered the secret of Skull Gate.<br>   One is in the Undercity of Umbra in Vaelen.<br>   The other is in the Ravendark Woods.<br><br>"; }
+			if ( PlayerSettings.GetKeys( from, "SerpentPillars" ) ){ sQuests = sQuests + "-Discovered the secret of the Serpent Pillars.<br>   Vaelen: 86° 41'S, 124° 39'E<br>   Lodoria: 35° 36'S, 65° 2'E<br><br>"; }
 			if ( PlayerSettings.GetKeys( from, "RangerOutpost" ) ){ sQuests = sQuests + "-Discovered the Ranger Outpost.<br><br>"; }
 			if ( PlayerSettings.GetKeys( from, "DragonRiding" ) ){ sQuests = sQuests + "-Learned the secrets of riding draconic creatures.<br><br>"; }
 
-			if ( PlayerSettings.GetDiscovered( from, Land.Sosaria ) ){ sQuests = sQuests + "-Discovered the World of Sosaria.<br><br>"; }
+			if ( PlayerSettings.GetDiscovered( from, Land.Vaelen ) ){ sQuests = sQuests + "-Discovered the World of Vaelen.<br><br>"; }
 			if ( PlayerSettings.GetDiscovered( from, Land.UmberVeil ) ){ sQuests = sQuests + "-Discovered Umber Veil.<br><br>"; }
 			if ( PlayerSettings.GetDiscovered( from, Land.Ambrosia ) ){ sQuests = sQuests + "-Discovered Ambrosia.<br><br>"; }
 			if ( PlayerSettings.GetDiscovered( from, Land.Lodoria ) ){ sQuests = sQuests + "-Discovered the Elven World of Lodoria.<br><br>"; }

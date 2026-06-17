@@ -210,7 +210,7 @@ namespace Server.Misc
 					case LogEventType.Battles: sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new tales of bravery to tell."; break;
 					case LogEventType.Adventures: sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new gossip to tell."; break;
 					case LogEventType.Quests: sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new tales of deeds to tell."; break;
-					case LogEventType.Deaths: sLogEntries = sLogEntries + "I am happy to say " + m.Name + ", that all of Sosaria's citizens are alive and well."; break;
+					case LogEventType.Deaths: sLogEntries = sLogEntries + "I am happy to say " + m.Name + ", that all of Vaelen's citizens are alive and well."; break;
 					case LogEventType.Journies: sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have no new tales of exploration to tell."; break;
 					default: sLogEntries = sLogEntries + "Sorry, " + m.Name + ". I have nothing new to tell of such things."; break;
 				}

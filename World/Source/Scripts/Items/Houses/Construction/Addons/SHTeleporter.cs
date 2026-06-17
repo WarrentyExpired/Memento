@@ -210,7 +210,7 @@ namespace Server.Items
 
 			public void AddSHTCouple( bool ext1, int x1, int y1, int z1, bool ext2, int x2, int y2, int z2 )
 			{
-				AddSHTCouple( Map.Sosaria, ext1, x1, y1, z1, ext2, x2, y2, z2 );
+				AddSHTCouple( Map.Vaelen, ext1, x1, y1, z1, ext2, x2, y2, z2 );
 				AddSHTCouple( Map.Lodor, ext1, x1, y1, z1, ext2, x2, y2, z2 );
 			}
 
@@ -222,9 +222,9 @@ namespace Server.Items
 				AddSHTCouple( false, 5897, 1877, 0, false, 5871, 1867, 0 );
 				AddSHTCouple( false, 5852, 1848, 0, false, 5771, 1867, 0 );
 
-				tele1 = AddSHT( Map.Sosaria, false, 5747, 1895, 0 );
+				tele1 = AddSHT( Map.Vaelen, false, 5747, 1895, 0 );
 				tele1.LeftTele.TeleOffset = new Point3D( -1, 3, 0 );
-				tele2 = AddSHT( Map.Sosaria, false, 5658, 1898, 0 );
+				tele2 = AddSHT( Map.Vaelen, false, 5658, 1898, 0 );
 				Link( tele1, tele2 );
 
 				tele1 = AddSHT( Map.Lodor, false, 5747, 1895, 0 );
@@ -235,9 +235,9 @@ namespace Server.Items
 				AddSHTCouple( false, 5727, 1894, 0, false, 5756, 1794, 0 );
 				AddSHTCouple( false, 5784, 1929, 0, false, 5700, 1929, 0 );
 
-				tele1 = AddSHT( Map.Sosaria, false, 5711, 1952, 0 );
+				tele1 = AddSHT( Map.Vaelen, false, 5711, 1952, 0 );
 				tele1.LeftTele.TeleOffset = new Point3D( -1, 3, 0 );
-				tele2 = AddSHT( Map.Sosaria, false, 5657, 1954, 0 );
+				tele2 = AddSHT( Map.Vaelen, false, 5657, 1954, 0 );
 				Link( tele1, tele2 );
 
 				tele1 = AddSHT( Map.Lodor, false, 5711, 1952, 0 );
@@ -245,9 +245,9 @@ namespace Server.Items
 				tele2 = AddSHT( Map.Lodor, false, 5657, 1954, 0 );
 				Link( tele1, tele2 );
 
-				tele1 = AddSHT( Map.Sosaria, false, 5655, 2018, 0 );
+				tele1 = AddSHT( Map.Vaelen, false, 5655, 2018, 0 );
 				tele1.LeftTele.TeleOffset = new Point3D( -1, 3, 0 );
-				tele2 = AddSHT( Map.Sosaria, true, 1690, 2789, 0 );
+				tele2 = AddSHT( Map.Vaelen, true, 1690, 2789, 0 );
 				Link( tele1, tele2 );
 
 				tele1 = AddSHT( Map.Lodor, false, 5655, 2018, 0 );
@@ -257,9 +257,9 @@ namespace Server.Items
 
 				AddSHTCouple( false, 5809, 1905, 0, false, 5876, 1891, 0 );
 
-				tele1 = AddSHT( Map.Sosaria, false, 5814, 2015, 0 );
+				tele1 = AddSHT( Map.Vaelen, false, 5814, 2015, 0 );
 				tele1.LeftTele.TeleOffset = new Point3D( -1, 3, 0 );
-				tele2 = AddSHT( Map.Sosaria, false, 5913, 1893, 0 );
+				tele2 = AddSHT( Map.Vaelen, false, 5913, 1893, 0 );
 				Link( tele1, tele2 );
 
 				tele1 = AddSHT( Map.Lodor, false, 5814, 2015, 0 );
@@ -269,10 +269,10 @@ namespace Server.Items
 
 				AddSHTCouple( false, 5919, 2021, 0, true, 1724, 814, 0 );
 
-				tele1 = AddSHT( Map.Sosaria, false, 5654, 1791, 0 );
-				tele2 = AddSHT( Map.Sosaria, true, 730, 1451, 0 );
+				tele1 = AddSHT( Map.Vaelen, false, 5654, 1791, 0 );
+				tele2 = AddSHT( Map.Vaelen, true, 730, 1451, 0 );
 				Link( tele1, tele2 );
-				AddSHT( Map.Sosaria, false, 5734, 1859, 0 ).ChangeDest( tele2 );
+				AddSHT( Map.Vaelen, false, 5734, 1859, 0 ).ChangeDest( tele2 );
 
 				tele1 = AddSHT( Map.Lodor, false, 5654, 1791, 0 );
 				tele2 = AddSHT( Map.Lodor, true, 730, 1451, 0 );

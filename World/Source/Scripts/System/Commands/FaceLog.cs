@@ -32,7 +32,7 @@ namespace Server.Scripts.Commands
 
 			string sRegion = Server.Misc.Worlds.GetRegionName( m.Map, m.Location );
 
-			string sMap = "Map.Sosaria";
+			string sMap = "Map.Vaelen";
 			if ( m.Map == Map.Lodor ){ sMap = "Map.Lodor"; }
 			else if ( m.Map == Map.Underworld ){ sMap = "Map.Underworld"; }
 			else if ( m.Map == Map.SerpentIsland ){ sMap = "Map.SerpentIsland"; }

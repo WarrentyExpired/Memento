@@ -24,7 +24,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from.Map == Map.Sosaria && from.X < 1452 && from.X > 1439 && from.Y < 1631 && from.Y > 1621 )
+			if ( from.Map == Map.Vaelen && from.X < 1452 && from.X > 1439 && from.Y < 1631 && from.Y > 1621 )
 			{
 				int runes = 0;
 

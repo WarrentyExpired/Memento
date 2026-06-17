@@ -169,7 +169,7 @@ namespace Server.Misc
 			m.AddToBackpack( record );
 
 			loc = new Point3D( 4109, 3775, 2 );
-			m.MoveToWorld( loc, Map.Sosaria );
+			m.MoveToWorld( loc, Map.Vaelen );
 		}
 
 		public static void SetWanted( Mobile m ) // -------------------------------------------------------------------------------------------------
@@ -372,7 +372,7 @@ namespace Server.Misc
 				foreach (string found in discoveries)
 				{
 					if ( nEntry == 1 && found == "1" && land == Land.Lodoria ) return true;
-					else if ( nEntry == 2 && found == "1" && land == Land.Sosaria ) return true;
+					else if ( nEntry == 2 && found == "1" && land == Land.Vaelen ) return true;
 					else if ( nEntry == 3 && found == "1" && land == Land.UmberVeil ) return true;
 					else if ( nEntry == 4 && found == "1" && land == Land.Ambrosia ) return true;
 					else if ( nEntry == 5 && found == "1" && land == Land.Serpent ) return true;
@@ -404,7 +404,7 @@ namespace Server.Misc
 				foreach ( string lands in discoveries )
 				{
 					if ( nEntry == 1 && world == "the Land of Lodoria" ){ entry = entry + "1#"; }
-					else if ( nEntry == 2 && world == "the Land of Sosaria" ){ entry = entry + "1#"; }
+					else if ( nEntry == 2 && world == "the Land of Vaelen" ){ entry = entry + "1#"; }
 					else if ( nEntry == 3 && world == "the Island of Umber Veil" ){ entry = entry + "1#"; }
 					else if ( nEntry == 4 && world == "the Land of Ambrosia" ){ entry = entry + "1#"; }
 					else if ( nEntry == 5 && world == "the Serpent Island" ){ entry = entry + "1#"; }

@@ -79,7 +79,7 @@ namespace Server.Items
 
 		public static void SetMirrors()
 		{
-			int MirrorSosaria = 0;
+			int MirrorVaelen = 0;
 			int MirrorLodor = 0;
 			int MirrorSerpentIsland = 0;
 			int MirrorSavagedEmpire = 0;
@@ -132,9 +132,9 @@ namespace Server.Items
 						MirrorSerpentIsland++;
 						item.Visible = true;
 					}
-					else if ( MirrorSosaria < 2 )
+					else if ( MirrorVaelen < 2 )
 					{
-						MirrorSosaria++;
+						MirrorVaelen++;
 						item.Visible = true;
 					}
 				}
@@ -176,9 +176,9 @@ namespace Server.Items
 						MirrorSerpentIsland++;
 						item.Visible = true;
 					}
-					else if ( MirrorSosaria < 2 )
+					else if ( MirrorVaelen < 2 )
 					{
-						MirrorSosaria++;
+						MirrorVaelen++;
 						item.Visible = true;
 					}
 				}

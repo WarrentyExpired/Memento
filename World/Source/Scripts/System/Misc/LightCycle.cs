@@ -75,7 +75,7 @@ namespace Server
 			int hours, minutes;
 
 			//Server.Items.Clock.GetTime( from.Map, from.X, from.Y, out hours, out minutes );
-			Server.Items.Clock.GetTime( Map.Sosaria, 100, 100, out hours, out minutes );
+			Server.Items.Clock.GetTime( Map.Vaelen, 100, 100, out hours, out minutes );
 
 			/* OSI times:
 			 * 

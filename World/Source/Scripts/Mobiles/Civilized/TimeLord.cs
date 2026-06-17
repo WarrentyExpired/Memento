@@ -20,11 +20,11 @@ namespace Server.Mobiles
 				{
 					switch ( Utility.Random( 9 ))
 					{
-						case 0: Say("The Stranger has saved Sosaria from Exodus."); break;
+						case 0: Say("The Stranger has saved Vaelen from Exodus."); break;
 						case 1: Say("Castle Exodus lies in ruins, no one knowing what evil lurks below."); break;
 						case 2: Say("Mondain's legacy is forever extinguished."); break;
 						case 3: Say("The timeline has been restored, after the wrath of Minax."); break;
-						case 4: Say("One day the Stranger will return to Sosaria."); break;
+						case 4: Say("One day the Stranger will return to Vaelen."); break;
 						case 5: Say("Although some speak of virtue, it is the serpents of order who keep the balance."); break;
 						case 6: Say("The order was Love, Sol, Moon, and Death."); break;
 						case 7: Say("Maybe one day the Stranger will achieve Avatarhood."); break;

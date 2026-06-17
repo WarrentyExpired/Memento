@@ -58,7 +58,7 @@ namespace Server.Items
 				case 10:	ScrollMessage = "The gray dragon holds the key to escape."; break;
 				case 11:	ScrollMessage = "Some believe that a deal was struck between Kylearan and Mangar"; break;
 				case 12:	ScrollMessage = "There is a cave where Garth gets his ore."; break;
-				case 13:	ScrollMessage = "There was a mad god that left ruins of Skara Brae in Sosaria."; break;
+				case 13:	ScrollMessage = "There was a mad god that left ruins of Skara Brae in Vaelen."; break;
 				case 14:	ScrollMessage = "There are three silver shapes that are needed to enter Mangar's room."; break;
 				case 15:	ScrollMessage = "Some have seen a wizard that would go into his dungeon cells and disappear."; break;
 				case 16:	ScrollMessage = "There is a statue of the mad god is on top of Harkyn's tower."; break;

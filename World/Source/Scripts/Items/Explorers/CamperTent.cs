@@ -140,7 +140,7 @@ namespace Server.Items
 						else if ( from.Region.IsPartOf( typeof( BardDungeonRegion ) ) ){ loc = new Point3D( 3687, 3333, 0 ); }
 						else if ( from.Skills[SkillName.Camping].Value > 66 ){ loc = new Point3D( 3792, 3967, 0 ); }
 
-					TentTeleport( from, loc, Map.Sosaria, 0x057, sZone, "enter" );
+					TentTeleport( from, loc, Map.Vaelen, 0x057, sZone, "enter" );
 					return;
 				}
 				else if ( from.InRange( this.GetWorldLocation(), 3 ) && Charges > 0 )
@@ -169,11 +169,11 @@ namespace Server.Items
 					builtTent.Name = "camping tent";
 					ThruDoor publicTent = (ThruDoor)builtTent;
 					publicTent.m_PointDest = loc;
-					publicTent.m_MapDest = Map.Sosaria;
+					publicTent.m_MapDest = Map.Vaelen;
 					builtTent.MoveToWorld( this.Location, this.Map );
 					from.AddToBackpack( this );
 
-					TentTeleport( from, loc, Map.Sosaria, 0x057, sZone, "enter" );
+					TentTeleport( from, loc, Map.Vaelen, 0x057, sZone, "enter" );
 					return;
 				}
 				else if ( !from.InRange( this.GetWorldLocation(), 3 ) && Charges > 0 )

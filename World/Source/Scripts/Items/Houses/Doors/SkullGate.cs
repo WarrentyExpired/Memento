@@ -30,7 +30,7 @@ namespace Server.Items
 				if ( this.Map == Map.Lodor )
 				{
 					coord = new Point3D( 2672, 3215, -80 );
-					map = Map.Sosaria;
+					map = Map.Vaelen;
 				}
 
 				if ( PlayerSettings.GetKeys( m, "SkullGate" ) )

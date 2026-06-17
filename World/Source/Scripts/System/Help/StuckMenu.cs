@@ -31,7 +31,7 @@ namespace Server.Menus.Questions
 				AddHtml( x, y, width, height, text.String, back, scroll );
 		}
 
-		private static StuckMenuEntry[] m_Entries = new StuckMenuEntry[] { new StuckMenuEntry( "Sosaria", new Point3D[] { new Point3D( 3213, 3673, 0 ) } ) };
+		private static StuckMenuEntry[] m_Entries = new StuckMenuEntry[] { new StuckMenuEntry( "Vaelen", new Point3D[] { new Point3D( 3213, 3673, 0 ) } ) };
 		private static StuckMenuEntry[] m_LunaEntries = new StuckMenuEntry[] { new StuckMenuEntry( "Luna", new Point3D[] { new Point3D( 5884, 2864, 0 ) } ) };
 		private static StuckMenuEntry[] m_AmbrosiaEntries = new StuckMenuEntry[] { new StuckMenuEntry( "Ambrosia", new Point3D[] { new Point3D( 3325, 3934, 0 ) } ) };
 		private static StuckMenuEntry[] m_UmberEntries = new StuckMenuEntry[] { new StuckMenuEntry( "Umber Veil", new Point3D[] { new Point3D( 2982, 3696, 0 ) } ) };
@@ -54,25 +54,25 @@ namespace Server.Menus.Questions
 			m_Sender = beholder;
 			m_Mobile = beheld;
 			m_MarkUse = markUse;
-			m_Map = Map.Sosaria;
+			m_Map = Map.Vaelen;
 			string color = "#ddbc4b";
 
 			StuckMenuEntry[] entries = m_Entries;
 
 			Land land = m_Mobile.Land;
 
-			if ( land == Land.Luna ) { entries = m_LunaEntries; m_Map = Map.Sosaria; }
-			else if ( land == Land.Ambrosia ) { entries = m_AmbrosiaEntries; m_Map = Map.Sosaria; }
-			else if ( land == Land.UmberVeil ) { entries = m_UmberEntries; m_Map = Map.Sosaria; }
-			else if ( land == Land.Kuldar ) { entries = m_KuldarEntries; m_Map = Map.Sosaria; }
+			if ( land == Land.Luna ) { entries = m_LunaEntries; m_Map = Map.Vaelen; }
+			else if ( land == Land.Ambrosia ) { entries = m_AmbrosiaEntries; m_Map = Map.Vaelen; }
+			else if ( land == Land.UmberVeil ) { entries = m_UmberEntries; m_Map = Map.Vaelen; }
+			else if ( land == Land.Kuldar ) { entries = m_KuldarEntries; m_Map = Map.Vaelen; }
 			else if ( land == Land.SkaraBrae ) { entries = m_BardEntries; m_Map = Map.Lodor; }
 			else if ( land == Land.Lodoria ) { entries = m_LodorEntries; m_Map = Map.Lodor; }
-			else if ( land == Land.Sosaria ) { entries = m_Entries; m_Map = Map.Sosaria; }
+			else if ( land == Land.Vaelen ) { entries = m_Entries; m_Map = Map.Vaelen; }
 			else if ( land == Land.Underworld ) { entries = m_UnderworldEntries; m_Map = Map.Underworld; }
 			else if ( land == Land.Serpent ) { entries = m_SerpentEntries; m_Map = Map.SerpentIsland; }
 			else if ( land == Land.IslesDread ) { entries = m_DreadEntries; m_Map = Map.IslesDread; }
 			else if ( land == Land.Savaged ) { entries = m_SavageEntries; m_Map = Map.SavagedEmpire; }
-			else if ( land == Land.Atlantis ) { entries = m_Entries; m_Map = Map.Sosaria; }
+			else if ( land == Land.Atlantis ) { entries = m_Entries; m_Map = Map.Vaelen; }
 
             this.Closable=true;
 			this.Disposable=false;
@@ -143,7 +143,7 @@ namespace Server.Menus.Questions
 				else if ( land == Land.Kuldar ) { entries = m_KuldarEntries; }
 				else if ( land == Land.SkaraBrae ) { entries = m_BardEntries; }
 				else if ( land == Land.Lodoria ) { entries = m_LodorEntries; }
-				else if ( land == Land.Sosaria ) { entries = m_Entries; }
+				else if ( land == Land.Vaelen ) { entries = m_Entries; }
 				else if ( land == Land.Serpent ) { entries = m_SerpentEntries; }
 				else if ( land == Land.IslesDread ) { entries = m_DreadEntries; }
 				else if ( land == Land.Savaged ) { entries = m_SavageEntries; }

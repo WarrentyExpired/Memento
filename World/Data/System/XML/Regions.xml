@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ServerRegions>
-    <Facet name="Sosaria">
+    <Facet name="Vaelen">
         <region type="DungeonRegion" priority="50" name="Dungeon Passage">
             <rect x="2366" y="408" width="112" height="78" />
                 <spawning>

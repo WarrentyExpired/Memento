@@ -61,7 +61,7 @@ namespace Server.Items
 				};
 				private readonly static List<Land> m_SortedLands = new List<Land>
 				{
-					Land.Sosaria, // No prefix
+					Land.Vaelen, // No prefix
 					Land.Kuldar, // No prefix
 					Land.Lodoria, // Elf
 					Land.Savaged, // Ork

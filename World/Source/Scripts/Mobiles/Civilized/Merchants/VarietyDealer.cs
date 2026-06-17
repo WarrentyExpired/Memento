@@ -77,7 +77,7 @@ namespace Server.Mobiles
 
 				if ( dropped.Amount == 500 && Server.Items.MuseumBook.IsEnabled() )
 				{
-					if (	Server.Misc.PlayerSettings.GetDiscovered( from, Land.Sosaria ) && 
+					if (	Server.Misc.PlayerSettings.GetDiscovered( from, Land.Vaelen ) && 
 							Server.Misc.PlayerSettings.GetDiscovered( from, Land.Lodoria ) && 
 							Server.Misc.PlayerSettings.GetDiscovered( from, Land.UmberVeil ) && 
 							Server.Misc.PlayerSettings.GetDiscovered( from, Land.Ambrosia ) && 

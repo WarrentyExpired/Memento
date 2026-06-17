@@ -115,7 +115,7 @@ namespace Server.Mobiles
 					else if ( waters == "the Serpent Island" ){ 		waters = "the Serpent Seas"; }
 					else if ( waters == "the Isles of Dread" ){ 		waters = "the Dreadful Sea"; }
 					else if ( waters == "the Savaged Empire" ){ 		waters = "the Savage Seas"; }
-					else if ( waters == "the Land of Sosaria" ){ 		waters = "the Sosaria Ocean"; }
+					else if ( waters == "the Land of Vaelen" ){ 		waters = "the Vaelen Ocean"; }
 
 					trophy.AnimalWhere = "From " + waters;
 					string trophyKiller = killer.Name + " the " + Server.Misc.GetPlayerInfo.GetSkillTitle( killer );

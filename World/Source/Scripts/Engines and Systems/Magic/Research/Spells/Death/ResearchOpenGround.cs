@@ -252,7 +252,7 @@ namespace Server.Items
 			Effects.PlaySound( m.Location, m.Map, Utility.RandomList( 0x5D2,0x5D3 ) );
 			Point3D p = new Point3D( 2602, 3688, 100 );
 			Point3D b = new Point3D( 2602, 3688, 0 );
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 
 			Effects.PlaySound( m.Location, m.Map, Utility.RandomList( 0x5D2,0x5D3 ) );
 			owner.DoHarmful( m );

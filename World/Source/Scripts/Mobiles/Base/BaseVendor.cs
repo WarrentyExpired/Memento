@@ -218,15 +218,15 @@ namespace Server.Mobiles
 				{
 					default:
 					case Land.Atlantis: // Not implemented
-					case Land.Luna: // Off Sosaria - Mages only
+					case Land.Luna: // Off Vaelen - Mages only
 					case Land.SkaraBrae: // Not a big need for Gold here
-					case Land.Sosaria:
+					case Land.Vaelen:
 					case Land.None:
 						multiplier = 1;
 						break;
 
-					case Land.UmberVeil: // Off of Sosaria
-					case Land.IslesDread: // Off of Sosaria (Ancient Pyramid)
+					case Land.UmberVeil: // Off of Vaelen
+					case Land.IslesDread: // Off of Vaelen (Ancient Pyramid)
 					case Land.Ambrosia: // A single Necromancer + Wandering Healers
 					case Land.Lodoria: // Usually from Poseidon
 					case Land.Serpent: // After Umber
@@ -1417,11 +1417,11 @@ namespace Server.Mobiles
 					wMap.WorldMap = this.Land;
 
 					if ( wMap.WorldMap == Land.Atlantis )
-						wMap.WorldMap = Land.Sosaria;
+						wMap.WorldMap = Land.Vaelen;
 					else if ( wMap.WorldMap == Land.Luna )
-						wMap.WorldMap = Land.Sosaria;
+						wMap.WorldMap = Land.Vaelen;
 					else if ( wMap.WorldMap == Land.SkaraBrae )
-						wMap.WorldMap = Land.Sosaria;
+						wMap.WorldMap = Land.Vaelen;
 
 					wMap.Name = "world map";
 					wMap.ColorText3 = Lands.LandName( wMap.WorldMap );

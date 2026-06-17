@@ -448,7 +448,7 @@ namespace Server.Misc
 					builder.Append("- Misc - Sacrificing the Dark Core of Exodus now only deletes your own core<br>");
 					builder.Append("- Misc - Fix an issue with Fast-move delay causing monster ghost speed to be slowed down<br>");
 					builder.Append("- Misc - Thief artifact decorations could be purchased for 0g from Sage<br>");
-					builder.Append("- Misc - The Merchant Advertiser now works for Sosaria and Underworld<br>");
+					builder.Append("- Misc - The Merchant Advertiser now works for Vaelen and Underworld<br>");
 					builder.Append("- Pets - Fix issue where applying Traits could lower stats<br>");
 					builder.Append("- Misc - Weapon Abilities now respect ServerSettings cap for Lower Mana Cost (no change for Live)<br>");
 					builder.Append("- Misc - Autoloot no longer works on Player corpses<br>");
@@ -785,7 +785,7 @@ namespace Server.Misc
 					builder.Append("- Quest - 'Seeking Brave Adventurers' quests are now more likely to be challenging<br>");
 					builder.Append("- Quest - 'Seeking Brave Adventurers' targets can now be in Ambrosia<br>");
 					builder.Append("- Quest - 'Seeking Brave Adventurers' quests can no longer assign overworld mobs<br>");
-					builder.Append("- Quest - 'Seeking Brave Adventurers' reward is limited to 5,000 in Sosaria<br>");
+					builder.Append("- Quest - 'Seeking Brave Adventurers' reward is limited to 5,000 in Vaelen<br>");
 					builder.Append("- Quest - 'Seeking Brave Adventurers' reward is limited to 12,000 in Lodoria<br>");
 					builder.Append("- Quest - Bounty rewards for providing proof of death to Guards have been reduced<br>");
 					builder.Append("- Quest - Crates now show delivery instructions on their tooltip<br>");

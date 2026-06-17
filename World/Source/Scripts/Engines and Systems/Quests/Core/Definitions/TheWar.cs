@@ -21,7 +21,7 @@ namespace Server.Engines.MLQuests.Definitions
             var builder = new StringBuilder();
             builder.Append("Hear me now! Our once-thriving towns stand at the brink of ruin, and the time has come for each of us to do our part. The Great War has cast a shadow over our peaceful lands, and the forces of darkness grow bolder with each passing day. Trade routes have been shattered, crops are burning, and our homes are at risk.");
             builder.Append("<br><br>");
-            builder.Append("But there is still hope, and that hope lies in our hands. We need brave souls, yes, but we also need the skilled hands of craftsmen, like you, to support our warriors on the front lines. The soldiers of Sosaria need your help.");
+            builder.Append("But there is still hope, and that hope lies in our hands. We need brave souls, yes, but we also need the skilled hands of craftsmen, like you, to support our warriors on the front lines. The soldiers of Vaelen need your help.");
             builder.Append("<br><br>");
             builder.Append("Our soldiers must be protected from the deadly forces they face. By signing up today, you can forge the very armor that will keep our brave defenders safe and give them the strength they need to turn the tide of this war. Your craft, your skill, can make the difference between victory and defeat. The time to act is now -- stand with us, and together, we shall reclaim our land!");
             Description = builder.ToString();
@@ -40,7 +40,7 @@ namespace Server.Engines.MLQuests.Definitions
             InProgressMessage = builder.ToString();
 
             builder.Clear();
-            builder.Append("By the Virtues, your generosity will not be forgotten! Your contribution to this cause is beyond measure, and the warriors on the front lines will wear the Ringmail Tunics you've crafted with pride, knowing they were forged by the hands of true heroes like you. You've shown what it means to stand for Sosaria.");
+            builder.Append("By the Virtues, your generosity will not be forgotten! Your contribution to this cause is beyond measure, and the warriors on the front lines will wear the Ringmail Tunics you've crafted with pride, knowing they were forged by the hands of true heroes like you. You've shown what it means to stand for Vaelen.");
             builder.Append("<br><br>");
             builder.Append("Your work will protect the innocent and help bring us one step closer to victory. The courage you've shown in this dark time speaks volumes, and I am proud to count you among our allies. Rest assured, your sacrifice will be honored, and your name will echo alongside those of the brave who have fought to keep our world safe. Thank you, friend. Together, we will restore the peace we once knew.");
             CompletionMessage = builder.ToString();
@@ -63,9 +63,9 @@ namespace Server.Engines.MLQuests.Definitions
             base.Generate();
 
             // TODO: Place one in all Towns
-            PutSpawner(new Spawner(1, 5, 10, 0, 0, "WarEffortRecruiter"), new Point3D(2999, 1062, 0), Map.Sosaria); // Britain Well
-            PutSpawner(new Spawner(1, 5, 10, 0, 0, "WarEffortRecruiter"), new Point3D(7054, 725, 65), Map.Sosaria); // The Port
-            PutSpawner(new Spawner(1, 5, 10, 0, 0, "WarEffortRecruiter"), new Point3D(4461, 1823, 0), Map.Sosaria); // Xardok's Castle
+            PutSpawner(new Spawner(1, 5, 10, 0, 0, "WarEffortRecruiter"), new Point3D(2999, 1062, 0), Map.Vaelen); // Britain Well
+            PutSpawner(new Spawner(1, 5, 10, 0, 0, "WarEffortRecruiter"), new Point3D(7054, 725, 65), Map.Vaelen); // The Port
+            PutSpawner(new Spawner(1, 5, 10, 0, 0, "WarEffortRecruiter"), new Point3D(4461, 1823, 0), Map.Vaelen); // Xardok's Castle
         }
 
         public override bool CanOffer(IQuestGiver quester, PlayerMobile pm, MLQuestContext context, bool message)

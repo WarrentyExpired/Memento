@@ -911,10 +911,10 @@ namespace Server
 				if ( level < 0 )
 					level = 1;
 
-				Map map = Map.Sosaria;
+				Map map = Map.Vaelen;
 				switch( Utility.Random( 6 ) )
 				{
-					case 0: map = Map.Sosaria; break;
+					case 0: map = Map.Vaelen; break;
 					case 1: map = Map.Lodor; break;
 					case 2: map = Map.SerpentIsland; break;
 					case 3: map = Map.IslesDread; break;

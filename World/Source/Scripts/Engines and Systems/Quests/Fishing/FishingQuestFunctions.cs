@@ -143,9 +143,9 @@ namespace Server.Misc
 
 			var options = new List<Land>
 			{
-				Land.Sosaria,
-				Land.Sosaria,
-				Land.Sosaria,
+				Land.Vaelen,
+				Land.Vaelen,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Lodoria,
 				Land.Lodoria,
@@ -171,9 +171,9 @@ namespace Server.Misc
 
 				if ( PirateHunt )
 				{
-					if ( searchLocation == Land.Sosaria )
+					if ( searchLocation == Land.Vaelen )
 					{
-						if ( target is PirateCaptain && reg.IsPartOf( typeof( PirateRegion ) ) && target.Map == Map.Sosaria && target.Land == searchLocation )
+						if ( target is PirateCaptain && reg.IsPartOf( typeof( PirateRegion ) ) && target.Map == Map.Vaelen && target.Land == searchLocation )
 						{
 							targets.Add( target ); aCount++;
 						}
@@ -195,9 +195,9 @@ namespace Server.Misc
 				}
 				else
 				{
-					if ( searchLocation == Land.Sosaria )
+					if ( searchLocation == Land.Vaelen )
 					{
-						if ( SkipMe( target ) == true && target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Sosaria && target.Land == searchLocation )
+						if ( SkipMe( target ) == true && target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Vaelen && target.Land == searchLocation )
 						{
 							targets.Add( target ); aCount++;
 						}
@@ -232,14 +232,14 @@ namespace Server.Misc
 					}
 					else if ( searchLocation == Land.UmberVeil )
 					{
-						if ( SkipMe( target ) == true && target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Sosaria && target.Land == searchLocation )
+						if ( SkipMe( target ) == true && target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Vaelen && target.Land == searchLocation )
 						{
 							targets.Add( target ); aCount++;
 						}
 					}
 					else if ( searchLocation == Land.Kuldar )
 					{
-						if ( SkipMe( target ) == true && target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Sosaria && target.Land == searchLocation )
+						if ( SkipMe( target ) == true && target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Vaelen && target.Land == searchLocation )
 						{
 							targets.Add( target ); aCount++;
 						}
@@ -253,9 +253,9 @@ namespace Server.Misc
 					}
 				}
 
-				if ( aCount < 1 ) // SAFETY CATCH IF IT FINDS NOT CREATURES AT ALL...IT WILL FIND AT LEAST ONE IN SOSARIA //
+				if ( aCount < 1 ) // SAFETY CATCH IF IT FINDS NOT CREATURES AT ALL...IT WILL FIND AT LEAST ONE IN Vaelen //
 				{
-					if ( target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Sosaria && target.Land == Land.Sosaria )
+					if ( target.Karma < 0 && target.Fame < fee && target.WhisperHue == 999 && Server.Misc.Worlds.IsMainRegion( Server.Misc.Worlds.GetRegionName( target.Map, target.Location ) ) && target.Map == Map.Vaelen && target.Land == Land.Vaelen )
 					{
 						targets.Add( target ); aCount++;
 					}

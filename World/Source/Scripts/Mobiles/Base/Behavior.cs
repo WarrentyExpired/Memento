@@ -4231,12 +4231,12 @@ namespace Server.Misc
 				from.EmoteHue = 4;
 			}
 			else if (
-						( from.X >= 6312 && from.Y >= 3538 && from.X <= 6397 && from.Y <= 3628 && from.Map == Map.Sosaria ) || 
+						( from.X >= 6312 && from.Y >= 3538 && from.X <= 6397 && from.Y <= 3628 && from.Map == Map.Vaelen ) || 
 						( from.X >= 6266 && from.Y >= 469 && from.X <= 6276 && from.Y <= 479 && from.Map == Map.Lodor ) || 
 						( from.X >= 6272 && from.Y >= 534 && from.X <= 6282 && from.Y <= 544 && from.Map == Map.Lodor ) || 
 						( from.X >= 6309 && from.Y >= 578 && from.X <= 6319 && from.Y <= 588 && from.Map == Map.Lodor ) || 
-						( from.X >= 6203 && from.Y >= 661 && from.X <= 6213 && from.Y <= 671 && from.Map == Map.Sosaria ) || 
-						( from.X >= 6331 && from.Y >= 145 && from.X <= 6341 && from.Y <= 155 && from.Map == Map.Sosaria ) || 
+						( from.X >= 6203 && from.Y >= 661 && from.X <= 6213 && from.Y <= 671 && from.Map == Map.Vaelen ) || 
+						( from.X >= 6331 && from.Y >= 145 && from.X <= 6341 && from.Y <= 155 && from.Map == Map.Vaelen ) || 
 						( from.X >= 6284 && from.Y >= 3598 && from.X <= 6294 && from.Y <= 3608 && from.Map == Map.Lodor ) || 
 						( from.X >= 28 && from.Y >= 3294 && from.X <= 101 && from.Y <= 3329 && from.Map == Map.SavagedEmpire ) || 
 						Server.Misc.Worlds.IsCrypt( from.Location, from.Map )
@@ -4255,7 +4255,7 @@ namespace Server.Misc
 			else if (
 						( from is EvilMage || from is ElfMage || from is OrkMage ) && 
 						(
-							( from.X >= 6177 && from.Y >= 256 && from.X <= 6224 && from.Y <= 297 && from.Map == Map.Sosaria ) || 
+							( from.X >= 6177 && from.Y >= 256 && from.X <= 6224 && from.Y <= 297 && from.Map == Map.Vaelen ) || 
 							( from.X >= 6359 && from.Y >= 508 && from.X <= 6451 && from.Y <= 564 && from.Map == Map.Lodor ) || 
 							Server.Misc.Worlds.TestTile ( from.Map, from.X, from.Y, "snow" ) || 
 							Server.Misc.Worlds.IsIceDungeon( from.Location, from.Map )
@@ -4265,9 +4265,9 @@ namespace Server.Misc
 				from.EmoteHue = 7;
 			}
 			else if (
-						( from.X >= 6184 && from.Y >= 496 && from.X <= 6208 && from.Y <= 520 && from.Map == Map.Sosaria ) || 
-						( from.X >= 6314 && from.Y >= 250 && from.X <= 6339 && from.Y <= 285 && from.Map == Map.Sosaria ) || 
-						( from.X >= 6459 && from.Y >= 460 && from.X <= 6481 && from.Y <= 477 && from.Map == Map.Sosaria ) || 
+						( from.X >= 6184 && from.Y >= 496 && from.X <= 6208 && from.Y <= 520 && from.Map == Map.Vaelen ) || 
+						( from.X >= 6314 && from.Y >= 250 && from.X <= 6339 && from.Y <= 285 && from.Map == Map.Vaelen ) || 
+						( from.X >= 6459 && from.Y >= 460 && from.X <= 6481 && from.Y <= 477 && from.Map == Map.Vaelen ) || 
 						( from.X >= 3094 && from.Y >= 3582 && from.X <= 3118 && from.Y <= 3602 && from.Map == Map.Lodor ) || 
 						Server.Misc.Worlds.IsFireDungeon( from.Location, from.Map ) || 
 						reg.IsPartOf( "the Tower of Brass" ) 
@@ -4276,8 +4276,8 @@ namespace Server.Misc
 				from.EmoteHue = 8;
 			}
 			else if (
-						( from.X >= 6289 && from.Y >= 119 && from.X <= 6299 && from.Y <= 129 && from.Map == Map.Sosaria ) || 
-						( from.X >= 6312 && from.Y >= 125 && from.X <= 6326 && from.Y <= 133 && from.Map == Map.Sosaria ) || 
+						( from.X >= 6289 && from.Y >= 119 && from.X <= 6299 && from.Y <= 129 && from.Map == Map.Vaelen ) || 
+						( from.X >= 6312 && from.Y >= 125 && from.X <= 6326 && from.Y <= 133 && from.Map == Map.Vaelen ) || 
 						Server.Misc.Worlds.TestTile ( from.Map, from.X, from.Y, "swamp" ) || 
 						reg.IsPartOf( "the Temple of Osirus" ) || 
 						reg.IsPartOf( "the Dragon's Maw" ) ||

@@ -260,7 +260,7 @@ namespace Server.Mobiles
 				m_MoonGate.MoveToWorld (new Point3D(6426, 1498, 0), Map.Lodor);
 				m_MoonGate.Name = "Mangar's Gate";
 				m_MoonGate.Target = new Point3D(2830, 1874, 95);
-				m_MoonGate.TargetMap = Map.Sosaria;
+				m_MoonGate.TargetMap = Map.Vaelen;
 				m_MoonGate.ItemID = 0x1FD4;
 			}
 			

@@ -404,7 +404,7 @@ namespace Server
 		{
 			bool safari = false;
 
-			if ( land == Land.Sosaria && Utility.RandomMinMax(1,100) <= MySettings.S_Safari_Sosaria )
+			if ( land == Land.Vaelen && Utility.RandomMinMax(1,100) <= MySettings.S_Safari_Vaelen )
 				safari = true;
 
 			if ( land == Land.Lodoria && Utility.RandomMinMax(1,100) <= MySettings.S_Safari_Lodoria )
@@ -426,7 +426,7 @@ namespace Server
 		{
 			bool safari = false;
 
-			if ( Utility.RandomMinMax(1,100) <= MySettings.S_Safari_Sosaria )
+			if ( Utility.RandomMinMax(1,100) <= MySettings.S_Safari_Vaelen )
 				safari = true;
 
 			if ( Utility.RandomMinMax(1,100) <= MySettings.S_Safari_Lodoria )

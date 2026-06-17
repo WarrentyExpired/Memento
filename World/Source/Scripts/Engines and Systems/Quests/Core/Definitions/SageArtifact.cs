@@ -245,9 +245,9 @@ namespace Server.Engines.MLQuests.Definitions
                         {
                             var options = new List<Land>
                             {
-                                Land.Sosaria,
-                                Land.Sosaria,
-                                Land.Sosaria,
+                                Land.Vaelen,
+                                Land.Vaelen,
+                                Land.Vaelen,
                                 Land.Lodoria,
                                 Land.Lodoria,
                                 Land.Lodoria,
@@ -496,10 +496,10 @@ namespace Server.Items
         public static void UseRandomSearchLocation(SearchPage scroll, string DungeonNow, PlayerMobile from)
         {
             // Default
-            string thisWorld = "the Land of Sosaria";
+            string thisWorld = "the Land of Vaelen";
             string thisPlace = "Dungeon Doom";
-            Map realMap = Map.Sosaria;
-            Map thisMap = Map.Sosaria;
+            Map realMap = Map.Vaelen;
+            Map thisMap = Map.Vaelen;
 
             List<SearchBase> candidates = GetCandidates(from, true);
             if (0 < candidates.Count)

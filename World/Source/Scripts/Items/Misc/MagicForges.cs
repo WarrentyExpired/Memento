@@ -57,7 +57,7 @@ namespace Server.Items
 				else if ( m.Map == Map.Lodor ){ keyword = "Dugero"; }
 				else if ( m.Map == Map.SavagedEmpire ){ keyword = "Urag"; }
 				else if ( m.Map == Map.SerpentIsland ){ keyword = "Purslos"; }
-				else if ( m.Map == Map.Sosaria ){ keyword = "Galzan"; }
+				else if ( m.Map == Map.Vaelen ){ keyword = "Galzan"; }
 
 				if ( !m.Player )
 					return;
@@ -831,7 +831,7 @@ namespace Server.Items
 								else if ( m.Skills[SkillName.Magery].Base > 0 ){ magic = 3; }
 
 							StaffFiveParts staff = new StaffFiveParts( m, magic );
-							staff.MoveToWorld (new Point3D(5693, 1913, 2), Map.Sosaria);
+							staff.MoveToWorld (new Point3D(5693, 1913, 2), Map.Vaelen);
 							Effects.SendLocationParticles( EffectItem.Create( staff.Location, staff.Map, EffectItem.DefaultDuration ), 0x376A, 9, 32, 5008 );
 							Effects.PlaySound( staff.Location, staff.Map, 0x1ED );
 						}
@@ -913,7 +913,7 @@ namespace Server.Items
 						}
 					}
 				}
-				else if ( m.Map == Map.Sosaria ) // ENERGY FORGE
+				else if ( m.Map == Map.Vaelen ) // ENERGY FORGE
 				{
 					foreach ( Item enchant in m.GetItemsInRange( 20 ) )
 					{

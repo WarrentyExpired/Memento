@@ -39,8 +39,8 @@ namespace Server.Regions
 				}
 				else
 				{
-					BaseCreature.TeleportPets( m, new Point3D(3696, 523, 5), Map.Sosaria, false );
-					m.MoveToWorld (new Point3D(3696, 523, 5), Map.Sosaria);
+					BaseCreature.TeleportPets( m, new Point3D(3696, 523, 5), Map.Vaelen, false );
+					m.MoveToWorld (new Point3D(3696, 523, 5), Map.Vaelen);
 					m.PlaySound( 0x1FE );
 					m.SendMessage("You lack the magical essence to remain on the moon.");
 				}

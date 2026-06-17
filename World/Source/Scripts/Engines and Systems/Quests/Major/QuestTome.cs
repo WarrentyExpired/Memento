@@ -495,10 +495,10 @@ namespace Server.Items
 
 			var options = new List<Land>
 			{
-				Land.Sosaria,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Serpent,
-				Land.Sosaria,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Serpent,
 				Land.UmberVeil,

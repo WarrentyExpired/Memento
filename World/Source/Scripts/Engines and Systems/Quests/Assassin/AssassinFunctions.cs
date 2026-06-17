@@ -90,9 +90,9 @@ namespace Server.Misc
 		{
 			var options = new List<Land>
 			{
-				Land.Sosaria,
-				Land.Sosaria,
-				Land.Sosaria,
+				Land.Vaelen,
+				Land.Vaelen,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Lodoria,
 				Land.Lodoria,
@@ -121,7 +121,7 @@ namespace Server.Misc
 
 				if ( target.EmoteHue !=123 && target.Karma < 0 && target.Fame < fee && ( Server.Difficult.GetDifficulty( target.Location, target.Map ) <= GetPlayerInfo.GetPlayerDifficulty( m ) ) && reg.IsPartOf( typeof( DungeonRegion ) ) )
 				{
-					if ( searchLocation == "the Land of Sosaria" && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
+					if ( searchLocation == "the Land of Vaelen" && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 					else if ( searchLocation == "the Land of Lodoria"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 					else if ( searchLocation == "the Serpent Island"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 					else if ( searchLocation == "the Isles of Dread"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
@@ -131,9 +131,9 @@ namespace Server.Misc
 					else if ( searchLocation == "the Underworld"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 				}
 
-				if ( aCount < 1 ) // SAFETY CATCH IF IT FINDS NO CREATURES AT ALL...IT WILL FIND AT LEAST ONE IN SOSARIA //
+				if ( aCount < 1 ) // SAFETY CATCH IF IT FINDS NO CREATURES AT ALL...IT WILL FIND AT LEAST ONE IN Vaelen //
 				{
-					if ( target.Karma < 0 && target.Fame < fee && reg.IsPartOf( typeof( DungeonRegion ) ) && tWorld == "the Land of Sosaria" )
+					if ( target.Karma < 0 && target.Fame < fee && reg.IsPartOf( typeof( DungeonRegion ) ) && tWorld == "the Land of Vaelen" )
 					{
 						targets.Add( target ); aCount++;
 					}
@@ -178,23 +178,23 @@ namespace Server.Misc
 
 		public static void FindInnocentTarget( Mobile m )
 		{
-			string searchLocation = "the Land of Sosaria";
+			string searchLocation = "the Land of Vaelen";
 			switch ( Utility.RandomMinMax( 0, 13 ) )
 			{
-				case 0:		searchLocation = "the Land of Sosaria";			break;
-				case 1:		searchLocation = "the Land of Sosaria";			break;
-				case 2:		searchLocation = "the Land of Sosaria";			break;
-				case 3:		searchLocation = "the Land of Lodoria";			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 4:		searchLocation = "the Land of Lodoria";			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 5:		searchLocation = "the Land of Lodoria";			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 6:		searchLocation = "the Serpent Island";			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 7:		searchLocation = "the Serpent Island";			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 8:		searchLocation = "the Serpent Island";			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 9:		searchLocation = "the Isles of Dread";			if ( !( PlayerSettings.GetDiscovered( m, "the Isles of Dread" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 10:	searchLocation = "the Savaged Empire";			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 11:	searchLocation = "the Savaged Empire";			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 12:	searchLocation = "the Island of Umber Veil";	if ( !( PlayerSettings.GetDiscovered( m, "the Island of Umber Veil" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
-				case 13:	searchLocation = "the Bottle World of Kuldar";	if ( !( PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" ) ) ){ searchLocation = "the Land of Sosaria"; } break;
+				case 0:		searchLocation = "the Land of Vaelen";			break;
+				case 1:		searchLocation = "the Land of Vaelen";			break;
+				case 2:		searchLocation = "the Land of Vaelen";			break;
+				case 3:		searchLocation = "the Land of Lodoria";			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 4:		searchLocation = "the Land of Lodoria";			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 5:		searchLocation = "the Land of Lodoria";			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 6:		searchLocation = "the Serpent Island";			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 7:		searchLocation = "the Serpent Island";			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 8:		searchLocation = "the Serpent Island";			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 9:		searchLocation = "the Isles of Dread";			if ( !( PlayerSettings.GetDiscovered( m, "the Isles of Dread" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 10:	searchLocation = "the Savaged Empire";			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 11:	searchLocation = "the Savaged Empire";			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 12:	searchLocation = "the Island of Umber Veil";	if ( !( PlayerSettings.GetDiscovered( m, "the Island of Umber Veil" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
+				case 13:	searchLocation = "the Bottle World of Kuldar";	if ( !( PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" ) ) ){ searchLocation = "the Land of Vaelen"; } break;
 			}
 
 			int aCount = 0;
@@ -208,7 +208,7 @@ namespace Server.Misc
 
 				if ( target.Blessed == false && reg.IsPartOf( typeof( VillageRegion ) ) )
 				{
-					if ( searchLocation == "the Land of Sosaria" && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
+					if ( searchLocation == "the Land of Vaelen" && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 					else if ( searchLocation == "the Land of Lodoria"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 					else if ( searchLocation == "the Serpent Island"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }
 					else if ( searchLocation == "the Isles of Dread"  && tWorld == searchLocation ){ targets.Add( target ); aCount++; }

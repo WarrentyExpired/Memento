@@ -144,20 +144,20 @@ namespace Server.Items
 		[Constructable]
 		public TreasureMap( int level, Map map, Point3D location, int x, int y )
 		{
-			if ( map != Map.Lodor && map != Map.Sosaria && map != Map.Underworld && map != Map.SerpentIsland && map != Map.IslesDread && map != Map.SavagedEmpire )
-				map = Map.Sosaria;
+			if ( map != Map.Lodor && map != Map.Vaelen && map != Map.Underworld && map != Map.SerpentIsland && map != Map.IslesDread && map != Map.SavagedEmpire )
+				map = Map.Vaelen;
 
 			Land land = Server.Lands.GetLand( map, location, x, y );
 
-			if ( land == Land.Sosaria ){ map = Map.Sosaria; }
+			if ( land == Land.Vaelen ){ map = Map.Vaelen; }
 			else if ( land == Land.Lodoria ){ map = Map.Lodor; }
-			else if ( land == Land.UmberVeil ){ map = Map.Sosaria; }
-			else if ( land == Land.Kuldar ){ map = Map.Sosaria; }
+			else if ( land == Land.UmberVeil ){ map = Map.Vaelen; }
+			else if ( land == Land.Kuldar ){ map = Map.Vaelen; }
 			else if ( land == Land.Savaged ){ map = Map.SavagedEmpire; }
 			else if ( land == Land.Serpent ){ map = Map.SerpentIsland; }
 			else if ( land == Land.IslesDread ){ map = Map.IslesDread; }
-			else if ( land == Land.Ambrosia ){ map = Map.Sosaria; }
-			else if ( land == Land.Atlantis ){ map = Map.Sosaria; }
+			else if ( land == Land.Ambrosia ){ map = Map.Vaelen; }
+			else if ( land == Land.Atlantis ){ map = Map.Vaelen; }
 
 			m_Level = level;
 			m_Map = map;
@@ -211,7 +211,7 @@ namespace Server.Items
 			else if ( land == Land.UmberVeil ){ if (x2 >= 2272) { x2 = 2272; } if (y2 >= 4095) { y2 = 4095; } }
 			else if ( land == Land.Kuldar ){ if (x2 >= 7167) { x2 = 7167; } if (y2 >= 2742) { y2 = 2742; } }
 			else if ( land == Land.Lodoria ){ if (x2 >= 5120) { x2 = 5119; } if (y2 >= 4096) { y2 = 4095; } }
-			else if ( land == Land.Sosaria ){ if (x2 >= 5119) { x2 = 5118; } if (y2 >= 3127) { y2 = 3126; } }
+			else if ( land == Land.Vaelen ){ if (x2 >= 5119) { x2 = 5118; } if (y2 >= 3127) { y2 = 3126; } }
 			else if ( land == Land.Underworld ){ if (x2 >= 1581) { x2 = 1581; } if (y2 >= 1599) { y2 = 1599; } }
 			else if ( land == Land.Serpent ){ if (x2 >= 1870) { x2 = 1869; } if (y2 >= 2047) { y2 = 2046; } }
 			else if ( land == Land.IslesDread ){ if (x2 >= 1447) { x2 = 1446; } if (y2 >= 1447) { y2 = 1446; } }
@@ -815,7 +815,7 @@ namespace Server.Items
 
             string mDesc = "Somewhere in " + Server.Lands.LandName( land ) + "<BR> " + GetName();
 
-            list.Add(1053099, String.Format("<BASEFONT COLOR=#DDCC22>\t{0}<BASEFONT Color=#FBFBFB>", mDesc)); // for somewhere in Lodor : for somewhere in Sosaria  etc...
+            list.Add(1053099, String.Format("<BASEFONT COLOR=#DDCC22>\t{0}<BASEFONT Color=#FBFBFB>", mDesc)); // for somewhere in Lodor : for somewhere in Vaelen  etc...
             
             if (m_Completed)
             {
@@ -966,13 +966,13 @@ namespace Server.Items
 				Point3D locale = new Point3D( m_Location.X, m_Location.Y, 0 );
 
 				Land land = Server.Lands.GetLand( m_Map, locale, m_Location.X, m_Location.Y );
-					if ( land == Land.SkaraBrae ){ land = Land.Sosaria; } // NO TREASURE MAPS IN SKARA BRAE
-					else if ( land == Land.Luna ){ land = Land.Sosaria; } // NO TREASURE MAPS ON THE MOON
+					if ( land == Land.SkaraBrae ){ land = Land.Vaelen; } // NO TREASURE MAPS IN SKARA BRAE
+					else if ( land == Land.Luna ){ land = Land.Vaelen; } // NO TREASURE MAPS ON THE MOON
 
 				Point3D loc = Worlds.GetRandomLocation( land, "land" );
 				Map map = Worlds.GetMyDefaultTreasureMap( land );
 
-				if ( loc == Point3D.Zero ){ loc = new Point3D( 1834, 1107, 2 ); map = Map.Sosaria; }
+				if ( loc == Point3D.Zero ){ loc = new Point3D( 1834, 1107, 2 ); map = Map.Vaelen; }
 
 				m_Map = map;
                 m_Location = new Point2D( loc.X, loc.Y );

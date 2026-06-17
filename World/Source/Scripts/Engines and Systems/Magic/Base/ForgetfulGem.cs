@@ -53,8 +53,8 @@ namespace Server.Items
 
 				if ( page == 1 )
 				{
-					string where = "the Sorcerer Cave in Sosaria";
-					if ( from.Map == Map.Sosaria ){ where = "the Conjurerer's Cave in Lodoria"; }
+					string where = "the Sorcerer Cave in Vaelen";
+					if ( from.Map == Map.Vaelen ){ where = "the Conjurerer's Cave in Lodoria"; }
 					AddHtml( 13, 43, 581, 333, @"<BODY><BASEFONT Color=" + color + ">There are only two crystals like this ever discovered. The one here and the other in " + where + ". Sages have figured out that these can affect the powers of magic within a spellcaster and even some magical items. Sometimes elementalists seek out these crystals to forget the magic they learned, so they can focus their studies on magery or necromancy. Sometimes a mage or necromancer wants to abandon their pursuits and study elemental magic. Since elemental magic interferes with that of necromancy and magery, as well as those two doing the same toward elementalism, the crystals in these caves help them learn the other. Use the arrow button below to navigate the crystal, and be sure of your choices before calling upon the crystal's power.</BASEFONT></BODY>", (bool)false, (bool)false);
 					AddButton(567, 359, 4005, 4005, 2, GumpButtonType.Reply, 0);
 				}

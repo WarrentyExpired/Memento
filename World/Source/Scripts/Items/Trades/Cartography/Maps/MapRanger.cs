@@ -67,7 +67,7 @@ namespace Server.Items
 
 			bool CanUseMap = false;
 
-			if ( GoToWorld == Land.Sosaria ){ CanUseMap = true; }
+			if ( GoToWorld == Land.Vaelen ){ CanUseMap = true; }
 			else if ( GoToWorld == Land.UmberVeil && PlayerSettings.GetDiscovered( from, Land.UmberVeil ) ){ CanUseMap = true; }
 			else if ( GoToWorld == Land.Ambrosia && PlayerSettings.GetDiscovered( from, Land.Ambrosia ) ){ CanUseMap = true; }
 			else if ( GoToWorld == Land.Lodoria && PlayerSettings.GetDiscovered( from, Land.Lodoria ) ){ CanUseMap = true; }
@@ -197,23 +197,23 @@ namespace Server.Items
 			{
 				switch ( Utility.Random( 71 ) )
 				{
-					case 0: paper.m_MapDestination = "the City of the Dead"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(5828, 3263, 0); break;
-					case 1: paper.m_MapDestination = "the Mausoleum"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1529, 3599, 0); break;
-					case 2: paper.m_MapDestination = "the Valley of Dark Druids"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(6763, 1423, 2); break;
-					case 3: paper.m_MapDestination = "Vordo's Castle"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(6708, 1729, 25); break;
-					case 4: paper.m_MapDestination = "the Crypts of Kuldar"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(6668, 1568, 10); break;
-					case 5: paper.m_MapDestination = "the Kuldara Sewers"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(6790, 1745, 24); break;
-					case 6: paper.m_MapDestination = "the Ancient Pyramid"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1162, 472, 0); break;
-					case 7: paper.m_MapDestination = "Dungeon Exodus"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(877, 2702, 0); break;
-					case 8: paper.m_MapDestination = "the Cave of Banished Mages"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3798, 1879, 2); break;
-					case 9: paper.m_MapDestination = "Dungeon Clues"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3760, 2038, 0); break;
-					case 10: paper.m_MapDestination = "Dardin's Pit"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3006, 446, 0); break;
-					case 11: paper.m_MapDestination = "Dungeon Doom"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1628, 2561, 0); break;
-					case 12: paper.m_MapDestination = "the Fires of Hell"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3345, 1647, 0); break;
-					case 13: paper.m_MapDestination = "the Mines of Morinia"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1022, 1369, 2); break;
-					case 14: paper.m_MapDestination = "the Perinian Depths"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3619, 456, 0); break;
-					case 15: paper.m_MapDestination = "the Dungeon of Time Awaits"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3831, 1494, 0); break;
-					case 16: paper.m_MapDestination = "the Pirate Cave"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1842, 2211, 0); break;
+					case 0: paper.m_MapDestination = "the City of the Dead"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(5828, 3263, 0); break;
+					case 1: paper.m_MapDestination = "the Mausoleum"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1529, 3599, 0); break;
+					case 2: paper.m_MapDestination = "the Valley of Dark Druids"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(6763, 1423, 2); break;
+					case 3: paper.m_MapDestination = "Vordo's Castle"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(6708, 1729, 25); break;
+					case 4: paper.m_MapDestination = "the Crypts of Kuldar"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(6668, 1568, 10); break;
+					case 5: paper.m_MapDestination = "the Kuldara Sewers"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(6790, 1745, 24); break;
+					case 6: paper.m_MapDestination = "the Ancient Pyramid"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1162, 472, 0); break;
+					case 7: paper.m_MapDestination = "Dungeon Exodus"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(877, 2702, 0); break;
+					case 8: paper.m_MapDestination = "the Cave of Banished Mages"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3798, 1879, 2); break;
+					case 9: paper.m_MapDestination = "Dungeon Clues"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3760, 2038, 0); break;
+					case 10: paper.m_MapDestination = "Dardin's Pit"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3006, 446, 0); break;
+					case 11: paper.m_MapDestination = "Dungeon Doom"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1628, 2561, 0); break;
+					case 12: paper.m_MapDestination = "the Fires of Hell"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3345, 1647, 0); break;
+					case 13: paper.m_MapDestination = "the Mines of Morinia"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1022, 1369, 2); break;
+					case 14: paper.m_MapDestination = "the Perinian Depths"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3619, 456, 0); break;
+					case 15: paper.m_MapDestination = "the Dungeon of Time Awaits"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3831, 1494, 0); break;
+					case 16: paper.m_MapDestination = "the Pirate Cave"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1842, 2211, 0); break;
 					case 17: paper.m_MapDestination = "the Vault of the Black Knight"; paper.m_MapDest = Map.SerpentIsland; paper.m_PointDest = new Point3D(1581, 202, 0); break;
 					case 18: paper.m_MapDestination = "the Undersea Pass"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(1179, 1931, 0); break;
 					case 19: paper.m_MapDestination = "the Castle of Dracula"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(466, 3794, 0); break;
@@ -260,7 +260,7 @@ namespace Server.Items
 					case 60: paper.m_MapDestination = "the Scurvy Reef"; paper.m_MapDest = Map.IslesDread; paper.m_PointDest = new Point3D(713, 493, 1); break;
 					case 61: paper.m_MapDestination = "the Glacial Scar"; paper.m_MapDest = Map.IslesDread; paper.m_PointDest = new Point3D(238, 171, 0); break;
 					case 62: paper.m_MapDestination = "the Temple of Osirus"; paper.m_MapDest = Map.IslesDread; paper.m_PointDest = new Point3D(601, 819, 20); break;
-					case 63: paper.m_MapDestination = "the Forgotten Halls"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3015, 944, 0); break;
+					case 63: paper.m_MapDestination = "the Forgotten Halls"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3015, 944, 0); break;
 					case 64: paper.m_MapDestination = "Stonegate Castle"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(1355, 404, 0); break;
 					case 65: paper.m_MapDestination = "the Ancient Elven Mine"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(1179, 1931, 0); break;
 					case 66: paper.m_MapDestination = "the Undersea Castle"; paper.m_MapDest = Map.SavagedEmpire; paper.m_PointDest = new Point3D(283, 409, 20); break;
@@ -274,15 +274,15 @@ namespace Server.Items
 			{
 				switch ( Utility.Random( 24 ) )
 				{
-					case 0: paper.m_MapDestination = "the Druid's Glade"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3910, 3971, 0); break;
-					case 1: paper.m_MapDestination = "the Town of Moon"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(860, 678, 0); break;
-					case 2: paper.m_MapDestination = "the Village of Fawn"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(2069, 255, 0); break;
-					case 3: paper.m_MapDestination = "the Village of Yew"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(2530, 872, 2); break;
-					case 4: paper.m_MapDestination = "the City of Britain"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(2942, 1092, 0); break;
-					case 5: paper.m_MapDestination = "the Village of Grey"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(866, 2082, 0); break;
-					case 6: paper.m_MapDestination = "the City of Montor"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(3198, 2590, 0); break;
-					case 7: paper.m_MapDestination = "the Town of Renika"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1471, 3761, 0); break;
-					case 8: paper.m_MapDestination = "the Bottle World of Kuldar"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(6675, 1820, 15); break;
+					case 0: paper.m_MapDestination = "the Druid's Glade"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3910, 3971, 0); break;
+					case 1: paper.m_MapDestination = "the Town of Moon"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(860, 678, 0); break;
+					case 2: paper.m_MapDestination = "the Village of Fawn"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(2069, 255, 0); break;
+					case 3: paper.m_MapDestination = "the Village of Yew"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(2530, 872, 2); break;
+					case 4: paper.m_MapDestination = "the City of Britain"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(2942, 1092, 0); break;
+					case 5: paper.m_MapDestination = "the Village of Grey"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(866, 2082, 0); break;
+					case 6: paper.m_MapDestination = "the City of Montor"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(3198, 2590, 0); break;
+					case 7: paper.m_MapDestination = "the Town of Renika"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1471, 3761, 0); break;
+					case 8: paper.m_MapDestination = "the Bottle World of Kuldar"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(6675, 1820, 15); break;
 					case 9: paper.m_MapDestination = "the Village of Kurak"; paper.m_MapDest = Map.SavagedEmpire; paper.m_PointDest = new Point3D(807, 857, -1); break;
 					case 10: paper.m_MapDestination = "the Village of Barako"; paper.m_MapDest = Map.SavagedEmpire; paper.m_PointDest = new Point3D(196, 1698, 37); break;
 					case 11: paper.m_MapDestination = "the Cimmeran Hold"; paper.m_MapDest = Map.IslesDread; paper.m_PointDest = new Point3D(299, 1068, 15); break;
@@ -297,7 +297,7 @@ namespace Server.Items
 					case 20: paper.m_MapDestination = "Greensky Village"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(4228, 2958, 0); break;
 					case 21: paper.m_MapDestination = "the Port of Starguide"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(2318, 3130, 0); break;
 					case 22: paper.m_MapDestination = "the Port of Dusk"; paper.m_MapDest = Map.Lodor; paper.m_PointDest = new Point3D(2633, 3206, 0); break;
-					case 23: paper.m_MapDestination = "the Stone Wall Inn"; paper.m_MapDest = Map.Sosaria; paper.m_PointDest = new Point3D(1833, 755, 0); break;
+					case 23: paper.m_MapDestination = "the Stone Wall Inn"; paper.m_MapDest = Map.Vaelen; paper.m_PointDest = new Point3D(1833, 755, 0); break;
 				}
 			}
 		}

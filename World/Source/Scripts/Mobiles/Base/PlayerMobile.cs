@@ -2336,14 +2336,14 @@ namespace Server.Mobiles
 				Land world = Server.Lands.GetLand( Map, Location, X, Y );
 				Point3D p = new Point3D( 1956, 1328, 0 );
 				Map map = Map.SerpentIsland;
-				string sJail = "Sosaria Prison";
+				string sJail = "Vaelen Prison";
 
 				if ( this.RaceID > 0 && Server.Items.BaseRace.IsEvilDemonCreature( this ) && Land == Land.Serpent && !PlayerSettings.GetDiscovered( this, "the Serpent Island" ) )
 				{
 					if ( this.RaceHomeLand == 2 )
 						world = Land.Lodoria;
 					else
-						world = Land.Sosaria;
+						world = Land.Vaelen;
 				}
 
 				if ( world == Land.Lodoria )
@@ -4041,7 +4041,7 @@ namespace Server.Mobiles
 			return false;
 		}
 
-		private static Point3D[] m_SosariaDeathDestinations = new Point3D[]
+		private static Point3D[] m_VaelenDeathDestinations = new Point3D[]
 			{
 				new Point3D( 1481, 1612, 20 ),
 				new Point3D( 2708, 2153,  0 ),
@@ -4111,7 +4111,7 @@ namespace Server.Mobiles
 
 			Point3D[] list;
 
-			list = m_SosariaDeathDestinations;
+			list = m_VaelenDeathDestinations;
 
 			Point3D dest = Point3D.Zero;
 			int sqDistance = int.MaxValue;

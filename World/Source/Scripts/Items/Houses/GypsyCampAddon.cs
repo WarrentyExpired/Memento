@@ -100,7 +100,7 @@ namespace Server.Items
 			AddComplexComponent( (BaseAddon) this, 2594, -5, -3, 17, 0, 29, "", 1);// 67
 			AddComplexComponent( (BaseAddon) this, 2459, -4, -2, 23, 677, -1, "Elixir", 1);// 68
 			AddComplexComponent( (BaseAddon) this, 18058, -5, 0, 15, 0, -1, "Crystal Ball", 1);// 86
-			AddComplexComponent( (BaseAddon) this, 4081, -4, -3, 15, 0, -1, "Sosaria & Lodor: A study of the moons", 1);// 89
+			AddComplexComponent( (BaseAddon) this, 4081, -4, -3, 15, 0, -1, "Vaelen & Lodor: A study of the moons", 1);// 89
 			AddComplexComponent( (BaseAddon) this, 6951, 3, 6, 2, 1518, -1, "", 1);// 196
 			AddComplexComponent( (BaseAddon) this, 6952, 5, 4, 2, 1518, -1, "", 1);// 197
 			AddComplexComponent( (BaseAddon) this, 6953, 2, 5, 2, 1518, -1, "", 1);// 198

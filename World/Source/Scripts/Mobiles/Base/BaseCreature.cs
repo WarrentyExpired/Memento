@@ -8408,7 +8408,7 @@ namespace Server.Mobiles
 
 			int treasureLevel = TreasureMapLevel;
 
-			if ( treasureLevel == 1 && this.Map == Map.Sosaria )
+			if ( treasureLevel == 1 && this.Map == Map.Vaelen )
 			{
 				Mobile killer = this.LastKiller;
 

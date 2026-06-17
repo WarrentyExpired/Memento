@@ -161,11 +161,11 @@ namespace Server.Misc
 
 		public static Land PickWorld( int level ) /////////////////////////////////////////////////////////////////////////////////////////////////
 		{
-			Land searchLocation = Land.Sosaria;
+			Land searchLocation = Land.Vaelen;
 
 			switch ( Utility.RandomMinMax( 0, level ) )
 			{
-				case 0:		searchLocation = Land.Sosaria;		break;
+				case 0:		searchLocation = Land.Vaelen;		break;
 				case 1:		searchLocation = Land.UmberVeil;	break;
 				case 2:		searchLocation = Land.Ambrosia;		break;
 				case 3:		searchLocation = Land.Lodoria;		break;

@@ -419,7 +419,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 5035 && this.Y == 3830 && this.Map == Map.Sosaria )
+			else if ( this.X == 5035 && this.Y == 3830 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 				this.Hue = 0x83EA;
@@ -451,7 +451,7 @@ namespace Server.Mobiles
 				this.MyX = 1878;
 				this.MyY = 2215;
 			}
-			else if ( this.X == 4755 && this.Y == 3978 && this.Map == Map.Sosaria )
+			else if ( this.X == 4755 && this.Y == 3978 && this.Map == Map.Vaelen )
 			{
 				this.Body = 401; 
 				this.Hue = 0x83EA;
@@ -475,7 +475,7 @@ namespace Server.Mobiles
 				this.MyX = 3832;
 				this.MyY = 1494;
 			}
-			else if ( this.X == 3011 && this.Y == 951 && this.Map == Map.Sosaria )
+			else if ( this.X == 3011 && this.Y == 951 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 				this.Hue = 0x83EA;
@@ -503,7 +503,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 2990 && this.Y == 902 && this.Map == Map.Sosaria )
+			else if ( this.X == 2990 && this.Y == 902 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 				this.Hue = 0x83EA;
@@ -531,13 +531,13 @@ namespace Server.Mobiles
 				this.Title = "the King of Britain";
 				this.MyAlignment = "good";
 				this.Direction = Direction.South;
-				this.MyItemText = "of Sosaria";
+				this.MyItemText = "of Vaelen";
 				this.MyItemHue = 0x430;
 				this.MyWorld = this.Map;
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 6732 && this.Y == 1663 && this.Map == Map.Sosaria )
+			else if ( this.X == 6732 && this.Y == 1663 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 
@@ -554,7 +554,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 3025 && this.Y == 962 && this.Map == Map.Sosaria )
+			else if ( this.X == 3025 && this.Y == 962 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 				this.Hue = 0x83EA;
@@ -605,7 +605,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 5615 && this.Y == 2888 && this.Map == Map.Sosaria )
+			else if ( this.X == 5615 && this.Y == 2888 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 				this.Hue = 0x83EA;
@@ -687,7 +687,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 2462 && this.Y == 865 && this.Map == Map.Sosaria )
+			else if ( this.X == 2462 && this.Y == 865 && this.Map == Map.Vaelen )
 			{
 				this.Body = 401; 
 				this.Hue = 0x83EA;
@@ -711,7 +711,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 1395 && this.Y == 3778 && this.Map == Map.Sosaria )
+			else if ( this.X == 1395 && this.Y == 3778 && this.Map == Map.Vaelen )
 			{
 				this.Name = "Dupre";
 				this.MyAlignment = "good";
@@ -728,7 +728,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 2119 && this.Y == 247 && this.Map == Map.Sosaria )
+			else if ( this.X == 2119 && this.Y == 247 && this.Map == Map.Vaelen )
 			{
 				this.Name = "Gwenno";
 				this.MyAlignment = "good";
@@ -751,7 +751,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 937 && this.Y == 2081 && this.Map == Map.Sosaria )
+			else if ( this.X == 937 && this.Y == 2081 && this.Map == Map.Vaelen )
 			{
 				this.Name = "Iolo";
 				this.MyAlignment = "good";
@@ -779,7 +779,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 3263 && this.Y == 2582 && this.Map == Map.Sosaria )
+			else if ( this.X == 3263 && this.Y == 2582 && this.Map == Map.Vaelen )
 			{
 				this.Name = "Shamino";
 				this.MyAlignment = "good";
@@ -807,7 +807,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 3441 && this.Y == 3190 && this.Map == Map.Sosaria )
+			else if ( this.X == 3441 && this.Y == 3190 && this.Map == Map.Vaelen )
 			{
 				this.Name = "Stefano";
 				this.MyAlignment = "neutral";
@@ -834,7 +834,7 @@ namespace Server.Mobiles
 				this.MyX = 3317;
 				this.MyY = 2064;
 			}
-			else if ( this.X == 1604 && this.Y == 1604 && this.Map == Map.Sosaria )
+			else if ( this.X == 1604 && this.Y == 1604 && this.Map == Map.Vaelen )
 			{
 				this.Body = 401; 
 				this.Hue = 0x83EA;
@@ -861,7 +861,7 @@ namespace Server.Mobiles
 				this.MyX = this.X;
 				this.MyY = this.Y;
 			}
-			else if ( this.X == 4993 && this.Y == 3997 && this.Map == Map.Sosaria )
+			else if ( this.X == 4993 && this.Y == 3997 && this.Map == Map.Vaelen )
 			{
 				this.Body = 485; 
 				this.Hue = 1461;
@@ -874,7 +874,7 @@ namespace Server.Mobiles
 				this.MyX = 877;
 				this.MyY = 2654;
 			}
-			else if ( this.X == 5033 && this.Y == 3750 && this.Map == Map.Sosaria )
+			else if ( this.X == 5033 && this.Y == 3750 && this.Map == Map.Vaelen )
 			{
 				this.Body = 400; 
 				this.Hue = 0x83EA;
@@ -902,7 +902,7 @@ namespace Server.Mobiles
 				this.MyX = 6003;
 				this.MyY = 3679;
 			}
-			else if ( this.X == 2648 && this.Y == 3306 && this.Map == Map.Sosaria )
+			else if ( this.X == 2648 && this.Y == 3306 && this.Map == Map.Vaelen )
 			{
 				this.Body = 401; 
 				this.Hue = 0x83EA;
@@ -951,7 +951,7 @@ namespace Server.Mobiles
 				this.MyX = 3370;
 				this.MyY = 1552;
 			}
-			else if ( this.X == 4136 && this.Y == 3424 && this.Map == Map.Sosaria )
+			else if ( this.X == 4136 && this.Y == 3424 && this.Map == Map.Vaelen )
 			{
 				this.Body = 24;
 				this.Hue = 0x83B;

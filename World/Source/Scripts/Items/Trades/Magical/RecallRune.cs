@@ -145,7 +145,7 @@ namespace Server.Items
 		{
 			if ( !m_Marked )
 				Hue = 0;
-			else if ( m_TargetMap == Map.Sosaria )
+			else if ( m_TargetMap == Map.Vaelen )
 				Hue = (House != null ? 0x47E : 0x967);
 			else if ( m_TargetMap == Map.Lodor )
 				Hue = (House != null ? 0x47E : 0x490);

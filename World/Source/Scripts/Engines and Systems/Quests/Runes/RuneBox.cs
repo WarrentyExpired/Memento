@@ -67,8 +67,8 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
             int runes = HasCompassion + HasHonesty + HasHonor + HasHumility + HasJustice + HasSacrifice + HasSpirituality + HasValor;
-			bool inVirtues = ( from.Map == Map.Sosaria && from.X >= 2587 && from.Y >= 3846 && from.X <= 2604 && from.Y <= 3863 );
-			bool inCorrupt = ( from.Map == Map.Sosaria && from.X >= 2858 && from.Y >= 3463 && from.X <= 2875 && from.Y <= 3478 );
+			bool inVirtues = ( from.Map == Map.Vaelen && from.X >= 2587 && from.Y >= 3846 && from.X <= 2604 && from.Y <= 3863 );
+			bool inCorrupt = ( from.Map == Map.Vaelen && from.X >= 2858 && from.Y >= 3463 && from.X <= 2875 && from.Y <= 3478 );
 
 			if ( !IsChildOf( from.Backpack ) )
 			{
@@ -281,10 +281,10 @@ namespace Server.Items
 				int theme = 7035;
 				int chamber = 10894;
 				string room = "Chamber of Virtue";
-				string map = "In the Land of Sosaria";
+				string map = "In the Land of Vaelen";
 				string coor = "148° 37'N, 113° 58'E";
 				string hue = "#7dc0c0";
-				m_Map = Map.Sosaria;
+				m_Map = Map.Vaelen;
 				m_X = 4181;
 				m_Y = 272;
 

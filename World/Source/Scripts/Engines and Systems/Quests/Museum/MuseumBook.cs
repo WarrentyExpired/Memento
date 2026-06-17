@@ -363,10 +363,10 @@ namespace Server.Items
 
 			var options = new List<Land>
 			{
-				Land.Sosaria,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Serpent,
-				Land.Sosaria,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Serpent,
 				Land.UmberVeil,
@@ -526,7 +526,7 @@ namespace Server.Items
 			else if ( item == 39 ){ id = "4085"; hex = "0x0FF5"; name = "Idol of Virtue"; desc = "Symbol of the Avatar"; light = "1"; }
 			else if ( item == 40 ){ id = "19724"; hex = "0x4D0C"; name = "Statue of Katalkotl"; desc = "Ruler of the Savaged Empire"; }
 			else if ( item == 41 ){ id = "20409"; hex = "0x4FB9"; name = "Looking Glass of Narnia"; desc = "From the Dream World"; light = "2"; }
-			else if ( item == 42 ){ id = "15283"; hex = "0x3BB3"; name = "Trophy of Sosaria"; desc = "Awarded by Lord British"; }
+			else if ( item == 42 ){ id = "15283"; hex = "0x3BB3"; name = "Trophy of Vaelen"; desc = "Awarded by Lord British"; }
 			else if ( item == 43 ){ id = "20390"; hex = "0x4FA6"; name = "Eternal Flame"; desc = "Of the Achaemenid Empire"; light = "2"; }
 			else if ( item == 44 ){ id = "21395"; hex = "0x5393"; name = "Doomgiver and Soulcutter"; desc = "The Swords of Power"; }
 			else if ( item == 45 ){ id = "21280"; hex = "0x5320"; name = "Vulcan's Inferno"; desc = "The God of Volcanic Fire"; }

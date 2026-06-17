@@ -1235,7 +1235,7 @@ namespace Server.Mobiles
 			else if ( MySettings.S_NoMountBuilding && Server.Misc.Worlds.InBuilding( m ) ){ /* DO NOTHING IN NO MOUNT REGIONS */ }
 			else if ( spot is LawnItem || spot is ShantyItem ){} // NO MOUNTS ON LAWNS
 			else if ( Worlds.IsSeaTown( spot.Location, spot.Map ) && !reg.IsPartOf( "the Port" ) ){} // SEA AREAS BUT NOT THE MAIN PORT...NO HORSES
-			else if ( spot.Map == Map.Sosaria && spot.Z >= 105 && spot.X == 1418 && spot.Y == 3665 ){} // UMBER VEIL TOWER...NO HORSES
+			else if ( spot.Map == Map.Vaelen && spot.Z >= 105 && spot.X == 1418 && spot.Y == 3665 ){} // UMBER VEIL TOWER...NO HORSES
 			else if ( Utility.RandomBool() ){ mount = true; mod = 3; }
 
 			m.Delete();
@@ -1384,15 +1384,15 @@ namespace Server.Mobiles
 		{
 			Point3D loc; Map map; Direction direction;
 
-			if ( Utility.RandomBool() ){ loc = new Point3D( 3022, 969, 70 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Britain
-			if ( Utility.RandomBool() ){ loc = new Point3D( 2985, 1042, 45 ); map = Map.Sosaria; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Britain
-			if ( Utility.RandomBool() ){ loc = new Point3D( 6728, 1797, 30 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Kuldara
-			if ( Utility.RandomBool() ){ loc = new Point3D( 6752, 1665, 80 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Kuldara
+			if ( Utility.RandomBool() ){ loc = new Point3D( 3022, 969, 70 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Britain
+			if ( Utility.RandomBool() ){ loc = new Point3D( 2985, 1042, 45 ); map = Map.Vaelen; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Britain
+			if ( Utility.RandomBool() ){ loc = new Point3D( 6728, 1797, 30 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Kuldara
+			if ( Utility.RandomBool() ){ loc = new Point3D( 6752, 1665, 80 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Kuldara
 			if ( Utility.RandomBool() ){ loc = new Point3D( 355, 1071, 65 ); map = Map.IslesDread; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Cimmeran Hold
 			if ( Utility.RandomBool() ){ loc = new Point3D( 385, 1044, 99 ); map = Map.IslesDread; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Cimmeran Hold
 			if ( Utility.RandomBool() ){ loc = new Point3D( 392, 1096, 59 ); map = Map.IslesDread; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the Cimmeran Hold
-			if ( Utility.RandomBool() ){ loc = new Point3D( 1441, 3779, 30 ); map = Map.Sosaria; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the Town of Renika
-			if ( Utility.RandomBool() ){ loc = new Point3D( 1395, 3668, 115 ); map = Map.Sosaria; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // the Island of Umber Veil
+			if ( Utility.RandomBool() ){ loc = new Point3D( 1441, 3779, 30 ); map = Map.Vaelen; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the Town of Renika
+			if ( Utility.RandomBool() ){ loc = new Point3D( 1395, 3668, 115 ); map = Map.Vaelen; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // the Island of Umber Veil
 			if ( Utility.RandomBool() ){ loc = new Point3D( 795, 1016, 90 ); map = Map.SerpentIsland; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the City of Furnace
 			if ( Utility.RandomBool() ){ loc = new Point3D( 878, 1135, 125 ); map = Map.SerpentIsland; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Furnace
 			if ( Utility.RandomBool() ){ loc = new Point3D( 291, 1736, 60 ); map = Map.SavagedEmpire; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the Village of Barako
@@ -1424,23 +1424,23 @@ namespace Server.Mobiles
 			if ( Utility.RandomBool() ){ loc = new Point3D( 876, 904, 30 ); map = Map.Lodor; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // the Village of Whisper
 			if ( Utility.RandomBool() ){ loc = new Point3D( 1101, 321, 66 ); map = Map.SavagedEmpire; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // Savage Sea Docks
 			if ( Utility.RandomBool() ){ loc = new Point3D( 952, 1801, 50 ); map = Map.SerpentIsland; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // Serpent Sail Docks
-			if ( Utility.RandomBool() ){ loc = new Point3D( 315, 1407, 17 ); map = Map.Sosaria; direction = Direction.Left; CreateDragonRider ( loc, map, direction ); } // Anchor Rock Docks
-			if ( Utility.RandomBool() ){ loc = new Point3D( 415, 1292, 67 ); map = Map.Sosaria; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // Anchor Rock Docks
-			if ( Utility.RandomBool() ){ loc = new Point3D( 5932, 2868, 45 ); map = Map.Sosaria; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the Lunar City of Dawn
-			if ( Utility.RandomBool() ){ loc = new Point3D( 3705, 1486, 55 ); map = Map.Sosaria; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // Death Gulch
-			if ( Utility.RandomBool() ){ loc = new Point3D( 1608, 1507, 48 ); map = Map.Sosaria; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // The Town of Devil Guard
-			if ( Utility.RandomBool() ){ loc = new Point3D( 2084, 258, 60 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Village of Fawn
-			if ( Utility.RandomBool() ){ loc = new Point3D( 2168, 305, 60 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Village of Fawn
-			if ( Utility.RandomBool() ){ loc = new Point3D( 4781, 1185, 50 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // Glacial Coast Village
-			if ( Utility.RandomBool() ){ loc = new Point3D( 869, 2068, 40 ); map = Map.Sosaria; direction = Direction.North; CreateDragonRider ( loc, map, direction ); } // the Village of Grey
-			if ( Utility.RandomBool() ){ loc = new Point3D( 3070, 2615, 60 ); map = Map.Sosaria; direction = Direction.Up; CreateDragonRider ( loc, map, direction ); } // the City of Montor
-			if ( Utility.RandomBool() ){ loc = new Point3D( 3180, 2613, 66 ); map = Map.Sosaria; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Montor
-			if ( Utility.RandomBool() ){ loc = new Point3D( 3322, 2638, 70 ); map = Map.Sosaria; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Montor
-			if ( Utility.RandomBool() ){ loc = new Point3D( 838, 692, 70 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Town of Moon
-			if ( Utility.RandomBool() ){ loc = new Point3D( 4565, 1253, 82 ); map = Map.Sosaria; direction = Direction.Left; CreateDragonRider ( loc, map, direction ); } // the Town of Mountain Crest
-			if ( Utility.RandomBool() ){ loc = new Point3D( 1823, 758, 70 ); map = Map.Sosaria; direction = Direction.Up; CreateDragonRider ( loc, map, direction ); } // the Land of Sosaria
-			if ( Utility.RandomBool() ){ loc = new Point3D( 7089, 610, 100 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Port
-			if ( Utility.RandomBool() ){ loc = new Point3D( 7025, 680, 120 ); map = Map.Sosaria; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Port
+			if ( Utility.RandomBool() ){ loc = new Point3D( 315, 1407, 17 ); map = Map.Vaelen; direction = Direction.Left; CreateDragonRider ( loc, map, direction ); } // Anchor Rock Docks
+			if ( Utility.RandomBool() ){ loc = new Point3D( 415, 1292, 67 ); map = Map.Vaelen; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // Anchor Rock Docks
+			if ( Utility.RandomBool() ){ loc = new Point3D( 5932, 2868, 45 ); map = Map.Vaelen; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the Lunar City of Dawn
+			if ( Utility.RandomBool() ){ loc = new Point3D( 3705, 1486, 55 ); map = Map.Vaelen; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // Death Gulch
+			if ( Utility.RandomBool() ){ loc = new Point3D( 1608, 1507, 48 ); map = Map.Vaelen; direction = Direction.Down; CreateDragonRider ( loc, map, direction ); } // The Town of Devil Guard
+			if ( Utility.RandomBool() ){ loc = new Point3D( 2084, 258, 60 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Village of Fawn
+			if ( Utility.RandomBool() ){ loc = new Point3D( 2168, 305, 60 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Village of Fawn
+			if ( Utility.RandomBool() ){ loc = new Point3D( 4781, 1185, 50 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // Glacial Coast Village
+			if ( Utility.RandomBool() ){ loc = new Point3D( 869, 2068, 40 ); map = Map.Vaelen; direction = Direction.North; CreateDragonRider ( loc, map, direction ); } // the Village of Grey
+			if ( Utility.RandomBool() ){ loc = new Point3D( 3070, 2615, 60 ); map = Map.Vaelen; direction = Direction.Up; CreateDragonRider ( loc, map, direction ); } // the City of Montor
+			if ( Utility.RandomBool() ){ loc = new Point3D( 3180, 2613, 66 ); map = Map.Vaelen; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Montor
+			if ( Utility.RandomBool() ){ loc = new Point3D( 3322, 2638, 70 ); map = Map.Vaelen; direction = Direction.East; CreateDragonRider ( loc, map, direction ); } // the City of Montor
+			if ( Utility.RandomBool() ){ loc = new Point3D( 838, 692, 70 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Town of Moon
+			if ( Utility.RandomBool() ){ loc = new Point3D( 4565, 1253, 82 ); map = Map.Vaelen; direction = Direction.Left; CreateDragonRider ( loc, map, direction ); } // the Town of Mountain Crest
+			if ( Utility.RandomBool() ){ loc = new Point3D( 1823, 758, 70 ); map = Map.Vaelen; direction = Direction.Up; CreateDragonRider ( loc, map, direction ); } // the Land of Vaelen
+			if ( Utility.RandomBool() ){ loc = new Point3D( 7089, 610, 100 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Port
+			if ( Utility.RandomBool() ){ loc = new Point3D( 7025, 680, 120 ); map = Map.Vaelen; direction = Direction.South; CreateDragonRider ( loc, map, direction ); } // the Port
 		}
 
 		public static void CreateDragonRider ( Point3D loc, Map map, Direction direction )
@@ -1461,7 +1461,7 @@ namespace Server.Mobiles
 				BaseMount dragon = new RidingDragon(); dragon.Body = Utility.RandomList( 59, 61 ); dragon.Blessed = true; dragon.Hue = Utility.RandomMonsterHue(); Server.Mobiles.BaseMount.Ride( dragon, m );
 			}
 			else if ( m is Humanoid ){ /* DO NOTHING FOR HUMANOIDS */ }
-			else if ( m.Map == Map.Sosaria && m.X >= 2954 && m.Y >= 893 && m.X <= 3026 && m.Y <= 967 ){ /* DO NOTHING IN CASTLE BRITISH */ }
+			else if ( m.Map == Map.Vaelen && m.X >= 2954 && m.Y >= 893 && m.X <= 3026 && m.Y <= 967 ){ /* DO NOTHING IN CASTLE BRITISH */ }
 			else if ( m.Map == Map.Lodor && m.X >= 1759 && m.Y >= 2195 && m.X <= 1821 && m.Y <= 2241 ){ /* DO NOTHING IN CASTLE OF KNOWLEDGE */ }
 			else if ( m.Map == Map.SavagedEmpire && m.X >= 309 && m.Y >= 1738 && m.X <= 323 && m.Y <= 1751 ){ /* DO NOTHING IN THIS SAVAGED EMPIRE SPOT */ }
 			else if ( m.Map == Map.SavagedEmpire && m.X >= 284 && m.Y >= 1642 && m.X <= 298 && m.Y <= 1655 ){ /* DO NOTHING IN THIS SAVAGED EMPIRE SPOT */ }

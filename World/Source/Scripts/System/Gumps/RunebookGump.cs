@@ -87,7 +87,7 @@ namespace Server.Gumps
 
 		public int GetEntryHue(Map map)
 		{
-			if (map == Map.Sosaria) return HtmlColors.GRAY;
+			if (map == Map.Vaelen) return HtmlColors.GRAY;
 			else if (map == Map.Lodor) return HtmlColors.PINK;
 			else if (map == Map.Underworld) return HtmlColors.GRAY_BLUE;
 			else if (map == Map.SerpentIsland) return HtmlColors.PALE_RED;

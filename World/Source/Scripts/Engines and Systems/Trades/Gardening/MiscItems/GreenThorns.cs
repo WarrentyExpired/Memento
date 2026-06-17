@@ -72,9 +72,9 @@ namespace Server.Items
 					return;
 				}
 
-				//if ( from.Map != Map.Sosaria && from.Map != Map.Lodor )
+				//if ( from.Map != Map.Vaelen && from.Map != Map.Lodor )
 				//{
-				//	from.LocalOverheadMessage( MessageType.Regular, 0x2B2, true, "No solen lairs exist on this facet.  Try again in Sosaria or Lodor." );
+				//	from.LocalOverheadMessage( MessageType.Regular, 0x2B2, true, "No solen lairs exist on this facet.  Try again in Vaelen or Lodor." );
 				//	return;
 				//}
 

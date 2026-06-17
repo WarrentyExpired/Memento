@@ -54,34 +54,34 @@ namespace Server.Items
 		private static StealableEntry[] m_Entries = new StealableEntry[]
 			{
 				// Artifact rarity 1
-				new StealableEntry( Map.Sosaria, new Point3D( 5603, 1231, 0 ), 72, 108, typeof( RockArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 3831, 3300, 46 ), 72, 108, typeof( SkullCandleArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5603, 1231, 0 ), 72, 108, typeof( RockArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 3831, 3300, 46 ), 72, 108, typeof( SkullCandleArtifact ) ),
 				new StealableEntry( Map.SerpentIsland, new Point3D( 2196, 842, 6 ), 72, 108, typeof( BottleArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 231, 3496, 20 ), 72, 108, typeof( DamagedBooksArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 231, 3496, 20 ), 72, 108, typeof( DamagedBooksArtifact ) ),
 				// Artifact rarity 2
 				new StealableEntry( Map.Lodor, new Point3D( 5698, 525, 0 ), 144, 216, typeof( StretchedHideArtifact ) ),
 				new StealableEntry( Map.SerpentIsland, new Point3D( 2457, 491, 0 ), 144, 216, typeof( BrazierArtifact ) ),
 				// Artifact rarity 3
-				new StealableEntry( Map.Sosaria, new Point3D( 5661, 3281, 0 ), 288, 432, typeof( LampPostArtifact ), GetLampPostHue() ),
-				new StealableEntry( Map.Sosaria, new Point3D( 4021, 3423, 26 ), 288, 432, typeof( BooksNorthArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5661, 3281, 0 ), 288, 432, typeof( LampPostArtifact ), GetLampPostHue() ),
+				new StealableEntry( Map.Vaelen, new Point3D( 4021, 3423, 26 ), 288, 432, typeof( BooksNorthArtifact ) ),
 				new StealableEntry( Map.SerpentIsland, new Point3D( 2051, 60, 0 ), 288, 432, typeof( BooksWestArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 5936, 1431, 6 ), 288, 432, typeof( BooksFaceDownArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5936, 1431, 6 ), 288, 432, typeof( BooksFaceDownArtifact ) ),
 				// Artifact rarity 5
-				new StealableEntry( Map.Sosaria, new Point3D( 5234, 230, 5 ), 1152, 1728, typeof( StuddedLeggingsArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 5479, 900, 0 ), 1152, 1728, typeof( EggCaseArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5234, 230, 5 ), 1152, 1728, typeof( StuddedLeggingsArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5479, 900, 0 ), 1152, 1728, typeof( EggCaseArtifact ) ),
 				new StealableEntry( Map.Lodor, new Point3D( 5840, 361, 0 ), 1152, 1728, typeof( SkinnedGoatArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 4246, 3771, 0 ), 1152, 1728, typeof( GruesomeStandardArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 5374, 763, 0 ), 1152, 1728, typeof( BloodyWaterArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 4246, 3771, 0 ), 1152, 1728, typeof( GruesomeStandardArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5374, 763, 0 ), 1152, 1728, typeof( BloodyWaterArtifact ) ),
 				new StealableEntry( Map.Lodor, new Point3D( 5438, 187, 6 ), 1152, 1728, typeof( TarotCardsArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 5584, 412, 10 ), 1152, 1728, typeof( BackpackArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5584, 412, 10 ), 1152, 1728, typeof( BackpackArtifact ) ),
 				// Artifact rarity 7
 				new StealableEntry( Map.Lodor, new Point3D( 6118, 208, 27 ), 4608, 6912, typeof( StuddedTunicArtifact ) ),
 				new StealableEntry( Map.Lodor, new Point3D( 5142, 1669, 0 ), 4608, 6912, typeof( CocoonArtifact ) ),
 				// Artifact rarity 8
-				new StealableEntry( Map.Sosaria, new Point3D( 4337, 3452, 25 ), 9216, 13824, typeof( SkinnedDeerArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 4337, 3452, 25 ), 9216, 13824, typeof( SkinnedDeerArtifact ) ),
 				// Artifact rarity 9
 				new StealableEntry( Map.Lodor, new Point3D( 5608, 1839, 0 ), 18432, 27648, typeof( SaddleArtifact ) ),
-				new StealableEntry( Map.Sosaria, new Point3D( 5627, 2193, 5 ), 18432, 27648, typeof( LeatherTunicArtifact ) ),
+				new StealableEntry( Map.Vaelen, new Point3D( 5627, 2193, 5 ), 18432, 27648, typeof( LeatherTunicArtifact ) ),
 				// Artifact rarity 12
 				new StealableEntry( Map.SerpentIsland, new Point3D( 2207, 425, 0 ), 147456, 221184, typeof( RuinedPaintingArtifact ) )
 			};

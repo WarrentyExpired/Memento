@@ -15,14 +15,14 @@ namespace Server.Items
         public static Map GetRandomFacet()
         {
             int RndF = Utility.Random(6);
-            if (RndF == 0) { return Map.Sosaria; }
+            if (RndF == 0) { return Map.Vaelen; }
             else if (RndF == 1) { return Map.Lodor; }
             else if (RndF == 2) { return Map.Underworld; }
             else if (RndF == 3) { return Map.SerpentIsland; }
             else if (RndF == 4) { return Map.IslesDread; }
             else if (RndF == 5) { return Map.SavagedEmpire; }
 
-            return Map.Sosaria;
+            return Map.Vaelen;
         }
 
 		private Rectangle2D m_Bounds;
@@ -87,7 +87,7 @@ namespace Server.Items
 
 			m_Width = 200;
 			m_Height = 200;
-			m_DisplayMap = Map.Sosaria;
+			m_DisplayMap = Map.Vaelen;
 		}
 
 		public virtual void CraftInit( Mobile from )
@@ -129,7 +129,7 @@ namespace Server.Items
 			else if ( land == Land.UmberVeil ){ if (x2 >= 2272) { x2 = 2272; } if (y2 >= 4095) { y2 = 4095; } }
 			else if ( land == Land.Kuldar ){ if (x2 >= 7167) { x2 = 7167; } if (y2 >= 2742) { y2 = 2742; } }
 			else if ( land == Land.Lodoria ){ if (x2 >= 5120) { x2 = 5119; } if (y2 >= 4096) { y2 = 4095; } }
-			else if ( land == Land.Sosaria ){ if (x2 >= 5119) { x2 = 5118; } if (y2 >= 3127) { y2 = 3126; } }
+			else if ( land == Land.Vaelen ){ if (x2 >= 5119) { x2 = 5118; } if (y2 >= 3127) { y2 = 3126; } }
 			else if ( land == Land.Underworld ){ if (x2 >= 1581) { x2 = 1581; } if (y2 >= 1599) { y2 = 1599; } }
 			else if ( land == Land.Serpent ){ if (x2 >= 1870) { x2 = 1869; } if (y2 >= 2047) { y2 = 2046; } }
 			else if ( land == Land.IslesDread ){ if (x2 >= 1447) { x2 = 1446; } if (y2 >= 1447) { y2 = 1446; } }
@@ -350,7 +350,7 @@ namespace Server.Items
 					m_DisplayMap = reader.ReadMap();
 
 					if ( m_DisplayMap == null )
-						m_DisplayMap = Map.Sosaria;
+						m_DisplayMap = Map.Vaelen;
 
 					goto case 0;
 				}

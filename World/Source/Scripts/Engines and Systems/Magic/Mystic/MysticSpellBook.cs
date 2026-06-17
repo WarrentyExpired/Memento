@@ -448,7 +448,7 @@ namespace Server.Items
 		public static void SetPrayer( MysticSpellbook book, int pray, int page )
 		{
 			string pray_place = "";
-			Map pray_map = Map.Sosaria;
+			Map pray_map = Map.Vaelen;
 			int pray_x1 = 0;
 			int pray_y1 = 0;
 			int pray_x2 = 0;
@@ -458,7 +458,7 @@ namespace Server.Items
 			if ( pray == 1 )
 			{
 				pray_place = "the Pool of the Twin Goddesses";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 1015;
 				pray_y1 = 3437;
 				pray_x2 = 1029;
@@ -468,7 +468,7 @@ namespace Server.Items
 			else if ( pray == 2 )
 			{
 				pray_place = "the Fountain of the Druids";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 1484;
 				pray_y1 = 538;
 				pray_x2 = 1500;
@@ -478,7 +478,7 @@ namespace Server.Items
 			else if ( pray == 3 )
 			{
 				pray_place = "the Lady of the Flame";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 4950;
 				pray_y1 = 1314;
 				pray_x2 = 4963;
@@ -488,7 +488,7 @@ namespace Server.Items
 			else if ( pray == 4 )
 			{
 				pray_place = "the Monolith of Everfrost";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 4033;
 				pray_y1 = 2933;
 				pray_x2 = 4055;
@@ -498,7 +498,7 @@ namespace Server.Items
 			else if ( pray == 5 )
 			{
 				pray_place = "the Shrine of Atonement";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 2251;
 				pray_y1 = 2435;
 				pray_x2 = 2259;
@@ -508,7 +508,7 @@ namespace Server.Items
 			else if ( pray == 6 )
 			{
 				pray_place = "the Tree of Enlightened Tears";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 871;
 				pray_y1 = 380;
 				pray_x2 = 882;
@@ -518,7 +518,7 @@ namespace Server.Items
 			else if ( pray == 7 )
 			{
 				pray_place = "the Pass of Frostmarch";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 4768;
 				pray_y1 = 1265;
 				pray_x2 = 4798;
@@ -528,7 +528,7 @@ namespace Server.Items
 			else if ( pray == 8 )
 			{
 				pray_place = "the Grave of Gargix Zul";
-				pray_map = Map.Sosaria;
+				pray_map = Map.Vaelen;
 				pray_x1 = 3460;
 				pray_y1 = 1897;
 				pray_x2 = 3467;

@@ -124,9 +124,9 @@ namespace Server.Misc
 
 			var options = new List<Land>
 			{
-				Land.Sosaria,
-				Land.Sosaria,
-				Land.Sosaria,
+				Land.Vaelen,
+				Land.Vaelen,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Lodoria,
 				Land.Lodoria,
@@ -168,7 +168,7 @@ namespace Server.Misc
 				return;
 			}
 
-			int maxFee = searchLocation == Land.Sosaria 
+			int maxFee = searchLocation == Land.Vaelen 
 				? 5000 
 				: searchLocation == Land.Lodoria 
 					? 12000

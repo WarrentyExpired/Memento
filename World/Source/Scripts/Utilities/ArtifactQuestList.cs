@@ -72,7 +72,7 @@ namespace Server.Utilities
 			else if (artifact == arty++) { name = typeof(Artifact_BraceletOfTheElements).Name; item = "Bracelet of the Elements"; }
 			else if (artifact == arty++) { name = typeof(Artifact_BraceletOfTheVile).Name; item = "Bracelet of the Vile"; }
 			else if (artifact == arty++) { name = typeof(Artifact_BrambleCoat).Name; item = "Bramble Coat"; }
-			else if (artifact == arty++) { name = typeof(Artifact_BraveKnightOfTheBritannia).Name; item = "Brave Knight of Sosaria"; }
+			else if (artifact == arty++) { name = typeof(Artifact_BraveKnightOfTheBritannia).Name; item = "Brave Knight of Vaelen"; }
 			else if (artifact == arty++) { name = typeof(Artifact_BreathOfTheDead).Name; item = "Breath of the Dead"; }
 			else if (artifact == arty++) { name = typeof(Artifact_BurglarsBandana).Name; item = "Burglar's Bandana"; }
 			else if (artifact == arty++) { name = typeof(Artifact_Calm).Name; item = "Calm"; }
@@ -282,7 +282,7 @@ namespace Server.Utilities
 			else if (artifact == arty++) { name = typeof(Artifact_RingOfTheElements).Name; item = "Ring of the Elements"; }
 			else if (artifact == arty++) { name = typeof(Artifact_RingOfTheMagician).Name; item = "Ring of the Magician"; }
 			else if (artifact == arty++) { name = typeof(Artifact_RingOfTheVile).Name; item = "Ring of the Vile"; }
-			else if (artifact == arty++) { name = typeof(Artifact_TheRobeOfBritanniaAri).Name; item = "Robe of Sosaria"; }
+			else if (artifact == arty++) { name = typeof(Artifact_TheRobeOfBritanniaAri).Name; item = "Robe of Vaelen"; }
 			else if (artifact == arty++) { name = typeof(Artifact_RobeOfTeleportation).Name; item = "Robe Of Teleportation"; }
 			else if (artifact == arty++) { name = typeof(Artifact_RobeofPyros).Name; item = "Robe of the Daemon King"; }
 			else if (artifact == arty++) { name = typeof(Artifact_RobeOfTheEclipse).Name; item = "Robe of the Eclipse"; }

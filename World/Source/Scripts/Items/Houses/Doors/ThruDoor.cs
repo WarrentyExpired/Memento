@@ -167,7 +167,7 @@ namespace Server.Items
 						if ( nEntry == 1 ){ mX = Convert.ToInt32(exits); }
 						else if ( nEntry == 2 ){ mY = Convert.ToInt32(exits); }
 						else if ( nEntry == 3 ){ mZ = Convert.ToInt32(exits); }
-						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Sosaria; } }
+						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Vaelen; } }
 						else if ( nEntry == 5 ){ mZone = exits; }
 						nEntry++;
 					}
@@ -210,16 +210,16 @@ namespace Server.Items
 					Point3D loc = new Point3D( 1832, 755, 0 );
 
 					string failPlace = "the Building";
-					Map failMap = Map.Sosaria;
+					Map failMap = Map.Vaelen;
 
-					if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Bank" ){ loc = new Point3D(1830, 768, 0); failMap = Map.Sosaria;	failPlace = "the Bank"; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Tavern" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Sosaria;	failPlace = "the Inn"; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Dojo" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Sosaria;	failPlace = "the Inn"; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Port" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Sosaria;	failPlace = "the PortThat "; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Black Magic Guild" ){ loc = new Point3D(2243, 251, 0); failMap = Map.Sosaria;	failPlace = "the Black Magic Guild"; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Wizards Guild" ){ loc = new Point3D(2832, 1873, 55); failMap = Map.Sosaria;	failPlace = "the Wizards Guild"; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Thieves Guild" ){ loc = new Point3D(3315, 2059, 40); failMap = Map.Sosaria; failPlace = "the Thieves Guild"; }
-					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Basement" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Sosaria;	failPlace = "the Basement"; }
+					if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Bank" ){ loc = new Point3D(1830, 768, 0); failMap = Map.Vaelen;	failPlace = "the Bank"; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Tavern" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Vaelen;	failPlace = "the Inn"; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Dojo" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Vaelen;	failPlace = "the Inn"; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Port" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Vaelen;	failPlace = "the PortThat "; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Black Magic Guild" ){ loc = new Point3D(2243, 251, 0); failMap = Map.Vaelen;	failPlace = "the Black Magic Guild"; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Wizards Guild" ){ loc = new Point3D(2832, 1873, 55); failMap = Map.Vaelen;	failPlace = "the Wizards Guild"; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Thieves Guild" ){ loc = new Point3D(3315, 2059, 40); failMap = Map.Vaelen; failPlace = "the Thieves Guild"; }
+					else if ( Server.Misc.Worlds.GetRegionName( m.Map, m.Location ) == "the Basement" ){ loc = new Point3D(1831, 758, 12); failMap = Map.Vaelen;	failPlace = "the Basement"; }
 
 					PublicTeleport( m, loc, failMap, failPlace, "exit" );
 				}

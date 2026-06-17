@@ -251,7 +251,7 @@ namespace Server.Gumps
 					hidden = hidden + " It is hidden in the tomb of a Syth Lord known as " + Server.Spells.Syth.SythSpell.SpellInfo( page, 8 ) + ", and it can be revealed by speaking the words '" + Server.Spells.Syth.SythSpell.SpellInfo( page, 4 ) + "'. The last known coordinates of the tomb's outer entrance is:<br><br>";
 
 					string map = Server.Spells.Syth.SythSpell.SpellInfo( page, 5 );
-					Map land = Map.Sosaria;
+					Map land = Map.Vaelen;
 						if ( map == "Lodor" ){ land = Map.Lodor; }
 
 					hidden = hidden + Server.Misc.Worlds.GetAreaEntrance( 0, "" + Server.Spells.Syth.SythSpell.SpellInfo( page, 6 ) + "", land, out placer, out xc, out yc );

@@ -16,7 +16,7 @@ namespace Server.Misc
 			 */
 
 			RegisterMap( 0, 0, 0, 7168, 4096, 1, "Lodor",			MapRules.LodorRules | MapRules.FreeMovement );
-			RegisterMap( 1, 1, 1, 7168, 4096, 1, "Sosaria",			MapRules.LodorRules | MapRules.FreeMovement );
+			RegisterMap( 1, 1, 1, 7168, 4096, 1, "Vaelen",			MapRules.LodorRules | MapRules.FreeMovement );
 			RegisterMap( 2, 2, 2, 2304, 1600, 1, "Underworld",		MapRules.LodorRules | MapRules.FreeMovement );
 			RegisterMap( 3, 3, 3, 2560, 2048, 1, "SerpentIsland",	MapRules.LodorRules | MapRules.FreeMovement );
 			RegisterMap( 4, 4, 4, 1448, 1448, 1, "IslesDread",		MapRules.LodorRules | MapRules.FreeMovement );

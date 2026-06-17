@@ -50,7 +50,7 @@ namespace Server.Items
 		{
 			Point3D loc = new Point3D(0, 0, 0);
 			Point3D cur = this.Location;
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 			bool allow = false;
 			int sound = 0;
 
@@ -64,7 +64,7 @@ namespace Server.Items
 			else if ( this.Name == "anchor" && m is PlayerMobile && Server.Items.BaseRace.IsEvilSeaCreature( m ) && m.RaceHomeLand == 1 )
 			{
 				loc = new Point3D(7085, 343, 0);
-				map = Map.Sosaria;
+				map = Map.Vaelen;
 				sound = 0x026;
 				allow = true;
 			}
@@ -109,7 +109,7 @@ namespace Server.Items
 				loc = new Point3D(cur.X, cur.Y-1, cur.Z);
 					if ( m.Y < cur.Y )
 						loc = new Point3D(cur.X, cur.Y+1, cur.Z);
-				map = Map.Sosaria;
+				map = Map.Vaelen;
 				sound = 235;
 				allow = true;
 			}

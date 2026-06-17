@@ -1531,7 +1531,7 @@
 			<object type="Server.Items.SwordDisplay5NorthArtifact" gfx="10322" />
 			<object type="Server.Items.SwordDisplay5WestArtifact" gfx="10321" />
 			<object type="Server.Items.Taint" gfx="12679" hue="731" />
-			<object type="Server.Items.TapestryOfSosaria" gfx="9038" />
+			<object type="Server.Items.TapestryOfVaelen" gfx="9038" />
 			<object type="Server.Items.TarotCardsArtifact" gfx="4773" />
 			<object type="Server.Items.TaxidermyKit" gfx="7866" />
 			<object type="Server.Items.TeapotNorthArtifact" gfx="9446" />

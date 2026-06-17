@@ -147,7 +147,7 @@ namespace Server.Items
 				{
 					var options = new List<Land>
 					{
-						Land.Sosaria,
+						Land.Vaelen,
 						Land.Lodoria,
 						Land.Serpent,
 						Land.IslesDread,
@@ -188,7 +188,7 @@ namespace Server.Items
 				{
 					var options = new List<Land>
 					{
-						Land.Sosaria,
+						Land.Vaelen,
 						Land.Lodoria,
 						Land.Serpent,
 						Land.IslesDread,
@@ -242,7 +242,7 @@ namespace Server.Items
 				{
 					var options = new List<Land>
 					{
-						Land.Sosaria,
+						Land.Vaelen,
 						Land.Lodoria,
 						Land.Serpent,
 						Land.IslesDread,
@@ -281,16 +281,16 @@ namespace Server.Items
 						case 18: loc = new Point3D(1112, 619, -5); shipMap = Map.Lodor; break;
 						case 19: loc = new Point3D(521, 2153, -5); shipMap = Map.Lodor; break;
 						case 20: loc = new Point3D(2920, 1643, -5); shipMap = Map.Lodor; break;
-						case 21: loc = new Point3D(320, 2288, -5); shipMap = Map.Sosaria; break;
-						case 22: loc = new Point3D(3343, 1842, -5); shipMap = Map.Sosaria; break;
-						case 23: loc = new Point3D(3214, 938, -5); shipMap = Map.Sosaria; break;
-						case 24: loc = new Point3D(4520, 1128, -5); shipMap = Map.Sosaria; break;
-						case 25: loc = new Point3D(4760, 2307, -5); shipMap = Map.Sosaria; break;
-						case 26: loc = new Point3D(3551, 2952, -5); shipMap = Map.Sosaria; break;
-						case 27: loc = new Point3D(1271, 2651, -5); shipMap = Map.Sosaria; break;
-						case 28: loc = new Point3D(744, 1304, -5); shipMap = Map.Sosaria; break;
-						case 29: loc = new Point3D(735, 555, -5); shipMap = Map.Sosaria; break;
-						case 30: loc = new Point3D(1824, 440, -5); shipMap = Map.Sosaria; break;
+						case 21: loc = new Point3D(320, 2288, -5); shipMap = Map.Vaelen; break;
+						case 22: loc = new Point3D(3343, 1842, -5); shipMap = Map.Vaelen; break;
+						case 23: loc = new Point3D(3214, 938, -5); shipMap = Map.Vaelen; break;
+						case 24: loc = new Point3D(4520, 1128, -5); shipMap = Map.Vaelen; break;
+						case 25: loc = new Point3D(4760, 2307, -5); shipMap = Map.Vaelen; break;
+						case 26: loc = new Point3D(3551, 2952, -5); shipMap = Map.Vaelen; break;
+						case 27: loc = new Point3D(1271, 2651, -5); shipMap = Map.Vaelen; break;
+						case 28: loc = new Point3D(744, 1304, -5); shipMap = Map.Vaelen; break;
+						case 29: loc = new Point3D(735, 555, -5); shipMap = Map.Vaelen; break;
+						case 30: loc = new Point3D(1824, 440, -5); shipMap = Map.Vaelen; break;
 					}
 
 					int shipX = loc.X;
@@ -318,7 +318,7 @@ namespace Server.Items
 				{
 					int xSet = 1;
 					int ySet = 1;
-					Map mSet = Map.Sosaria;
+					Map mSet = Map.Vaelen;
 					string vMap = "";
 					string vHome = "a dungeon";
 
@@ -330,13 +330,13 @@ namespace Server.Items
 						vHome = "a castle in the sky";
 						switch ( Utility.Random( 7 ) )
 						{
-							case 0: xSet = 1863; ySet = 1129; mSet = Map.Sosaria; break;
+							case 0: xSet = 1863; ySet = 1129; mSet = Map.Vaelen; break;
 							case 1: xSet = 1861; ySet = 2747; mSet = Map.Lodor; break;
 							case 2: xSet = 466; ySet = 3801; mSet = Map.Lodor; break;
 							case 3: xSet = 254; ySet = 670; mSet = Map.SerpentIsland; break;
 							case 4: xSet = 422; ySet = 398; mSet = Map.SavagedEmpire; break;
 							case 5: xSet = 251; ySet = 1249; mSet = Map.IslesDread; break;
-							case 6: xSet = 3884; ySet = 2879; mSet = Map.Sosaria; break;
+							case 6: xSet = 3884; ySet = 2879; mSet = Map.Vaelen; break;
 						}
 					}
 					else if ( HomeLocation == 2 )
@@ -349,12 +349,12 @@ namespace Server.Items
 							case 1: xSet = 177; ySet = 961; mSet = Map.SavagedEmpire; break;
 							case 2: xSet = 766; ySet = 1527; mSet = Map.SavagedEmpire; break;
 							case 3: xSet = 1191; ySet = 1516; mSet = Map.SerpentIsland; break;
-							case 4: xSet = 1944; ySet = 3377; mSet = Map.Sosaria; break;
+							case 4: xSet = 1944; ySet = 3377; mSet = Map.Vaelen; break;
 							case 5: xSet = 1544; ySet = 1785; mSet = Map.SerpentIsland; break;
-							case 6: xSet = 2059; ySet = 2406; mSet = Map.Sosaria; break;
+							case 6: xSet = 2059; ySet = 2406; mSet = Map.Vaelen; break;
 							case 7: xSet = 1558; ySet = 2861; mSet = Map.Lodor; break;
 							case 8: xSet = 755; ySet = 1093; mSet = Map.IslesDread; break;
-							case 9: xSet = 2181; ySet = 1327; mSet = Map.Sosaria; break;
+							case 9: xSet = 2181; ySet = 1327; mSet = Map.Vaelen; break;
 							case 10: xSet = 752; ySet = 680; mSet = Map.SavagedEmpire; break;
 							case 11: xSet = 466; ySet = 3801; mSet = Map.Lodor; break;
 							case 12: xSet = 2893; ySet = 2030; mSet = Map.Lodor; break;
@@ -363,7 +363,7 @@ namespace Server.Items
 							case 15: xSet = 145; ySet = 1434; mSet = Map.SerpentIsland; break;
 							case 16: xSet = 2625; ySet = 823; mSet = Map.Lodor; break;
 							case 17: xSet = 740; ySet = 182; mSet = Map.IslesDread; break;
-							case 18: xSet = 5390; ySet = 3280; mSet = Map.Sosaria; break;
+							case 18: xSet = 5390; ySet = 3280; mSet = Map.Vaelen; break;
 							case 19: xSet = 922; ySet = 1775; vMap = "the Hedge Maze"; mSet = Map.SavagedEmpire; break;
 							case 20: xSet = 1036; ySet = 1162; mSet = Map.SavagedEmpire; break;
 						}
@@ -379,7 +379,7 @@ namespace Server.Items
 
 						var options = new List<Land>
 						{
-							Land.Sosaria,
+							Land.Vaelen,
 							Land.Lodoria,
 							Land.Serpent,
 							Land.IslesDread,

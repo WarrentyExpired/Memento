@@ -1255,7 +1255,7 @@ namespace Server.Commands
 			{ typeof( Int64 ), "Numeric value in the approximate range from negative 10^19 through 10^19." },
 			{ typeof( String ), "Text value. To specify a value containing spaces, encapsulate the value in quote characters:{0}{0}&quot;Spaced text example&quot;" },
 			{ typeof( Boolean ), "Boolean value which can be either True or False." },
-			{ typeof( Map ), "Map or facet name. Possible values include:{0}{0}- Lodor{0}- Sosaria{0}- Underworld{0}- SerpentIsland" },
+			{ typeof( Map ), "Map or facet name. Possible values include:{0}{0}- Lodor{0}- Vaelen{0}- Underworld{0}- SerpentIsland" },
 			{ typeof( Poison ), "Poison name or level. Possible values include:{0}{0}- Lesser{0}- Regular{0}- Greater{0}- Deadly{0}- Lethal" },
 			{ typeof( Point3D ), "Three-dimensional coordinate value. Format as follows:{0}{0}&quot;(<x value>, <y value>, <z value>)&quot;" }
 		};

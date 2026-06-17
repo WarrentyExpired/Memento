@@ -495,7 +495,7 @@ namespace Server
 				CommandLogging.WriteLine( from, "{0} {1} invoking unfreeze for every item in every map", from.AccessLevel, CommandLogging.Format( from ) );
 
 				DoUnfreeze( Map.Lodor, ref badDataFile, ref totalUnfrozen );
-				DoUnfreeze( Map.Sosaria, ref badDataFile, ref totalUnfrozen );
+				DoUnfreeze( Map.Vaelen, ref badDataFile, ref totalUnfrozen );
 				DoUnfreeze( Map.Underworld, ref badDataFile, ref totalUnfrozen );
 				DoUnfreeze( Map.SerpentIsland, ref badDataFile, ref totalUnfrozen );
 				DoUnfreeze( Map.IslesDread, ref badDataFile, ref totalUnfrozen );

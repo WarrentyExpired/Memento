@@ -111,27 +111,27 @@ namespace Server.Mobiles
 					case 9: this.X=2335; this.Y=3160; this.Z=0; this.Map = Map.Lodor; break;
 				}
 			}
-			else if ( this.X >= 0 && this.Y >= 0 && this.X <= 6 && this.Y <= 6 && this.Map == Map.Sosaria )
+			else if ( this.X >= 0 && this.Y >= 0 && this.X <= 6 && this.Y <= 6 && this.Map == Map.Vaelen )
 			{
 				switch( Utility.RandomMinMax( 0, 8 ) )
 				{
-					case 0: this.X=2126; this.Y=270; this.Z=0; this.Map = Map.Sosaria; break;
-					case 1: this.X=813; this.Y=755; this.Z=0; this.Map = Map.Sosaria; break;
-					case 2: this.X=2413; this.Y=870; this.Z=2; this.Map = Map.Sosaria; break;
-					case 3: this.X=2999; this.Y=1039; this.Z=0; this.Map = Map.Sosaria; break;
-					case 4: this.X=4513; this.Y=1274; this.Z=2; this.Map = Map.Sosaria; break;
-					case 5: this.X=1605; this.Y=1554; this.Z=2; this.Map = Map.Sosaria; break;
-					case 6: this.X=901; this.Y=2075; this.Z=0; this.Map = Map.Sosaria; break;
-					case 7: this.X=3290; this.Y=2610; this.Z=0; this.Map = Map.Sosaria; break;
-					case 8: this.X=2660; this.Y=3301; this.Z=0; this.Map = Map.Sosaria; break;
+					case 0: this.X=2126; this.Y=270; this.Z=0; this.Map = Map.Vaelen; break;
+					case 1: this.X=813; this.Y=755; this.Z=0; this.Map = Map.Vaelen; break;
+					case 2: this.X=2413; this.Y=870; this.Z=2; this.Map = Map.Vaelen; break;
+					case 3: this.X=2999; this.Y=1039; this.Z=0; this.Map = Map.Vaelen; break;
+					case 4: this.X=4513; this.Y=1274; this.Z=2; this.Map = Map.Vaelen; break;
+					case 5: this.X=1605; this.Y=1554; this.Z=2; this.Map = Map.Vaelen; break;
+					case 6: this.X=901; this.Y=2075; this.Z=0; this.Map = Map.Vaelen; break;
+					case 7: this.X=3290; this.Y=2610; this.Z=0; this.Map = Map.Vaelen; break;
+					case 8: this.X=2660; this.Y=3301; this.Z=0; this.Map = Map.Vaelen; break;
 				}
 			}
 			else
 			{
 				switch( Utility.RandomMinMax( 0, 5 ) )
 				{
-					case 0: this.X=1452; this.Y=3759; this.Z=0; this.Map = Map.Sosaria; break;
-					case 1: this.X=6776; this.Y=1749; this.Z=20; this.Map = Map.Sosaria; break;
+					case 0: this.X=1452; this.Y=3759; this.Z=0; this.Map = Map.Vaelen; break;
+					case 1: this.X=6776; this.Y=1749; this.Z=20; this.Map = Map.Vaelen; break;
 					case 2: this.X=861; this.Y=1060; this.Z=60; this.Map = Map.SerpentIsland; break;
 					case 3: this.X=358; this.Y=1123; this.Z=15; this.Map = Map.IslesDread; break;
 					case 4: this.X=797; this.Y=902; this.Z=-4; this.Map = Map.SavagedEmpire; break;
@@ -229,7 +229,7 @@ namespace Server.Mobiles
 
 			string msgQuest = ((PlayerMobile)m).Quests.MessageQuest;
 
-			string myHomeWorld = "the Land of Sosaria";
+			string myHomeWorld = "the Land of Vaelen";
 
 			bool GiveMail = true;
 
@@ -360,10 +360,10 @@ namespace Server.Mobiles
 
 			string QuestStory = Server.Misc.QuestCharacters.EpicQuestStory( QuestItem, alignment );
 
-			string thisWorld = "the Land of Sosaria";
+			string thisWorld = "the Land of Vaelen";
 			string thisPlace = "Dungeon Doom";
-			Map realMap = Map.Sosaria;
-			Map thisMap = Map.Sosaria;
+			Map realMap = Map.Vaelen;
+			Map thisMap = Map.Vaelen;
 
 			int aCount = 0;
 			ArrayList targets = new ArrayList();
@@ -371,7 +371,7 @@ namespace Server.Mobiles
 			if ( target is SearchBase && ( Server.Difficult.GetDifficulty( target.Location, target.Map ) <= GetPlayerInfo.GetPlayerDifficulty( from ) ) )
 			{
 				string tWorld = Server.Lands.LandName( Server.Lands.GetLand( target.Map, target.Location, target.X, target.Y ) );
-				if ( tWorld == "the Land of Sosaria" ){ targets.Add( target ); aCount++; }
+				if ( tWorld == "the Land of Vaelen" ){ targets.Add( target ); aCount++; }
 				else if ( PlayerSettings.GetDiscovered( from, tWorld ) ){ targets.Add( target ); aCount++; }
 			}
 

@@ -92,7 +92,7 @@ namespace Server
 
 				else if ( reg.IsPartOf( "the Sanctum of Saltmarsh" ) ){ Heat = 3; }
 			}
-			else if ( map == Map.Sosaria )
+			else if ( map == Map.Vaelen )
 			{
 				if ( reg.IsPartOf( "the Ancient Pyramid" ) ){ Heat = 0; }
 				else if ( reg.IsPartOf( "the Mausoleum" ) ){ Heat = 1; }
@@ -226,7 +226,7 @@ namespace Server
 		Savaged,
 		Serpent,
 		SkaraBrae,
-		Sosaria,
+		Vaelen,
 		UmberVeil,
 		Underworld
 	}
@@ -246,7 +246,7 @@ namespace Server
                 case Land.Savaged: return "Savaged Empire";
                 case Land.Serpent: return "Serpent Island";
                 case Land.SkaraBrae: return "Skara Brae";
-                case Land.Sosaria: return "Sosaria";
+                case Land.Vaelen: return "Vaelen";
                 case Land.UmberVeil: return "Umber Veil";
                 case Land.Underworld: return "Underworld";
                 default: throw new Exception("Unsupported land type: " + land.ToString());
@@ -273,14 +273,14 @@ namespace Server
 				return "the Serpent Island";
 			else if ( land == Land.SkaraBrae )
 				return "the Town of Skara Brae";
-			else if ( land == Land.Sosaria )
-				return "the Land of Sosaria";
+			else if ( land == Land.Vaelen )
+				return "the Land of Vaelen";
 			else if ( land == Land.UmberVeil )
 				return "the Island of Umber Veil";
 			else if ( land == Land.Underworld )
 				return "the Underworld";
 
-			return "the Land of Sosaria";
+			return "the Land of Vaelen";
 		}
 
 		public static Land LandRef( string land )
@@ -303,8 +303,8 @@ namespace Server
 				return Land.Serpent;
 			else if ( land == "the Town of Skara Brae" )
 				return Land.SkaraBrae;
-			else if ( land == "the Land of Sosaria" )
-				return Land.Sosaria;
+			else if ( land == "the Land of Vaelen" )
+				return Land.Vaelen;
 			else if ( land == "the Island of Umber Veil" )
 				return Land.UmberVeil;
 			else if ( land == "the Underworld" )
@@ -320,9 +320,9 @@ namespace Server
 				case Land.Kuldar:
 				case Land.Ambrosia:
 				case Land.Luna:
-				case Land.Sosaria:
+				case Land.Vaelen:
 				case Land.UmberVeil:
-					return Map.Sosaria;
+					return Map.Vaelen;
 
 				case Land.Atlantis: return Map.Atlantis;
 				case Land.IslesDread: return Map.IslesDread;
@@ -333,7 +333,7 @@ namespace Server
 				case Land.Underworld: return Map.Underworld;
 			}
 
-			return Map.Sosaria;
+			return Map.Vaelen;
 		}
 
 		public static Land GetLand( IEntity entity )
@@ -344,26 +344,26 @@ namespace Server
 		public static Land GetLand( Map map, Point3D location, int x, int y )
 		{
 			Region reg = Region.Find( location, map );
-			Land land = Land.Sosaria;
+			Land land = Land.Vaelen;
 
-			if ( map == Map.Sosaria && x > 5774 && y > 2694 && x < 6123 && y < 3074 ){ land = Land.Luna; }
-			else if ( map == Map.Sosaria && ( reg.IsPartOf( "Moonlight Cavern" ) || 
+			if ( map == Map.Vaelen && x > 5774 && y > 2694 && x < 6123 && y < 3074 ){ land = Land.Luna; }
+			else if ( map == Map.Vaelen && ( reg.IsPartOf( "Moonlight Cavern" ) || 
 												reg.IsPartOf( "the Core of the Moon" ) || 
 												reg.IsPartOf( "the Moon's Core" ) ) ){ land = Land.Luna; }
 
-			else if ( map == Map.Sosaria && x > 5125 && y > 3038 && x < 6124 && y < 4093 ){ land = Land.Ambrosia; }
-			else if ( map == Map.Sosaria && x > 3229 && y > 3870 && x < 3344 && y < 3946 ){ land = Land.Ambrosia; }
-			else if ( map == Map.Sosaria && ( reg.IsPartOf( "the Dragon's Maw" ) || 
+			else if ( map == Map.Vaelen && x > 5125 && y > 3038 && x < 6124 && y < 4093 ){ land = Land.Ambrosia; }
+			else if ( map == Map.Vaelen && x > 3229 && y > 3870 && x < 3344 && y < 3946 ){ land = Land.Ambrosia; }
+			else if ( map == Map.Vaelen && ( reg.IsPartOf( "the Dragon's Maw" ) || 
 												reg.IsPartOf( "the Cave of the Zuluu" ) || 
 												reg.IsPartOf( "the Arena of The Zuluu" ) ) ){ land = Land.Ambrosia; }
 
-			else if ( map == Map.Sosaria && x > 2931 && y > 3675 && x < 2999 && y < 3722 ){ land = Land.UmberVeil; }
-			else if ( map == Map.Sosaria && x > 699 && y > 3129 && x < 2272 && y < 4095 ){ land = Land.UmberVeil; }
-			else if ( map == Map.Sosaria && reg.IsPartOf( "the Mausoleum" ) ){ land = Land.UmberVeil; }
-			else if ( map == Map.Sosaria && reg.IsPartOf( "the Tower of Brass" ) ){ land = Land.UmberVeil; }
+			else if ( map == Map.Vaelen && x > 2931 && y > 3675 && x < 2999 && y < 3722 ){ land = Land.UmberVeil; }
+			else if ( map == Map.Vaelen && x > 699 && y > 3129 && x < 2272 && y < 4095 ){ land = Land.UmberVeil; }
+			else if ( map == Map.Vaelen && reg.IsPartOf( "the Mausoleum" ) ){ land = Land.UmberVeil; }
+			else if ( map == Map.Vaelen && reg.IsPartOf( "the Tower of Brass" ) ){ land = Land.UmberVeil; }
 
-			else if ( map == Map.Sosaria && x > 6127 && y > 828 && x < 7168 && y < 2736 ){ land = Land.Kuldar; }
-			else if ( map == Map.Sosaria && ( reg.IsPartOf( "Highrock Mine" ) || 
+			else if ( map == Map.Vaelen && x > 6127 && y > 828 && x < 7168 && y < 2736 ){ land = Land.Kuldar; }
+			else if ( map == Map.Vaelen && ( reg.IsPartOf( "Highrock Mine" ) || 
 												reg.IsPartOf( "Waterfall Cavern" ) || 
 												reg.IsPartOf( "the Crumbling Cave" ) || 
 												reg.IsPartOf( "Steamfire Cave" ) || 
@@ -381,7 +381,7 @@ namespace Server
 												reg.IsPartOf( "the Hall of the Mountain King" ) || 
 												reg.IsPartOf( "the Depths of Carthax Lake" ) ) ){ land = Land.Underworld; }
 
-			else if ( map == Map.Sosaria && reg.IsPartOf( "the Chamber of Corruption" ) ){ land = Land.Underworld; }
+			else if ( map == Map.Vaelen && reg.IsPartOf( "the Chamber of Corruption" ) ){ land = Land.Underworld; }
 
 			else if ( map == Map.SavagedEmpire && ( reg.IsPartOf( "the Ancient Crash Site" ) || 
 												reg.IsPartOf( "the Obsidian Fortress" ) || 
@@ -402,7 +402,7 @@ namespace Server
 											reg.IsPartOf( "the Mines" ) || 
 											reg.IsPartOf( "the Cellar" ) ) ){ land = Land.SkaraBrae; }
 
-			else if ( map == Map.Lodor && reg.IsPartOf( "the Montor Sewers" ) ){ land = Land.Sosaria; }
+			else if ( map == Map.Lodor && reg.IsPartOf( "the Montor Sewers" ) ){ land = Land.Vaelen; }
 			else if ( map == Map.Lodor && !reg.IsPartOf( "the Vault of the Black Knight" ) ){ land = Land.Lodoria; }
 
 			else if ( map == Map.SerpentIsland || reg.IsPartOf( "the Vault of the Black Knight" ) ){ land = Land.Serpent; }
@@ -414,16 +414,16 @@ namespace Server
 						reg.IsPartOf( "the Scurvy Reef" ) || 
 						reg.IsPartOf( "the Blood Temple" ) ) ){ land = Land.IslesDread; }
 
-			else if ( map == Map.SavagedEmpire && reg.IsPartOf( "the Forgotten Halls" ) ){ land = Land.Sosaria; }
+			else if ( map == Map.SavagedEmpire && reg.IsPartOf( "the Forgotten Halls" ) ){ land = Land.Vaelen; }
 
 			// SKY CASTLES
-			else if ( map == Map.SerpentIsland && ( x > 1949 ) && ( y > 1393 ) && ( x < 2061 ) && ( y < 1486 ) ){ land = Land.Sosaria; }
+			else if ( map == Map.SerpentIsland && ( x > 1949 ) && ( y > 1393 ) && ( x < 2061 ) && ( y < 1486 ) ){ land = Land.Vaelen; }
 			else if ( map == Map.SerpentIsland && ( x > 2150 ) && ( y > 1401 ) && ( x < 2270 ) && ( y < 1513 ) ){ land = Land.Lodoria; }
 			else if ( map == Map.SerpentIsland && ( x > 2375 ) && ( y > 1398 ) && ( x < 2442 ) && ( y < 1467 ) ){ land = Land.Lodoria; }
 			else if ( map == Map.SerpentIsland && ( x > 2401 ) && ( y > 1635 ) && ( x < 2468 ) && ( y < 1703 ) ){ land = Land.Serpent; }
 			else if ( map == Map.SerpentIsland && ( x > 2408 ) && ( y > 1896 ) && ( x < 2517 ) && ( y < 2005 ) ){ land = Land.Savaged; }
 			else if ( map == Map.SerpentIsland && ( x > 2181 ) && ( y > 1889 ) && ( x < 2275 ) && ( y < 2003 ) ){ land = Land.IslesDread; }
-			else if ( map == Map.SerpentIsland && ( x > 1930 ) && ( y > 1890 ) && ( x < 2022 ) && ( y < 1997 ) ){ land = Land.Sosaria; }
+			else if ( map == Map.SerpentIsland && ( x > 1930 ) && ( y > 1890 ) && ( x < 2022 ) && ( y < 1997 ) ){ land = Land.Vaelen; }
 
 			else if ( map == Map.SerpentIsland ){ land = Land.Serpent; }
 
@@ -434,10 +434,10 @@ namespace Server
 			else if ( map == Map.Underworld && ( x > 1647 ) && ( y > 184 ) && ( x < 1810 ) && ( y < 305 ) ){ land = Land.Serpent; }
 			else if ( map == Map.Underworld && ( x > 1877 ) && ( y > 187 ) && ( x < 2033 ) && ( y < 302 ) ){ land = Land.UmberVeil; }
 			else if ( map == Map.Underworld && ( x > 2108 ) && ( y > 190 ) && ( x < 2269 ) && ( y < 305 ) ){ land = Land.Serpent; }
-			else if ( map == Map.Underworld && ( x > 1656 ) && ( y > 335 ) && ( x < 1807 ) && ( y < 443 ) ){ land = Land.Sosaria; }
+			else if ( map == Map.Underworld && ( x > 1656 ) && ( y > 335 ) && ( x < 1807 ) && ( y < 443 ) ){ land = Land.Vaelen; }
 			else if ( map == Map.Underworld && ( x > 1880 ) && ( y > 338 ) && ( x < 2031 ) && ( y < 445 ) ){ land = Land.Lodoria; }
 			else if ( map == Map.Underworld && ( x > 2111 ) && ( y > 335 ) && ( x < 2266 ) && ( y < 446 ) ){ land = Land.IslesDread; }
-			else if ( map == Map.Underworld && ( x > 1657 ) && ( y > 496 ) && ( x < 1807 ) && ( y < 606 ) ){ land = Land.Sosaria; }
+			else if ( map == Map.Underworld && ( x > 1657 ) && ( y > 496 ) && ( x < 1807 ) && ( y < 606 ) ){ land = Land.Vaelen; }
 			else if ( map == Map.Underworld && ( x > 1879 ) && ( y > 498 ) && ( x < 2031 ) && ( y < 605 ) ){ land = Land.Savaged; }
 			else if ( map == Map.Underworld && ( x > 2115 ) && ( y > 499 ) && ( x < 2263 ) && ( y < 605 ) ){ land = Land.Lodoria; }
 			else if ( map == Map.Underworld && ( x > 1657 ) && ( y > 641 ) && ( x < 1808 ) && ( y < 748 ) ){ land = Land.Lodoria; }
@@ -451,14 +451,14 @@ namespace Server
 			else if ( map == Map.Underworld && ( x > 2113 ) && ( y > 952 ) && ( x < 2268 ) && ( y < 1056 ) ){ land = Land.Savaged; }
 
 			else if ( map == Map.Lodor ){ land = Land.Lodoria; }
-			else if ( map == Map.Sosaria ){ land = Land.Sosaria; }
+			else if ( map == Map.Vaelen ){ land = Land.Vaelen; }
 			else if ( map == Map.Underworld ){ land = Land.Underworld; }
 			else if ( map == Map.SerpentIsland ){ land = Land.Serpent; }
 			else if ( map == Map.IslesDread ){ land = Land.IslesDread; }
 			else if ( map == Map.SavagedEmpire ){ land = Land.Savaged; }
 			else if ( map == Map.Atlantis ){ land = Land.Atlantis; }
 
-			if ( map == Map.SerpentIsland && reg.IsPartOf( "Sosaria Prison" ) ){ land = Land.Sosaria; }
+			if ( map == Map.SerpentIsland && reg.IsPartOf( "Vaelen Prison" ) ){ land = Land.Vaelen; }
 			else if ( map == Map.SerpentIsland && reg.IsPartOf( "Lodoria Prison" ) ){ land = Land.Lodoria; }
 			else if ( map == Map.SerpentIsland && reg.IsPartOf( "Renika Prison" ) ){ land = Land.UmberVeil; }
 			else if ( map == Map.SerpentIsland && reg.IsPartOf( "Kuldara Prison" ) ){ land = Land.Kuldar; }
@@ -509,7 +509,7 @@ namespace Server
 
 			// YEW FOREST PATCH
 			bool yew = false;
-			if ( map == Map.Sosaria && JungleTerrain.Contains( LTile.ID ) )
+			if ( map == Map.Vaelen && JungleTerrain.Contains( LTile.ID ) )
 			{
 				if (
 					( x >= 2089 && y >= 841 && x <= 2207 && y <= 1001 ) || 
@@ -586,7 +586,7 @@ namespace Server
 			{
 				//indoors = true; 
 			}
-			else if ( map == Map.Sosaria )
+			else if ( map == Map.Vaelen )
 			{
 				// BRITAIN
 				if ( x >= 2971 && y >= 991 && x <= 2985 && y <= 998 ){ indoors = true; }
@@ -1457,7 +1457,7 @@ namespace Server
 		FreeMovement			= 0x0002, // Anyone can move over anyone else without taking stamina loss
 		BeneficialRestrictions	= 0x0004, // Disallow performing beneficial actions on criminals/murderers
 		HarmfulRestrictions		= 0x0008, // Disallow performing harmful actions on innocents
-		SosariaRules			= FreeMovement | BeneficialRestrictions | HarmfulRestrictions,
+		VaelenRules			= FreeMovement | BeneficialRestrictions | HarmfulRestrictions,
 		LodorRules			= None
 	}
 
@@ -1473,7 +1473,7 @@ namespace Server
 	}
 
 	[Parsable]
-	//[CustomEnum( new string[]{ "Lodor", "Sosaria", "Underworld", "SerpentIsland", "IslesDread", "SavagedEmpire", "Internal" } )]
+	//[CustomEnum( new string[]{ "Lodor", "Vaelen", "Underworld", "SerpentIsland", "IslesDread", "SavagedEmpire", "Internal" } )]
 	public sealed class Map : IComparable, IComparable<Map>
 	{
 		public const int SectorSize = 16;
@@ -1485,7 +1485,7 @@ namespace Server
 		public static Map[] Maps { get { return m_Maps; } }
 
 		public static Map Lodor { get { return m_Maps[0]; } }
-		public static Map Sosaria { get { return m_Maps[1]; } }
+		public static Map Vaelen { get { return m_Maps[1]; } }
 		public static Map Underworld { get { return m_Maps[2]; } }
 		public static Map SerpentIsland { get { return m_Maps[3]; } }
 		public static Map IslesDread { get { return m_Maps[4]; } }

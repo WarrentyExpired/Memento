@@ -210,7 +210,7 @@ namespace Server.Gumps
 				case 43: item = "LearnLeatherBook"; title = "Leather & Bone Crafts"; id = 207; break;
 				case 44: item = "GreyJournal"; title = "Legend of the Sky Castle"; id = 119; break;
 				case 45: item = "LoreBook"; title = "The Lost Land"; id = 1; break;
-				case 46: item = "CBookTheLostTribeofSosaria"; title = "Lost Tribe of Sosaria"; id = 110; break;
+				case 46: item = "CBookTheLostTribeofVaelen"; title = "Lost Tribe of Vaelen"; id = 110; break;
 				case 47: item = "LoreBook"; title = "Luck of the Rogue"; id = 20; break;
 				case 48: item = "LoreBook"; title = "Magic in the Moon"; id = 38; break;
 				case 49: item = "LoreBook"; title = "The Maze of Wonder"; id = 39; break;
@@ -301,7 +301,7 @@ namespace Server.Gumps
 			else if ( book.Name == "Leather & Bone Crafts" ){ num = 42; }
 			else if ( book.Name == "Legend of the Sky Castle" ){ num = 43; }
 			else if ( book.Name == "The Lost Land" ){ num = 44; }
-			else if ( book.Name == "Lost Tribe of Sosaria" ){ num = 45; }
+			else if ( book.Name == "Lost Tribe of Vaelen" ){ num = 45; }
 			else if ( book.Name == "Luck of the Rogue" ){ num = 46; }
 			else if ( book.Name == "Magic in the Moon" ){ num = 47; }
 			else if ( book.Name == "The Maze of Wonder" ){ num = 48; }

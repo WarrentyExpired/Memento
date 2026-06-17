@@ -94,7 +94,7 @@ namespace Server.Misc
 
             int Heat = 0;
             int ChestLevel = 0;
-            ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1, 0.1); chestSpawner.MoveToWorld(new Point3D(2394, 425, 0), Map.Sosaria); Heat = Server.Difficult.GetDifficulty(chestSpawner.Location, chestSpawner.Map); if (Heat < 0) { Heat = 0; }
+            ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1, 0.1); chestSpawner.MoveToWorld(new Point3D(2394, 425, 0), Map.Vaelen); Heat = Server.Difficult.GetDifficulty(chestSpawner.Location, chestSpawner.Map); if (Heat < 0) { Heat = 0; }
             chestSpawner.SpawnerLevel = ChestLevel + Heat;
         }
     }
@@ -140,9 +140,9 @@ namespace Server.Commands
             ///// BUILD THE QUEST TELEPORTERS //////////////////////////////////////
             BuildQuestItems.CreateQuestItems();
 
-            GenerateFile("Data/Decoration", "Bastion.cfg", Map.Sosaria);
+            GenerateFile("Data/Decoration", "Bastion.cfg", Map.Vaelen);
 
-            GenerateFile("Info/Decorations", "Sosaria.cfg", Map.Sosaria);
+            GenerateFile("Info/Decorations", "Vaelen.cfg", Map.Vaelen);
             GenerateFile("Info/Decorations", "Lodor.cfg", Map.Lodor);
             GenerateFile("Info/Decorations", "Underworld.cfg", Map.Underworld);
             GenerateFile("Info/Decorations", "SerpentIsland.cfg", Map.SerpentIsland);
@@ -1468,7 +1468,7 @@ namespace Server.Misc
                 item.Delete();
             }
 
-            stealPedestal = ChooseType(); stealPedestal.MoveToWorld(new Point3D(2393, 416, 0), Map.Sosaria);
+            stealPedestal = ChooseType(); stealPedestal.MoveToWorld(new Point3D(2393, 416, 0), Map.Vaelen);
 
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1492,11 +1492,11 @@ namespace Server.Misc
             essPedestal = new EssenceBase("ork"); essPedestal.MoveToWorld(new Point3D(248, 1946, -28), Map.SavagedEmpire);
             essPedestal = new EssenceBase("drow"); essPedestal.MoveToWorld(new Point3D(5432, 1348, 0), Map.Lodor);
             essPedestal = new EssenceBase("vampire"); essPedestal.MoveToWorld(new Point3D(5774, 2746, 5), Map.Lodor);
-            essPedestal = new EssenceBase("ghost"); essPedestal.MoveToWorld(new Point3D(6500, 649, 0), Map.Sosaria);
+            essPedestal = new EssenceBase("ghost"); essPedestal.MoveToWorld(new Point3D(6500, 649, 0), Map.Vaelen);
             essPedestal = new EssenceBase("demon"); essPedestal.MoveToWorld(new Point3D(6121, 208, 22), Map.Lodor);
             essPedestal = new EssenceBase("ice"); essPedestal.MoveToWorld(new Point3D(6432, 526, 0), Map.Lodor);
             essPedestal = new EssenceBase("fire"); essPedestal.MoveToWorld(new Point3D(6251, 2482, 0), Map.Lodor);
-            essPedestal = new EssenceBase("shadow"); essPedestal.MoveToWorld(new Point3D(5042, 3517, 0), Map.Sosaria);
+            essPedestal = new EssenceBase("shadow"); essPedestal.MoveToWorld(new Point3D(5042, 3517, 0), Map.Vaelen);
             essPedestal = new EssenceBase("dark"); essPedestal.MoveToWorld(new Point3D(411, 2124, -1), Map.SavagedEmpire);
             essPedestal = new EssenceBase("lizard"); essPedestal.MoveToWorld(new Point3D(6223, 1341, 0), Map.Lodor);
             essPedestal = new EssenceBase("darkness"); essPedestal.MoveToWorld(new Point3D(6788, 2340, 0), Map.Lodor);
@@ -1620,21 +1620,21 @@ namespace Server.Misc
                 case 14: specialPed.MoveToWorld(new Point3D(5527, 1352, 0), Map.Lodor); break; // Dungeon Wrong
                 case 15: specialPed.MoveToWorld(new Point3D(6152, 2872, 0), Map.Lodor); break; // Stonegate Castle
 
-                case 16: specialPed.MoveToWorld(new Point3D(6897, 2874, 50), Map.Sosaria); break; // Vordo's Castle
-                case 17: specialPed.MoveToWorld(new Point3D(3882, 3281, 40), Map.Sosaria); break; // the Mausoleum
-                case 18: specialPed.MoveToWorld(new Point3D(495, 3811, 78), Map.Sosaria); break; // the Tower of Brass
-                case 19: specialPed.MoveToWorld(new Point3D(4734, 3682, 0), Map.Sosaria); break; // the Dragon's Maw
-                case 20: specialPed.MoveToWorld(new Point3D(6966, 3848, 25), Map.Sosaria); break; // the Cave of the Zuluu
-                case 21: specialPed.MoveToWorld(new Point3D(5333, 895, 0), Map.Sosaria); break; // the Ancient Pyramid
-                case 22: specialPed.MoveToWorld(new Point3D(5939, 654, 0), Map.Sosaria); break; // Dungeon Exodus
-                case 23: specialPed.MoveToWorld(new Point3D(5843, 1752, 0), Map.Sosaria); break; // the Caverns of Poseidon
-                case 24: specialPed.MoveToWorld(new Point3D(5620, 2172, 0), Map.Sosaria); break; // Dungeon Clues
-                case 25: specialPed.MoveToWorld(new Point3D(5622, 367, 0), Map.Sosaria); break; // Dardin's Pit
-                case 26: specialPed.MoveToWorld(new Point3D(5242, 219, 0), Map.Sosaria); break; // Dungeon Doom
-                case 27: specialPed.MoveToWorld(new Point3D(5528, 1246, 0), Map.Sosaria); break; // the Fires of Hell
-                case 28: specialPed.MoveToWorld(new Point3D(5636, 1513, 0), Map.Sosaria); break; // the Mines of Morinia
-                case 29: specialPed.MoveToWorld(new Point3D(5915, 462, 0), Map.Sosaria); break; // the Perinian Depths
-                case 30: specialPed.MoveToWorld(new Point3D(5506, 818, 0), Map.Sosaria); break; // the Dungeon of Time Awaits
+                case 16: specialPed.MoveToWorld(new Point3D(6897, 2874, 50), Map.Vaelen); break; // Vordo's Castle
+                case 17: specialPed.MoveToWorld(new Point3D(3882, 3281, 40), Map.Vaelen); break; // the Mausoleum
+                case 18: specialPed.MoveToWorld(new Point3D(495, 3811, 78), Map.Vaelen); break; // the Tower of Brass
+                case 19: specialPed.MoveToWorld(new Point3D(4734, 3682, 0), Map.Vaelen); break; // the Dragon's Maw
+                case 20: specialPed.MoveToWorld(new Point3D(6966, 3848, 25), Map.Vaelen); break; // the Cave of the Zuluu
+                case 21: specialPed.MoveToWorld(new Point3D(5333, 895, 0), Map.Vaelen); break; // the Ancient Pyramid
+                case 22: specialPed.MoveToWorld(new Point3D(5939, 654, 0), Map.Vaelen); break; // Dungeon Exodus
+                case 23: specialPed.MoveToWorld(new Point3D(5843, 1752, 0), Map.Vaelen); break; // the Caverns of Poseidon
+                case 24: specialPed.MoveToWorld(new Point3D(5620, 2172, 0), Map.Vaelen); break; // Dungeon Clues
+                case 25: specialPed.MoveToWorld(new Point3D(5622, 367, 0), Map.Vaelen); break; // Dardin's Pit
+                case 26: specialPed.MoveToWorld(new Point3D(5242, 219, 0), Map.Vaelen); break; // Dungeon Doom
+                case 27: specialPed.MoveToWorld(new Point3D(5528, 1246, 0), Map.Vaelen); break; // the Fires of Hell
+                case 28: specialPed.MoveToWorld(new Point3D(5636, 1513, 0), Map.Vaelen); break; // the Mines of Morinia
+                case 29: specialPed.MoveToWorld(new Point3D(5915, 462, 0), Map.Vaelen); break; // the Perinian Depths
+                case 30: specialPed.MoveToWorld(new Point3D(5506, 818, 0), Map.Vaelen); break; // the Dungeon of Time Awaits
 
                 case 31: specialPed.MoveToWorld(new Point3D(1961, 562, 0), Map.SerpentIsland); break; // the Ancient Prison
                 case 32: specialPed.MoveToWorld(new Point3D(2134, 873, 0), Map.SerpentIsland); break; // the Cave of Fire
@@ -1670,10 +1670,10 @@ namespace Server.Misc
                 case 61: specialPed.MoveToWorld(new Point3D(1127, 2188, -28), Map.SavagedEmpire); break; // the Pixie Cave
                 case 62: specialPed.MoveToWorld(new Point3D(461, 2617, -28), Map.SavagedEmpire); break; // the Spider Cave
 
-                case 63: specialPed.MoveToWorld(new Point3D(237, 3486, 0), Map.Sosaria); break; // the Cave of Banished Mages
-                case 64: specialPed.MoveToWorld(new Point3D(5765, 3248, 0), Map.Sosaria); break; // the City of the Dead
-                case 65: specialPed.MoveToWorld(new Point3D(6495, 2877, 45), Map.Sosaria); break; // the Crypts of Kuldar
-                case 66: specialPed.MoveToWorld(new Point3D(6340, 2831, 5), Map.Sosaria); break; // the Kuldara Sewers
+                case 63: specialPed.MoveToWorld(new Point3D(237, 3486, 0), Map.Vaelen); break; // the Cave of Banished Mages
+                case 64: specialPed.MoveToWorld(new Point3D(5765, 3248, 0), Map.Vaelen); break; // the City of the Dead
+                case 65: specialPed.MoveToWorld(new Point3D(6495, 2877, 45), Map.Vaelen); break; // the Crypts of Kuldar
+                case 66: specialPed.MoveToWorld(new Point3D(6340, 2831, 5), Map.Vaelen); break; // the Kuldara Sewers
                 case 67: specialPed.MoveToWorld(new Point3D(5354, 53, 15), Map.Lodor); break; // the Mind Flayer City
                 case 68: specialPed.MoveToWorld(new Point3D(1936, 1549, -7), Map.Underworld); break; // the Glacial Scar
                 case 69: specialPed.MoveToWorld(new Point3D(1861, 1222, -42), Map.Underworld); break; // the Stygian Abyss
@@ -1808,47 +1808,47 @@ namespace Server.Misc
 
             if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("flax"); plant.MoveToWorld(new Point3D(268, 1707, 41), Map.SavagedEmpire); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("tailor"); plant.MoveToWorld(new Point3D(941, 639, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("tailor"); plant.MoveToWorld(new Point3D(941, 639, 0), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2976, 1268, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2976, 1268, 0), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("tailor"); plant.MoveToWorld(new Point3D(6791, 1781, 20), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("tailor"); plant.MoveToWorld(new Point3D(6791, 1781, 20), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("food"); plant.MoveToWorld(new Point3D(6829, 1680, 1), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("food"); plant.MoveToWorld(new Point3D(6829, 1680, 1), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(922, 776, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(922, 776, 0), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("cotton"); plant.MoveToWorld(new Point3D(1586, 1472, 2), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("cotton"); plant.MoveToWorld(new Point3D(1586, 1472, 2), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2637, 521, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2637, 521, 0), Map.Vaelen); }
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2693, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant("wheat"); plant.MoveToWorld(new Point3D(2693, 608, 0), Map.Vaelen); }
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             string thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6607, 3207, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6607, 3207, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6583, 3205, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6583, 3205, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6609, 3220, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6609, 3220, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6597, 3235, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6597, 3235, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6585, 3229, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6585, 3229, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6580, 3217, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(6580, 3217, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
@@ -1876,102 +1876,102 @@ namespace Server.Misc
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2966, 1268, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2966, 1268, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(922, 768, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(922, 768, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(928, 768, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(928, 768, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2700, 603, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2700, 603, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2700, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2700, 608, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 603, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 603, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2704, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2704, 608, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 608, 0), Map.Vaelen); }
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 613, 0), Map.Sosaria); }
-
-            thisCrop = RandomCrop();
-
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 605, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2707, 613, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 605, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 605, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 605, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 613, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 608, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 613, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 613, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2792, 613, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2800, 613, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2799, 608, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2800, 608, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2800, 613, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2785, 918, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2800, 608, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2785, 928, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2785, 918, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2824, 989, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2785, 928, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 977, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2824, 989, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 987, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 977, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2832, 989, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 987, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 992, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2832, 989, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
-            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2832, 992, 0), Map.Sosaria); }
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2834, 992, 0), Map.Vaelen); }
+
+            thisCrop = RandomCrop();
+
+            if (plantChance >= Utility.RandomMinMax(1, 100)) { Item plant = GetPlant(thisCrop); plant.MoveToWorld(new Point3D(2832, 992, 0), Map.Vaelen); }
 
             thisCrop = RandomCrop();
 
@@ -2268,62 +2268,62 @@ namespace Server.Misc
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the City of the Dead"
                 {
-                    case 1: loc = new Point3D(5683, 3261, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5669, 3291, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5758, 3331, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5754, 3245, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5683, 3261, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5669, 3291, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5758, 3331, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5754, 3245, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 5)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Mausoleum"
                 {
-                    case 1: loc = new Point3D(3992, 3295, 20); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(3882, 3282, 40); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(3831, 3363, 40); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(3964, 3453, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(3992, 3295, 20); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(3882, 3282, 40); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(3831, 3363, 40); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(3964, 3453, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 6)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Valley of Dark Druids"
                 {
-                    case 1: loc = new Point3D(6828, 200, 5); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6790, 146, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6783, 184, 50); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6792, 209, 30); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(6828, 200, 5); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6790, 146, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6783, 184, 50); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6792, 209, 30); map = Map.Vaelen; break;
                 }
             }
             else if (area == 7)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Vordo's Castle"
                 {
-                    case 1: loc = new Point3D(6893, 2866, 72); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6896, 2909, 72); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6910, 2907, 50); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6905, 2858, 50); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(6893, 2866, 72); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6896, 2909, 72); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6910, 2907, 50); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6905, 2858, 50); map = Map.Vaelen; break;
                 }
             }
             else if (area == 8)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Crypts of Kuldar"
                 {
-                    case 1: loc = new Point3D(6508, 2940, 55); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6493, 2879, 45); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6547, 2842, 50); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6591, 2884, 45); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(6508, 2940, 55); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6493, 2879, 45); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6547, 2842, 50); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6591, 2884, 45); map = Map.Vaelen; break;
                 }
             }
             else if (area == 9)
             {
                 switch (Utility.RandomMinMax(1, 6)) // "the Caverns of Poseidon"
                 {
-                    case 1: loc = new Point3D(5629, 972, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5712, 1689, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5839, 1743, 5); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5996, 1723, 5); map = Map.Sosaria; break;
-                    case 5: loc = new Point3D(5305, 2058, 0); map = Map.Sosaria; break;
-                    case 6: loc = new Point3D(5366, 2073, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5629, 972, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5712, 1689, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5839, 1743, 5); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5996, 1723, 5); map = Map.Vaelen; break;
+                    case 5: loc = new Point3D(5305, 2058, 0); map = Map.Vaelen; break;
+                    case 6: loc = new Point3D(5366, 2073, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 10)
@@ -2386,30 +2386,30 @@ namespace Server.Misc
             {
                 switch (Utility.RandomMinMax(1, 14)) // "the Tower of Brass"
                 {
-                    case 1: loc = new Point3D(486, 3818, 56); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6407, 3088, 5); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6799, 3211, -20); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6857, 3196, 5); map = Map.Sosaria; break;
-                    case 5: loc = new Point3D(6779, 3122, 3); map = Map.Sosaria; break;
-                    case 6: loc = new Point3D(6274, 3444, 30); map = Map.Sosaria; break;
-                    case 7: loc = new Point3D(6570, 3381, 0); map = Map.Sosaria; break;
-                    case 8: loc = new Point3D(6898, 3337, 40); map = Map.Sosaria; break;
-                    case 9: loc = new Point3D(6527, 3573, 0); map = Map.Sosaria; break;
-                    case 10: loc = new Point3D(6952, 3582, 0); map = Map.Sosaria; break;
-                    case 11: loc = new Point3D(6937, 3536, 20); map = Map.Sosaria; break;
-                    case 12: loc = new Point3D(6954, 3499, 40); map = Map.Sosaria; break;
-                    case 13: loc = new Point3D(6831, 3856, 5); map = Map.Sosaria; break;
-                    case 14: loc = new Point3D(6269, 3938, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(486, 3818, 56); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6407, 3088, 5); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6799, 3211, -20); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6857, 3196, 5); map = Map.Vaelen; break;
+                    case 5: loc = new Point3D(6779, 3122, 3); map = Map.Vaelen; break;
+                    case 6: loc = new Point3D(6274, 3444, 30); map = Map.Vaelen; break;
+                    case 7: loc = new Point3D(6570, 3381, 0); map = Map.Vaelen; break;
+                    case 8: loc = new Point3D(6898, 3337, 40); map = Map.Vaelen; break;
+                    case 9: loc = new Point3D(6527, 3573, 0); map = Map.Vaelen; break;
+                    case 10: loc = new Point3D(6952, 3582, 0); map = Map.Vaelen; break;
+                    case 11: loc = new Point3D(6937, 3536, 20); map = Map.Vaelen; break;
+                    case 12: loc = new Point3D(6954, 3499, 40); map = Map.Vaelen; break;
+                    case 13: loc = new Point3D(6831, 3856, 5); map = Map.Vaelen; break;
+                    case 14: loc = new Point3D(6269, 3938, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 16)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Kuldara Sewers"
                 {
-                    case 1: loc = new Point3D(6226, 2902, 10); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6207, 2991, 5); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6252, 3011, -25); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6333, 2826, 6); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(6226, 2902, 10); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6207, 2991, 5); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6252, 3011, -25); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6333, 2826, 6); map = Map.Vaelen; break;
                 }
             }
             else if (area == 17)
@@ -2425,143 +2425,143 @@ namespace Server.Misc
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Ratmen Lair"
                 {
-                    case 1: loc = new Point3D(2719, 3725, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(2754, 3784, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(2796, 3753, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(2747, 3750, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(2719, 3725, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(2754, 3784, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(2796, 3753, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(2747, 3750, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 19)
             {
                 switch (Utility.RandomMinMax(1, 7)) // "the Ancient Pyramid"
                 {
-                    case 1: loc = new Point3D(5359, 918, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5288, 901, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5323, 955, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5368, 767, 0); map = Map.Sosaria; break;
-                    case 5: loc = new Point3D(5309, 784, 0); map = Map.Sosaria; break;
-                    case 6: loc = new Point3D(5243, 761, 0); map = Map.Sosaria; break;
-                    case 7: loc = new Point3D(5302, 724, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5359, 918, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5288, 901, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5323, 955, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5368, 767, 0); map = Map.Vaelen; break;
+                    case 5: loc = new Point3D(5309, 784, 0); map = Map.Vaelen; break;
+                    case 6: loc = new Point3D(5243, 761, 0); map = Map.Vaelen; break;
+                    case 7: loc = new Point3D(5302, 724, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 20)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Dungeon Exodus"
                 {
-                    case 1: loc = new Point3D(5937, 584, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5975, 611, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5939, 696, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5883, 597, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5937, 584, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5975, 611, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5939, 696, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5883, 597, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 21)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Cave of Banished Mages"
                 {
-                    case 1: loc = new Point3D(230, 3509, 20); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(231, 3486, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(124, 3767, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(124, 3462, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(230, 3509, 20); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(231, 3486, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(124, 3767, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(124, 3462, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 22)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Dungeon Clues"
                 {
-                    case 1: loc = new Point3D(5905, 2120, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5960, 2222, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5608, 2204, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5611, 2120, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5905, 2120, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5960, 2222, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5608, 2204, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5611, 2120, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 23)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Dardin's Pit"
                 {
-                    case 1: loc = new Point3D(5660, 411, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5641, 382, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5584, 419, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5501, 420, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5660, 411, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5641, 382, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5584, 419, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5501, 420, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 24)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Dungeon Doom"
                 {
-                    case 1: loc = new Point3D(5374, 297, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5321, 286, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5276, 297, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5263, 235, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5374, 297, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5321, 286, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5276, 297, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5263, 235, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 25)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Fires of Hell"
                 {
-                    case 1: loc = new Point3D(5609, 1240, 1); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5482, 1233, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5311, 1376, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5255, 1400, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5609, 1240, 1); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5482, 1233, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5311, 1376, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5255, 1400, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 26)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Mines of Morinia"
                 {
-                    case 1: loc = new Point3D(5685, 1462, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5705, 1538, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5623, 1512, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5633, 1614, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5685, 1462, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5705, 1538, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5623, 1512, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5633, 1614, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 27)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Perinian Depths"
                 {
-                    case 1: loc = new Point3D(5912, 475, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5975, 367, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5894, 386, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5859, 453, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5912, 475, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5975, 367, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5894, 386, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5859, 453, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 28)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Dungeon of Time Awaits"
                 {
-                    case 1: loc = new Point3D(5588, 897, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5537, 879, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5498, 849, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5566, 795, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5588, 897, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5537, 879, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5498, 849, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5566, 795, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 29)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Pirate Cave"
                 {
-                    case 1: loc = new Point3D(5459, 1676, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(5476, 1675, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(5473, 1697, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(5436, 1676, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(5459, 1676, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(5476, 1675, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(5473, 1697, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(5436, 1676, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 30)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Dragon's Maw"
                 {
-                    case 1: loc = new Point3D(4839, 3852, 5); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(4755, 3692, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(4351, 3904, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(4476, 3935, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(4839, 3852, 5); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(4755, 3692, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(4351, 3904, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(4476, 3935, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 31)
             {
                 switch (Utility.RandomMinMax(1, 4)) // "the Cave of the Zuluu"
                 {
-                    case 1: loc = new Point3D(6982, 3840, 5); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6997, 3913, 25); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6654, 3660, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6241, 3256, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(6982, 3840, 5); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6997, 3913, 25); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6654, 3660, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6241, 3256, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 32)
@@ -3011,10 +3011,10 @@ namespace Server.Misc
             {
                 switch (Utility.RandomMinMax(1, 4)) // "Vordo's Dungeon"
                 {
-                    case 1: loc = new Point3D(6469, 713, 0); map = Map.Sosaria; break;
-                    case 2: loc = new Point3D(6278, 468, 0); map = Map.Sosaria; break;
-                    case 3: loc = new Point3D(6442, 451, 0); map = Map.Sosaria; break;
-                    case 4: loc = new Point3D(6286, 510, 0); map = Map.Sosaria; break;
+                    case 1: loc = new Point3D(6469, 713, 0); map = Map.Vaelen; break;
+                    case 2: loc = new Point3D(6278, 468, 0); map = Map.Vaelen; break;
+                    case 3: loc = new Point3D(6442, 451, 0); map = Map.Vaelen; break;
+                    case 4: loc = new Point3D(6286, 510, 0); map = Map.Vaelen; break;
                 }
             }
             else if (area == 76)

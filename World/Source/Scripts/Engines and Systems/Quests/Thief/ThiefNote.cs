@@ -251,9 +251,9 @@ namespace Server.Items
 				int rewardMod = 1;
 				var searchOptions = new List<Land>
 				{
-					Land.Sosaria,
-					Land.Sosaria,
-					Land.Sosaria,
+					Land.Vaelen,
+					Land.Vaelen,
+					Land.Vaelen,
 					Land.Lodoria,
 					Land.Lodoria,
 					Land.Lodoria,
@@ -268,7 +268,7 @@ namespace Server.Items
 				};
 				Land searchLocation = PlayerSettings.GetRandomDiscoveredLand(m as PlayerMobile, searchOptions, null);
 
-				if ( searchLocation == Land.Sosaria ){ rewardMod = 1; }
+				if ( searchLocation == Land.Vaelen ){ rewardMod = 1; }
 
 				int aCount = 0;
 				ArrayList targets = new ArrayList();
@@ -298,28 +298,28 @@ namespace Server.Items
 			}
 			else // STEAL FROM DUNGEON
 			{
-				Land searchLocation = Land.Sosaria;
+				Land searchLocation = Land.Vaelen;
 				switch ( Utility.RandomMinMax( 0, 15 ) )
 				{
-					case 0:		searchLocation = Land.Sosaria;			break;
-					case 1:		searchLocation = Land.Sosaria;			break;
-					case 2:		searchLocation = Land.Sosaria;			break;
-					case 3:		searchLocation = Land.Lodoria;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 4:		searchLocation = Land.Lodoria;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 5:		searchLocation = Land.Lodoria;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 6:		searchLocation = Land.Serpent;			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 7:		searchLocation = Land.Serpent;			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 8:		searchLocation = Land.Serpent;			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 9:		searchLocation = Land.IslesDread;		if ( !( PlayerSettings.GetDiscovered( m, "the Isles of Dread" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 10:	searchLocation = Land.Savaged;			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 11:	searchLocation = Land.Savaged;			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 12:	searchLocation = Land.UmberVeil;		if ( !( PlayerSettings.GetDiscovered( m, "the Island of Umber Veil" ) ) ){ searchLocation = Land.Sosaria; } break;
-					case 13:	searchLocation = Land.Kuldar;			if ( !( PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" ) ) ){ searchLocation = Land.Sosaria; } break;
+					case 0:		searchLocation = Land.Vaelen;			break;
+					case 1:		searchLocation = Land.Vaelen;			break;
+					case 2:		searchLocation = Land.Vaelen;			break;
+					case 3:		searchLocation = Land.Lodoria;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 4:		searchLocation = Land.Lodoria;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 5:		searchLocation = Land.Lodoria;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Lodoria" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 6:		searchLocation = Land.Serpent;			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 7:		searchLocation = Land.Serpent;			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 8:		searchLocation = Land.Serpent;			if ( !( PlayerSettings.GetDiscovered( m, "the Serpent Island" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 9:		searchLocation = Land.IslesDread;		if ( !( PlayerSettings.GetDiscovered( m, "the Isles of Dread" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 10:	searchLocation = Land.Savaged;			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 11:	searchLocation = Land.Savaged;			if ( !( PlayerSettings.GetDiscovered( m, "the Savaged Empire" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 12:	searchLocation = Land.UmberVeil;		if ( !( PlayerSettings.GetDiscovered( m, "the Island of Umber Veil" ) ) ){ searchLocation = Land.Vaelen; } break;
+					case 13:	searchLocation = Land.Kuldar;			if ( !( PlayerSettings.GetDiscovered( m, "the Bottle World of Kuldar" ) ) ){ searchLocation = Land.Vaelen; } break;
 					case 14:	searchLocation = Land.Underworld;		if ( !( PlayerSettings.GetDiscovered( m, "the Underworld" ) ) ){ searchLocation = Land.Underworld; } break;
-					case 15:	searchLocation = Land.Ambrosia;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Ambrosia" ) ) ){ searchLocation = Land.Sosaria; } break;
+					case 15:	searchLocation = Land.Ambrosia;			if ( !( PlayerSettings.GetDiscovered( m, "the Land of Ambrosia" ) ) ){ searchLocation = Land.Vaelen; } break;
 				}
 
-				if ( !( PlayerSettings.GetDiscovered( m, "the Land of Sosaria" ) ) && searchLocation == Land.Sosaria )
+				if ( !( PlayerSettings.GetDiscovered( m, "the Land of Vaelen" ) ) && searchLocation == Land.Vaelen )
 				{
 					if ( ((PlayerMobile)m).CharacterType == CharacterType.Savage ){ searchLocation = Land.Savaged; }
 					else { searchLocation = Land.Lodoria; }
@@ -353,9 +353,9 @@ namespace Server.Items
 
 			var dropOptions = new List<Land>
 			{
-				Land.Sosaria,
-				Land.Sosaria,
-				Land.Sosaria,
+				Land.Vaelen,
+				Land.Vaelen,
+				Land.Vaelen,
 				Land.Lodoria,
 				Land.Lodoria,
 				Land.Lodoria,

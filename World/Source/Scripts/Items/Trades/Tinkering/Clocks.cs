@@ -53,7 +53,7 @@ namespace Server.Items
 
 		public static MoonPhase GetMoonPhase( Map map, int x, int y )
 		{
-			x = 100; y = 100; map = Map.Sosaria;
+			x = 100; y = 100; map = Map.Vaelen;
 			int hours, minutes, totalMinutes;
 
 			GetTime( map, x, y, out hours, out minutes, out totalMinutes );
@@ -66,7 +66,7 @@ namespace Server.Items
 
 		public static void GetTime( Map map, int x, int y, out int hours, out int minutes )
 		{
-			x = 100; y = 100; map = Map.Sosaria;
+			x = 100; y = 100; map = Map.Vaelen;
 			int totalMinutes;
 
 			GetTime( map, x, y, out hours, out minutes, out totalMinutes );
@@ -74,7 +74,7 @@ namespace Server.Items
 
 		public static void GetTime( Map map, int x, int y, out int hours, out int minutes, out int totalMinutes )
 		{
-			x = 100; y = 100; map = Map.Sosaria;
+			x = 100; y = 100; map = Map.Vaelen;
 			TimeSpan timeSpan = DateTime.Now - WorldStart;
 
 			totalMinutes = (int)(timeSpan.TotalSeconds / SecondsPerUOMinute);
@@ -97,12 +97,12 @@ namespace Server.Items
 		public static void GetTime( Mobile from, out int generalNumber, out string exactTime )
 		{
 			//GetTime( from.Map, from.X, from.Y, out generalNumber, out exactTime );
-			GetTime( Map.Sosaria, 100, 100, out generalNumber, out exactTime );
+			GetTime( Map.Vaelen, 100, 100, out generalNumber, out exactTime );
 		}
 
 		public static void GetTime( Map map, int x, int y, out int generalNumber, out string exactTime )
 		{
-			x = 100; y = 100; map = Map.Sosaria;
+			x = 100; y = 100; map = Map.Vaelen;
 			int hours, minutes;
 
 			GetTime( map, x, y, out hours, out minutes );

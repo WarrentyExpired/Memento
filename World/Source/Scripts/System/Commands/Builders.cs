@@ -107,7 +107,7 @@ namespace Server.Scripts.Commands
 			int x = 5130;
 			int y = 3040;
 			int z = 0;
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 			Point3D loc = new Point3D( 0, 0, 0 );
 
 			while ( run )
@@ -139,7 +139,7 @@ namespace Server.Scripts.Commands
 			int x = 6132;
 			int y = 832;
 			int z = 0;
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 			Point3D loc = new Point3D( 0, 0, 0 );
 
 			while ( run )
@@ -176,7 +176,7 @@ namespace Server.Scripts.Commands
 			{
 				if ( IsValid( tiles[i].ID ) )
 				{
-					if ( Terrains.GetTerrain( map, loc, x, y ) == Terrain.Dirt && map == Map.Sosaria ){}
+					if ( Terrains.GetTerrain( map, loc, x, y ) == Terrain.Dirt && map == Map.Vaelen ){}
 					else
 						success = true;
 				}

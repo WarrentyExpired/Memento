@@ -353,7 +353,7 @@ namespace Server
 			Network.NetState.FlushAll();
 			Network.NetState.Pause();
 
-			m_Map = Map.Sosaria;
+			m_Map = Map.Vaelen;
 			m_Count = 0;
 
 			for ( int i = 0; i < m_BritRegions.Length; ++i )
@@ -387,7 +387,7 @@ namespace Server
 
 			Network.NetState.Resume();
 
-			World.Broadcast( 0x35, true, "Door generation complete. Sosaria: {0}; Lodor: {1}; Underworld: {2}; SerpentIsland: {3};", trammelCount, feluccaCount, ilshenarCount, malasCount );
+			World.Broadcast( 0x35, true, "Door generation complete. Vaelen: {0}; Lodor: {1}; Underworld: {2}; SerpentIsland: {3};", trammelCount, feluccaCount, ilshenarCount, malasCount );
 		}
 
 		public static bool IsFrame( int id, int[] list )

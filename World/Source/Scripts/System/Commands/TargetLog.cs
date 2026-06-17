@@ -60,7 +60,7 @@ namespace Server.Scripts.Commands
 
 				string sRegion = Server.Misc.Worlds.GetRegionName( from.Map, from.Location );
 
-				string sMap = "Map.Sosaria";
+				string sMap = "Map.Vaelen";
 				if ( from.Map == Map.Lodor ){ sMap = "Map.Lodor"; }
 				else if ( from.Map == Map.Underworld ){ sMap = "Map.Underworld"; }
 				else if ( from.Map == Map.SerpentIsland ){ sMap = "Map.SerpentIsland"; }

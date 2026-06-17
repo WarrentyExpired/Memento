@@ -87,13 +87,13 @@ GUMP NAME                                    COMMAND PROMPT
 WORLD CREATION OPTIONS:
 	Create World Gump ------------------ [createworld
 SPAWN OPTIONS:
-	Spawn Sosaria/Lodor -------------- [spawntrammel or [spawnfelucca
+	Spawn Vaelen/Lodor -------------- [spawntrammel or [spawnfelucca
 	Spawn Underworld --------------------- [spawnilshenar
 	Spawn SerpentIsland ------------------------ [spawnmalas
 	Spawn IslesDread ----------------------- [spawntokuno
 	Spawn Ter Mur ---------------------- [spawntermur
 UNLOAD SPAWNS
-	Unload Sosaria/Lodor spawns ------ [unloadtrammel or [unloadfelucca
+	Unload Vaelen/Lodor spawns ------ [unloadtrammel or [unloadfelucca
 	Unload Underworld spawns ------------- [unloadilshenar
 	Unload SerpentIsland spawns ---------------- [unloadmalas
 	Unload IslesDread spawns --------------- [unloadtokuno
@@ -178,11 +178,11 @@ Graveyard. Let's analyze it:
 -  The fourth number says in wich facet the Spawner will be placed. Note
    that this number is 2. The definition of the maps follow this pattern:
 
-	0 = Lodor AND Sosaria
+	0 = Lodor AND Vaelen
 
 	1 = Lodor
 
-	2 = Sosaria
+	2 = Vaelen
 
 	3 = Underworld
 
@@ -190,7 +190,7 @@ Graveyard. Let's analyze it:
 
 	5 = IslesDread
 
-   So deduct that the spawner will be placed in Sosaria, because the room
+   So deduct that the spawner will be placed in Vaelen, because the room
    number (the map) is the number 2.
 
 -  Next 2 numbers after facet number: defines respectively the minimum
@@ -324,11 +324,11 @@ so on... I dit it in past releases, already fixed.
 Override Maps
 -------------
 
-	And if you want to do a map that works both in Sosaria and Lodor?
+	And if you want to do a map that works both in Vaelen and Lodor?
 Instead of edit the facet number in each line (spawner) of your map,
 you can superscribe the facet number with a simple, only, command line.
-In our example above, that generates spawns only in Sosaria, to generates
-spawns in Sosaria AND Lodor, we adds an "overridemap":
+In our example above, that generates spawns only in Vaelen, to generates
+spawns in Vaelen AND Lodor, we adds an "overridemap":
 
 overridemap 0
 ## Britain Graveyard:

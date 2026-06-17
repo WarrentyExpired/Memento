@@ -36,7 +36,7 @@ namespace Server.Commands
 
 			m_Mobile.SendMessage( "Generating world decoration, please wait." );
 
-			Generate( "Data/Decoration/Monopoly/Sosaria", Map.Sosaria );
+			Generate( "Data/Decoration/Monopoly/Vaelen", Map.Vaelen );
 			Generate( "Data/Decoration/Monopoly/Lodor", Map.Lodor );
 			Generate( "Data/Decoration/Monopoly/Serpent", Map.SerpentIsland );
 			Generate( "Data/Decoration/Monopoly/IslesOfDread", Map.IslesDread );

@@ -79,7 +79,7 @@ namespace Server.Spells.Elementalism
 			if ( CanCast && CheckSequence() )
 			{
 				Point3D loc = new Point3D( 1438, 1360, 80 );
-				Map map = Map.Sosaria;
+				Map map = Map.Vaelen;
 
 				PlayerMobile pc = (PlayerMobile)Caster;
 				string sX = pc.X.ToString();

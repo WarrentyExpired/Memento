@@ -781,7 +781,7 @@ namespace Server.Multis
 					if ( nEntry == 1 ){ mX = Convert.ToInt32(exits); }
 					else if ( nEntry == 2 ){ mY = Convert.ToInt32(exits); }
 					else if ( nEntry == 3 ){ mZ = Convert.ToInt32(exits); }
-					else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Sosaria; } }
+					else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Vaelen; } }
 					nEntry++;
 				}
 

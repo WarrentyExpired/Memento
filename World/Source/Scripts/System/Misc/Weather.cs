@@ -24,12 +24,12 @@ namespace Server.Misc
 			AddWeather( Map.Lodor, +15, 100, 0, new Rectangle2D( 298, 3461, 283, 239 ), new Rectangle2D( 322, 3689, 244, 114 ), new Rectangle2D( 6466, 3044, 553, 878 ) );
 			AddWeather( Map.Lodor, -15, 100, 0, new Rectangle2D( 1965, 700, 177, 376 ), new Rectangle2D( 2035, 233, 1130, 676 ), new Rectangle2D( 2942, 311, 304, 650 ), new Rectangle2D( 3103, 943, 162, 123 ), new Rectangle2D( 3229, 187, 666, 989 ), new Rectangle2D( 3885, 343, 575, 844 ), new Rectangle2D( 4235, 1145, 249, 154 ) );
 			AddWeather( Map.Lodor, +15, 25, 0, new Rectangle2D( 5154, 1099, 144, 310 ), new Rectangle2D( 6851, 115, 209, 214 ) );
-			AddWeather( Map.Sosaria, +15, 25, 0, new Rectangle2D( 698, 3129, 1574, 961 ) );
-			AddWeather( Map.Sosaria, +15, 25, 0, new Rectangle2D( 5122, 3035, 998, 1052 ) );
-			AddWeather( Map.Sosaria, +15, 25, 0, new Rectangle2D( 6642, 82, 316, 273 ) );
-			AddWeather( Map.Sosaria, +15, 25, 0, new Rectangle2D( 6908, 526, 252, 259 ) );
-			AddWeather( Map.Sosaria, +15, 25, 0, new Rectangle2D( 6126, 828, 1035, 1911 ) );
-			AddWeather( Map.Sosaria, -15, 100, 0, new Rectangle2D( 4514, 812, 333, 273 ), new Rectangle2D( 4233, 1076, 880, 339 ) );
+			AddWeather( Map.Vaelen, +15, 25, 0, new Rectangle2D( 698, 3129, 1574, 961 ) );
+			AddWeather( Map.Vaelen, +15, 25, 0, new Rectangle2D( 5122, 3035, 998, 1052 ) );
+			AddWeather( Map.Vaelen, +15, 25, 0, new Rectangle2D( 6642, 82, 316, 273 ) );
+			AddWeather( Map.Vaelen, +15, 25, 0, new Rectangle2D( 6908, 526, 252, 259 ) );
+			AddWeather( Map.Vaelen, +15, 25, 0, new Rectangle2D( 6126, 828, 1035, 1911 ) );
+			AddWeather( Map.Vaelen, -15, 100, 0, new Rectangle2D( 4514, 812, 333, 273 ), new Rectangle2D( 4233, 1076, 880, 339 ) );
 			AddWeather( Map.IslesDread, -15, 100, 0, new Rectangle2D( 10, 10, 544, 551 ), new Rectangle2D( 255, 520, 288, 162 ) );
 			AddWeather( Map.SavagedEmpire, -15, 100, 0, new Rectangle2D( 134, 4, 283, 128 ), new Rectangle2D( 411, 9, 206, 138 ), new Rectangle2D( 752, 4, 205, 110 ), new Rectangle2D( 908, 8, 188, 147 ), new Rectangle2D( 1075, 3, 92, 291 ) );
 			AddWeather( Map.SavagedEmpire, +15, 25, 0, new Rectangle2D( 1000, 1866, 195, 135 ), new Rectangle2D( 0, 2048, 182, 416 ) );
@@ -45,7 +45,7 @@ namespace Server.Misc
 				AddDynamicWeather( Map.Lodor, +15, 100, 0, 8, 400, 400, new Rectangle2D( 0, 0, 5122, 4090 ) );
 
 			for ( int i = 0; i < 15; ++i )
-				AddDynamicWeather( Map.Sosaria, +15, 100, 0, 8, 400, 400, new Rectangle2D( 0, 0, 5122, 3130 ) );
+				AddDynamicWeather( Map.Vaelen, +15, 100, 0, 8, 400, 400, new Rectangle2D( 0, 0, 5122, 3130 ) );
 
 			for ( int i = 0; i < 15; ++i )
 				AddDynamicWeather( Map.SerpentIsland, +15, 100, 0, 4, 200, 200, new Rectangle2D( 0, 0, 1865, 2040 ) );

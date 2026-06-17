@@ -77,7 +77,7 @@ namespace Server.Items
 		public static void UseGate( Mobile m, int portal, Item gate )
 		{
 			Point3D loc = new Point3D(0, 0, 0);
-			Map map = Map.Sosaria;
+			Map map = Map.Vaelen;
 
 			switch ( portal )
 			{
@@ -97,17 +97,17 @@ namespace Server.Items
 				case 13: loc = new Point3D(5443, 1398, 0); map = Map.Lodor; break; // Dungeon Wrong
 				case 14: loc = new Point3D(6035, 2574, 0); map = Map.Lodor; break; // Stonegate Castle
 
-				case 15: loc = new Point3D(5854, 1756, 0); map = Map.Sosaria; break; // the Caverns of Poseidon
-				case 16: loc = new Point3D(5354, 923, 0); map = Map.Sosaria; break; // the Ancient Pyramid
-				case 17: loc = new Point3D(5965, 636, 0); map = Map.Sosaria; break; // Dungeon Exodus
-				case 18: loc = new Point3D(262, 3380, 0); map = Map.Sosaria; break; // the Cave of Banished Mages
-				case 19: loc = new Point3D(5981, 2154, 0); map = Map.Sosaria; break; // Dungeon Clues
-				case 20: loc = new Point3D(5550, 393, 0); map = Map.Sosaria; break; // Dardin's Pit
-				case 21: loc = new Point3D(5259, 262, 0); map = Map.Sosaria; break; // Dungeon Doom
-				case 22: loc = new Point3D(5526, 1228, 0); map = Map.Sosaria; break; // the Fires of Hell
-				case 23: loc = new Point3D(5587, 1602, 0); map = Map.Sosaria; break; // the Mines of Morinia
-				case 24: loc = new Point3D(5995, 423, 0); map = Map.Sosaria; break; // the Perinian Depths
-				case 25: loc = new Point3D(5638, 821, 0); map = Map.Sosaria; break; // the Dungeon of Time Awaits
+				case 15: loc = new Point3D(5854, 1756, 0); map = Map.Vaelen; break; // the Caverns of Poseidon
+				case 16: loc = new Point3D(5354, 923, 0); map = Map.Vaelen; break; // the Ancient Pyramid
+				case 17: loc = new Point3D(5965, 636, 0); map = Map.Vaelen; break; // Dungeon Exodus
+				case 18: loc = new Point3D(262, 3380, 0); map = Map.Vaelen; break; // the Cave of Banished Mages
+				case 19: loc = new Point3D(5981, 2154, 0); map = Map.Vaelen; break; // Dungeon Clues
+				case 20: loc = new Point3D(5550, 393, 0); map = Map.Vaelen; break; // Dardin's Pit
+				case 21: loc = new Point3D(5259, 262, 0); map = Map.Vaelen; break; // Dungeon Doom
+				case 22: loc = new Point3D(5526, 1228, 0); map = Map.Vaelen; break; // the Fires of Hell
+				case 23: loc = new Point3D(5587, 1602, 0); map = Map.Vaelen; break; // the Mines of Morinia
+				case 24: loc = new Point3D(5995, 423, 0); map = Map.Vaelen; break; // the Perinian Depths
+				case 25: loc = new Point3D(5638, 821, 0); map = Map.Vaelen; break; // the Dungeon of Time Awaits
 				case 26: loc = new Point3D(100, 3389, 0); map = Map.SavagedEmpire; break; // Forgotten Halls
 
 				case 27: loc = new Point3D(1955, 523, 0); map = Map.SerpentIsland; break; // the Ancient Prison

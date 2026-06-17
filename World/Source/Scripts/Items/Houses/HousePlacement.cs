@@ -205,7 +205,7 @@ namespace Server.Multis
 					if ( in_reg.IsPartOf( typeof( NecromancerRegion ) ) || in_reg.IsPartOf( typeof( LunaRegion ) ) || in_reg.IsPartOf( typeof( UnderHouseRegion ) ) || 
 						( from.Land == Land.Underworld ) || 
 						( from.Map == Map.Lodor && from.X > 1105 && from.Y > 2685 && from.X < 1950 && from.Y < 3201 ) || 
-						( from.Map == Map.Sosaria && from.X > 1114 && from.Y > 387 && from.X < 1265 && from.Y < 597 ) ){}
+						( from.Map == Map.Vaelen && from.X > 1114 && from.Y > 387 && from.X < 1265 && from.Y < 597 ) ){}
 					else {
 						for ( int i = 0; i < m_RoadIDs.Length; i += 2 )
 						{
@@ -281,7 +281,7 @@ namespace Server.Multis
 				if ( in_reg.IsPartOf( typeof( NecromancerRegion ) ) || in_reg.IsPartOf( typeof( LunaRegion ) ) || in_reg.IsPartOf( typeof( UnderHouseRegion ) ) || 
 					( from.Land == Land.Underworld ) || 
 					(from.Map == Map.Lodor && from.X>1105 && from.Y>2685 && from.X<1950 && from.Y<3201) || 
-					(from.Map == Map.Sosaria && from.X>1114 && from.Y>387 && from.X<1265 && from.Y<597) ){}
+					(from.Map == Map.Vaelen && from.X>1114 && from.Y>387 && from.X<1265 && from.Y<597) ){}
 				else {
 					for ( int j = 0; j < m_RoadIDs.Length; j += 2 )
 					{

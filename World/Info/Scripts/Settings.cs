@@ -466,7 +466,7 @@ namespace Server
 	// These 5 settings control whether that particular land has safari animals spawn like elephants, giraffes, cheetahs, or zebras.
 	// These are values between 0 and 100, where 0 never occurs and 100 always does. Setting it to '50' would be 50% of the time.
 
-		public static int S_Safari_Sosaria = 0;		// Sosaria
+		public static int S_Safari_Vaelen = 0;		// Vaelen
 		public static int S_Safari_Lodoria = 0;		// Lodoria
 		public static int S_Safari_Serpent = 50;	// Serpent Island
 		public static int S_Safari_Kuldar = 0;		// Kuldar
@@ -542,7 +542,7 @@ namespace Server
 		public static int S_MaxMerchant = 2000;
 
 	// If true, merchant gold will be scaled based on the facet they are on. This setting will entice players to sell to vendors beyond
-	// the default facet (Sosaria).
+	// the default facet (Vaelen).
 	// WARNING: This will cause vendors to exceed the `S_MaxMerchant` setting
 
 		public static bool S_ScaleMerchantCoins = true;

@@ -204,7 +204,7 @@ namespace Server.Engines.Harvest
 		private static Map SafeMap( Map map )
 		{
 			if ( map == null || map == Map.Internal )
-				return Map.Sosaria;
+				return Map.Vaelen;
 
 			return map;
 		}
@@ -255,33 +255,33 @@ namespace Server.Engines.Harvest
 				return true;
 			else if ( from.InRange( new Point3D(2920, 1643, -5), 36 ) && from.Map == Map.Lodor )
 				return true;
-			else if ( from.InRange( new Point3D(320, 2288, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(320, 2288, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(3343, 1842, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(3343, 1842, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(3214, 938, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(3214, 938, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(4520, 1128, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(4520, 1128, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(4760, 2307, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(4760, 2307, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(3551, 2952, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(3551, 2952, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(1271, 2651, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(1271, 2651, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(744, 1304, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(744, 1304, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(735, 555, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(735, 555, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(1824, 440, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(1824, 440, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(883, 3749, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(883, 3749, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(2078, 3987, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(2078, 3987, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(6973, 1016, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(6973, 1016, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
-			else if ( from.InRange( new Point3D(6388, 2512, -5), 36 ) && from.Map == Map.Sosaria )
+			else if ( from.InRange( new Point3D(6388, 2512, -5), 36 ) && from.Map == Map.Vaelen )
 				return true;
 
 			return false;
@@ -289,10 +289,10 @@ namespace Server.Engines.Harvest
 
 		public static bool IsNearSpaceCrash( Mobile from )
 		{
-			if ( from.X >= 457 && from.X <= 494 && from.Y >= 1785 && from.Y <= 1821 && from.Map == Map.Sosaria )
+			if ( from.X >= 457 && from.X <= 494 && from.Y >= 1785 && from.Y <= 1821 && from.Map == Map.Vaelen )
 				return true;
 
-			if ( from.X >= 4430 && from.X <= 4501 && from.Y >= 589 && from.Y <= 661 && from.Map == Map.Sosaria )
+			if ( from.X >= 4430 && from.X <= 4501 && from.Y >= 589 && from.Y <= 661 && from.Map == Map.Vaelen )
 				return true;
 
 			return false;
@@ -300,13 +300,13 @@ namespace Server.Engines.Harvest
 
 		public static bool IsNearUnderwaterRuins( Mobile from )
 		{
-			if ( from.X >= 4342 && from.X <= 4420 && from.Y >= 2766 && from.Y <= 2845 && from.Map == Map.Sosaria )
+			if ( from.X >= 4342 && from.X <= 4420 && from.Y >= 2766 && from.Y <= 2845 && from.Map == Map.Vaelen )
 				return true;
 
-			if ( from.X >= 175 && from.X <= 243 && from.Y >= 2316 && from.Y <= 2344 && from.Map == Map.Sosaria )
+			if ( from.X >= 175 && from.X <= 243 && from.Y >= 2316 && from.Y <= 2344 && from.Map == Map.Vaelen )
 				return true;
 
-			if ( from.X >= 3664 && from.X <= 3737 && from.Y >= 2522 && from.Y <= 2594 && from.Map == Map.Sosaria )
+			if ( from.X >= 3664 && from.X <= 3737 && from.Y >= 2522 && from.Y <= 2594 && from.Map == Map.Vaelen )
 				return true;
 
 			if ( from.X >= 1668 && from.X <= 1734 && from.Y >= 1309 && from.Y <= 1376 && from.Map == Map.Lodor )

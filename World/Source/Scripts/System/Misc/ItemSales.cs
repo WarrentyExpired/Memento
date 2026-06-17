@@ -1140,7 +1140,7 @@ namespace Server
 				return true;
 			if ( m.Land == Land.Lodoria && area == ItemSalesInfo.World.Lodor )
 				return true;
-			if ( m.Land == Land.Sosaria && area == ItemSalesInfo.World.Sosaria )
+			if ( m.Land == Land.Vaelen && area == ItemSalesInfo.World.Vaelen )
 				return true;
 			if ( m.Land == Land.Underworld && area == ItemSalesInfo.World.Underworld )
 				return true;
@@ -1371,7 +1371,7 @@ namespace Server
 			Savage = 7,
 			Sea = 8,
 			Serpent = 9,
-			Sosaria = 10,
+			Vaelen = 10,
 			Umber = 11,
 			Underworld = 12
 		}
@@ -3792,7 +3792,7 @@ namespace Server
 			new ItemSalesInfo( typeof(	TallStrawHat	),	8	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.Cloth	,	Market.Tailor	),
 			new ItemSalesInfo( typeof(	Tambourine	),	21	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Bard	),
 			new ItemSalesInfo( typeof(	TambourineTassel	),	86	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Bard	),
-			new ItemSalesInfo( typeof(	TapestryOfSosaria	),	5000	,	1	,	95	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Art	),
+			new ItemSalesInfo( typeof(	TapestryOfVaelen	),	5000	,	1	,	95	,	false	,	false	,	World.None	,	Category.Rare	,	Material.None	,	Market.Art	),
 			new ItemSalesInfo( typeof(	TarotDeck	),	5	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Inn	),
 			new ItemSalesInfo( typeof(	tarotpoker	),	5	,	15	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Inn	),
 			new ItemSalesInfo( typeof(	TastyHeart	),	40	,	0	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Evil	),
@@ -4042,7 +4042,7 @@ namespace Server
 			new ItemSalesInfo( typeof(	CagedElderBlackBearRiding	),	4230	,	1	,	50	,	false	,	false	,	World.Dread	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedElderBrownBearRiding	),	4230	,	1	,	50	,	false	,	false	,	World.Dread	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedElderPolarBearRiding	),	4230	,	1	,	50	,	false	,	false	,	World.Dread	,	Category.None	,	Material.None	,	Market.Stable	),
-			new ItemSalesInfo( typeof(	CagedElephant	),	4520	,	1	,	75	,	false	,	false	,	World.Sosaria	,	Category.None	,	Material.None	,	Market.Stable	),
+			new ItemSalesInfo( typeof(	CagedElephant	),	4520	,	1	,	75	,	false	,	false	,	World.Vaelen	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedFerret	),	106	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Animals	),
 			new ItemSalesInfo( typeof(	CagedForestOstard	),	700	,	5	,	25	,	false	,	false	,	World.Lodor	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedFox	),	740	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Stable	),
@@ -4073,7 +4073,7 @@ namespace Server
 			new ItemSalesInfo( typeof(	CagedMouse	),	107	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedPackBear	),	12500	,	5	,	25	,	false	,	false	,	World.Dread	,	Category.Pack	,	Material.None	,	Market.Animals	),
 			new ItemSalesInfo( typeof(	CagedPackHorse	),	631	,	5	,	25	,	false	,	false	,	World.None	,	Category.Pack	,	Material.None	,	Market.Animals	),
-			new ItemSalesInfo( typeof(	CagedPackLlama	),	565	,	5	,	25	,	false	,	false	,	World.Sosaria	,	Category.Pack	,	Material.None	,	Market.Animals	),
+			new ItemSalesInfo( typeof(	CagedPackLlama	),	565	,	5	,	25	,	false	,	false	,	World.Vaelen	,	Category.Pack	,	Material.None	,	Market.Animals	),
 			new ItemSalesInfo( typeof(	CagedPackMule	),	10000	,	5	,	50	,	false	,	false	,	World.None	,	Category.Pack	,	Material.None	,	Market.Animals	),
 			new ItemSalesInfo( typeof(	CagedPackNecroHound	),	10000	,	5	,	50	,	false	,	false	,	World.Necro	,	Category.Pack	,	Material.None	,	Market.Animals	),
 			new ItemSalesInfo( typeof(	CagedPackNecroSpider	),	631	,	5	,	25	,	false	,	false	,	World.Necro	,	Category.Pack	,	Material.None	,	Market.Animals	),
@@ -4086,7 +4086,7 @@ namespace Server
 			new ItemSalesInfo( typeof(	CagedRabbit	),	106	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedRaptorRiding	),	3000	,	1	,	25	,	false	,	false	,	World.Savage	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedRat	),	107	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Stable	),
-			new ItemSalesInfo( typeof(	CagedRidableLlama	),	490	,	5	,	25	,	false	,	false	,	World.Sosaria	,	Category.None	,	Material.None	,	Market.Stable	),
+			new ItemSalesInfo( typeof(	CagedRidableLlama	),	490	,	5	,	25	,	false	,	false	,	World.Vaelen	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedRidgeback	),	1500	,	5	,	10	,	false	,	false	,	World.Savage	,	Category.None	,	Material.None	,	Market.Stable	),
 			new ItemSalesInfo( typeof(	CagedSheep	),	380	,	5	,	0	,	false	,	false	,	World.None	,	Category.None	,	Material.None	,	Market.Cattle	),
 			new ItemSalesInfo( typeof(	CagedSnowOstard	),	700	,	5	,	25	,	false	,	false	,	World.Lodor	,	Category.None	,	Material.None	,	Market.Stable	),

@@ -440,7 +440,7 @@ namespace Server.Mobiles
 		{
 			int title = 1;
 			if ( captain.Land == Land.Lodoria ){ title = Utility.RandomMinMax( 1, 10 ); }
-			else if ( captain.Land == Land.Sosaria ){ title = Utility.RandomMinMax( 11, 18 ); }
+			else if ( captain.Land == Land.Vaelen ){ title = Utility.RandomMinMax( 11, 18 ); }
 			else if ( captain.Land == Land.Savaged ){ title = Utility.RandomMinMax( 22, 23 ); }
 			else if ( captain.Land == Land.IslesDread ){ title = 21; }
 			else if ( captain.Land == Land.UmberVeil ){ title = 19; }

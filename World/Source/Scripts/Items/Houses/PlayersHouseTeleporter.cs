@@ -273,7 +273,7 @@ namespace Server.Items
 				//	m.SendMessage("You cannot travel to another world this way.");
 				//	return true;
 				//}
-				else if ( m.Skills[SkillName.Magery].Base < 80.0 && m.Skills[SkillName.Elementalism].Base < 80.0 && m.Skills[SkillName.Necromancy].Base < 80.0 && m_MapDest == Map.Sosaria && thisX > 5798 && thisY > 2727 && thisX < 6105 && thisY < 3023 ) // TO STOP TRAVEL TO THE MOON
+				else if ( m.Skills[SkillName.Magery].Base < 80.0 && m.Skills[SkillName.Elementalism].Base < 80.0 && m.Skills[SkillName.Necromancy].Base < 80.0 && m_MapDest == Map.Vaelen && thisX > 5798 && thisY > 2727 && thisX < 6105 && thisY < 3023 ) // TO STOP TRAVEL TO THE MOON
 				{
 					m.SendMessage("You lack the magical essence to travel to the moon.");
 					return true;

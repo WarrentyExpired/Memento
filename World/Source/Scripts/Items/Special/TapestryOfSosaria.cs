@@ -10,11 +10,11 @@ using Server.ContextMenus;
 namespace Server.Items
 {
 	[FlipableAttribute( 0x234E, 0x234F )]
-	public class TapestryOfSosaria : Item, ISecurable
+	public class TapestryOfVaelen : Item, ISecurable
 	{
 		private SecureLevel m_Level;
 
-		public override int LabelNumber{ get{ return 1062917; } } // The Tapestry of Sosaria
+		public override int LabelNumber{ get{ return 1062917; } } // The Tapestry of Vaelen
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SecureLevel Level
@@ -24,7 +24,7 @@ namespace Server.Items
 		}
 
 		[Constructable]
-		public TapestryOfSosaria() : base( 0x234E )
+		public TapestryOfVaelen() : base( 0x234E )
 		{
 			Weight = 1.0;
 			LootType = LootType.Blessed;
@@ -58,7 +58,7 @@ namespace Server.Items
 			}
 		}
 
-		public TapestryOfSosaria( Serial serial ) : base( serial )
+		public TapestryOfVaelen( Serial serial ) : base( serial )
 		{
 		}
 

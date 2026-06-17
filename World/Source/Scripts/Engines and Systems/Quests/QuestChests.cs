@@ -440,9 +440,9 @@ namespace Server.Items
 		{
 			if ( from.InRange( this.GetWorldLocation(), 2 ) )
 			{
-				if ( from is PlayerMobile && Server.Items.BaseRace.IsEvilDeadCreature( from ) && !PlayerSettings.GetDiscovered( from, "the Land of Sosaria" ) )
+				if ( from is PlayerMobile && Server.Items.BaseRace.IsEvilDeadCreature( from ) && !PlayerSettings.GetDiscovered( from, "the Land of Vaelen" ) )
 				{
-					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "This book would make more sense if you ever find a way to Sosaria.", from.NetState);
+					from.PrivateOverheadMessage(MessageType.Regular, 1150, false, "This book would make more sense if you ever find a way to Vaelen.", from.NetState);
 				}
 				else if ( PlayerSettings.GetKeys( from, "SkullGate" ) )
 				{

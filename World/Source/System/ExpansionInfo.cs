@@ -40,7 +40,7 @@ namespace Server
 	{
 		None		= 0x00000000,
 		Lodor		= 0x00000001,
-		Sosaria		= 0x00000002,
+		Vaelen		= 0x00000002,
 		Underworld	= 0x00000004,
 		SerpentIsland		= 0x00000008,
 		IslesDread		= 0x00000010,
@@ -121,7 +121,7 @@ namespace Server
 			{
 				new ExpansionInfo( 0, "None",			ClientFlags.None,		FeatureFlags.ExpansionNone,	CharacterListFlags.ExpansionNone,	0x0000 ),
 				new ExpansionInfo( 1, "The Second Age",		ClientFlags.Lodor,		FeatureFlags.ExpansionT2A,	CharacterListFlags.ExpansionT2A,	0x0000 ),
-				new ExpansionInfo( 2, "Renaissance",		ClientFlags.Sosaria,		FeatureFlags.ExpansionUOR,	CharacterListFlags.ExpansionUOR,	0x0000 ),
+				new ExpansionInfo( 2, "Renaissance",		ClientFlags.Vaelen,		FeatureFlags.ExpansionUOR,	CharacterListFlags.ExpansionUOR,	0x0000 ),
 				new ExpansionInfo( 3, "Third Dawn",		ClientFlags.Underworld,		FeatureFlags.ExpansionUOTD,	CharacterListFlags.ExpansionUOTD,	0x0000 ),
 				new ExpansionInfo( 4, "Blackthorn's Revenge",	ClientFlags.Underworld,		FeatureFlags.ExpansionLBR,	CharacterListFlags.ExpansionLBR,	0x0000 ),
 				new ExpansionInfo( 5, "Age of Shadows",		ClientFlags.SerpentIsland,		FeatureFlags.ExpansionAOS,	CharacterListFlags.ExpansionAOS,	0x0000 ),

@@ -41,7 +41,7 @@ namespace Server.Items
 						if ( nEntry == 1 ){ mX = Convert.ToInt32(exits); }
 						else if ( nEntry == 2 ){ mY = Convert.ToInt32(exits); }
 						else if ( nEntry == 3 ){ mZ = Convert.ToInt32(exits); }
-						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Sosaria; } }
+						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Vaelen; } }
 						else if ( nEntry == 5 ){ mZone = exits; }
 						nEntry++;
 					}
@@ -62,7 +62,7 @@ namespace Server.Items
 				else
 				{
 					Point3D loc = new Point3D(1831, 758, 12);
-					Map failMap = Map.Sosaria;
+					Map failMap = Map.Vaelen;
 					Server.Mobiles.BaseCreature.TeleportPets( m, loc, failMap );
 					m.MoveToWorld( loc, failMap );
 					Effects.PlaySound( m.Location, m.Map, 0x1FC );

@@ -26904,7 +26904,7 @@
       <Point x="2353" y="1254" z="1" />
     </Candidates>
   </Config>
-  <Config region="the Sosarian Pass" minDistance="25" maxNodes="19">
+  <Config region="the Vaelenn Pass" minDistance="25" maxNodes="19">
     <Candidates totalCandidates="374">
       <Point x="2369" y="1038" z="1" />
       <Point x="2369" y="1039" z="1" />

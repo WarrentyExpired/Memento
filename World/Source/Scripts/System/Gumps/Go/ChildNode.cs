@@ -26,7 +26,7 @@ namespace Server.Gumps
 			else
 				m_Name = "empty";
 
-			int x = 0, y = 0, z = 0; m_Map = Map.Sosaria;
+			int x = 0, y = 0, z = 0; m_Map = Map.Vaelen;
 
 			if ( xml.MoveToAttribute( "x" ) )
 				x = Utility.ToInt32( xml.Value );

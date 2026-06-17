@@ -68,9 +68,9 @@ namespace Server.Items
 		{
 			if ( level < 1 ){ level = MessageInABottle.GetRandomLevel(); }
 
-			if ( land == Land.SkaraBrae ){ land = Land.Sosaria; } // NO SOSs IN SKARA BRAE
-			else if ( land == Land.Luna ){ land = Land.Sosaria; } // NO SOSs ON THE MOON
-			else if ( land == Land.Underworld ){ land = Land.Sosaria; } // NO SOSs IN THE UNDERWORLD
+			if ( land == Land.SkaraBrae ){ land = Land.Vaelen; } // NO SOSs IN SKARA BRAE
+			else if ( land == Land.Luna ){ land = Land.Vaelen; } // NO SOSs ON THE MOON
+			else if ( land == Land.Underworld ){ land = Land.Vaelen; } // NO SOSs IN THE UNDERWORLD
 
 			Weight = 1.0;
 

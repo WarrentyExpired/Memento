@@ -99,11 +99,11 @@ namespace Server.Regions
 			{
 				global = LightCycle.DungeonLevel;
 			}
-			else if ( m.Map == Map.Sosaria && m.X > 5215 && m.Y > 1038 && m.X < 5419 && m.Y < 1318 ) // UMBRA CAVES
+			else if ( m.Map == Map.Vaelen && m.X > 5215 && m.Y > 1038 && m.X < 5419 && m.Y < 1318 ) // UMBRA CAVES
 			{
 				global = LightCycle.NightLevel;
 			}
-			else if ( m.Map == Map.Sosaria && m.X > 6537 && m.Y > 3779 && m.X < 6780 && m.Y < 4080 ) // SHIPWRECK GROTTO
+			else if ( m.Map == Map.Vaelen && m.X > 6537 && m.Y > 3779 && m.X < 6780 && m.Y < 4080 ) // SHIPWRECK GROTTO
 			{
 				global = LightCycle.NightLevel;
 			}

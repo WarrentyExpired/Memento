@@ -36,14 +36,14 @@ namespace Server.Items
 				case 3: WorldMap = Land.IslesDread; break;
 				case 4: WorldMap = Land.Savaged; break;
 				case 5: WorldMap = Land.Kuldar; break;
-				case 6: WorldMap = Land.Sosaria; break;
+				case 6: WorldMap = Land.Vaelen; break;
 				case 7: WorldMap = Land.Lodoria; break;
 				case 8: WorldMap = Land.Lodoria; break;
 				case 9: WorldMap = Land.Underworld; break;
 			}
 
 			if ( WorldMap == Land.None )
-				WorldMap = Land.Sosaria;
+				WorldMap = Land.Vaelen;
 
 			Name = "world map";
 			ColorText3 = Lands.LandName( WorldMap );
@@ -60,9 +60,9 @@ namespace Server.Items
 		{
             Map map = from.Map;
 
-            if (map == Map.Sosaria && from.X>5124 && from.Y>3041 && from.X<6147 && from.Y<4092)
+            if (map == Map.Vaelen && from.X>5124 && from.Y>3041 && from.X<6147 && from.Y<4092)
 				WorldMap = Land.Ambrosia;
-            else if (map == Map.Sosaria && from.X>859 && from.Y>3181 && from.X<2133 && from.Y<4092)
+            else if (map == Map.Vaelen && from.X>859 && from.Y>3181 && from.X<2133 && from.Y<4092)
 				WorldMap = Land.UmberVeil;
             else if (map == Map.SerpentIsland && from.X<1870)
 				WorldMap = Land.Serpent;
@@ -70,10 +70,10 @@ namespace Server.Items
 				WorldMap = Land.IslesDread;
             else if (map == Map.SavagedEmpire && from.X>132 && from.Y>4 && from.X<1165 && from.Y<1798)
 				WorldMap = Land.Savaged;
-            else if (map == Map.Sosaria && from.X>6125 && from.Y>824 && from.X<7175 && from.Y<2746)
+            else if (map == Map.Vaelen && from.X>6125 && from.Y>824 && from.X<7175 && from.Y<2746)
 				WorldMap = Land.Kuldar;
-            else if (map == Map.Sosaria && from.X<5121 && from.Y<3128)
-				WorldMap = Land.Sosaria;
+            else if (map == Map.Vaelen && from.X<5121 && from.Y<3128)
+				WorldMap = Land.Vaelen;
             else if (map == Map.Lodor && from.X>6442 && from.Y>3051 && from.X<7007 && from.Y<3478)
 				WorldMap = Land.Lodoria;
             else if (map == Map.Lodor && from.X<5420 && from.Y<4096)
@@ -82,7 +82,7 @@ namespace Server.Items
 				WorldMap = Land.Underworld;
 
 			if ( WorldMap == Land.None )
-				WorldMap = Land.Sosaria;
+				WorldMap = Land.Vaelen;
 
 			Name = "world map";
 			ColorText3 = Lands.LandName( WorldMap );
@@ -128,7 +128,7 @@ namespace Server.Items
 				int world = reader.ReadInt();
 
 				if (world == 1) 
-					WorldMap = Land.Sosaria;
+					WorldMap = Land.Vaelen;
 				else if (world == 2) 
 					WorldMap = Land.Lodoria;
 				else if (world == 4) 
@@ -147,7 +147,7 @@ namespace Server.Items
 					WorldMap = Land.Underworld;
 
 				if ( WorldMap == Land.None )
-					WorldMap = Land.Sosaria;
+					WorldMap = Land.Vaelen;
 
 				Name = "world map";
 				ColorText3 = Lands.LandName( WorldMap );

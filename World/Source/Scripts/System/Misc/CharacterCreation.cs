@@ -527,7 +527,7 @@ namespace Server.Misc
 				case 3: Item candle = new Candle(); newChar.AddItem(candle); candle.OnDoubleClick(newChar); break;
 			}
 
-			newChar.MoveToWorld(new Point3D(3579, 3423, 0), Map.Sosaria); // Gypsy Forest
+			newChar.MoveToWorld(new Point3D(3579, 3423, 0), Map.Vaelen); // Gypsy Forest
 		}
 
 		private static void ApplyHairStyling(PlayerMobile newChar, int hairId, int hairHue, int beardId, int beardHue)

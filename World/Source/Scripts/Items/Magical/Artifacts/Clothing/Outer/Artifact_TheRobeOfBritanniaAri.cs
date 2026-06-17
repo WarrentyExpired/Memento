@@ -8,7 +8,7 @@ namespace Server.Items
 		[Constructable]
 		public Artifact_TheRobeOfBritanniaAri()
 		{
-			Name = "Robe of Sosaria";
+			Name = "Robe of Vaelen";
 			Hue = 0x48b;
 			Resistances.Physical = 10;
 			Resistances.Cold = 10;

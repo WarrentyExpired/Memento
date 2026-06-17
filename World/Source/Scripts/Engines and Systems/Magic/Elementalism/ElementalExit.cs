@@ -27,7 +27,7 @@ namespace Server.Items
 				string sPublicDoor = ((PlayerMobile)m).CharacterPublicDoor;
 
 				Point3D loc = new Point3D(1831, 758, 12);
-				Map map = Map.Sosaria;
+				Map map = Map.Vaelen;
 				bool success = false;
 
 				if ( sPublicDoor != null )
@@ -45,7 +45,7 @@ namespace Server.Items
 						if ( nEntry == 1 ){ mX = Convert.ToInt32(exits); }
 						else if ( nEntry == 2 ){ mY = Convert.ToInt32(exits); }
 						else if ( nEntry == 3 ){ mZ = Convert.ToInt32(exits); }
-						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Sosaria; } }
+						else if ( nEntry == 4 ){ try { mWorld = Map.Parse( exits ); } catch{} if ( mWorld == null ){ mWorld = Map.Vaelen; } }
 						else if ( nEntry == 5 ){ mZone = exits; }
 						nEntry++;
 					}
@@ -63,7 +63,7 @@ namespace Server.Items
 				if ( !success )
 				{
 					loc = new Point3D(1831, 758, 12);
-					map = Map.Sosaria;
+					map = Map.Vaelen;
 					Server.Mobiles.BaseCreature.TeleportPets( m, loc, map );
 					m.MoveToWorld( loc, map );
 					m.LocalOverheadMessage(MessageType.Emote, 1150, true, "You emerge from the portal into the open land.");

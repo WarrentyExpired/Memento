@@ -62,10 +62,10 @@ namespace Server.Items
 				DropItem( arty );
 			}
 
-			Map tMap = Map.Sosaria;
+			Map tMap = Map.Vaelen;
 			switch( Utility.RandomMinMax( 0, 5 ) )
 			{
-				case 0: tMap = Map.Sosaria; break;
+				case 0: tMap = Map.Vaelen; break;
 				case 1: tMap = Map.Lodor; break;
 				case 2: tMap = Map.SerpentIsland; break;
 				case 3: tMap = Map.IslesDread; break;

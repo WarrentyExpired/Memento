@@ -41656,7 +41656,7 @@
       <Point x="6104" y="3597" z="21" />
     </Candidates>
   </Config>
-  <Config region="the Land of Sosaria" minDistance="25" maxNodes="1608">
+  <Config region="the Land of Vaelen" minDistance="25" maxNodes="1608">
     <Candidates totalCandidates="32156">
       <Point x="764" y="2676" z="6" />
       <Point x="764" y="2677" z="13" />

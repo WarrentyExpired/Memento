@@ -103,7 +103,7 @@ namespace Server.Misc
 					else if ( where == "the Serpent Island" ){ 			where = "the waters of the Serpent Seas"; }
 					else if ( where == "the Isles of Dread" ){ 			where = "the waters of the Dreadful Sea"; }
 					else if ( where == "the Savaged Empire" ){ 			where = "the waters of the Savage Seas"; }
-					else if ( where == "the Land of Sosaria" ){ 		where = "the waters of the Sosaria Ocean"; }
+					else if ( where == "the Land of Vaelen" ){ 		where = "the waters of the Vaelen Ocean"; }
 				}
 			}
 			else if ( Utility.RandomBool() ) // CITIZENS LIE HALF THE TIME (not sure why Jorg was previously immune to this)
@@ -536,7 +536,7 @@ namespace Server.Misc
 			int max = 172; if ( !useAll ){ max = max + 40; }
 			switch( Utility.RandomMinMax( 0, max ) )
 			{
-				case 0: sWords = "a bright white shrine in Sosaria that leads to the moon"; break;	
+				case 0: sWords = "a bright white shrine in Vaelen that leads to the moon"; break;	
 				case 1: sWords = "a castle of evil mages ruled by an even more vile archmage"; break;	
 				case 2: sWords = "a cave in the Lodor swamp that is home to scaly humanoids"; break;	
 				case 3: sWords = "a cave of pixies and a crazy druid in the Savaged Empire"; break;	
@@ -549,7 +549,7 @@ namespace Server.Misc
 				case 10: sWords = "a den of cave bears in the bottom of Dardin's Pit"; break;	
 				case 11: sWords = "a den of dragons north of the Village of Whisper"; break;	
 				case 12: sWords = "a den of harpies on the island in Lodor"; break;	
-				case 13: sWords = "a Dungeon of Doom in the southwest region of Sosaria"; break;	
+				case 13: sWords = "a Dungeon of Doom in the southwest region of Vaelen"; break;	
 				case 14: sWords = "a dungeon of ork sorcerers plotting against us"; break;	
 				case 15: sWords = "a frozen palace where the ice queen dwells"; break;	
 				case 16: sWords = "a ghost haunting those ruins in the Savaged Empire"; break;	
@@ -563,13 +563,13 @@ namespace Server.Misc
 				case 24: sWords = "a large group of ship builders in Lodor"; break;	
 				case 25: sWords = "a magic mirror in Dungeon Fire"; break;	
 				case 26: sWords = "a magical hedge maze created centuries ago"; break;	
-				case 27: sWords = "a magical portal in the bottom of the Pharaohs tomb in Sosaria"; break;	
+				case 27: sWords = "a magical portal in the bottom of the Pharaohs tomb in Vaelen"; break;	
 				case 28: sWords = "a magical portal in the Savaged Empire"; break;	
 				case 29: sWords = "a magical seal, keeping the lich king from escaping"; break;	
 				case 30: sWords = "a pack of minotaurs guarding that old hedge maze"; break;	
-				case 31: sWords = "a Pharaohs tomb in the desert of Sosaria"; break;	
+				case 31: sWords = "a Pharaohs tomb in the desert of Vaelen"; break;	
 				case 32: sWords = "a pool of vile liquid in the bottom of Dungeon Wicked"; break;	
-				case 33: sWords = "a powerful lich roaming within a tower in Sosaria, with a magical mirror"; break;	
+				case 33: sWords = "a powerful lich roaming within a tower in Vaelen, with a magical mirror"; break;	
 				case 34: sWords = "a primitive orc fort near the old graveyard in the Savaged Empire"; break;	
 				case 35: sWords = "a race of serpent men in dungeon scorn"; break;	
 				case 36: sWords = "a secret entrance in the old cemetery of the Savaged Empire"; break;	
@@ -578,7 +578,7 @@ namespace Server.Misc
 				case 39: sWords = "a twisted pass in the Savaged Empire with undead druids about"; break;	
 				case 40: sWords = "a valley of cyclops in the Savaged Empire"; break;	
 				case 41: sWords = "an underground passage that connects the northern and central islands of Lodoria"; break;	
-				case 42: sWords = "an abandoned mine north of Grey in Sosaria"; break;	
+				case 42: sWords = "an abandoned mine north of Grey in Vaelen"; break;	
 				case 43: sWords = "an altar in the Savaged Empire where those are sacrificed to the dragon king"; break;	
 				case 44: sWords = "an ancient blood cult in the Isles of Dread"; break;	
 				case 45: sWords = "an ancient crypt where the gargoyles once buried their dead"; break;	
@@ -605,7 +605,7 @@ namespace Server.Misc
 					switch ( Utility.Random( 9 ) )
 					{
 						case 0: land = "Lodor"; break;
-						case 1: land = "Sosaria"; break;
+						case 1: land = "Vaelen"; break;
 						case 2: land = "Ambrosia"; break;
 						case 3: land = "the Umber Veil"; break;
 						case 4: land = "Kuldar"; break;
@@ -635,12 +635,12 @@ namespace Server.Misc
 				case 53: sWords = "an elven pass that leads to great craftsmen"; break;	
 				case 54: sWords = "an infestation of rats and snakes in Dungeon Wrath"; break;	
 				case 55: sWords = "an island in the Savaged Empire with blue scaled drakes"; break;	
-				case 56: sWords = "an old ruined building in Sosaria, with treasure in the basement"; break;	
+				case 56: sWords = "an old ruined building in Vaelen, with treasure in the basement"; break;	
 				case 57: sWords = "an ork prophecy that speaks of their god returning to rule"; break;	
 				case 58: sWords = "a Savaged Empire lighthouse with a secret beneath it"; break;	
 				case 59: sWords = "ancient crypts deep below the Savaged Empire"; break;	
 				case 60: sWords = "a cave in Lodoria that only rangers or explorers could traverse"; break;	
-				case 61: sWords = "bandits within a stronghold in northern Sosaria"; break;	
+				case 61: sWords = "bandits within a stronghold in northern Vaelen"; break;	
 				case 62: sWords = "Castle Exodus lying in ruins since the stranger destroyed it"; break;	
 				case 63: sWords = "catacombs under the city of Lodoria"; break;	
 				case 64: sWords = "cauldrons full of potions in those dungeons"; break;	
@@ -657,22 +657,22 @@ namespace Server.Misc
 				case 75: sWords = "scrolls of power, but they could only be used at shrines in Ambrosia"; break;	
 				case 76: sWords = "small settlements of primitive tribes in the Isles of Dread"; break;	
 				case 77: sWords = "some of the most poisonous creatures in Dungeon Bane"; break;	
-				case 78: sWords = "some old ruins in Sosaria, where ratmen now live beneath it"; break;	
+				case 78: sWords = "some old ruins in Vaelen, where ratmen now live beneath it"; break;	
 				case 79: sWords = "a City of Mistas that was supposedly swallowed by the sea centuries ago"; break;	
 				case 80: sWords = "dark elves summoning demons in dungeon destard"; break;	
 				case 81: sWords = "mystical stones that elves have that can color anything"; break;	
 				case 82: sWords = "a cemetery in Lodoria with a hidden secret"; break;	
-				case 83: sWords = "a swamp in Sosaria with an ancient temple where a lich awaits the prophecy"; break;	
+				case 83: sWords = "a swamp in Vaelen with an ancient temple where a lich awaits the prophecy"; break;	
 				case 84: sWords = "vile spider creatures in a castle in the jungles of Lodor"; break;	
 				case 85: sWords = "an ancient relic buried in a grave in Umber Veil"; break;	
 				case 86: sWords = "a powerful spellbook in a ruined wizard home"; break;	
-				case 87: sWords = "a friendly dragon living beneath the Sosarian ice islands"; break;	
-				case 88: sWords = "an abandoned logger home in Sosaria, with something beneath the floor boards"; break;	
-				case 89: sWords = "bandits having a royal prisoner held in the northern part of Sosaria"; break;	
-				case 90: sWords = "a tower in Sosaria where a lich holds a powerful staff"; break;	
+				case 87: sWords = "a friendly dragon living beneath the Vaelenn ice islands"; break;	
+				case 88: sWords = "an abandoned logger home in Vaelen, with something beneath the floor boards"; break;	
+				case 89: sWords = "bandits having a royal prisoner held in the northern part of Vaelen"; break;	
+				case 90: sWords = "a tower in Vaelen where a lich holds a powerful staff"; break;	
 				case 91: sWords = "a skull of Mondain that is deep below Castle Exodus"; break;	
-				case 92: sWords = "this lighthouse keeper in Sosaria selling powerful artifacts found on the shore"; break;	
-				case 93: sWords = "a lich in the Sosaria swamp carrying a marvelous artifact"; break;	
+				case 92: sWords = "this lighthouse keeper in Vaelen selling powerful artifacts found on the shore"; break;	
+				case 93: sWords = "a lich in the Vaelen swamp carrying a marvelous artifact"; break;	
 				case 94: sWords = "chests full of treasure in those magic pools"; break;	
 				case 95: sWords = "a powerful troll lord in the bottom of Dardin's Pit"; break;	
 				case 96: sWords = "a demon king dwelling in dungeon doom that grants wishes"; break;	
@@ -687,7 +687,7 @@ namespace Server.Misc
 				case 105: sWords = "a master vampire on an island in Lodor"; break;	
 				case 106: sWords = "only necromancers and death knights living on that dead island in Lodor"; break;	
 				case 107: sWords = "a town called Skara Brae that wasn't really destroyed by a wizard"; break;	
-				case 108: sWords = "a wizard named Mangar who built a tower somewhere in Sosaria"; break;	
+				case 108: sWords = "a wizard named Mangar who built a tower somewhere in Vaelen"; break;	
 				case 109: sWords = "some stranger who brought an end to Exodus"; break;	
 				case 110: sWords = "someone escaping from Skara Brae"; break;	
 				case 111: sWords = "a vault of the Black Knight that is too big to explore"; break;	
@@ -705,7 +705,7 @@ namespace Server.Misc
 				case 123: sWords = "some forgotten halls below the castle of Lord British"; break;	
 				case 124: sWords = "some cultists bringing Kazibal back from the dead"; break;	
 				case 125: sWords = "an ancient evil dwelling below Castle British"; break;	
-				case 126: sWords = "a necromancer appearing out of the ever burning fire in Sosaria"; break;	
+				case 126: sWords = "a necromancer appearing out of the ever burning fire in Vaelen"; break;	
 				case 127: sWords = "someone buried with great treasure in the graveyard in " + city; break;	
 				case 128: sWords = "a demilich dwelling below " + city; break;	
 				case 129: sWords = "some " + RandomThings.GetRandomJob() + " selling artifacts in " + city; break;	

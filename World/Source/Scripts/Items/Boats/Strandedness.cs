@@ -17,7 +17,7 @@ namespace Server.Misc
 				new Point2D( 3468, 1503 ), new Point2D( 2057, 1472 ), new Point2D( 2088, 379 ),
 				new Point2D( 3271, 522 ), new Point2D( 4303, 435 ), new Point2D( 4401, 1075 )
 			};
-		private static Point2D[] m_Sosaria = new Point2D[]
+		private static Point2D[] m_Vaelen = new Point2D[]
 			{
 				new Point2D( 4526, 1367 ), new Point2D( 3764, 1339 ), new Point2D( 4116, 2899 ),
 				new Point2D( 1546, 2683 ), new Point2D( 1749, 2015 ), new Point2D( 842, 1378 ),
@@ -122,7 +122,7 @@ namespace Server.Misc
 			else if ( from.Land == Land.Underworld )
 				list = m_Underworld;
 			else
-				list = m_Sosaria;
+				list = m_Vaelen;
 
 			Point2D p = Point2D.Zero;
 			double pdist = double.MaxValue;
@@ -176,11 +176,11 @@ namespace Server.Misc
 			else if ( world == "the Serpent Island" ){ list = m_SerpentIsland; map = Map.SerpentIsland; }
 			else if ( world == "the Isles of Dread" ){ list = m_IslesDread; map = Map.IslesDread; }
 			else if ( world == "the Savaged Empire" ){ list = m_SavagedEmpire; map = Map.SavagedEmpire; }
-			else if ( world == "the Bottle World of Kuldar" ){ list = m_Bottle; map = Map.Sosaria; }
-			else if ( world == "the Island of Umber Veil" ){ list = m_Umber; map = Map.Sosaria; }
-			else if ( world == "the Land of Ambrosia" ){ list = m_Ambrosia; map = Map.Sosaria; }
+			else if ( world == "the Bottle World of Kuldar" ){ list = m_Bottle; map = Map.Vaelen; }
+			else if ( world == "the Island of Umber Veil" ){ list = m_Umber; map = Map.Vaelen; }
+			else if ( world == "the Land of Ambrosia" ){ list = m_Ambrosia; map = Map.Vaelen; }
 			else if ( world == "the Underworld" ){ list = m_Underworld; map = Map.Underworld; }
-			else{ list = m_Sosaria; map = Map.Sosaria; }
+			else{ list = m_Vaelen; map = Map.Vaelen; }
 
 			Point2D p = Point2D.Zero;
 			double pdist = double.MaxValue;

@@ -489,7 +489,7 @@ namespace Server.Misc
 				case 50: arty = "Bracelet of the Elements"; break;
 				case 51: arty = "Bracelet of the Vile"; break;
 				case 52: arty = "Bramble Coat"; break;
-				case 53: arty = "Brave Knight of Sosaria"; break;
+				case 53: arty = "Brave Knight of Vaelen"; break;
 				case 54: arty = "Breath of the Dead"; break;
 				case 55: arty = "Burglar's Bandana"; break;
 				case 56: arty = "Calm"; break;
@@ -673,7 +673,7 @@ namespace Server.Misc
 				case 234: arty = "Ring of the Elements"; break;
 				case 235: arty = "Ring of the Magician"; break;
 				case 236: arty = "Ring of the Vile"; break;
-				case 237: arty = "Robe of Sosaria"; break;
+				case 237: arty = "Robe of Vaelen"; break;
 				case 238: arty = "Robe Of Teleportation"; break;
 				case 239: arty = "Robe of the Eclipse"; break;
 				case 240: arty = "Robe of the Equinox"; break;

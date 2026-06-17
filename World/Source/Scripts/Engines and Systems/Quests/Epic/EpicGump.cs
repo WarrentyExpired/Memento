@@ -129,7 +129,7 @@ namespace Server.Gumps
 
 				if ( allowed == false )
 				{
-					sText = "It appears that " + yourName + " has found my little lair wrapped in time. You may have heard that the Stranger had defeated me years ago. Although they did foil my plans, my prodigy Exodus has returned me to Sosaria to further my efforts. This brings me to question your arrival. If you have come here to seek tribute, you best look elsewhere as you have not done anything to cause my enemies to fall." + sBare;
+					sText = "It appears that " + yourName + " has found my little lair wrapped in time. You may have heard that the Stranger had defeated me years ago. Although they did foil my plans, my prodigy Exodus has returned me to Vaelen to further my efforts. This brings me to question your arrival. If you have come here to seek tribute, you best look elsewhere as you have not done anything to cause my enemies to fall." + sBare;
 				}
 			}
 			else if ( myName == "Nystal" )
@@ -144,7 +144,7 @@ namespace Server.Gumps
 			}
 			else if ( myName == "Lord British" )
 			{
-				sTitle = "Knights of Sosaria";
+				sTitle = "Knights of Vaelen";
 				sText = "Greetings, " + yourName + ". Your recent actions have been noted by my court and I would like to offer you an item that would show my personal gratitude. These items embrace the qualities of my knightship and I feel that you may one day be one of them." + sInfo + sBare;
 
 				if ( allowed == false )
@@ -195,11 +195,11 @@ namespace Server.Gumps
 			else if ( myName == "Jaana" )
 			{
 				sTitle = "The Healing Hand";
-				sText = "Hail, " + yourName + ". I am one of the many healers of Sosaria and decided to live here since it is central to the land. I have not needed to heal you, which is suprising since I have heard of the many deeds you have done in the land. If you need to be better equipped to heal thyself, perhaps I can help." + sInfo + sBare;
+				sText = "Hail, " + yourName + ". I am one of the many healers of Vaelen and decided to live here since it is central to the land. I have not needed to heal you, which is suprising since I have heard of the many deeds you have done in the land. If you need to be better equipped to heal thyself, perhaps I can help." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "Hail, " + yourName + ". I am one of the many healers of Sosaria and decided to live here since it is central to the land. I have not needed to heal you, but that is probably because you do not risk your life for a cause. If you take up a true life of adventure, come visit again if you need to be better equipped to heal thyself." + sBare;
+					sText = "Hail, " + yourName + ". I am one of the many healers of Vaelen and decided to live here since it is central to the land. I have not needed to heal you, but that is probably because you do not risk your life for a cause. If you take up a true life of adventure, come visit again if you need to be better equipped to heal thyself." + sBare;
 				}
 			}
 			else if ( myName == "Dupre" )
@@ -265,11 +265,11 @@ namespace Server.Gumps
 			else if ( myName == "the Guardian" )
 			{
 				sTitle = "The Black Gate";
-				sText = "So you must be " + yourName + ". I have been watching your journey for quite some time. I am stuck here in Sosaria, looking for a way to get to the world of Pagan. Dupre and Lord British have been a thorn in my side, but I have many eager disciples to seek what I need or slay who I want elminated. You have done much in securing my success in this matter, as I am getting closer to having my black gate lead me to were I seek. Let me enhance your efforts, as I can conjure many items that could be of assistance to you." + sInfo + sBare;
+				sText = "So you must be " + yourName + ". I have been watching your journey for quite some time. I am stuck here in Vaelen, looking for a way to get to the world of Pagan. Dupre and Lord British have been a thorn in my side, but I have many eager disciples to seek what I need or slay who I want elminated. You have done much in securing my success in this matter, as I am getting closer to having my black gate lead me to were I seek. Let me enhance your efforts, as I can conjure many items that could be of assistance to you." + sInfo + sBare;
 
 				if ( allowed == false )
 				{
-					sText = "So you say you are called " + yourName + "? I have not heard of you, but I am stuck here in Sosaria looking for a way to get to the world of Pagan. Dupre and Lord British have been a thorn in my side, but I have many eager disciples to seek what I need or slay who I want elminated. Maybe you can venture forth and assist those that worship me, or simply create havoc to keep Dupre and Lord British busy. Return to me when you have shown me you deserve my attention." + sBare;
+					sText = "So you say you are called " + yourName + "? I have not heard of you, but I am stuck here in Vaelen looking for a way to get to the world of Pagan. Dupre and Lord British have been a thorn in my side, but I have many eager disciples to seek what I need or slay who I want elminated. Maybe you can venture forth and assist those that worship me, or simply create havoc to keep Dupre and Lord British busy. Return to me when you have shown me you deserve my attention." + sBare;
 				}
 			}
 			else if ( myName == "Garamon" )

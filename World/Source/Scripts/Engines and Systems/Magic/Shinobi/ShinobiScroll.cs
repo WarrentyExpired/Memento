@@ -247,7 +247,7 @@ namespace Server.Items
 
 			if ( skills < 8 )
 			{
-				text = text + "To prove yourself of being worthy of these abilities, you will have to overcome a series of trials. Each ability will list the item you must seek and the place where it can be sought. The ninja has a choice of trial to undertake, as each ability provides two choices. One is in the land of Sosaria and the other is in the land of Lodoria. Slay the beasts and get the items. Place them on this scroll and the shinobi secrets will be revealed to you. ";
+				text = text + "To prove yourself of being worthy of these abilities, you will have to overcome a series of trials. Each ability will list the item you must seek and the place where it can be sought. The ninja has a choice of trial to undertake, as each ability provides two choices. One is in the land of Vaelen and the other is in the land of Lodoria. Slay the beasts and get the items. Place them on this scroll and the shinobi secrets will be revealed to you. ";
 			}
 
 			text = text + "<br><br>Each ability will display the description as well as the skill required, the tithing gold needed, along with the mana necessary. To tithe gold to the spirits, find a Shrine of Durama where you can select it and then offer the gold you wish to part with. You can usually find these shrines in a dojo, and some ninjas tithe gold to almost any other deity. There are choices for having a horizontal or vertical menu bar to use these abilities quickly, but you can also select the icon within this scroll to use the skill.";
@@ -440,7 +440,7 @@ namespace Server.Items
 					else
 					{
 						AddImage(47, 57, Int32.Parse( Server.Items.ShinobiScroll.ShinobiInfo( ability, "icon" ) ));
-						clue = "To be worthy of this ability, you need to either get the " + ShinobiInfo( ability, "prize1" ) + " at " + ShinobiInfo( ability, "where1" ) + " in the Land of Sosaria or the " + ShinobiInfo( ability, "prize2" ) + " at " + ShinobiInfo( ability, "where2" ) + " in the Land of Lodoria.";
+						clue = "To be worthy of this ability, you need to either get the " + ShinobiInfo( ability, "prize1" ) + " at " + ShinobiInfo( ability, "where1" ) + " in the Land of Vaelen or the " + ShinobiInfo( ability, "prize2" ) + " at " + ShinobiInfo( ability, "where2" ) + " in the Land of Lodoria.";
 					}
 
 					AddHtml( 56, 109, 414, 92, @"<BODY><BASEFONT Color=#111111><BIG>" + clue + "</BIG></BASEFONT></BODY>", (bool)false, (bool)false);

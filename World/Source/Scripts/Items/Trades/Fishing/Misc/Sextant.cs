@@ -125,7 +125,7 @@ namespace Server.Items
 						AddImage(54, 36, 10402);
 						AddImage(83, 70, 2529);
 					}
-					else if ( land == Land.Sosaria )
+					else if ( land == Land.Vaelen )
 					{
 						modX = 40;
 						modY = 40;
@@ -237,7 +237,7 @@ namespace Server.Items
 
 			public static int PinDrop( Land land, Mobile m, int x, int y, int mx, int my, bool dir )
 			{
-				if ( land == Land.Lodoria || land == Land.Sosaria )
+				if ( land == Land.Lodoria || land == Land.Vaelen )
 				{
 					x = (int)( x * 0.1 ) + mx;
 					y = (int)( y * 0.1 ) + my;
@@ -344,7 +344,7 @@ namespace Server.Items
 			{
 				xWidth = 324; yHeight = 411; startX = 5801; startY = 2716;
 			}
-			if ( land == Land.Sosaria && x >= 0 && y >= 0 && x <= 5120 && y <= 3127 )
+			if ( land == Land.Vaelen && x >= 0 && y >= 0 && x <= 5120 && y <= 3127 )
 			{
 				xWidth = 5120; yHeight = 3127; startX = 0; startY = 0;
 			}

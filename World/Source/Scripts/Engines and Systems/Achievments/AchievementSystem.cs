@@ -92,7 +92,7 @@ namespace Scripts.Mythik.Systems.Achievements
 
 			#region Exploration - Facets (1 - 19)
 
-			var discoverSosaria = AddLand(1, 1, "One Small Step", "Discover the World of Sosaria", Land.Sosaria);
+			var discoverVaelen = AddLand(1, 1, "One Small Step", "Discover the World of Vaelen", Land.Vaelen);
 			var discoverUmberVeil = AddLand(2, 1, "Through The Veil", "Discover the land of Umber Veil", Land.UmberVeil);
 			var discoverAmbrosia = AddLand(3, 1, "The Lost Land", "Discover the land of Ambrosia", Land.Ambrosia);
 			var discoverLodoria = AddLand(4, 1, "One Does Not Simply...", "Discover the Elven World of Lodoria", Land.Lodoria);
@@ -166,21 +166,21 @@ namespace Scripts.Mythik.Systems.Achievements
 			// 57
 			// 58
 
-			// Sosaria
-			AddTown(59, 2, discoverSosaria, "Anchor Rock Docks");
-			AddTown(60, 2, discoverSosaria, "the City of Britain");
-			AddTown(61, 2, discoverSosaria, "the Lunar City of Dawn"); // TODO: Redundant?
-			AddTown(62, 2, discoverSosaria, "Death Gulch");
-			AddTown(63, 2, discoverSosaria, "the Town of Devil Guard");
-			AddTown(64, 2, discoverSosaria, "the Village of Fawn");
-			AddTown(65, 2, discoverSosaria, "Glacial Coast Village");
-			AddTown(66, 2, discoverSosaria, "the Village of Grey");
-			AddTown(67, 2, discoverSosaria, "Iceclad Fisherman's Village");
-			AddTown(68, 2, discoverSosaria, "the City of Montor");
-			AddTown(69, 2, discoverSosaria, "the Town of Moon");
-			AddTown(70, 2, discoverSosaria, "the Town of Mountain Crest");
-			AddTown(71, 2, discoverSosaria, "the Fort of Stonewall");
-			AddTown(72, 2, discoverSosaria, "the Undercity of Umbra");
+			// Vaelen
+			AddTown(59, 2, discoverVaelen, "Anchor Rock Docks");
+			AddTown(60, 2, discoverVaelen, "the City of Britain");
+			AddTown(61, 2, discoverVaelen, "the Lunar City of Dawn"); // TODO: Redundant?
+			AddTown(62, 2, discoverVaelen, "Death Gulch");
+			AddTown(63, 2, discoverVaelen, "the Town of Devil Guard");
+			AddTown(64, 2, discoverVaelen, "the Village of Fawn");
+			AddTown(65, 2, discoverVaelen, "Glacial Coast Village");
+			AddTown(66, 2, discoverVaelen, "the Village of Grey");
+			AddTown(67, 2, discoverVaelen, "Iceclad Fisherman's Village");
+			AddTown(68, 2, discoverVaelen, "the City of Montor");
+			AddTown(69, 2, discoverVaelen, "the Town of Moon");
+			AddTown(70, 2, discoverVaelen, "the Town of Mountain Crest");
+			AddTown(71, 2, discoverVaelen, "the Fort of Stonewall");
+			AddTown(72, 2, discoverVaelen, "the Undercity of Umbra");
 			// 73
 			// 74
 			// 75
@@ -282,21 +282,21 @@ namespace Scripts.Mythik.Systems.Achievements
 			// ...
 			// 225
 
-			// Sosaria
-			AddDungeon(226, 3, discoverSosaria, "the Ancient Pyramid");
-			AddDungeon(227, 3, discoverSosaria, "the Ruins of the Black Blade", false);
-			AddDungeon(228, 3, discoverSosaria, "Dungeon Exodus");
-			AddDungeon(229, 3, discoverSosaria, "the Cave of Banished Mages", false);
-			AddDungeon(230, 3, discoverSosaria, "the Caverns of Poseidon");
-			AddDungeon(231, 3, discoverSosaria, "Dungeon Clues");
-			AddDungeon(232, 3, discoverSosaria, "Dardin's Pit");
-			AddDungeon(233, 3, discoverSosaria, "Dungeon Doom");
-			AddDungeon(234, 3, discoverSosaria, "the Fires of Hell");
-			AddDungeon(235, 3, discoverSosaria, "the Forgotten Halls");
-			AddDungeon(236, 3, discoverSosaria, "the Mines of Morinia");
-			AddDungeon(237, 3, discoverSosaria, "the Montor Sewers", false);
-			AddDungeon(238, 3, discoverSosaria, "the Perinian Depths");
-			AddDungeon(239, 3, discoverSosaria, "the Dungeon of Time Awaits");
+			// Vaelen
+			AddDungeon(226, 3, discoverVaelen, "the Ancient Pyramid");
+			AddDungeon(227, 3, discoverVaelen, "the Ruins of the Black Blade", false);
+			AddDungeon(228, 3, discoverVaelen, "Dungeon Exodus");
+			AddDungeon(229, 3, discoverVaelen, "the Cave of Banished Mages", false);
+			AddDungeon(230, 3, discoverVaelen, "the Caverns of Poseidon");
+			AddDungeon(231, 3, discoverVaelen, "Dungeon Clues");
+			AddDungeon(232, 3, discoverVaelen, "Dardin's Pit");
+			AddDungeon(233, 3, discoverVaelen, "Dungeon Doom");
+			AddDungeon(234, 3, discoverVaelen, "the Fires of Hell");
+			AddDungeon(235, 3, discoverVaelen, "the Forgotten Halls");
+			AddDungeon(236, 3, discoverVaelen, "the Mines of Morinia");
+			AddDungeon(237, 3, discoverVaelen, "the Montor Sewers", false);
+			AddDungeon(238, 3, discoverVaelen, "the Perinian Depths");
+			AddDungeon(239, 3, discoverVaelen, "the Dungeon of Time Awaits");
 			// TODO: "Ice Island Dungeons"
 			// ...
 			// 250

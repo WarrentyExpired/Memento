@@ -163,56 +163,56 @@ namespace Server.Gumps
 
 				if ( page == 2 )
 				{
-					sGrave = Worlds.GetAreaEntrance( 0, "the Ancient Pyramid", Map.Sosaria, out placer_1, out xc_1, out yc_1 );
+					sGrave = Worlds.GetAreaEntrance( 0, "the Ancient Pyramid", Map.Vaelen, out placer_1, out xc_1, out yc_1 );
 					name1 = "Banish";
 					soul1 = "56";
 					skil1 = "40";
 					mana1 = "36";
-					text1 = ""; if ( !this.HasSpell( from, 750) ){ m_NotHave_1 = true; z1=220; text1 = "Saint Kargoth<BR>Land of Sosaria: Ancient Pyramid<BR>" + sGrave + "<BR><BR>"; }
+					text1 = ""; if ( !this.HasSpell( from, 750) ){ m_NotHave_1 = true; z1=220; text1 = "Saint Kargoth<BR>Land of Vaelen: Ancient Pyramid<BR>" + sGrave + "<BR><BR>"; }
 					text1 = text1 + "Banish summoned creatures back to their realm, demons back to hell, or elementals back to their plane of existence.";
 					icon1 = 0x5010;
 
-					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Clues", Map.Sosaria, out placer_2, out xc_2, out yc_2 );
+					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Clues", Map.Vaelen, out placer_2, out xc_2, out yc_2 );
 					name2 = "Demonic Touch";
 					soul2 = "21";
 					skil2 = "15";
 					mana2 = "16";
-					text2 = ""; if ( !this.HasSpell( from, 751) ){ m_NotHave_2 = true; z2=220; text2 = "Lord Monduiz Dephaar<BR>Land of Sosaria: Dungeon Clues<BR>" + sGrave + "<BR><BR>"; }
+					text2 = ""; if ( !this.HasSpell( from, 751) ){ m_NotHave_2 = true; z2=220; text2 = "Lord Monduiz Dephaar<BR>Land of Vaelen: Dungeon Clues<BR>" + sGrave + "<BR><BR>"; }
 					text2 = text2 + "The death knight's target is healed by demonic forces for a significant amount.";
 					icon2 = 0x5009;
 				}
 				else if ( page == 3 )
 				{
-					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Doom", Map.Sosaria, out placer_1, out xc_1, out yc_1 );
+					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Doom", Map.Vaelen, out placer_1, out xc_1, out yc_1 );
 					name1 = "Devil Pact";
 					soul1 = "98";
 					skil1 = "90";
 					mana1 = "60";
-					text1 = ""; if ( !this.HasSpell( from, 752) ){ m_NotHave_1 = true; z1=220; text1 = "Lady Kath of Naelex<BR>Land of Sosaria: Dungeon Doom<BR>" + sGrave + "<BR><BR>"; }
+					text1 = ""; if ( !this.HasSpell( from, 752) ){ m_NotHave_1 = true; z1=220; text1 = "Lady Kath of Naelex<BR>Land of Vaelen: Dungeon Doom<BR>" + sGrave + "<BR><BR>"; }
 					text1 = text1 + "Summons the devil to battle with the death knight.";
 					icon1 = 0x5005;
 
-					sGrave = Worlds.GetAreaEntrance( 0, "the Fires of Hell", Map.Sosaria, out placer_2, out xc_2, out yc_2 );
+					sGrave = Worlds.GetAreaEntrance( 0, "the Fires of Hell", Map.Vaelen, out placer_2, out xc_2, out yc_2 );
 					name2 = "Grim Reaper";
 					soul2 = "42";
 					skil2 = "30";
 					mana2 = "28";
-					text2 = ""; if ( !this.HasSpell( from, 753) ){ m_NotHave_2 = true; z2=220; text2 = "Prince Myrhal of Rax<BR>Land of Sosaria: Fires of Hell<BR>" + sGrave + "<BR><BR>"; }
+					text2 = ""; if ( !this.HasSpell( from, 753) ){ m_NotHave_2 = true; z2=220; text2 = "Prince Myrhal of Rax<BR>Land of Vaelen: Fires of Hell<BR>" + sGrave + "<BR><BR>"; }
 					text2 = text2 + "The next target hit becomes marked by the grim reaper. All damage dealt to it is increased, but the death knight takes extra damage from other kinds of creatures.";
 					icon2 = 0x402;
 				}
 				else if ( page == 4 )
 				{
-					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Exodus", Map.Sosaria, out placer_1, out xc_1, out yc_1 );
+					sGrave = Worlds.GetAreaEntrance( 0, "Dungeon Exodus", Map.Vaelen, out placer_1, out xc_1, out yc_1 );
 					name1 = "Hag Hand";
 					soul1 = "7";
 					skil1 = "5";
 					mana1 = "8";
-					text1 = ""; if ( !this.HasSpell( from, 754) ){ m_NotHave_1 = true; z1=220; text1 = "Sir Maeril of Naelax<BR>Land of Sosaria: Dungeon Exodus<BR>" + sGrave + "<BR><BR>"; }
+					text1 = ""; if ( !this.HasSpell( from, 754) ){ m_NotHave_1 = true; z1=220; text1 = "Sir Maeril of Naelax<BR>Land of Vaelen: Dungeon Exodus<BR>" + sGrave + "<BR><BR>"; }
 					text1 = text1 + "Your hand holds the powers of a hag, where it can remove curses from items and others.";
 					icon1 = 0x5002;
 
-					sGrave = Worlds.GetAreaEntrance( 0, "the City of the Dead", Map.Sosaria, out placer_2, out xc_2, out yc_2 );
+					sGrave = Worlds.GetAreaEntrance( 0, "the City of the Dead", Map.Vaelen, out placer_2, out xc_2, out yc_2 );
 					name2 = "Hellfire";
 					soul2 = "84";
 					skil2 = "70";
@@ -223,7 +223,7 @@ namespace Server.Gumps
 				}
 				else if ( page == 5 )
 				{
-					sGrave = Worlds.GetAreaEntrance( 0, "the Mausoleum", Map.Sosaria, out placer_1, out xc_1, out yc_1 );
+					sGrave = Worlds.GetAreaEntrance( 0, "the Mausoleum", Map.Vaelen, out placer_1, out xc_1, out yc_1 );
 					name1 = "Lucifer's Bolt";
 					soul1 = "35";
 					skil1 = "25";

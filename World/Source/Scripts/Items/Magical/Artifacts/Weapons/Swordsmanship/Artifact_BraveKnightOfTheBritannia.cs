@@ -15,7 +15,7 @@ namespace Server.Items
 		{
 			Hue = 0x47e;
 			ItemID = 0x13FF;
-			Name = "Brave Knight of Sosaria";
+			Name = "Brave Knight of Vaelen";
 			Attributes.WeaponSpeed = 30;
 			Attributes.WeaponDamage = 35;
 

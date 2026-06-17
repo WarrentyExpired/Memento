@@ -159,14 +159,14 @@ namespace Server.Mobiles
 				else if ( reg.IsPartOf( "Vordo's Dungeon" ) && this.X > 6334 
 						&& this.Y > 21 && this.X < 6354 && this.Y < 40 ){ 							category = "toxic"; }
 				else if ( reg.IsPartOf( "the Tower of Brass" ) 
-						&& Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6519, 3572, Map.Sosaria ) ){ 	category = "forest"; }
+						&& Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6519, 3572, Map.Vaelen ) ){ 	category = "forest"; }
 				else if ( reg.IsPartOf( "the Temple of Osirus" ) ){									category = "jungle"; if ( Utility.RandomBool() ){ category = "forest"; } }
 				else if ( reg.IsPartOf( "the Sanctum of Saltmarsh" ) ){								category = "swamp"; }
 				else if ( reg.IsPartOf( "the Hidden Valley" ) ){									category = "forest"; }
 				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 4261, 3410, Map.Lodor ) ){ 	category = "dungeon"; }
-				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 1094, 3384, Map.Sosaria ) ){ 	category = "dungeon"; }
-				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6786, 317, Map.Sosaria ) ){ 	category = "dungeon"; }
-				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6873, 202, Map.Sosaria ) ){ 	category = "dungeon"; }
+				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 1094, 3384, Map.Vaelen ) ){ 	category = "dungeon"; }
+				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6786, 317, Map.Vaelen ) ){ 	category = "dungeon"; }
+				else if ( Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 6873, 202, Map.Vaelen ) ){ 	category = "dungeon"; }
 				else if ( reg.IsPartOf( "the Forgotten Halls" ) 
 						&& Server.Misc.SummonQuests.IsInLocation( this.Home.X, this.Home.Y, this.Map, 409, 3670, Map.SavagedEmpire ) ){ 		category = "swamp"; }
 				else if ( reg.IsPartOf( "the Ancient Crash Site" ) || reg.IsPartOf( "the Ancient Sky Ship" ) ){ category = "radiation"; }
