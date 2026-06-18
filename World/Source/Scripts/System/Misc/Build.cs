@@ -35,7 +35,9 @@ namespace Server.Misc
 
             int Heat = 0;
             int ChestLevel = 0;
-            ChestLevel = 5; chestSpawner = new DungeonChestSpawner(1, 0.1); chestSpawner.MoveToWorld(new Point3D(2394, 425, 0), Map.Vaelen); Heat = Server.Difficult.GetDifficulty(chestSpawner.Location, chestSpawner.Map); if (Heat < 0) { Heat = 0; }
+            ////////// Dungeon Passage \\\\\\\\\\\\
+            ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1, 0.1); chestSpawner.MoveToWorld(new Point3D(2394, 425, 0), Map.Vaelen); Heat = Server.Difficult.GetDifficulty(chestSpawner.Location, chestSpawner.Map); if (Heat < 0) { Heat = 0; }
+            ChestLevel = 1; chestSpawner = new DungeonChestSpawner(1, 0.1); chestSpawner.MoveToWorld(new Point3D(2381, 452, 0), Map.Vaelen); Heat = Server.Difficult.GetDifficulty(chestSpawner.Location, chestSpawner.Map); if (Heat < 0) { Heat = 0; }
             chestSpawner.SpawnerLevel = ChestLevel + Heat;
         }
     }
@@ -2943,6 +2945,8 @@ namespace Server.Scripts.Commands
             Server.SpawnGenerator.Parse(e.Mobile, "animals.map");
             if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Bastion..."); }
             Server.SpawnGenerator.Parse(e.Mobile, "bastion.map");
+            if (MySettings.ConsoleLog) { Console.WriteLine("Spawn Dungeons...");}
+            Server.SpawnGenerator.Parse(e.Mobile, "dungeons.map");
 
             if (MySettings.ConsoleLog) { Console.WriteLine("Respawn Regions..."); }
             Server.Regions.SpawnEntry.RespawnAllRegions_OnCommand(e);
